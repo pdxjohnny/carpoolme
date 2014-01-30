@@ -1581,3 +1581,46 @@
 [Wed Jan 29 22:35:01 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
 [Wed Jan 29 22:35:04 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
 [Wed Jan 29 22:35:49 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Wed Jan 29 23:57:20 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5
+[Thu Jan 30 00:09:56 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/test.php on line 5
+[Thu Jan 30 00:09:56 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/test.php on line 6
+[Thu Jan 30 00:09:56 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/test.php on line 7
+[Thu Jan 30 00:09:56 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/test.php on line 8
+[Thu Jan 30 00:14:30 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 7
+[Thu Jan 30 00:14:30 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 8
+[Thu Jan 30 00:14:30 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 9
+[Thu Jan 30 00:14:30 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 10
+[Thu Jan 30 00:14:30 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 38
+[Thu Jan 30 00:14:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 7
+[Thu Jan 30 00:14:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 8
+[Thu Jan 30 00:14:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 9
+[Thu Jan 30 00:14:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 10
+[Thu Jan 30 00:14:35 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 38
+[Thu Jan 30 00:15:40 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 00:15:45 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 7
+[Thu Jan 30 00:15:45 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 8
+[Thu Jan 30 00:15:45 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 9
+[Thu Jan 30 00:15:45 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 10
+[Thu Jan 30 00:15:46 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 38
+[Thu Jan 30 00:17:24 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 7
+[Thu Jan 30 00:17:24 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 8
+[Thu Jan 30 00:17:24 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 9
+[Thu Jan 30 00:17:24 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 10
+[Thu Jan 30 00:17:40 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 38
+[Thu Jan 30 00:17:48 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 38
+[Thu Jan 30 00:17:50 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 38
+[Thu Jan 30 00:19:08 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 7
+[Thu Jan 30 00:19:08 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 8
+[Thu Jan 30 00:19:08 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 9
+[Thu Jan 30 00:19:08 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/scripts/phpfunctions.php on line 10
+[Thu Jan 30 00:19:09 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/test.php on line 4
+[Thu Jan 30 00:19:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/test.php on line 4
+[Thu Jan 30 00:19:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/test.php on line 5
+[Thu Jan 30 00:19:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/test.php on line 6
+[Thu Jan 30 00:19:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/test.php on line 7
+[Thu Jan 30 00:19:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: _SESSION in /var/www/carpool/test.php on line 31
+[Thu Jan 30 00:20:33 2014] [error] [client 24.20.209.246] PHP Notice:  A session had already been started - ignoring session_start() in /var/www/carpool/scripts/phpfunctions.php on line 3
+[Thu Jan 30 00:20:34 2014] [error] [client 24.20.209.246] PHP Fatal error:  Call to undefined function showNearBy() in /var/www/carpool/test.php on line 5
+[Thu Jan 30 00:20:44 2014] [error] [client 24.20.209.246] PHP Fatal error:  Call to undefined function showNearBy() in /var/www/carpool/test.php on line 5
+[Thu Jan 30 00:26:28 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 00:26:35 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
