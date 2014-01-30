@@ -119,37 +119,51 @@ function showPosition(position){
   };
   var map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
   var mymarker=new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
-  var marker1=new google.maps.Marker({position:latlon1,map:map,title:"You are here!"});
   }
 }
-function johnnyMap(locations){
 
-    var map = new google.maps.Map(document.getElementById('mapholder'), {
-      zoom: 10,
-      center: new google.maps.LatLng(locations[0][1],locations[0][2]),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
-  mapholder=document.getElementById('mapholder')
-  mapholder.style.height='250px';
-  mapholder.style.width='100%';
+var map;
+var InfoWindow = new google.maps.InfoWindow();
 
-    var infowindow = new google.maps.InfoWindow();
+function makeMap(centerlat,centerlng,zoomval,divId){
 
-    var marker, i;
+	map = new google.maps.Map(document.getElementById(divId), {
+ 		zoom: zoomval,
+		center: new google.maps.LatLng(centerlat,centerlng),
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+		});
+	mapholder=document.getElementById(divId)
+	mapholder.style.height='250px';
+	mapholder.style.width='100%';
 
-    for (i = 0; i < locations.length; i++) {  
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
-      });
-
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
-        }
-      })(marker, i));
-    }
 
 	}
 
+function arrayMap(locations){
+
+	var marker, i;
+
+	for (i = 0; i < locations.length; i++) {  
+		marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][1], locations[i][2]), map: map});
+
+		google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        		return function() {
+				InfoWindow.setContent(locations[i][0]);
+				InfoWindow.open(map, marker);
+				}
+			})(marker, i));
+		}
+	}
+
+function addPointMap(lat,lng,name,image,isuser){
+	if(isuser) var ontop = 9999999999;
+	else var ontop = 200;
+	var marker = new google.maps.Marker({position: new google.maps.LatLng(lat,lng), map: map, icon: image, zIndex: ontop});
+
+	google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        	return function() {
+			InfoWindow.setContent(name);
+			InfoWindow.open(map, marker);
+			}
+		})(marker));
+	}

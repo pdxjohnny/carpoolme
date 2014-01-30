@@ -1,5 +1,7 @@
 <?php
 
+if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
+
 if(isset($_POST['logingo'])) {
 
 	$whatlat = $_SESSION['lat'] = $_POST['GPSlatl'];
@@ -48,7 +50,7 @@ navigator.geolocation.getCurrentPosition(function(position){
 Username<br>
 <input name='username' type="text"><br>
 Password<br>
-<input name="password" type="text"><br>
+<input name="password" type="password"><br>
 <input name="GPSlatl" id="GPSlatl" type="hidden" value="">
 <input name="GPSlongl" id="GPSlongl" type="hidden" value="">
 <input value="Login" id="logingo" name="logingo" type="submit"><br>

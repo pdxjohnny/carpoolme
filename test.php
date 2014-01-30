@@ -1,13 +1,13 @@
 <?php
 
 session_start();
+define('INCLUDE_CHECK',true);
 
 if($_SESSION['username']!=NULL){
 	echo "User " . $_SESSION['username'] . " is logged in<br>";
 	require 'scripts/logout.php';
 	require 'scripts/phpfunctions.php';
 	getNearBy();
-	echo "Users near you";
 ?>
 <html>
   <head>
@@ -23,8 +23,10 @@ if($_SESSION['username']!=NULL){
 	var mylat = "<?php echo $_SESSION['lat']; ?>";
    	var mylng = "<?php echo $_SESSION['lng']; ?>";
 	var locations = <?php echo json_encode($_SESSION['nearby']); ?>;
-	console.log(locations);
-	johnnyMap(locations);
+	var myicon = 'images/male.png';
+	makeMap(mylat,mylng,12,"mapholder");
+	addPointMap(mylat,mylng,"You",myicon,1);
+	arrayMap(locations);
 </script>
 
 </html>
@@ -33,6 +35,6 @@ if($_SESSION['username']!=NULL){
 	}
 else{
 	require 'scripts/login.php';
-	require 'scripts/register.php';
+	//require 'scripts/register.php';
 	}
 ?>

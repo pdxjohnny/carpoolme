@@ -1,5 +1,7 @@
 <?php
 
+if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
+
 if(isset($_POST['reg'])) {
 
 	$whatlat = $_SESSION['lat'] = $_POST['GPSlatr'];
@@ -18,10 +20,18 @@ if(isset($_POST['reg'])) {
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-	mysqli_query($con,"INSERT INTO $table (username,password,email,latitude,longitude) VALUES('$whatname','$whatpass','$whatemail',$whatlat,$whatlng);");
-
-	$_SESSION['username'] = $whatname;
-	echo $_SESSION['username'] . " is now logged in" . "<meta http-equiv='refresh' content='0'>";
+	
+	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$whatname' OR email='$whatemail';");
+	
+	if(1 == mysqli_num_rows($result)){
+		mysqli_close($con);
+		exit($_SESSION['username'] . " is already taken");
+		}
+	else{
+		mysqli_query($con,"INSERT INTO $table (username,password,email) VALUES('$whatname','$whatpass','$whatemail');");
+		$_SESSION['username'] = $whatname;
+		echo $_SESSION['username'] . " is now logged in" . "<meta http-equiv='refresh' content='0'>";
+		}
 
 	mysqli_close($con);
 	}
@@ -43,7 +53,7 @@ navigator.geolocation.getCurrentPosition(function(position){
 Username<br>
 <input name='username' type="text"><br>
 Password<br>
-<input name="password" type="text"><br>
+<input name="password" type="password"><br>
 Email<br>
 <input name="email" type="text"><br>
 <input name="GPSlatr" id="GPSlatr" type="hidden" value="">

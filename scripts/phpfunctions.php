@@ -1,16 +1,19 @@
 <?php
 
+if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
+
 function getNearBy(){
 	
-	$table="carpool_members";
+	$range = 0.5;
+	$table = "carpool_members";
 	$templat = $_SESSION['lat'];
 	$templng = $_SESSION['lng'];
 	$myusername = $_SESSION['username'];
 
-	$mylatsub = $templat-0.5;
-	$mylatadd = $templat+0.5;
-	$mylngsub = $templng-0.5;
-	$mylngadd = $templng+0.5;
+	$mylatsub = $templat-$range;
+	$mylatadd = $templat+$range;
+	$mylngsub = $templng-$range;
+	$mylngadd = $templng+$range;
 
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
 

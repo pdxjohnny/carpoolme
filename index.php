@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+define('INCLUDE_CHECK',true);
 
 if($_SESSION['username']!=NULL){
 	echo "User " . $_SESSION['username'] . " is logged in<br>";
@@ -22,7 +23,9 @@ if($_SESSION['username']!=NULL){
 <script>
 	var mylat = "<?php echo $_SESSION['lat']; ?>";
    	var mylng = "<?php echo $_SESSION['lng']; ?>";
-	oneOnMap(mylat,mylng,mylat-0.05,mylng-0.05);
+	var locations = <?php echo json_encode($_SESSION['nearby']); ?>;
+	makeMap(mylat,mylng,12);
+	arrayMap(locations);
 </script>
 
 </html>
@@ -31,6 +34,6 @@ if($_SESSION['username']!=NULL){
 	}
 else{
 	require 'scripts/login.php';
-	require 'scripts/register.php';
+	//require 'scripts/register.php';
 	}
 ?>
