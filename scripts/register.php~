@@ -1,0 +1,46 @@
+<?php
+$host="***REMOVED***"; // Host name 
+$username="***REMOVED***"; // Mysql username 
+$password="***REMOVED***"; // Mysql password 
+$db_name="***REMOVED***"; // Database name 
+$tbl_name="carpool_members"; // Table name 
+
+mysql_connect($host, $username, $password)or die("cannot connect"); 
+mysql_select_db($db_name)or die("cannot select DB");
+
+$myusername = $_POST['myusername'];
+$mypassword = $_POST['mypassword'];
+
+$sql="SELECT * FROM $tbl_name WHERE username='$myusername' and password='$mypassword'";
+
+// Mysql_num_row is counting table row
+$count=mysql_num_rows($result);
+
+// If result matched $myusername and $mypassword, table row must be 1 row
+if($count==1){
+exit("<script>alert('Already registered, You re now logged in.');</script>");
+session_register("myusername");
+session_register("mypassword"); 
+}
+// Done with registration check
+
+else{
+$con=mysqli_connect($host,$username,$password,$db_name);
+$sql="INSERT INTO $tbl_name (username, password, email)
+VALUES
+('$_POST[myusername]','$_POST[mypassword]','$_POST[myemail]')";
+
+if (!mysqli_query($con,$sql))
+  {
+  die('Error: ' . mysqli_error($con));
+  }
+
+mysqli_close($con);
+
+session_register("myusername");
+session_register("mypassword"); 
+echo "<script>alert('Success! You are now regitered');history.go(-1);</script>";
+
+}
+
+?>

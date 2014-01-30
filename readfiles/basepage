@@ -1,0 +1,79 @@
+<?php
+session_start();
+?>
+<html>
+<script src="scripts/main.js"></script>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>
+<!-- title -->
+</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link href='style.css' type='text/css' rel='stylesheet' media='screen, projection'> </link>
+
+</head>
+
+<body>
+
+<div id="page">
+	<div class="topbar">
+<?php
+if(!session_is_registered(myusername)){
+echo "<a href='scripts/login.html'>Login</a>";
+}
+else{
+echo '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script><script>function logout() {    $.get("scripts/logout.php");    return false;}</script><a href="#" onclick="logout();">Logout</a>';
+}
+?>
+	</div>
+	<div class="inner">
+		<div class="mast">
+			<ul class="nav">
+<!-- site image -->
+				<script>
+				document.write("<img src="+sitename+"/images/logo.png ></img>");
+				links("pages.txt");
+				</script>
+			</ul><!-- /end ul.nav -->
+		</div><!-- /end .mast -->
+
+		<div class="section intro">
+			<div>
+				<h2>
+<!-- main header -->
+				</h2>
+
+				<p>
+<!-- main content -->
+				</p>
+			</div>
+		</div><!-- /end .section.intro -->
+
+		<div class="section main">
+			<h2>
+<!-- bottom header -->
+			</h2>
+
+			<p>
+<!-- bottom content -->
+			</p>
+
+			<ol>
+<!-- bottom images -->
+			</ol>
+		</div><!-- /end .section.main -->
+
+		<div class="footer">
+			<p>
+<!-- footer -->
+			</p>
+		</div><!-- /end .footer -->
+	</div><!-- /end .inner -->
+</div><!-- /end #page -->
+
+</body>
+</html>
