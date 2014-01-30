@@ -1624,3 +1624,32 @@
 [Thu Jan 30 00:20:44 2014] [error] [client 24.20.209.246] PHP Fatal error:  Call to undefined function showNearBy() in /var/www/carpool/test.php on line 5
 [Thu Jan 30 00:26:28 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
 [Thu Jan 30 00:26:35 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 00:49:57 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 00:50:05 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 04:09:29 2014] [error] [client 66.249.64.3] File does not exist: /var/www/carpool/robots.txt
+[Thu Jan 30 04:09:29 2014] [error] [client 66.249.64.3] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5
+[Thu Jan 30 07:06:09 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 07:06:13 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 07:06:30 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 07:07:24 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 07:08:45 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 07:09:04 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 07:12:43 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 07:20:56 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 07:25:52 2014] [error] [client 166.147.88.19] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/
+[Thu Jan 30 07:25:53 2014] [error] [client 166.147.88.19] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 07:29:40 2014] [error] [client 166.147.88.44] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 07:29:42 2014] [error] [client 166.147.88.44] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 07:29:43 2014] [error] [client 166.147.88.44] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 07:34:47 2014] [error] [client 166.147.88.23] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 07:34:47 2014] [error] [client 166.147.88.23] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 07:34:48 2014] [error] [client 166.147.88.23] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 07:35:52 2014] [error] [client 166.147.88.23] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 07:35:52 2014] [error] [client 166.147.88.23] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 07:35:53 2014] [error] [client 166.147.88.23] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 07:36:16 2014] [error] [client 166.147.88.23] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 07:36:16 2014] [error] [client 166.147.88.23] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 07:36:17 2014] [error] [client 166.147.88.23] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 09:35:20 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 09:35:24 2014] [error] [client 159.191.186.254] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 11:13:05 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 5, referer: http://carpool.sytes.net/index.php

@@ -3,11 +3,14 @@
 function getNearBy(){
 	
 	$table="carpool_members";
-	$myusername = $_SESSION['lat'];
-	$mylatsub = $_SESSION['lat']-0.5;
-	$mylatadd = $_SESSION['lat']+0.5;
-	$mylngsub = $_SESSION['lng']-0.5;
-	$mylngadd = $_SESSION['lng']+0.5;
+	$templat = $_SESSION['lat'];
+	$templng = $_SESSION['lng'];
+	$myusername = $_SESSION['username'];
+
+	$mylatsub = $templat-0.5;
+	$mylatadd = $templat+0.5;
+	$mylngsub = $templng-0.5;
+	$mylngadd = $templng+0.5;
 
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
 
