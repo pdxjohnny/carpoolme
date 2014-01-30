@@ -95,7 +95,7 @@ function readFile(filename){
 		}
 	else alert("Error executing XMLHttpRequest call!");
 	}
-function oneOnMap(lat,lng){
+function oneOnMap(lat,lng,lat1,lng1){
 
   if (navigator.geolocation)
     {
@@ -104,26 +104,52 @@ function oneOnMap(lat,lng){
   else{x.innerHTML="Geolocation is not supported by this browser.";}
 
 
-function showPosition(position)
-  {
-  lat=position.coords.latitude;
-  lon=position.coords.longitude;
-  latlon=new google.maps.LatLng(lat, lon)
+function showPosition(position){
+  latlon=new google.maps.LatLng(mylat, mylng)
+  latlon1=new google.maps.LatLng(lat1, lng1)
   mapholder=document.getElementById('mapholder')
   mapholder.style.height='250px';
   mapholder.style.width='100%';
 
   var myOptions={
-  center:latlon,zoom:14,
+  center:latlon,zoom:12,
   mapTypeId:google.maps.MapTypeId.ROADMAP,
   mapTypeControl:false,
   navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
   };
   var map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
-  var marker=new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
+  var mymarker=new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
+  var marker1=new google.maps.Marker({position:latlon1,map:map,title:"You are here!"});
   }
 }
-function johnnyMap(lat,lng){
+function johnnyMap(locations){
+
+    var map = new google.maps.Map(document.getElementById('mapholder'), {
+      zoom: 10,
+      center: new google.maps.LatLng(locations[0][1],locations[0][2]),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+  mapholder=document.getElementById('mapholder')
+  mapholder.style.height='250px';
+  mapholder.style.width='100%';
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
 
 	}
 

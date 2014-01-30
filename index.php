@@ -22,7 +22,7 @@ if($_SESSION['username']!=NULL){
 <script>
 	var mylat = "<?php echo $_SESSION['lat']; ?>";
    	var mylng = "<?php echo $_SESSION['lng']; ?>";
-	oneOnMap(mylat,mylng);
+	oneOnMap(mylat,mylng,mylat-0.05,mylng-0.05);
 </script>
 
 </html>
