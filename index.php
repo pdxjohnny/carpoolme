@@ -8,28 +8,26 @@ if($_SESSION['username']!=NULL){
 	require 'scripts/logout.php';
 	require 'scripts/phpfunctions.php';
 	getNearBy();
-	echo "Users near you<br>";
-	showNearBy();
 ?>
-<html>
-  <head>
+<head>
     <title>Carpool</title>
   </head>
 <h3>Hey <?php echo $_SESSION['username']; ?> you are here!</h3>
-<!----><script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 <div id="mapholder"></div>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script src="scripts/main.js"></script>
+
 <script>
 	var mylat = "<?php echo $_SESSION['lat']; ?>";
    	var mylng = "<?php echo $_SESSION['lng']; ?>";
 	var locations = <?php echo json_encode($_SESSION['nearby']); ?>;
-	makeMap(mylat,mylng,12);
+	var myicon = 'images/male.png';
+	makeMap(mylat,mylng,12,"mapholder");
+	addPointMap(mylat,mylng,"You",myicon,1);
 	arrayMap(locations);
 </script>
-
-</html>
-
 <?php
 	}
 else{
