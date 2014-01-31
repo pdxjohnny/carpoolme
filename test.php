@@ -15,6 +15,7 @@ if($_SESSION['username']!=NULL){
 <h3>Hey <?php echo $_SESSION['username']; ?> you are here!</h3>
 <?php
 	makeMap();
+	require 'scripts/setDest.php';
 	}
 else{
 	require 'scripts/login.php';
