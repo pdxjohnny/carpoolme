@@ -7,7 +7,7 @@ if($_SESSION['username']!=NULL){
 	echo "User " . $_SESSION['username'] . " is logged in<br>";
 	require 'scripts/logout.php';
 	require 'scripts/phpfunctions.php';
-	getNearBy(0.5);
+	getNearBy(0.15);
 ?>
   <head>
     <title>Carpool</title>

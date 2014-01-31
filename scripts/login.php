@@ -51,8 +51,8 @@ Username<br>
 <input name='username' type="text"><br>
 Password<br>
 <input name="password" type="password"><br>
-<input name="GPSlatl" id="GPSlatl" type="text" value="">
-<input name="GPSlongl" id="GPSlongl" type="text" value="">
+<input name="GPSlatl" id="GPSlatl" type="hidden" value="">
+<input name="GPSlongl" id="GPSlongl" type="hidden" value="">
 <input value="Login" id="logingo" name="logingo" type="submit"><br>
 </form>
 </html>
