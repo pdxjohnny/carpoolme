@@ -2190,3 +2190,71 @@
 [Thu Jan 30 21:14:18 2014] [error] [client 24.20.209.246] PHP Parse error:  syntax error, unexpected $end in /var/www/carpool/scripts/quickview.php on line 53
 [Thu Jan 30 21:20:01 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53
 [Thu Jan 30 21:20:25 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:29:25 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:29:27 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:37:17 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6
+[Thu Jan 30 21:37:17 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6
+[Thu Jan 30 21:37:24 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:37:24 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:37:28 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:39:12 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:39:17 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:39:28 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6
+[Thu Jan 30 21:39:28 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:39:57 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6
+[Thu Jan 30 21:40:11 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6
+[Thu Jan 30 21:40:12 2014] [error] [client 50.186.44.26] File does not exist: /var/www/carpool/favicon.ico, referer: http://carpool.sytes.net/
+[Thu Jan 30 21:40:15 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6, referer: http://carpool.sytes.net/
+[Thu Jan 30 21:40:15 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:40:15 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/index.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:40:16 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:40:25 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/index.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53
+[Thu Jan 30 21:40:26 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:40:38 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:40:45 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6, referer: http://carpool.sytes.net/
+[Thu Jan 30 21:40:47 2014] [error] [client 50.186.44.26] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/index.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:40:47 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 70, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:40:47 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:40:50 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:40:53 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:40:56 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:40:58 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:41:12 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:41:17 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:41:40 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:41:46 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/index.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/
+[Thu Jan 30 21:41:47 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:42:14 2014] [error] [client 50.186.44.26] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/index.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:42:14 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 70, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:42:19 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:42:56 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:43:24 2014] [error] [client 50.186.44.26] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/index.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53
+[Thu Jan 30 21:43:24 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 70
+[Thu Jan 30 21:43:32 2014] [error] [client 50.186.44.26] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/index.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/
+[Thu Jan 30 21:43:32 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 70, referer: http://carpool.sytes.net/
+[Thu Jan 30 21:43:33 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:43:38 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:43:38 2014] [error] [client 50.186.44.26] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/index.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:43:38 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 70, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:43:58 2014] [error] [client 50.186.44.26] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/index.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:43:58 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 70, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:43:59 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:44:35 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:44:35 2014] [error] [client 50.186.44.26] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/index.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:44:35 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 70, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:45:40 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:45:41 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:45:47 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:45:49 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:45:52 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:45:55 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:45:55 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:46:27 2014] [error] [client 50.186.44.26] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/index.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53
+[Thu Jan 30 21:46:27 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 70
+[Thu Jan 30 21:46:39 2014] [error] [client 50.186.44.26] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/index.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/
+[Thu Jan 30 21:46:39 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 70, referer: http://carpool.sytes.net/
+[Thu Jan 30 21:46:39 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:47:01 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:47:03 2014] [error] [client 50.186.44.26] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/index.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/index.php
+[Thu Jan 30 21:47:25 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:47:25 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/test.php

@@ -8,7 +8,7 @@ if(isset($_POST['logingo'])) {
 	$whatlng = $_SESSION['lng'] = $_POST['GPSlongl'];
 	$whatname = $_POST['username'];
 	$whatpass = $_POST['password'];
-	if((!$whatname)||(!$whatpass)) exit ("<script>alert('Yo $whatname how do you expect to sign in if you don't put in your username and password.');</script><meta http-equiv='refresh' content='0'>");
+	if((!$whatname)||(!$whatpass)||(!$whatlat)||(!$whatlng)) exit ("<script>alert('Yo $whatname please fill in all fields and enable location.');</script><meta http-equiv='refresh' content='0'>");
 	$table="carpool_members"; // Table name
 
 	// Create connection
@@ -51,8 +51,8 @@ Username<br>
 <input name='username' type="text"><br>
 Password<br>
 <input name="password" type="password"><br>
-<input name="GPSlatl" id="GPSlatl" type="hidden" value="">
-<input name="GPSlongl" id="GPSlongl" type="hidden" value="">
+<input name="GPSlatl" id="GPSlatl" type="text" value="">
+<input name="GPSlongl" id="GPSlongl" type="text" value="">
 <input value="Login" id="logingo" name="logingo" type="submit"><br>
 </form>
 </html>
