@@ -8,7 +8,7 @@ if(isset($_POST['logingo'])) {
 	$whatlng = $_SESSION['lng'] = $_POST['GPSlongl'];
 	$whatname = $_POST['username'];
 	$whatpass = $_POST['password'];
-	if((!$whatname)&&(!$whatpass)) exit ("<meta http-equiv='refresh' content='0'>");
+	if((!$whatname)||(!$whatpass)) exit ("<script>alert('Yo $whatname how do you expect to sign in if you don't put in your username and password.');</script><meta http-equiv='refresh' content='0'>");
 	$table="carpool_members"; // Table name
 
 	// Create connection

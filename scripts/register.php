@@ -9,7 +9,7 @@ if(isset($_POST['reg'])) {
 	$whatname = $_POST['username'];
 	$whatpass = $_POST['password'];
 	$whatemail = $_POST['email'];
-	if((!$whatname)&&(!$whatpass)&&(!$whatemail)) exit ("<meta http-equiv='refresh' content='0'>");
+	if((!$whatname)||(!$whatpass)||(!$whatemail)||(!$whatlat)||(!$whatlng)) exit ("<script>alert('Yo $whatname please fill in all fields and enable location.');</script><meta http-equiv='refresh' content='0'>");
 	$table="carpool_members"; // Table name 
 
 	// Create connection
@@ -25,7 +25,7 @@ if(isset($_POST['reg'])) {
 	
 	if(1 == mysqli_num_rows($result)){
 		mysqli_close($con);
-		exit($_SESSION['username'] . " is already taken");
+		exit($whatname . " is already taken");
 		}
 	else{
 		mysqli_query($con,"INSERT INTO $table (username,password,email) VALUES('$whatname','$whatpass','$whatemail');");
