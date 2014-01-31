@@ -2,9 +2,8 @@
 
 if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
 
-function getNearBy(){
+function getNearBy($range){
 	
-	$range = 0.5;
 	$table = "carpool_members";
 	$templat = $_SESSION['lat'];
 	$templng = $_SESSION['lng'];
@@ -50,5 +49,63 @@ function showNearBy(){
 		echo "<br>";
 		}
 	}
+/*
+function setDestPhp(){
 
+	if(isset($_POST['setDestB'])) {
+
+	$whatlat = $_SESSION['latd'] = $_POST['GPSlatd'];
+	$whatlng = $_SESSION['lngd'] = $_POST['GPSlongd'];
+	$whatname = $_SESSION['username'];
+	if((!$whatlat)&&(!$whatlng)) exit ("<meta http-equiv='refresh' content='0'>");
+	$table="carpool_members"; // Table name
+
+	// Create connection
+	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+
+	// Check connection
+	if (mysqli_connect_errno()){
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+
+	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$whatname'");
+	
+	if(1 == mysqli_num_rows($result)){
+		mysqli_query($con,"UPDATE $table SET dlatitude = $whatlat, dlongitude = $whatlng WHERE username='$whatname';");		
+		echo $_SESSION['username'] . " your destination has been updated";
+		}
+	else{
+		echo "Shit nigga it didn't work<br>";
+		}
+
+	mysqli_close($con);
+
+	else{
+		}
+	}*/
+
+function makeMap($type){?>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="scripts/main.js"></script>
+  <script type='text/javascript' src='http://code.jquery.com/jquery-1.6.2.js'></script>
+
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" name="destform">
+<input name="GPSlatd" id="GPSlatd" type="hidden" value="">
+<input name="GPSlongd" id="GPSlongd" type="hidden" value="">
+    <div id="panel">
+      <input id="address" type="textbox" value="Destination">
+      <input type="button" value="Geocode" onclick="codeAddress('images/male.png')">
+    </div>
+<div id="mapholder"></div>
+</form>
+<script>
+	var mylat = "<?php echo $_SESSION['lat']; ?>";
+   	var mylng = "<?php echo $_SESSION['lng']; ?>";
+	var locations = <?php echo json_encode($_SESSION['nearby']); ?>;
+	makeMap(mylat,mylng,12,"mapholder");
+	addPointMap(mylat,mylng,"You","images/male.png",1);
+	arrayMap(locations);
+</script>
+<?php
+	}
 ?>

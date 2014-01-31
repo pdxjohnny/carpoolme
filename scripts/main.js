@@ -95,6 +95,7 @@ function readFile(filename){
 		}
 	else alert("Error executing XMLHttpRequest call!");
 	}
+
 function oneOnMap(lat,lng,lat1,lng1){
 
   if (navigator.geolocation)
@@ -124,6 +125,11 @@ function showPosition(position){
 
 var map;
 var InfoWindow = new google.maps.InfoWindow();
+//var setDestButton = "<?php require 'test2.php'; ?>";
+
+function setDestButton(){
+	document.write("<?php require 'test2.php'; ?>");
+	}
 
 function makeMap(centerlat,centerlng,zoomval,divId){
 
@@ -168,19 +174,60 @@ function addPointMap(lat,lng,name,image,isuser){
 		})(marker));
 	}
 
-var geocoder = new google.maps.Geocoder();
+var dest;
 
-function codeAddress() {
+function moveMarker( map , marker, Lat, Lng ) {
+
+    marker.setPosition( new google.maps.LatLng( Lat, Lng) );
+    map.panTo( new google.maps.LatLng( Lat, Lng) );
+
+};
+
+function placeMarker(location) {
+    if (dest) {
+        dest = google.maps.Marker({          
+            position: location,
+            map: map,
+	    zIndex: 999999999
+        });
+    } else {
+        //create a marker
+        dest = new google.maps.Marker({          
+            position: location,
+            map: map,
+	    zIndex: 999999999
+        });
+    }
+	}
+
+function codeAddress(image) {
+  var geocoder = new google.maps.Geocoder();
   var address = document.getElementById('address').value;
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
+	var dest = new google.maps.Marker({          
+            position: results[0].geometry.location,
+            map: map,
+	    icon: image,
+	    zIndex: 999999999
+        });
+	google.maps.event.addListener(dest, 'click', (function(dest, i) {
+        	return function() {
+			InfoWindow.setContent('<input value="Set As Destination?" id="setDestB" name="setDestB" type="submit">');
+			InfoWindow.open(map, dest);
+			}
+		})(dest));
+	google.maps.event.addListener(dest, 'click', function(evt){
+		$('#GPSlatd').val(evt.latLng.lat().toFixed(8));
+  		$('#GPSlongd').val(evt.latLng.lng().toFixed(8));
+		});
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
   });
 }
+
+function setDest(){
+	console.log(destlat+" : "+destlng);
+	}
