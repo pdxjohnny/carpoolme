@@ -8,6 +8,7 @@ if(isset($_POST['logingo'])) {
 	$whatlng = $_SESSION['lng'] = $_POST['GPSlongl'];
 	$whatname = $_POST['username'];
 	$whatpass = $_POST['password'];
+	$whattype = $_POST['type'];
 	if((!$whatname)||(!$whatpass)||(!$whatlat)||(!$whatlng)) exit ("<script>alert('Yo $whatname please fill in all fields and enable location.');</script><meta http-equiv='refresh' content='0'>");
 	$table="carpool_members"; // Table name
 
@@ -23,7 +24,8 @@ if(isset($_POST['logingo'])) {
 	
 	if(1 == mysqli_num_rows($result)){
 		$_SESSION['username'] = $whatname;
-		mysqli_query($con,"UPDATE $table SET latitude = $whatlat, longitude = $whatlng WHERE username='$whatname' AND password='$whatpass';");		
+		$_SESSION['type'] = $whattype;
+		mysqli_query($con,"UPDATE $table SET latitude = $whatlat, longitude = $whatlng, type = '$whattype' WHERE username='$whatname' AND password='$whatpass';");		
 		echo $_SESSION['username'] . " is now logged in" . "<meta http-equiv='refresh' content='0'>";
 		}
 	else{
@@ -51,6 +53,10 @@ Username<br>
 <input name='username' type="text"><br>
 Password<br>
 <input name="password" type="password"><br>
+<select name="type">
+  <option value="need">Need Ride</option>
+  <option value="offer">Offing Ride</option>
+</select>
 <input name="GPSlatl" id="GPSlatl" type="hidden" value="">
 <input name="GPSlongl" id="GPSlongl" type="hidden" value="">
 <input value="Login" id="logingo" name="logingo" type="submit"><br>

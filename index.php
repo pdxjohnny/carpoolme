@@ -14,7 +14,17 @@ if($_SESSION['username']!=NULL){
   </head>
 <h3>Hey <?php echo $_SESSION['username']; ?> you are here!</h3>
 <?php
+	latestLeave();
 	makeMap();
+	require 'scripts/setDest.php';
+	getNearBy(0.15);
+	showNearBy();
+?>
+  <head>
+    <title>Carpool</title>
+  </head>
+<h3>Hey <?php echo $_SESSION['username']; ?> you are here!</h3>
+<?php
 	}
 else{
 	require 'scripts/login.php';

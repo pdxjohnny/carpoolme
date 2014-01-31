@@ -2262,3 +2262,187 @@
 [Thu Jan 30 21:52:29 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/test.php
 [Thu Jan 30 21:52:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
 [Thu Jan 30 21:52:46 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:53:50 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:53:57 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:54:18 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Thu Jan 30 21:56:07 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:56:07 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:56:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:56:47 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:58:48 2014] [error] [client 50.186.44.26] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/index.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53
+[Thu Jan 30 21:59:32 2014] [error] [client 50.186.44.26] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/index.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/
+[Thu Jan 30 21:59:42 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:59:46 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 21:59:47 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:00:45 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:00:45 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:00:55 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:00:56 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:04:54 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:04:54 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:24:02 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:24:04 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:24:49 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 17 and defined in /var/www/carpool/scripts/phpfunctions.php on line 53, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:26:49 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 18 and defined in /var/www/carpool/scripts/phpfunctions.php on line 54, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:27:15 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 18 and defined in /var/www/carpool/scripts/phpfunctions.php on line 54, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:27:15 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:27:20 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:27:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:27:36 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 44, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:27:36 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 18 and defined in /var/www/carpool/scripts/phpfunctions.php on line 54, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:27:36 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 71, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:28:52 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 44, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:28:52 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 18 and defined in /var/www/carpool/scripts/phpfunctions.php on line 54, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:28:52 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 71, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:30:01 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 44, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:30:01 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 18 and defined in /var/www/carpool/scripts/phpfunctions.php on line 54, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:30:01 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 71, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:30:02 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:30:12 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:30:12 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 44, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:30:12 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for makeMap(), called in /var/www/carpool/test.php on line 18 and defined in /var/www/carpool/scripts/phpfunctions.php on line 54, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:30:12 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 71, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:33:11 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:33:16 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:33:22 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Thu Jan 30 22:33:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 08:24:07 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6
+[Fri Jan 31 08:24:08 2014] [error] [client 159.191.186.254] File does not exist: /var/www/carpool/favicon.ico
+[Fri Jan 31 09:00:34 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Fri Jan 31 09:00:34 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 7
+[Fri Jan 31 09:00:34 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lngd in /var/www/carpool/test.php on line 10
+[Fri Jan 31 09:00:34 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 69
+[Fri Jan 31 09:00:34 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 70
+[Fri Jan 31 09:00:34 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 71
+[Fri Jan 31 09:00:34 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 8
+[Fri Jan 31 09:00:34 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 9
+[Fri Jan 31 09:00:34 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/phpfunctions.php on line 10
+[Fri Jan 31 09:00:34 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: type in /var/www/carpool/scripts/phpfunctions.php on line 11
+[Fri Jan 31 09:00:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 44
+[Fri Jan 31 09:00:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 20
+[Fri Jan 31 09:00:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Fri Jan 31 09:00:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 7
+[Fri Jan 31 09:00:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lngd in /var/www/carpool/test.php on line 10
+[Fri Jan 31 09:00:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 69
+[Fri Jan 31 09:00:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 70
+[Fri Jan 31 09:00:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 71
+[Fri Jan 31 09:00:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 8
+[Fri Jan 31 09:00:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 9
+[Fri Jan 31 09:00:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/phpfunctions.php on line 10
+[Fri Jan 31 09:00:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: type in /var/www/carpool/scripts/phpfunctions.php on line 11
+[Fri Jan 31 09:00:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 44
+[Fri Jan 31 09:00:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 20
+[Fri Jan 31 09:00:41 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:41 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 7, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:41 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lngd in /var/www/carpool/test.php on line 10, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:41 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 69, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:41 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 70, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:41 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 71, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:41 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 8, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:41 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 9, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:41 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/phpfunctions.php on line 10, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:41 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: type in /var/www/carpool/scripts/phpfunctions.php on line 11, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:43 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 44, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:43 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 20, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:43 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:43 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 7, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:43 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lngd in /var/www/carpool/test.php on line 10, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:43 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 69, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:43 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 70, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:43 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 71, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:43 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 8, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:43 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 9, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:43 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/phpfunctions.php on line 10, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:43 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: type in /var/www/carpool/scripts/phpfunctions.php on line 11, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:43 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 44, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:43 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 20, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 7, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lngd in /var/www/carpool/test.php on line 10, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 69, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 70, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 71, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 8, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 9, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/phpfunctions.php on line 10, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: type in /var/www/carpool/scripts/phpfunctions.php on line 11, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 44, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 20, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 7, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lngd in /var/www/carpool/test.php on line 10, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 69, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 70, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 71, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 8, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 9, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/phpfunctions.php on line 10, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: type in /var/www/carpool/scripts/phpfunctions.php on line 11, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 44, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:00:45 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 20, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 09:01:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6
+[Fri Jan 31 09:01:40 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6, referer: http://carpool.sytes.net/
+[Fri Jan 31 09:01:59 2014] [error] [client 159.191.186.254] script '/var/www/carpool/tes.php' not found or unable to stat
+[Fri Jan 31 09:02:00 2014] [error] [client 50.57.190.113] script '/var/www/carpool/tes.php' not found or unable to stat
+[Fri Jan 31 09:37:19 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6, referer: http://carpool.sytes.net/index.php
+[Fri Jan 31 09:37:30 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6, referer: http://carpool.sytes.net/index.php
+[Fri Jan 31 10:47:44 2014] [error] [client 159.191.186.254] File does not exist: /var/www/carpool/favicon.ico
+[Fri Jan 31 11:59:05 2014] [error] [client 159.191.224.254] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6
+[Fri Jan 31 11:59:06 2014] [error] [client 159.191.224.254] File does not exist: /var/www/carpool/favicon.ico
+[Fri Jan 31 11:59:19 2014] [error] [client 159.191.224.254] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6, referer: http://carpool.sytes.net/
+[Fri Jan 31 11:59:40 2014] [error] [client 159.191.224.254] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6, referer: http://carpool.sytes.net/index.php
+[Fri Jan 31 12:20:45 2014] [error] [client 159.191.186.254] PHP Parse error:  syntax error, unexpected '}' in /var/www/carpool/test2.php on line 55, referer: http://carpool.sytes.net/test2.php
+[Fri Jan 31 12:23:14 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Fri Jan 31 12:23:14 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 7
+[Fri Jan 31 12:23:14 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 69
+[Fri Jan 31 12:23:14 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 70
+[Fri Jan 31 12:23:14 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 71
+[Fri Jan 31 12:23:14 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 8
+[Fri Jan 31 12:23:14 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 9
+[Fri Jan 31 12:23:14 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/phpfunctions.php on line 10
+[Fri Jan 31 12:23:14 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: type in /var/www/carpool/scripts/phpfunctions.php on line 11
+[Fri Jan 31 12:23:15 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 44
+[Fri Jan 31 12:23:15 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 19
+[Fri Jan 31 12:23:15 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Fri Jan 31 12:23:15 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 7
+[Fri Jan 31 12:23:15 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 69
+[Fri Jan 31 12:23:15 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 70
+[Fri Jan 31 12:23:15 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 71
+[Fri Jan 31 12:23:15 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 8
+[Fri Jan 31 12:23:15 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 9
+[Fri Jan 31 12:23:15 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/phpfunctions.php on line 10
+[Fri Jan 31 12:23:15 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: type in /var/www/carpool/scripts/phpfunctions.php on line 11
+[Fri Jan 31 12:23:15 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 44
+[Fri Jan 31 12:23:15 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 19
+[Fri Jan 31 12:23:37 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:37 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 7, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:37 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 69, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:37 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 70, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:37 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 71, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:37 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 8, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:37 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 9, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:37 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/phpfunctions.php on line 10, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:37 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: type in /var/www/carpool/scripts/phpfunctions.php on line 11, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:38 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 44, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:38 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 19, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:38 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:38 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 7, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:38 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 69, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:38 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 70, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:38 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 71, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:38 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/phpfunctions.php on line 8, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:38 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/phpfunctions.php on line 9, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:38 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/phpfunctions.php on line 10, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:38 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: type in /var/www/carpool/scripts/phpfunctions.php on line 11, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:38 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: nearby in /var/www/carpool/scripts/phpfunctions.php on line 44, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:23:38 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 19, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:24:52 2014] [error] [client 159.191.186.254] PHP Parse error:  syntax error, unexpected '}' in /var/www/carpool/test.php on line 29, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:24:55 2014] [error] [client 159.191.186.254] PHP Parse error:  syntax error, unexpected '}' in /var/www/carpool/test.php on line 29, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:24:56 2014] [error] [client 159.191.186.254] PHP Parse error:  syntax error, unexpected '}' in /var/www/carpool/test.php on line 29, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:24:57 2014] [error] [client 159.191.186.254] PHP Parse error:  syntax error, unexpected '}' in /var/www/carpool/test.php on line 29, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:24:57 2014] [error] [client 159.191.186.254] PHP Parse error:  syntax error, unexpected '}' in /var/www/carpool/test.php on line 29, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:24:58 2014] [error] [client 159.191.186.254] PHP Parse error:  syntax error, unexpected '}' in /var/www/carpool/test.php on line 29, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:24:58 2014] [error] [client 159.191.186.254] PHP Parse error:  syntax error, unexpected '}' in /var/www/carpool/test.php on line 29, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:24:58 2014] [error] [client 159.191.186.254] PHP Parse error:  syntax error, unexpected '}' in /var/www/carpool/test.php on line 29, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:25:14 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Fri Jan 31 12:25:19 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php

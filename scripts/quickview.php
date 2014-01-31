@@ -14,6 +14,7 @@
 
 echo "<table border='1'>
 <tr>
+<th>ID</th>
 <th>Username</th>
 <th>Password</th>
 <th>Email</th>
@@ -27,6 +28,7 @@ echo "<table border='1'>
 while($row = mysqli_fetch_array($result))
   {
   echo "<tr>";
+  echo "<td>" . $row['id'] . "</td>";
   echo "<td>" . $row['username'] . "</td>";
   echo "<td>" . $row['password'] . "</td>";
   echo "<td>" . $row['email'] . "</td>";

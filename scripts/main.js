@@ -227,7 +227,3 @@ function codeAddress(image) {
     }
   });
 }
-
-function setDest(){
-	console.log(destlat+" : "+destlng);
-	}
