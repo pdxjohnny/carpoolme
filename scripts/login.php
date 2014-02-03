@@ -9,9 +9,7 @@ if(isset($_POST['logingo'])) {
 	$whatname = $_POST['username'];
 	$whatpass = $_POST['password'];
 	$whattype = $_POST['type'];
-	$whatname = mysql_real_escape_string($whatname);
-	$whatpass = mysql_real_escape_string($whatpass);
-	if((!$whatname)||(!$whatpass)||(!$whatlat)||(!$whatlng)) exit ("<script>alert('Yo $whatname please fill in all fields and enable location.');</script><meta http-equiv='refresh' content='0'>");
+	if((!$whatname)||(!$whatpass)||(!$whatlat)||(!$whatlng)) exit ("<script>alert('$whatname please fill in all fields and enable location.');</script><meta http-equiv='refresh' content='0'>");
 	$table="carpool_members"; // Table name
 
 	// Create connection
@@ -22,13 +20,24 @@ if(isset($_POST['logingo'])) {
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$whatname' AND password='$whatpass'");
+	$whatname = mysqli_real_escape_string($con,$whatname);
+	$whatpass = mysqli_real_escape_string($con,$whatpass);
+
+	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$whatname' AND password='$whatpass';");
 	
 	if(1 == mysqli_num_rows($result)){
 		$_SESSION['username'] = $whatname;
 		$_SESSION['type'] = $whattype;
-		mysqli_query($con,"UPDATE $table SET latitude = $whatlat, longitude = $whatlng, type = '$whattype' WHERE username='$whatname' AND password='$whatpass';");		
+		mysqli_query($con,"UPDATE $table SET latitude = $whatlat, longitude = $whatlng, type = '$whattype' WHERE username='$whatname';");		
 		echo $_SESSION['username'] . " is now logged in" . "<meta http-equiv='refresh' content='0'>";
+
+		if ($newresult = mysqli_query($con, "SELECT dlatitude, dlongitude FROM $table WHERE username = '$whatname';")) {
+	    		$row = mysqli_fetch_row($newresult);
+			$_SESSION['latd'] = $row[0];
+			$_SESSION['lngd'] = $row[1];
+    			mysqli_free_result($newresult);
+   			}
+    		mysqli_free_result($result);
 		}
 	else{
 		echo "Wrong username or password<br>";

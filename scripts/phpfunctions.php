@@ -53,17 +53,66 @@ function showNearBy(){
 		}
 	}
 
+
+function getNearDest($range){
+	
+	$table = "carpool_members";
+	$myusername = $_SESSION['username'];
+	$mytype = $_SESSION['type'];
+
+	$mylatsub = $_SESSION['lat']-$range;
+	$mylatadd = $_SESSION['lat']+$range;
+	$mylngsub = $_SESSION['lng']-$range;
+	$mylngadd = $_SESSION['lng']+$range;
+
+	$mylatdsub = $_SESSION['latd']-$range;
+	$mylatdadd = $_SESSION['latd']+$range;
+	$mylngdsub = $_SESSION['lngd']-$range;
+	$mylngdadd = $_SESSION['lngd']+$range;
+
+	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+
+	if (mysqli_connect_errno()){
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+	
+	/*
+	echo "<script>console.log('about to query');</script>";
+	echo "<script>console.log('lats and lngs');</script>";
+	echo "<script>console.log('mylatsub:$mylatsub mylatsub:$mylatadd mylatsub:$mylngsub mylatsub:$mylngadd');</script>";
+	echo "<script>console.log('latds and lngds');</script>";
+	echo "<script>console.log('mylatsub:$mylatdsub mylatsub:$mylatdadd mylatsub:$mylngdsub mylatsub:$mylngdadd');</script>";
+	*/
+
+	$query = "SELECT username, latitude, longitude, type, dlatitude, dlongitude FROM $table WHERE latitude BETWEEN $mylatsub AND $mylatadd AND longitude BETWEEN $mylngsub AND $mylngadd AND dlatitude BETWEEN $mylatdsub AND $mylatdadd AND dlongitude BETWEEN $mylngdsub AND $mylngdadd AND NOT type = '$mytype' AND NOT username = '$myusername';";
+
+	if ($result = mysqli_query($con, $query)) {
+
+		$starter=0;
+	    	while ($row = mysqli_fetch_row($result)) {
+			for($i = 0; $i < count($row); $i++){
+				$_SESSION['nearby'][$starter][$i] = $row[$i];
+				}
+				$starter++;
+   			 }
+
+    		mysqli_free_result($result);
+		}
+
+	mysqli_close($con);
+
+	}
+
 function makeMap(){?>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script src="scripts/main.js"></script>
   <script type='text/javascript' src='http://code.jquery.com/jquery-1.6.2.js'></script>
-
 <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" name="destform">
 <input name="GPSlatd" id="GPSlatd" type="hidden" value="">
 <input name="GPSlongd" id="GPSlongd" type="hidden" value="">
     <div id="panel">
       <input id="address" type="textbox" value="Destination">
-      <input type="button" value="Geocode" onclick="codeAddress('images/male.png')">
+      <input type="button" value="Find" onclick="codeAddress('images/male.png')">
     </div>
 <div id="mapholder"></div>
 </form>
@@ -78,60 +127,71 @@ function makeMap(){?>
 <?php
 	}
 
-function latestLeave(){?>
+function setDest(){
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" name="lateleaveform">
-<select name="hour" id="hour">
-<script>
-for(var i = 1;i<=24;i++){
-	document.write("<option value='"+i+"'>"+i+"</option>");
+if(isset($_POST['setDestB'])) {
+
+	$whatlat = $_SESSION['latd'] = $_POST['GPSlatd'];
+	$whatlng = $_SESSION['lngd'] = $_POST['GPSlongd'];
+	$whatname = $_SESSION['username'];
+	if((!$whatlat)||(!$whatlng)) exit ("<meta http-equiv='refresh' content='0'>");
+	$table="carpool_members"; // Table name
+
+	// Create connection
+	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+
+	// Check connection
+	if (mysqli_connect_errno()){
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+
+	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$whatname'");
+	
+	if(1 == mysqli_num_rows($result)){
+		mysqli_query($con,"UPDATE $table SET dlatitude = $whatlat, dlongitude = $whatlng WHERE username='$whatname';");
+		mysqli_close($con);
+		return 0;
+		}
+	else{
+		echo "<script>alert('Shit nigga it didn't work');</script>";
+		return 1;
+		}
+
 	}
-</script>
-</select>
-:
-<select name="minute" id="minute">
-<script>
-for(var i = 0;i<=60;i++){
-	if(i<10) i = '0'+i;
-	document.write("<option value='"+i+"'>"+i+"</option>");
 	}
-</script>
-</select>
-on the
-<select name="date" id="date">
-<script>
-var dateYMD = new Date();
-var month = dateYMD.getMonth();
-var maxdate = new Date(dateYMD.getFullYear(), month + 1, 0);
-maxdate = maxdate.getDate();
-var inputdate;
-for(var i = 0;i<=14;i++){
-	inputdate = dateYMD.getDate()+i;
-	if(inputdate>maxdate) inputdate = inputdate-maxdate;
-	document.write("<option value='"+inputdate+"'>"+inputdate+"</option>");
+
+function clearDest(){
+
+if(isset($_POST['clearDestB'])) {
+
+	$whatname = $_SESSION['username'];
+	$table="carpool_members"; // Table name
+
+	// Create connection
+	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+
+	// Check connection
+	if (mysqli_connect_errno()){
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+
+	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$whatname'");
+	
+	if(1 == mysqli_num_rows($result)){
+		mysqli_query($con,"UPDATE $table SET dlatitude = 'null', dlongitude = 'null' WHERE username='$whatname';");
+		mysqli_close($con);
+		return 0;
+		}
+	else{
+		echo "<script>alert('Shit nigga it didn't work');</script>";
+		return 1;
+		}
 	}
-$( document ).ready(function() {
-	$( '#setLatestLeave' ).click(function() {
-		if((dateYMD.getMonth()+1)<10) var month = '0'+(dateYMD.getMonth()+1);
-		else var month = dateYMD.getMonth()+1;
-		var predate = $( "#date" ).val();
-		var prehour = $( "#hour" ).val();
-		var minute = $( "#minute" ).val();
-		if(predate<10) var date = '0'+predate;
-		else var date = predate;
-		if(prehour<10) var hour = '0'+prehour;
-		else var hour = prehour;
-		var ymd = dateYMD.getFullYear()+'-'+month+'-'+date+' '+hour+':'+minute+':00';
-		$('#datetime').val(ymd);
-		console.log(ymd);
-		});
-	});
-</script>
-</select>
-<input value="" id="datetime" name="datetime" type="hidden">
-<input value="Latest Leave Time" id="setLatestLeave" name="setLatestLeave" type="submit">
+else{?>
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" name="clearDestForm">
+<input value="Clear Destination" id="clearDestB" name="clearDestB" type="submit">
 </form>
 <?php
+	}
 	}
 ?>
