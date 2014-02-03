@@ -9,6 +9,8 @@ if(isset($_POST['logingo'])) {
 	$whatname = $_POST['username'];
 	$whatpass = $_POST['password'];
 	$whattype = $_POST['type'];
+	$whatname = mysql_real_escape_string($whatname);
+	$whatpass = mysql_real_escape_string($whatpass);
 	if((!$whatname)||(!$whatpass)||(!$whatlat)||(!$whatlng)) exit ("<script>alert('Yo $whatname please fill in all fields and enable location.');</script><meta http-equiv='refresh' content='0'>");
 	$table="carpool_members"; // Table name
 

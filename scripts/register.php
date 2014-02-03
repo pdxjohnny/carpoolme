@@ -10,6 +10,9 @@ if(isset($_POST['reg'])) {
 	$whatpass = $_POST['password'];
 	$whatemail = $_POST['email'];
 	$whattype = $_POST['type'];
+	$whatname = mysql_real_escape_string($whatname);
+	$whatpass = mysql_real_escape_string($whatpass);
+	$whatemail = mysql_real_escape_string($whatemail);
 	if((!$whatname)||(!$whatpass)||(!$whatemail)||(!$whatlat)||(!$whatlng)) exit ("<script>alert('Yo $whatname please fill in all fields and enable location.');</script><meta http-equiv='refresh' content='0'>");
 	$table="carpool_members"; // Table name 
 

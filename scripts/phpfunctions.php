@@ -37,6 +37,8 @@ function getNearBy($range){
 		}
 
 	mysqli_close($con);
+
+	if(!$_SESSION['nearby']) getNearBy($range+0.05);
 	}
 
 function showNearBy(){
@@ -110,7 +112,7 @@ for(var i = 0;i<=14;i++){
 	document.write("<option value='"+inputdate+"'>"+inputdate+"</option>");
 	}
 $( document ).ready(function() {
-	$( '#lateleave' ).click(function() {
+	$( '#setLatestLeave' ).click(function() {
 		if((dateYMD.getMonth()+1)<10) var month = '0'+(dateYMD.getMonth()+1);
 		else var month = dateYMD.getMonth()+1;
 		var predate = $( "#date" ).val();
@@ -122,12 +124,13 @@ $( document ).ready(function() {
 		else var hour = prehour;
 		var ymd = dateYMD.getFullYear()+'-'+month+'-'+date+' '+hour+':'+minute+':00';
 		$('#datetime').val(ymd);
+		console.log(ymd);
 		});
 	});
 </script>
 </select>
 <input value="" id="datetime" name="datetime" type="hidden">
-<input value="Latest Leave Time" id="lateleave" name="lateleave" type="submit">
+<input value="Latest Leave Time" id="setLatestLeave" name="setLatestLeave" type="submit">
 </form>
 <?php
 	}
