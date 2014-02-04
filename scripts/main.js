@@ -170,7 +170,9 @@ function arrayMap(locations){
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
         		return function() {
 				if(locations[i][3]==="offer"){
-					InfoWindow.setContent(locations[i][0]+'<input name="myride" id="myride" type="hidden" value="'+locations[i][0]+'"><input value="Ask for ride?" id="askride" name="askride" type="submit">');
+					if(locations[i][6]!==null) var spots = locations[i][6] + " seats avalable.";
+					else var spots = "not set avalable seats yet.";
+					InfoWindow.setContent(locations[i][0]+' has '+spots+'<input name="myride" id="myride" type="hidden" value="'+locations[i][0]+'"><input value="Ask for ride?" id="askride" name="askride" type="submit">');
 					}
 				else {
 					InfoWindow.setContent(locations[i][0]);

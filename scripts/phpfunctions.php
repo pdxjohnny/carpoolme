@@ -88,7 +88,7 @@ function getNearDest($range){
 	echo "<script>console.log('mylatsub:$mylatdsub mylatsub:$mylatdadd mylatsub:$mylngdsub mylatsub:$mylngdadd');</script>";
 	*/
 
-	$query = "SELECT username, latitude, longitude, type, dlatitude, dlongitude FROM $table WHERE latitude BETWEEN $mylatsub AND $mylatadd AND longitude BETWEEN $mylngsub AND $mylngadd AND dlatitude BETWEEN $mylatdsub AND $mylatdadd AND dlongitude BETWEEN $mylngdsub AND $mylngdadd AND NOT username = '$myusername';";
+	$query = "SELECT username, latitude, longitude, type, dlatitude, dlongitude, spots FROM $table WHERE latitude BETWEEN $mylatsub AND $mylatadd AND longitude BETWEEN $mylngsub AND $mylngadd AND dlatitude BETWEEN $mylatdsub AND $mylatdadd AND dlongitude BETWEEN $mylngdsub AND $mylngdadd AND NOT username = '$myusername';";
 
 	if ($result = mysqli_query($con, $query)) {
 
@@ -215,8 +215,50 @@ function inMyCar(){
 
 	}
 
+function wantMyCar(){
+	
+	if(isset($_SESSION['inmycar'])) unset($_SESSION['inmycar']);
 
-function showMyCar(){
+	$table = "carpool_members";
+	$myusername = $_SESSION['username'];
+	$myride = $_SESSION['myride'];
+	$mytype = $_SESSION['type'];
+
+	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+
+	if (mysqli_connect_errno()){
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+
+	if(0==strcmp($mytype,"offer")) $query = "SELECT username FROM $table WHERE ridingwith='$myusername' AND NOT username = '$myusername';";
+
+	if ($result = mysqli_query($con, $query)) {
+
+	    	for ($i = 0;$row = mysqli_fetch_row($result);$i++) {
+				$_SESSION['wantMyCar'][$i] = $row[0];
+   			 }
+
+    		mysqli_free_result($result);
+		}
+
+	mysqli_close($con);
+
+	}
+
+function showMyCar($type){
+
+	if(0==strcmp($_SESSION['mytype'],"offer")) echo "There are " . (count($_SESSION['inmycar'])) . " people in your car.<br>";
+	else{
+		echo "You're riding with  " . $_SESSION['myride'] . " and there are " . (count($_SESSION['inmycar'])+2) . " people in your car.<br>";
+		echo "The driver is " . $_SESSION['myride'] . "<br>";
+		echo "Person number 2 is me (" . $_SESSION['username'] . ")<br>";
+		}
+	for($i = 0; $i < count($_SESSION['inmycar']); $i ++){
+		echo "Person number " . ($i+3) . " is " . $_SESSION['inmycar'][$i] . "<br>";
+		}
+	}
+
+function approveMyCar($type){
 
 	if(0==strcmp($_SESSION['mytype'],"offer")) echo "There are " . (count($_SESSION['inmycar'])) . " people in your car.<br>";
 	else{

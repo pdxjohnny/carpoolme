@@ -2,6 +2,31 @@
 
 if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
 
+	$whatname = $_SESSION['username'];
+	$table="carpool_members"; // Table name
+
+	// Create connection
+	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+
+	// Check connection
+	if (mysqli_connect_errno()){
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+
+	$result = mysqli_query($con,"SELECT username FROM $table WHERE ridingwith='$whatname' AND NOT username = '$whatname';");
+	$_SESSION['numberWantSeats'] = mysqli_num_rows($result);
+
+	$result = mysqli_query($con,"SELECT username FROM $table WHERE incar='$whatname' AND NOT username = '$whatname';");
+	$_SESSION['numberApprovedSeats'] = mysqli_num_rows($result);
+	
+	$result = mysqli_query($con,"SELECT spots FROM $table WHERE username = '$whatname';");
+	$row = mysqli_fetch_row($result);
+	$_SESSION['totalSeats'] = $row[0];
+	$_SESSION['numberAvalableSeats'] = $_SESSION['totalSeats']-$_SESSION['numberApprovedSeats'];
+	echo "<script>console.log('total seats : " . $_SESSION['totalSeats'] . " number approved seats : " . $_SESSION['numberApprovedSeats'] . " number want seats : " . $_SESSION['numberWantSeats'] . " number avalable seats : " . $_SESSION['numberAvalableSeats'] . "');</script>";
+
+	mysqli_close($con);
+
 if(isset($_POST['seatsform'])) {
 
 	$seats = $_POST['seats'];
@@ -28,10 +53,9 @@ if(isset($_POST['seatsform'])) {
 		}
 
 	mysqli_close($con);
-	echo "<meta http-equiv='refresh' content='0'>";
 	}
 
-else{?>
+else { ?>
 <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" name="seatsupdateform">
 <?php if($_SESSION['seats']==NULL) echo "Seats Avalable: ";
 else echo "Update Seats Avalable: "; ?>
