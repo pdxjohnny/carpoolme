@@ -243,3 +243,31 @@
 [Mon Feb 03 16:11:40 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/images/carsamll.png, referer: http://carpool.sytes.net/test.php
 [Mon Feb 03 16:13:45 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
 [Mon Feb 03 16:13:47 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:29:39 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:29:39 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: lngd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:29:40 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 18, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:29:40 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:29:40 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: lngd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:35:32 2014] [error] [client 24.20.209.246] PHP Parse error:  syntax error, unexpected '{' in /var/www/carpool/scripts/phpfunctions.php on line 112, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:36:19 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 18, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:36:20 2014] [error] [client 24.20.209.246] PHP Fatal error:  Call to undefined function strsmp() in /var/www/carpool/scripts/phpfunctions.php on line 112, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:37:00 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 18, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:37:02 2014] [error] [client 24.20.209.246] PHP Fatal error:  Call to undefined function strsmp() in /var/www/carpool/scripts/phpfunctions.php on line 112, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:37:43 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 18, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:37:44 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:37:44 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: lngd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:39:18 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:39:18 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: lngd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:39:19 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 18, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:39:20 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:39:20 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: lngd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:46:45 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 18, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:46:47 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:46:47 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: lngd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:47:02 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 18, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:47:04 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:47:04 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: lngd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:47:05 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/images/car.png, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:47:32 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 18, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:47:33 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 16:47:33 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: lngd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php

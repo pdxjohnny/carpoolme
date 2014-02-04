@@ -20,15 +20,13 @@ if(isset($_POST['clearDestB'])) {
 	if(1 == mysqli_num_rows($result)){
 		mysqli_query($con,"UPDATE $table SET dlatitude = NULL, dlongitude = NULL WHERE username='$whatname';");
 		mysqli_close($con);
-		return 0;
 		}
 	else{
 		echo "<script>alert('Shit nigga it didn't work');</script>";
-		return 1;
 		}
 	unset($_POST['clearDestB']);
-	$_SESSION['latd']==NUll;
-	$_SESSION['lngd']==NULL;
+	unset($_SESSION['latd']);
+	unset($_SESSION['lngd']);
 	echo "<meta http-equiv='refresh' content='0'>";
 	}
 else{?>

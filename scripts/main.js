@@ -178,7 +178,7 @@ function arrayMap(locations,image1,image2){
 
 function addPointMap(lat,lng,name,image,isuser){
 	if(isuser) var ontop = 9999999999;
-	else var ontop = 200;
+	else var ontop = 0;
 	var marker = new google.maps.Marker({position: new google.maps.LatLng(lat,lng), map: map, icon: image, zIndex: ontop});
 
 	google.maps.event.addListener(marker, 'click', (function(marker, i) {

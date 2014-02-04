@@ -4,6 +4,8 @@ if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1)
 
 function getNearBy($range){
 	
+	if(isset($_SESSION['nearby'])) unset($_SESSION['nearby']);
+
 	$table = "carpool_members";
 	$templat = $_SESSION['lat'];
 	$templng = $_SESSION['lng'];
@@ -56,6 +58,8 @@ function showNearBy(){
 
 function getNearDest($range){
 	
+	if(isset($_SESSION['nearby'])) unset($_SESSION['nearby']);
+
 	$table = "carpool_members";
 	$myusername = $_SESSION['username'];
 	$mytype = $_SESSION['type'];
@@ -103,7 +107,37 @@ function getNearDest($range){
 
 	}
 
-function makeMap(){?>
+function makeMap($type){
+
+if(0==strcmp($type,"dest")){?>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="scripts/main.js"></script>
+  <script type='text/javascript' src='http://code.jquery.com/jquery-1.6.2.js'></script>
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" name="destform">
+<input name="GPSlatd" id="GPSlatd" type="hidden" value="">
+<input name="GPSlongd" id="GPSlongd" type="hidden" value="">
+    <div id="panel">
+      <input id="address" type="textbox" value="Destination">
+      <input type="button" value="Find" onclick="codeAddress('images/male.png')">
+    </div>
+<div id="mapholder"></div>
+</form>
+<script>
+	var mylat = "<?php echo $_SESSION['lat']; ?>";
+   	var mylng = "<?php echo $_SESSION['lng']; ?>";
+	var mylatd = "<?php echo $_SESSION['latd']; ?>";
+   	var mylngd = "<?php echo $_SESSION['lngd']; ?>";
+	var locations = <?php echo json_encode($_SESSION['nearby']); ?>;
+	makeMap(mylat,mylng,12,"mapholder");
+	addPointMap(mylat,mylng,"You","images/male.png",1);
+	addPointMap(mylatd,mylngd,"Your destination","images/mydest.png");
+	arrayMap(locations,"images/car.png","images/dest.png");
+</script>
+<?php
+	}
+else if(0==strcmp($type,"nodest")){?>
+
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script src="scripts/main.js"></script>
   <script type='text/javascript' src='http://code.jquery.com/jquery-1.6.2.js'></script>
@@ -122,10 +156,11 @@ function makeMap(){?>
 	var locations = <?php echo json_encode($_SESSION['nearby']); ?>;
 	makeMap(mylat,mylng,12,"mapholder");
 	addPointMap(mylat,mylng,"You","images/male.png",1);
-	arrayMap(locations,"images/carsmall.png","images/dest.png");
+	arrayMap(locations,"images/car.png");
 </script>
 <?php
 	}
+}
 
 function setDest(){
 
