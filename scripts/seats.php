@@ -19,41 +19,18 @@ if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1)
 	$result = mysqli_query($con,"SELECT username FROM $table WHERE incar='$whatname' AND NOT username = '$whatname';");
 	$_SESSION['numberApprovedSeats'] = mysqli_num_rows($result);
 	
-	$result = mysqli_query($con,"SELECT spots FROM $table WHERE username = '$whatname';");
-	$row = mysqli_fetch_row($result);
-	$_SESSION['totalSeats'] = $row[0];
+	$_SESSION['totalSeats'] = get("spots",$whatname);
 	$_SESSION['numberavailableSeats'] = $_SESSION['totalSeats']-$_SESSION['numberApprovedSeats'];
-	echo "<script>console.log('total seats : " . $_SESSION['totalSeats'] . " number approved seats : " . $_SESSION['numberApprovedSeats'] . " number want seats : " . $_SESSION['numberWantSeats'] . " number available seats : " . $_SESSION['numberavailableSeats'] . "');</script>";
 	updateNum("availablespots",$_SESSION['numberavailableSeats'],$whatname);
 
 	mysqli_close($con);
 
 if(isset($_POST['seatsform'])) {
 
-	$seats = $_POST['seats'];
-	$whatname = $_SESSION['username'];
+	$seats = $_SESSION['totalSeats'] = $_POST['seats'];
 	if(!$seats) exit ("<meta http-equiv='refresh' content='0'>");
-	$table="carpool_members"; // Table name
-
-	// Create connection
-	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
-
-	// Check connection
-	if (mysqli_connect_errno()){
-		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-		}
-
-	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$whatname'");
 	
-	if(1 == mysqli_num_rows($result)){
-		mysqli_query($con,"UPDATE $table SET spots = $seats WHERE username='$whatname';");
-		$_SESSION['seats'] = $seats;
-		}
-	else{
-		echo "<script>alert('Shit nigga it didn't work');</script>";
-		}
-
-	mysqli_close($con);
+	updateNum("spots",$seats,$_SESSION['username']);
 	}
 
 else { ?>

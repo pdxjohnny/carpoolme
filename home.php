@@ -17,15 +17,15 @@ if($_SESSION['username']!=NULL){
 	require 'scripts/setDest.php';
 	if(0==strcmp($_SESSION['type'],"offer")){
 		require 'scripts/seats.php';
-		echo "There are currently " . $_SESSION['numberAvalableSeats'] . " seats avalable in your car.<br>";
+		echo "There are currently " . $_SESSION['numberavailableSeats'] . " seats avalable in your car.<br>";
 		inMyCar("offer");
 		showMyCar("offer");
 		wantMyCar();
 		approveMyCar();
 		}
 	if($_SESSION['myride']){
-		inMyCar("ride");
-		showMyCar("ride");
+		inMyCar("need");
+		showMyCar("need");
 		}
 	if($_SESSION['latd']&&$_SESSION['lngd']){
 		getNearDest(0.15);

@@ -17,8 +17,8 @@ function get($what,$user){
 	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$user'");
 	
 	if(1 == mysqli_num_rows($result)){
-		mysqli_query($con,"SELECT $what FROM $table WHERE username='$user';");
-		$row = mysqli_fetch_row($result);
+		$newresult = mysqli_query($con,"SELECT $what FROM $table WHERE username='$user';");
+		$row = mysqli_fetch_row($newresult);
 		$out = $row[0];
 		mysqli_close($con);
 		return $out;
@@ -26,7 +26,7 @@ function get($what,$user){
 	else{
 		echo "<script>alert('Shit nigga it didn't work');</script>";
 		mysqli_close($con);
-		return 1;
+		return null;
 		}
 	}
 
@@ -316,7 +316,7 @@ function inMyCar($type){
 		}	
 	else if(0==strcmp($type,"need")){
 		if(isset($_SESSION['inmycarneed'])) unset($_SESSION['inmycarneed']);
-		$query = "SELECT username FROM $table WHERE incar='$myride' AND NOT username = '$myusername';";
+		$query = "SELECT username FROM $table WHERE incar='$myride';";
 
 		if ($result = mysqli_query($con, $query)) {
 
@@ -374,11 +374,14 @@ function showMyCar($type){
 			}
 		}
 	else {
-		echo "You're riding with  " . $_SESSION['myride'] . " there are " . (count($_SESSION['inmycarneed'])+2) . " people in your car.<br>";
-		echo "The driver is " . $_SESSION['myride'] . "<br>";
-		echo "Person number 2 is you (" . $_SESSION['username'] . ")<br>";
-		for($i = 0; $i < count($_SESSION['inmycarneed']); $i ++){
-			echo "Person number " . ($i+3) . " is " . $_SESSION['inmycarneed'][$i] . "<br>";
+		if(get("incar",$_SESSION['username'])==NULL) echo "You haven't been approved to ride in " . $_SESSION['myride'] . "'s car yet.<br>";
+		else{
+			$incar = count($_SESSION['inmycarneed']);
+			echo "You're riding with  " . $_SESSION['myride'] . " there are " . ($incar+1) . " people in your car.<br>";
+			for($i = 0; $i < count($_SESSION['inmycarneed']); $i ++){
+				if($_SESSION['username']==$_SESSION['inmycarneed'][$i]) echo "Person number " . ($i+2) . " is you (" . $_SESSION['inmycarneed'][$i] . ")<br>";
+				else echo "Person number " . ($i+2) . " is " . $_SESSION['inmycarneed'][$i] . "<br>";
+				}
 			}
 		}
 	}
@@ -400,10 +403,10 @@ function approveMyCar($type){
 		}
 
 	$wantcar = count($_SESSION['wantmycar']);
-	if($wantcar==0) echo "There is no one who wants to be in your car.<br>";
+	if($wantcar==0) echo "There is no waiting to be approved for your car.<br>";
 	else {
-		if($wantcar==1) echo "There is one person who wants to be in your car.<br>";
-		else echo "There are " . $wantcar . " people who want to be in your car.<br>";
+		if($wantcar==1) echo "There is one person who is waiting to be approved for your car.<br>";
+		else echo "There are " . $wantcar . " people who are waiting to be approved for your car.<br>";
 		echo "<form action=" . $_SERVER['PHP_SELF'] . " method='post' name='aprovalform'>";
 		for($i = 0; $i < count($_SESSION['wantmycar']); $i ++){
 			echo 'Person number ' . ($i+1) . ' is ' . $_SESSION['wantmycar'][$i];
