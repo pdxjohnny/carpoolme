@@ -21,13 +21,11 @@ if($_SESSION['username']!=NULL){
 		}
 	if($_SESSION['latd']&&$_SESSION['lngd']){
 		getNearDest(0.15);
-		if(0==strcmp($_SESSION['type'],"offer")) makeMap("dest","walking");
-		else makeMap("dest","cars");
+		makeMap("dest");
 		}
 	else {
 		getNearBy(0.15);
-		if(0==strcmp($_SESSION['type'],"offer")) makeMap("nodest","walking");
-		else makeMap("nodest","cars");
+		makeMap("nodest");
 		}
 	if($_SESSION['myride']){
 		inMyCar();

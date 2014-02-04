@@ -169,7 +169,7 @@ function arrayMap(locations){
 
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
         		return function() {
-				if(type==="need"){
+				if(locations[i][3]==="offer"){
 					InfoWindow.setContent(locations[i][0]+'<input name="myride" id="myride" type="hidden" value="'+locations[i][0]+'"><input value="Ask for ride?" id="askride" name="askride" type="submit">');
 					}
 				else {

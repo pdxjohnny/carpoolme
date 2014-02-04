@@ -545,3 +545,18 @@
 [Mon Feb 03 22:01:57 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: mytype in /var/www/carpool/scripts/phpfunctions.php on line 221, referer: http://carpool.sytes.net/test.php
 [Mon Feb 03 22:01:57 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: inmycar in /var/www/carpool/scripts/phpfunctions.php on line 223, referer: http://carpool.sytes.net/test.php
 [Mon Feb 03 22:01:57 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: inmycar in /var/www/carpool/scripts/phpfunctions.php on line 227, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 22:03:28 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 22:03:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: mytype in /var/www/carpool/scripts/phpfunctions.php on line 221, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 22:03:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: inmycar in /var/www/carpool/scripts/phpfunctions.php on line 223, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 22:03:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: inmycar in /var/www/carpool/scripts/phpfunctions.php on line 227, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 22:04:00 2014] [error] [client 24.20.209.246] PHP Fatal error:  Call to undefined function akeMap() in /var/www/carpool/test.php on line 24, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 22:04:02 2014] [error] [client 24.20.209.246] PHP Fatal error:  Call to undefined function akeMap() in /var/www/carpool/test.php on line 24, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 22:04:24 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: mytype in /var/www/carpool/scripts/phpfunctions.php on line 221, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 22:04:24 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: inmycar in /var/www/carpool/scripts/phpfunctions.php on line 223, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 22:04:24 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: inmycar in /var/www/carpool/scripts/phpfunctions.php on line 227, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 22:06:23 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: mytype in /var/www/carpool/scripts/phpfunctions.php on line 221, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 22:06:23 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: inmycar in /var/www/carpool/scripts/phpfunctions.php on line 223, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 22:06:23 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: inmycar in /var/www/carpool/scripts/phpfunctions.php on line 227, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 22:06:31 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: mytype in /var/www/carpool/scripts/phpfunctions.php on line 221, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 22:06:31 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: inmycar in /var/www/carpool/scripts/phpfunctions.php on line 223, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 22:06:31 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: inmycar in /var/www/carpool/scripts/phpfunctions.php on line 227, referer: http://carpool.sytes.net/test.php
