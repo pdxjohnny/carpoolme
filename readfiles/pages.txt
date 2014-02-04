@@ -1,4 +1,3 @@
 home.php
-index.php
 test2.php
 test.php

@@ -9,8 +9,12 @@ if(isset($_POST['reg'])) {
 	$whatname = $_POST['username'];
 	$whatpass = $_POST['password'];
 	$whatemail = $_POST['email'];
+	$whatphone = $_POST['phone'];
 	$whattype = $_POST['type'];
-	if((!$whatname)||(!$whatpass)||(!$whatemail)||(!$whatlat)||(!$whatlng)) exit ("<script>alert('Yo $whatname please fill in all fields and enable location.');</script><meta http-equiv='refresh' content='0'>");
+	if (!filter_var($whatemail, FILTER_VALIDATE_EMAIL));
+	else echo "<script>alert('$whatname you have an invalid email.');</script><meta http-equiv='refresh' content='0'>";
+
+	if((!$whatname)||(!$whatpass)||(!$whatemail)||(!$whatlat)||(!$whatlng||(!$whatphone))) exit ("<script>alert('$whatname please fill in all fields and enable location.');</script><meta http-equiv='refresh' content='0'>");
 	$table="carpool_members"; // Table name 
 
 	// Create connection
@@ -24,6 +28,7 @@ if(isset($_POST['reg'])) {
 	$whatname = mysqli_real_escape_string($con,$whatname);
 	$whatpass = mysqli_real_escape_string($con,$whatpass);
 	$whatemail = mysqli_real_escape_string($con,$whatemail);
+	$whatphone = mysqli_real_escape_string($con,$whatphone);
 	
 	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$whatname' OR email='$whatemail';");
 	
@@ -32,7 +37,7 @@ if(isset($_POST['reg'])) {
 		exit($whatname . " is already taken");
 		}
 	else{
-		mysqli_query($con,"INSERT INTO $table (username,password,email,type) VALUES('$whatname','$whatpass','$whatemail','$whattype');");
+		mysqli_query($con,"INSERT INTO $table (username,password,email,type,phone) VALUES('$whatname','$whatpass','$whatemail','$whattype',$whatphone);");
 		$_SESSION['username'] = $whatname;
 		$_SESSION['type'] = $whattype;
 		echo $_SESSION['username'] . " is now logged in" . "<meta http-equiv='refresh' content='0'>";
@@ -61,7 +66,9 @@ Password<br>
 <input name="password" type="password"><br>
 Email<br>
 <input name="email" type="text"><br>
-<select name="type">
+Phone Number<br>
+<input name="email" type="text" placeholder="111-111-1111"><br>
+<select id="typer" name="type">
   <option value="need">Need Ride</option>
   <option value="offer">Offing Ride</option>
 </select>

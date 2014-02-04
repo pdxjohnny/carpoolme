@@ -15,6 +15,10 @@ if($_SESSION['username']!=NULL){
 <?php
 	require 'scripts/setLatestLeave.php';
 	require 'scripts/setDest.php';
+	if(0==strcmp($_SESSION['type'],"offer")){
+		echo "There are currently " . $_SESSION['seats'] . " seats avalable in your car.<br>";
+		require 'scripts/seats.php';
+		}
 	if($_SESSION['latd']&&$_SESSION['lngd']){
 		getNearDest(0.15);
 		makeMap("dest");

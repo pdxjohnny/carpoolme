@@ -271,3 +271,89 @@
 [Mon Feb 03 16:47:32 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 18, referer: http://carpool.sytes.net/test.php
 [Mon Feb 03 16:47:33 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php
 [Mon Feb 03 16:47:33 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: lngd in /var/www/carpool/test.php on line 35, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:17:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6, referer: http://carpool.sytes.net/index.php
+[Mon Feb 03 17:18:32 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6
+[Mon Feb 03 17:18:32 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/index.php on line 6
+[Mon Feb 03 17:19:18 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Mon Feb 03 17:20:09 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 17:21:48 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 17:22:18 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 17:22:25 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 17:22:42 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 17:23:27 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 17:24:31 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 17:29:12 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 17:46:54 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:47:01 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 18, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:47:07 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 18, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:47:09 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:47:11 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:49:04 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 18, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:50:04 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:50:31 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:50:31 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: phone in /var/www/carpool/scripts/register.php on line 12, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:50:37 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:50:44 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:50:44 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: phone in /var/www/carpool/scripts/register.php on line 12, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:50:48 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:50:54 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:50:54 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: phone in /var/www/carpool/scripts/register.php on line 12, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:50:57 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:55:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 17:55:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 17:55:36 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:55:36 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: phone in /var/www/carpool/scripts/register.php on line 12, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:55:38 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:57:39 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:57:39 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: phone in /var/www/carpool/scripts/register.php on line 12, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 17:57:41 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:04:28 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:15:32 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 18:15:33 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 18:15:40 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:15:59 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:16:02 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:16:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:22:18 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 18:22:18 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 18:22:24 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 18:23:23 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 18:23:46 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 18:26:22 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 18:26:49 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 18:30:28 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 18:32:38 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 18:33:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 18:34:13 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 18:35:25 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 18:35:55 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 18:37:11 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 18:47:47 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:54:56 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:54:59 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:55:01 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: seats in /var/www/carpool/test.php on line 19, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:55:01 2014] [error] [client 24.20.209.246] PHP Parse error:  syntax error, unexpected ')' in /var/www/carpool/scripts/seats.php on line 9, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:56:25 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: seats in /var/www/carpool/test.php on line 19, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:56:25 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:56:43 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: seats in /var/www/carpool/test.php on line 19, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:56:43 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:56:59 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: seats in /var/www/carpool/test.php on line 19, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:56:59 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:57:35 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: seats in /var/www/carpool/test.php on line 19, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:57:35 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:57:44 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: seats in /var/www/carpool/test.php on line 19, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:57:46 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:57:47 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: seats in /var/www/carpool/test.php on line 19, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:57:47 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:59:06 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: seats in /var/www/carpool/test.php on line 19, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:59:06 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:59:16 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: seats in /var/www/carpool/test.php on line 19, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:59:16 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:59:17 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: seats in /var/www/carpool/test.php on line 19, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 18:59:17 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:00:05 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: seats in /var/www/carpool/test.php on line 19, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:00:05 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:00:08 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: seats in /var/www/carpool/test.php on line 19, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:00:09 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:00:10 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:00:23 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php

@@ -31,10 +31,11 @@ if(isset($_POST['logingo'])) {
 		mysqli_query($con,"UPDATE $table SET latitude = $whatlat, longitude = $whatlng, type = '$whattype' WHERE username='$whatname';");		
 		echo $_SESSION['username'] . " is now logged in" . "<meta http-equiv='refresh' content='0'>";
 
-		if ($newresult = mysqli_query($con, "SELECT dlatitude, dlongitude FROM $table WHERE username = '$whatname';")) {
+		if ($newresult = mysqli_query($con, "SELECT dlatitude, dlongitude, seats FROM $table WHERE username = '$whatname';")) {
 	    		$row = mysqli_fetch_row($newresult);
 			$_SESSION['latd'] = $row[0];
 			$_SESSION['lngd'] = $row[1];
+			$_SESSION['seats'] = $row[2];
     			mysqli_free_result($newresult);
    			}
     		mysqli_free_result($result);
@@ -64,7 +65,7 @@ Username<br>
 <input name='username' type="text"><br>
 Password<br>
 <input name="password" type="password"><br>
-<select name="type">
+<select id="typel" name="type">
   <option value="need">Need Ride</option>
   <option value="offer">Offing Ride</option>
 </select>

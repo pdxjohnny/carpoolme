@@ -118,7 +118,7 @@ if(0==strcmp($type,"dest")){?>
 <input name="GPSlatd" id="GPSlatd" type="hidden" value="">
 <input name="GPSlongd" id="GPSlongd" type="hidden" value="">
     <div id="panel">
-      <input id="address" type="textbox" value="Destination">
+      <input id="address" type="textbox" placeholder="Destination">
       <input type="button" value="Find" onclick="codeAddress('images/male.png')">
     </div>
 <div id="mapholder"></div>
@@ -145,7 +145,7 @@ else if(0==strcmp($type,"nodest")){?>
 <input name="GPSlatd" id="GPSlatd" type="hidden" value="">
 <input name="GPSlongd" id="GPSlongd" type="hidden" value="">
     <div id="panel">
-      <input id="address" type="textbox" value="Destination">
+      <input id="address" type="textbox" placeholder="Destination">
       <input type="button" value="Find" onclick="codeAddress('images/male.png')">
     </div>
 <div id="mapholder"></div>
