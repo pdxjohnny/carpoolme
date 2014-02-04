@@ -27,6 +27,7 @@ echo "<table border='1'>
 <th>Spots</th>
 <th>Riding with</th>
 <th>In Car</th>
+<th>Available Seats</th>
 </tr>";
 
 while($row = mysqli_fetch_array($result))
@@ -45,6 +46,7 @@ while($row = mysqli_fetch_array($result))
   echo "<td>" . $row['spots'] . "</td>";
   echo "<td>" . $row['ridingwith'] . "</td>";
   echo "<td>" . $row['incar'] . "</td>";
+  echo "<td>" . $row['availablespots'] . "</td>";
   echo "</tr>";
   }
 echo "</table>";

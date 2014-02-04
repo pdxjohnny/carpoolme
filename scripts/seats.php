@@ -22,8 +22,9 @@ if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1)
 	$result = mysqli_query($con,"SELECT spots FROM $table WHERE username = '$whatname';");
 	$row = mysqli_fetch_row($result);
 	$_SESSION['totalSeats'] = $row[0];
-	$_SESSION['numberAvalableSeats'] = $_SESSION['totalSeats']-$_SESSION['numberApprovedSeats'];
-	echo "<script>console.log('total seats : " . $_SESSION['totalSeats'] . " number approved seats : " . $_SESSION['numberApprovedSeats'] . " number want seats : " . $_SESSION['numberWantSeats'] . " number avalable seats : " . $_SESSION['numberAvalableSeats'] . "');</script>";
+	$_SESSION['numberavailableSeats'] = $_SESSION['totalSeats']-$_SESSION['numberApprovedSeats'];
+	echo "<script>console.log('total seats : " . $_SESSION['totalSeats'] . " number approved seats : " . $_SESSION['numberApprovedSeats'] . " number want seats : " . $_SESSION['numberWantSeats'] . " number available seats : " . $_SESSION['numberavailableSeats'] . "');</script>";
+	updateNum("availablespots",$_SESSION['numberavailableSeats'],$whatname);
 
 	mysqli_close($con);
 
@@ -57,8 +58,8 @@ if(isset($_POST['seatsform'])) {
 
 else { ?>
 <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" name="seatsupdateform">
-<?php if($_SESSION['seats']==NULL) echo "Seats Avalable: ";
-else echo "Update Seats Avalable: "; ?>
+<?php if($_SESSION['seats']==NULL) echo "Seats Available: ";
+else echo "Update Seats Available: "; ?>
 <select name="seats" id="seats">
 <script>
 for(var i = 1;i<=10;i++){

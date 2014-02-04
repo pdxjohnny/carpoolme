@@ -2,6 +2,112 @@
 
 if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
 
+function get($what,$user){
+
+	$table="carpool_members"; // Table name
+
+	// Create connection
+	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+
+	// Check connection
+	if (mysqli_connect_errno()){
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+
+	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$user'");
+	
+	if(1 == mysqli_num_rows($result)){
+		mysqli_query($con,"SELECT $what FROM $table WHERE username='$user';");
+		$row = mysqli_fetch_row($result);
+		$out = $row[0];
+		mysqli_close($con);
+		return $out;
+		}
+	else{
+		echo "<script>alert('Shit nigga it didn't work');</script>";
+		mysqli_close($con);
+		return 1;
+		}
+	}
+
+function updateString($what,$with,$user){
+
+	$table="carpool_members"; // Table name
+
+	// Create connection
+	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+
+	// Check connection
+	if (mysqli_connect_errno()){
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+
+	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$user'");
+	
+	if(1 == mysqli_num_rows($result)){
+		mysqli_query($con,"UPDATE $table SET $what = '$with' WHERE username='$user';");
+		mysqli_close($con);
+		return 0;
+		}
+	else{
+		echo "<script>alert('Shit nigga it didn't work');</script>";
+		mysqli_close($con);
+		return 1;
+		}
+	}
+
+function updateNum($what,$with,$user){
+
+	$table="carpool_members"; // Table name
+
+	// Create connection
+	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+
+	// Check connection
+	if (mysqli_connect_errno()){
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+
+	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$user'");
+	
+	if(1 == mysqli_num_rows($result)){
+		mysqli_query($con,"UPDATE $table SET $what = $with WHERE username='$user';");
+		mysqli_close($con);
+		return 0;
+		}
+	else{
+		echo "<script>alert('Shit nigga it didn't work');</script>";
+		mysqli_close($con);
+		return 1;
+		}
+	}
+
+function updateNull($what,$user){
+
+	$table="carpool_members"; // Table name
+
+	// Create connection
+	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+
+	// Check connection
+	if (mysqli_connect_errno()){
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+
+	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$user'");
+	
+	if(1 == mysqli_num_rows($result)){
+		mysqli_query($con,"UPDATE $table SET $what = NULL WHERE username='$user';");
+		mysqli_close($con);
+		return 0;
+		}
+	else{
+		echo "<script>alert('Shit nigga it didn't work');</script>";
+		mysqli_close($con);
+		return 1;
+		}
+	}
+
 function getNearBy($range){
 	
 	if(isset($_SESSION['nearby'])) unset($_SESSION['nearby']);
@@ -88,7 +194,7 @@ function getNearDest($range){
 	echo "<script>console.log('mylatsub:$mylatdsub mylatsub:$mylatdadd mylatsub:$mylngdsub mylatsub:$mylngdadd');</script>";
 	*/
 
-	$query = "SELECT username, latitude, longitude, type, dlatitude, dlongitude, spots FROM $table WHERE latitude BETWEEN $mylatsub AND $mylatadd AND longitude BETWEEN $mylngsub AND $mylngadd AND dlatitude BETWEEN $mylatdsub AND $mylatdadd AND dlongitude BETWEEN $mylngdsub AND $mylngdadd AND NOT username = '$myusername';";
+	$query = "SELECT username, latitude, longitude, type, dlatitude, dlongitude, spots, availablespots FROM $table WHERE latitude BETWEEN $mylatsub AND $mylatadd AND longitude BETWEEN $mylngsub AND $mylngadd AND dlatitude BETWEEN $mylatdsub AND $mylatdadd AND dlongitude BETWEEN $mylngdsub AND $mylngdadd AND NOT username = '$myusername';";
 
 	if ($result = mysqli_query($con, $query)) {
 
@@ -183,14 +289,11 @@ if(isset($_POST['setDestB'])) {
 	}
 	}
 
-function inMyCar(){
-	
-	if(isset($_SESSION['inmycar'])) unset($_SESSION['inmycar']);
+function inMyCar($type){
 
 	$table = "carpool_members";
 	$myusername = $_SESSION['username'];
 	$myride = $_SESSION['myride'];
-	$mytype = $_SESSION['type'];
 
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
 
@@ -198,31 +301,41 @@ function inMyCar(){
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-	if(0==strcmp($mytype,"offer")) $query = "SELECT username FROM $table WHERE incar='$myusername' AND NOT username = '$myusername';";
-	
-	else $query = "SELECT username FROM $table WHERE incar='$myride' AND NOT username = '$myusername';";
+	if(0==strcmp($type,"offer")){
+		if(isset($_SESSION['inmycaroffer'])) unset($_SESSION['inmycaroffer']);
+		$query = "SELECT username FROM $table WHERE incar='$myusername' AND NOT username = '$myusername';";
 
-	if ($result = mysqli_query($con, $query)) {
+		if ($result = mysqli_query($con, $query)) {
 
-	    	for ($i = 0;$row = mysqli_fetch_row($result);$i++) {
-				$_SESSION['inmycar'][$i] = $row[0];
-   			 }
+		    	for ($i = 0;$row = mysqli_fetch_row($result);$i++) {
+				$_SESSION['inmycaroffer'][$i] = $row[0];
+   				 }
 
-    		mysqli_free_result($result);
-		}
+    			mysqli_free_result($result);
+			}
+		}	
+	else if(0==strcmp($type,"need")){
+		if(isset($_SESSION['inmycarneed'])) unset($_SESSION['inmycarneed']);
+		$query = "SELECT username FROM $table WHERE incar='$myride' AND NOT username = '$myusername';";
+
+		if ($result = mysqli_query($con, $query)) {
+
+		    	for ($i = 0;$row = mysqli_fetch_row($result);$i++) {
+				$_SESSION['inmycarneed'][$i] = $row[0];
+   				 }
+
+    			mysqli_free_result($result);
+			}
+		}	
 
 	mysqli_close($con);
 
 	}
 
 function wantMyCar(){
-	
-	if(isset($_SESSION['inmycar'])) unset($_SESSION['inmycar']);
 
 	$table = "carpool_members";
 	$myusername = $_SESSION['username'];
-	$myride = $_SESSION['myride'];
-	$mytype = $_SESSION['type'];
 
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
 
@@ -230,12 +343,14 @@ function wantMyCar(){
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-	if(0==strcmp($mytype,"offer")) $query = "SELECT username FROM $table WHERE ridingwith='$myusername' AND NOT username = '$myusername';";
+	$query = "SELECT username FROM $table WHERE ridingwith='$myusername' AND NOT username = '$myusername';";
+	
+	if(isset($_SESSION['wantmycar'])) unset($_SESSION['wantmycar']);
 
 	if ($result = mysqli_query($con, $query)) {
 
 	    	for ($i = 0;$row = mysqli_fetch_row($result);$i++) {
-				$_SESSION['wantMyCar'][$i] = $row[0];
+				$_SESSION['wantmycar'][$i] = $row[0];
    			 }
 
     		mysqli_free_result($result);
@@ -247,27 +362,54 @@ function wantMyCar(){
 
 function showMyCar($type){
 
-	if(0==strcmp($_SESSION['mytype'],"offer")) echo "There are " . (count($_SESSION['inmycar'])) . " people in your car.<br>";
-	else{
-		echo "You're riding with  " . $_SESSION['myride'] . " and there are " . (count($_SESSION['inmycar'])+2) . " people in your car.<br>";
-		echo "The driver is " . $_SESSION['myride'] . "<br>";
-		echo "Person number 2 is me (" . $_SESSION['username'] . ")<br>";
+	if(0==strcmp($type,"offer")){
+		$incar = count($_SESSION['inmycaroffer']);
+		if($incar==0) echo "There is no one in your car.<br>";
+		else {
+			if($incar==1) echo "There is one person in your car.<br>";
+			else echo "There are " . $incar . " people in your car.<br>";
+			for($i = 0; $i < count($_SESSION['inmycaroffer']); $i ++){
+				echo "Person number " . ($i+1) . " is " . $_SESSION['inmycaroffer'][$i] . "<br>";
+				}
+			}
 		}
-	for($i = 0; $i < count($_SESSION['inmycar']); $i ++){
-		echo "Person number " . ($i+3) . " is " . $_SESSION['inmycar'][$i] . "<br>";
+	else {
+		echo "You're riding with  " . $_SESSION['myride'] . " there are " . (count($_SESSION['inmycarneed'])+2) . " people in your car.<br>";
+		echo "The driver is " . $_SESSION['myride'] . "<br>";
+		echo "Person number 2 is you (" . $_SESSION['username'] . ")<br>";
+		for($i = 0; $i < count($_SESSION['inmycarneed']); $i ++){
+			echo "Person number " . ($i+3) . " is " . $_SESSION['inmycarneed'][$i] . "<br>";
+			}
 		}
 	}
 
 function approveMyCar($type){
 
-	if(0==strcmp($_SESSION['mytype'],"offer")) echo "There are " . (count($_SESSION['inmycar'])) . " people in your car.<br>";
-	else{
-		echo "You're riding with  " . $_SESSION['myride'] . " and there are " . (count($_SESSION['inmycar'])+2) . " people in your car.<br>";
-		echo "The driver is " . $_SESSION['myride'] . "<br>";
-		echo "Person number 2 is me (" . $_SESSION['username'] . ")<br>";
+	if(isset($_POST['acceptgo'])){
+		$accept = $_POST['accept'];
+		if(empty($accept)) {
+			echo "<script>alert('No one was approved.');</script> <meta http-equiv='refresh' content='0'>";
+			} 
+		else{
+			for($i=0; $i < count($accept); $i++){
+				updateString("incar",$_SESSION['username'],$accept[$i]);
+				updateNull("ridingwith",$accept[$i]);
+				}
+			}
+			echo "<meta http-equiv='refresh' content='0'>";
 		}
-	for($i = 0; $i < count($_SESSION['inmycar']); $i ++){
-		echo "Person number " . ($i+3) . " is " . $_SESSION['inmycar'][$i] . "<br>";
+
+	$wantcar = count($_SESSION['wantmycar']);
+	if($wantcar==0) echo "There is no one who wants to be in your car.<br>";
+	else {
+		if($wantcar==1) echo "There is one person who wants to be in your car.<br>";
+		else echo "There are " . $wantcar . " people who want to be in your car.<br>";
+		echo "<form action=" . $_SERVER['PHP_SELF'] . " method='post' name='aprovalform'>";
+		for($i = 0; $i < count($_SESSION['wantmycar']); $i ++){
+			echo 'Person number ' . ($i+1) . ' is ' . $_SESSION['wantmycar'][$i];
+			echo '<input type="checkbox" name="accept[]" value="' . $_SESSION['wantmycar'][$i] . '"><br>';
+			}
+		 echo '<input value="Accept" id="acceptgo" name="acceptgo" type="submit"></form>';
 		}
 	}
 ?>

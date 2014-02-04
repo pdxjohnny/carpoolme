@@ -18,6 +18,14 @@ if($_SESSION['username']!=NULL){
 	if(0==strcmp($_SESSION['type'],"offer")){
 		require 'scripts/seats.php';
 		echo "There are currently " . $_SESSION['numberAvalableSeats'] . " seats avalable in your car.<br>";
+		inMyCar("offer");
+		showMyCar("offer");
+		wantMyCar();
+		approveMyCar();
+		}
+	if($_SESSION['myride']){
+		inMyCar("ride");
+		showMyCar("ride");
 		}
 	if($_SESSION['latd']&&$_SESSION['lngd']){
 		getNearDest(0.15);
@@ -26,10 +34,6 @@ if($_SESSION['username']!=NULL){
 	else {
 		getNearBy(0.15);
 		makeMap("nodest");
-		}
-	if($_SESSION['myride']){
-		inMyCar();
-		showMyCar();
 		}
 	require 'scripts/clearDest.php';
 	require 'scripts/clearRide.php';

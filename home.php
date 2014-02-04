@@ -16,21 +16,28 @@ if($_SESSION['username']!=NULL){
 	require 'scripts/setLatestLeave.php';
 	require 'scripts/setDest.php';
 	if(0==strcmp($_SESSION['type'],"offer")){
-		echo "There are currently " . $_SESSION['seats'] . " seats avalable in your car.<br>";
 		require 'scripts/seats.php';
+		echo "There are currently " . $_SESSION['numberAvalableSeats'] . " seats avalable in your car.<br>";
+		inMyCar("offer");
+		showMyCar("offer");
+		wantMyCar();
+		approveMyCar();
+		}
+	if($_SESSION['myride']){
+		inMyCar("ride");
+		showMyCar("ride");
 		}
 	if($_SESSION['latd']&&$_SESSION['lngd']){
 		getNearDest(0.15);
-		if(0==strcmp($_SESSION['type'],"offer")) makeMap("dest","walking");
-		else makeMap("dest","cars");
+		makeMap("dest");
 		}
 	else {
 		getNearBy(0.15);
-		if(0==strcmp($_SESSION['type'],"offer")) makeMap("nodest","walking");
-		else makeMap("nodest","cars");
+		makeMap("nodest");
 		}
-	
 	require 'scripts/clearDest.php';
+	require 'scripts/clearRide.php';
+	require 'scripts/askForRide.php';
 	}
 else{
 	require 'scripts/login.php';

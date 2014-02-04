@@ -31,12 +31,13 @@ if(isset($_POST['logingo'])) {
 		mysqli_query($con,"UPDATE $table SET latitude = $whatlat, longitude = $whatlng, type = '$whattype' WHERE username='$whatname';");		
 		echo $_SESSION['username'] . " is now logged in" . "<meta http-equiv='refresh' content='0'>";
 
-		if ($newresult = mysqli_query($con, "SELECT dlatitude, dlongitude, spots, ridingwith FROM $table WHERE username = '$whatname';")) {
+		if ($newresult = mysqli_query($con, "SELECT dlatitude, dlongitude, spots, ridingwith, incar FROM $table WHERE username = '$whatname';")) {
 	    		$row = mysqli_fetch_row($newresult);
 			$_SESSION['latd'] = $row[0];
 			$_SESSION['lngd'] = $row[1];
 			$_SESSION['seats'] = $row[2];
 			$_SESSION['myride'] = $row[3];
+			if($row[4]!=NULL) $_SESSION['myride'] = $row[4];
     			mysqli_free_result($newresult);
    			}
     		mysqli_free_result($result);
