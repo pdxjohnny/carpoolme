@@ -1,30 +1,25 @@
 <select id="select">
-<option value="client">Client Hours</option>
-<option value="pilot">Pilot Hours</option>
+<option value="2014-02-12 19:09:00">2014-02-12 19:09:00</option>
+<option value="2014-02-03 14:00:00">2014-02-03 14:00:00</option>
 </select>
-
-<div id="seatsdiv" style="display:none;">
-Seats:
-<select name="seats" id="minute">
-<script>
-for(var i = 0;i<=10;i++){
-	document.write("<option value='"+i+"'>"+i+"</option>");
-	}
-</script>
-</select>
-</div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
+
+function userTime(time){
+
+	var temp1 = time.split('-');
+	var temp2 = temp1[2].split(' ');
+	var temp3 = temp2[1].split(':');
+	var out = [temp1[0], temp1[1], temp2[0], temp3[0], temp3[1], temp3[2]];
+	return out;
+
+	}
+
 $(function () {
-  $("#select").change(function() {
+  $("#select").click(function() {
     var val = $(this).val();
-    if(val === "pilot") {
-        $("#seatsdiv").show();
-    }
-    else {
-        $("#seatsdiv").hide();
-    }
+    userTime(val);
   });
 });
 </script>

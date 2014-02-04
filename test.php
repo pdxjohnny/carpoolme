@@ -17,7 +17,7 @@ if($_SESSION['username']!=NULL){
 	require 'scripts/setDest.php';
 	if(0==strcmp($_SESSION['type'],"offer")){
 		require 'scripts/seats.php';
-		echo "There are currently " . $_SESSION['numberavailableSeats'] . " seats avalable in your car.<br>";
+		showSeats();
 		inMyCar("offer");
 		showMyCar("offer");
 		wantMyCar();

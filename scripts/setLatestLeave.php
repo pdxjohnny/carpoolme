@@ -8,26 +8,10 @@ if(isset($_POST['setLatestLeave'])) {
 	$whattime = mysql_real_escape_string($whattime);
 	$whatname = $_SESSION['username'];
 	if((!$whattime)) exit ("<meta http-equiv='refresh' content='0'>");
-	$table="carpool_members"; // Table name
-
-	// Create connection
-	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
-
-	// Check connection
-	if (mysqli_connect_errno()){
-		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-		}
-
-	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$whatname'");
 	
-	if(1 == mysqli_num_rows($result)){
-		mysqli_query($con,"UPDATE $table SET latestleave = '$whattime' WHERE username='$whatname';");
-		}
-	else{
-		echo "<script>alert('Shit nigga it didn't work');</script>";
-		}
+	updateString("latestleave",$whattime,$whatname);
+	echo "<meta http-equiv='refresh' content='0'>";
 
-	mysqli_close($con);
 	}
 else {?>
 
@@ -36,7 +20,8 @@ else {?>
 <select name="hour" id="hour">
 <script>
 for(var i = 1;i<=24;i++){
-	document.write("<option value='"+i+"'>"+i+"</option>");
+	if(i<=12) document.write("<option value='"+i+"'>"+i+" am</option>");
+	else document.write("<option value='"+i+"'>"+(i-12)+" pm</option>");
 	}
 </script>
 </select>

@@ -218,7 +218,7 @@ function getNearDest($range){
 	echo "<script>console.log('mylatsub:$mylatdsub mylatsub:$mylatdadd mylatsub:$mylngdsub mylatsub:$mylngdadd');</script>";
 	*/
 
-	$query = "SELECT username, latitude, longitude, type, dlatitude, dlongitude, spots, availablespots FROM $table WHERE latitude BETWEEN $mylatsub AND $mylatadd AND longitude BETWEEN $mylngsub AND $mylngadd AND dlatitude BETWEEN $mylatdsub AND $mylatdadd AND dlongitude BETWEEN $mylngdsub AND $mylngdadd AND NOT username = '$myusername';";
+	$query = "SELECT username, latitude, longitude, type, dlatitude, dlongitude, spots, availablespots, latestleave FROM $table WHERE latitude BETWEEN $mylatsub AND $mylatadd AND longitude BETWEEN $mylngsub AND $mylngadd AND dlatitude BETWEEN $mylatdsub AND $mylatdadd AND dlongitude BETWEEN $mylngdsub AND $mylngdadd AND NOT username = '$myusername';";
 
 	if ($result = mysqli_query($con, $query)) {
 
@@ -438,5 +438,12 @@ function approveMyCar($type){
 			}
 		 echo '<input value="Accept" id="acceptgo" name="acceptgo" type="submit"></form>';
 		}
+	}
+
+function showSeats(){
+
+	if($_SESSION['numberavailableSeats']>1) echo "There are currently " . $_SESSION['numberavailableSeats'] . " seats avalable in your car.<br>";
+	else if($_SESSION['numberavailableSeats']==1) echo "There is currently " . $_SESSION['numberavailableSeats'] . " seat avalable in your car.<br>";
+	else if($_SESSION['numberavailableSeats']==0) echo "There are currently no seats avalable in your car.<br>";
 	}
 ?>

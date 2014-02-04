@@ -3,6 +3,7 @@ var sitename = "carpool";
 var site = document.URL;
 site = site.substring(site.indexOf("/") + 2);
 site = site.substring(0, site.indexOf('/'));
+
 function links(file,dir,linktype){
 
 	var strings = readFile(file).split('\n');
@@ -96,6 +97,16 @@ function readFile(filename){
 	else alert("Error executing XMLHttpRequest call!");
 	}
 
+function userTime(time){
+
+	var temp1 = time.split('-');
+	var temp2 = temp1[2].split(' ');
+	var temp3 = temp2[1].split(':');
+	var out = [temp1[0], temp1[1], temp2[0], temp3[0], temp3[1], temp3[2]];
+	return out;
+
+	}
+
 function oneOnMap(lat,lng,lat1,lng1){
 
   if (navigator.geolocation)
@@ -145,6 +156,7 @@ function makeMap(centerlat,centerlng,zoomval,divId){
 
 	}
 
+
 function arrayMap(locations){
 
 	var marker, i;
@@ -169,6 +181,13 @@ function arrayMap(locations){
 
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
         		return function() {
+				var pretime = userTime(locations[i][8]);
+				if(pretime==null) var time = " No leave time set.";
+				else {
+					if(pretime[3]>12) var hm = (pretime[3]-12) + ':' + pretime[4] + "pm";
+					else var hm = pretime[3] + ':' + pretime[4] + "am";
+					var time = " They will be leaving on "+ pretime[2] + " at " + hm + ". ";
+					}
 				if(locations[i][3]==="offer"){
 					if(locations[i][7]!==null){
 						if(locations[i][7]>=locations[i][6]){
@@ -177,12 +196,12 @@ function arrayMap(locations){
 						else {
 							if(locations[i][7]==1) var spots = locations[i][7] + " seat avalable.";
 							else var spots = locations[i][7] + " seats avalable.";
-							InfoWindow.setContent(locations[i][0]+' has '+spots+'<input name="myride" id="myride" type="hidden" value="'+locations[i][0]+'"><input value="Ask for ride?" id="askride" name="askride" type="submit">');
+							InfoWindow.setContent(locations[i][0]+' has '+spots+time+'<input name="myride" id="myride" type="hidden" value="'+locations[i][0]+'"><input value="Ask for ride?" id="askride" name="askride" type="submit">');
 							}
 						}
 					else {
 						var spots = "not set avalable seats yet.";
-						InfoWindow.setContent(locations[i][0]+' has '+spots+'<input name="myride" id="myride" type="hidden" value="'+locations[i][0]+'"><input value="Ask for ride?" id="askride" name="askride" type="submit">');
+						InfoWindow.setContent(locations[i][0]+' has '+spots+time+'<input name="myride" id="myride" type="hidden" value="'+locations[i][0]+'"><input value="Ask for ride?" id="askride" name="askride" type="submit">');
 						}
 					}
 				else {

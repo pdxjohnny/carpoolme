@@ -31,6 +31,7 @@ if(isset($_POST['seatsform'])) {
 	if(!$seats) exit ("<meta http-equiv='refresh' content='0'>");
 	
 	updateNum("spots",$seats,$_SESSION['username']);
+	echo "<meta http-equiv='refresh' content='0'>";
 	}
 
 else { ?>
