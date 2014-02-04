@@ -17,14 +17,14 @@ if($_SESSION['username']!=NULL){
 	require 'scripts/setDest.php';
 	if($_SESSION['latd']&&$_SESSION['lngd']){
 		getNearDest(0.15);
-		showNearBy();
 		makeMap();
 		}
 	else {
-		getNearBy();
-		showNearBy();
+		getNearBy(0.15);
 		makeMap();
 		}
+	
+	require 'scripts/clearDest.php';
 	}
 else{
 	require 'scripts/login.php';

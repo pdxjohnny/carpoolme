@@ -145,12 +145,27 @@ function makeMap(centerlat,centerlng,zoomval,divId){
 
 	}
 
-function arrayMap(locations){
+function arrayMap(locations,image1,image2){
 
 	var marker, i;
 
+	// Current locations
 	for (i = 0; i < locations.length; i++) {  
-		marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][1], locations[i][2]), map: map});
+		if(image1) marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][1], locations[i][2]), map: map, icon: image1 });
+		else marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][1], locations[i][2]), map: map });
+
+		google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        		return function() {
+				InfoWindow.setContent(locations[i][0]);
+				InfoWindow.open(map, marker);
+				}
+			})(marker, i));
+		}
+
+	// Destination locations
+	for (i = 0; i < locations.length; i++) {  
+		if(image2) marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][4], locations[i][5]), map: map, icon: image2 });
+		else marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][4], locations[i][5]), map: map });
 
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
         		return function() {
@@ -223,7 +238,7 @@ function codeAddress(image) {
   		$('#GPSlongd').val(evt.latLng.lng().toFixed(8));
 		});
     } else {
-      alert('Geocode was not successful for the following reason: ' + status);
+      alert('There was an error : ' + status);
     }
   });
 }
