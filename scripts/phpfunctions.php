@@ -30,6 +30,30 @@ function get($what,$user){
 		}
 	}
 
+function checkString($if,$is,$user){
+
+	$table="carpool_members"; // Table name
+
+	// Create connection
+	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+
+	// Check connection
+	if (mysqli_connect_errno()){
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+
+	$check = mysqli_query($con,"SELECT $table WHERE $if = '$is' AND username='$user';");
+	
+	if(1 == mysqli_num_rows($check)){
+		mysqli_close($con);
+		return 0;
+		}
+	else{
+		mysqli_close($con);
+		return 1;
+		}
+	}
+
 function updateString($what,$with,$user){
 
 	$table="carpool_members"; // Table name
