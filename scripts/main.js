@@ -169,7 +169,7 @@ function arrayMap(locations,image1,image2){
 
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
         		return function() {
-				InfoWindow.setContent(locations[i][0]);
+				InfoWindow.setContent(locations[i][0]+'<input name="myride" id="myride" type="hidden" value="'+locations[i][0]+'"><input value="Ask for ride?" id="askride" name="askride" type="submit">');
 				InfoWindow.open(map, marker);
 				}
 			})(marker, i));

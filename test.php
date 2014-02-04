@@ -21,11 +21,13 @@ if($_SESSION['username']!=NULL){
 		}
 	if($_SESSION['latd']&&$_SESSION['lngd']){
 		getNearDest(0.15);
-		makeMap("dest");
+		if(0==strcmp($_SESSION['type'],"offer")) makeMap("dest","walking");
+		else makeMap("dest","cars");
 		}
 	else {
 		getNearBy(0.15);
-		makeMap("nodest");
+		if(0==strcmp($_SESSION['type'],"offer")) makeMap("nodest","walking");
+		else makeMap("nodest","cars");
 		}
 	
 	require 'scripts/clearDest.php';

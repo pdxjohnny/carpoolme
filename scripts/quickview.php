@@ -25,6 +25,7 @@ echo "<table border='1'>
 <th>DLogitude</th>
 <th>Latest Leave</th>
 <th>Spots</th>
+<th>Riding with</th>
 </tr>";
 
 while($row = mysqli_fetch_array($result))
@@ -41,6 +42,7 @@ while($row = mysqli_fetch_array($result))
   echo "<td>" . $row['dlongitude'] . "</td>";
   echo "<td>" . $row['latestleave'] . "</td>";
   echo "<td>" . $row['spots'] . "</td>";
+  echo "<td>" . $row['ridingwith'] . "</td>";
   echo "</tr>";
   }
 echo "</table>";

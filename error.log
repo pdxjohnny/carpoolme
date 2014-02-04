@@ -357,3 +357,65 @@
 [Mon Feb 03 19:00:09 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
 [Mon Feb 03 19:00:10 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
 [Mon Feb 03 19:00:23 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:02:46 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:02:47 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:02:50 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:02:52 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: seats in /var/www/carpool/test.php on line 19, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:02:52 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:03:14 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: seats in /var/www/carpool/test.php on line 19, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:03:14 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/test.php on line 22, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:03:16 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:03:21 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:04:26 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:04:30 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:09:31 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 2 for makeMap(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/phpfunctions.php on line 110, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:09:31 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: icons in /var/www/carpool/scripts/phpfunctions.php on line 128, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:10:47 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:10:52 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:11:04 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:33:00 2014] [error] [client 24.20.209.246] script '/var/www/carpool/index.php' not found or unable to stat, referer: http://carpool.sytes.net/index.php
+[Mon Feb 03 19:33:02 2014] [error] [client 24.20.209.246] script '/var/www/carpool/index.php' not found or unable to stat, referer: http://carpool.sytes.net/index.php
+[Mon Feb 03 19:33:05 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Mon Feb 03 19:34:11 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Mon Feb 03 19:34:13 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 2 for makeMap(), called in /var/www/carpool/home.php on line 24 and defined in /var/www/carpool/scripts/phpfunctions.php on line 110, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 19:34:13 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: icons in /var/www/carpool/scripts/phpfunctions.php on line 173, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 19:35:13 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 2 for makeMap(), called in /var/www/carpool/home.php on line 24 and defined in /var/www/carpool/scripts/phpfunctions.php on line 110, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 19:35:13 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: icons in /var/www/carpool/scripts/phpfunctions.php on line 173, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 19:35:26 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 2 for makeMap(), called in /var/www/carpool/home.php on line 24 and defined in /var/www/carpool/scripts/phpfunctions.php on line 110, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 19:35:26 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: icons in /var/www/carpool/scripts/phpfunctions.php on line 173, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 19:35:48 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 2 for makeMap(), called in /var/www/carpool/home.php on line 20 and defined in /var/www/carpool/scripts/phpfunctions.php on line 110, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 19:35:48 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: icons in /var/www/carpool/scripts/phpfunctions.php on line 128, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 19:35:48 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 2 for makeMap(), called in /var/www/carpool/home.php on line 20 and defined in /var/www/carpool/scripts/phpfunctions.php on line 110, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 19:35:48 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: icons in /var/www/carpool/scripts/phpfunctions.php on line 128, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 19:36:26 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 2 for makeMap(), called in /var/www/carpool/home.php on line 20 and defined in /var/www/carpool/scripts/phpfunctions.php on line 110, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 19:36:26 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: icons in /var/www/carpool/scripts/phpfunctions.php on line 128, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 19:37:00 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 2 for makeMap(), called in /var/www/carpool/home.php on line 20 and defined in /var/www/carpool/scripts/phpfunctions.php on line 110, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 19:37:00 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: icons in /var/www/carpool/scripts/phpfunctions.php on line 128, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 19:37:00 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 19:44:04 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 19:57:58 2014] [error] [client 24.20.209.246] PHP Warning:  mysql_num_fields() expects parameter 1 to be resource, object given in /var/www/carpool/scripts/quickview.php on line 15
+[Mon Feb 03 20:00:25 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:00:26 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:00:30 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:00:33 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:00:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:01:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:01:32 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 2 for makeMap(), called in /var/www/carpool/home.php on line 20 and defined in /var/www/carpool/scripts/phpfunctions.php on line 110, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:01:32 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: icons in /var/www/carpool/scripts/phpfunctions.php on line 128, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:03:20 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 2 for makeMap(), called in /var/www/carpool/home.php on line 20 and defined in /var/www/carpool/scripts/phpfunctions.php on line 110, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:03:20 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: icons in /var/www/carpool/scripts/phpfunctions.php on line 128, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:03:21 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 2 for makeMap(), called in /var/www/carpool/home.php on line 20 and defined in /var/www/carpool/scripts/phpfunctions.php on line 110, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:03:21 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: icons in /var/www/carpool/scripts/phpfunctions.php on line 128, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:03:25 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 2 for makeMap(), called in /var/www/carpool/home.php on line 20 and defined in /var/www/carpool/scripts/phpfunctions.php on line 110, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:03:25 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: icons in /var/www/carpool/scripts/phpfunctions.php on line 128, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:03:26 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 18, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:03:26 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 2 for makeMap(), called in /var/www/carpool/home.php on line 24 and defined in /var/www/carpool/scripts/phpfunctions.php on line 110, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:03:26 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: icons in /var/www/carpool/scripts/phpfunctions.php on line 173, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:03:28 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 18, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:03:28 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 2 for makeMap(), called in /var/www/carpool/home.php on line 24 and defined in /var/www/carpool/scripts/phpfunctions.php on line 110, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:03:28 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: icons in /var/www/carpool/scripts/phpfunctions.php on line 173, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:03:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Mon Feb 03 20:13:47 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Mon Feb 03 20:13:51 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 20:13:53 2014] [error] [client 24.20.209.246] PHP Parse error:  syntax error, unexpected T_INC, expecting ')' in /var/www/carpool/scripts/phpfunctions.php on line 252, referer: http://carpool.sytes.net/test.php
+[Mon Feb 03 20:14:57 2014] [error] [client 24.20.209.246] PHP Parse error:  syntax error, unexpected T_INC, expecting ')' in /var/www/carpool/scripts/phpfunctions.php on line 252, referer: http://carpool.sytes.net/test.php

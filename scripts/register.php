@@ -70,7 +70,7 @@ Phone Number<br>
 <input name="email" type="text" placeholder="111-111-1111"><br>
 <select id="typer" name="type">
   <option value="need">Need Ride</option>
-  <option value="offer">Offing Ride</option>
+  <option value="offer">Offering Ride</option>
 </select>
 <input name="GPSlatr" id="GPSlatr" type="hidden" value="">
 <input name="GPSlongr" id="GPSlongr" type="hidden" value="">

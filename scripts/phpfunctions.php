@@ -107,9 +107,9 @@ function getNearDest($range){
 
 	}
 
-function makeMap($type){
+function makeMap($dest,$icons){
 
-if(0==strcmp($type,"dest")){?>
+if(0==strcmp($dest,"dest")){?>
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script src="scripts/main.js"></script>
@@ -123,6 +123,9 @@ if(0==strcmp($type,"dest")){?>
     </div>
 <div id="mapholder"></div>
 </form>
+<?php
+
+if(0==strcmp($icons,"cars")){?>
 <script>
 	var mylat = "<?php echo $_SESSION['lat']; ?>";
    	var mylng = "<?php echo $_SESSION['lng']; ?>";
@@ -136,7 +139,22 @@ if(0==strcmp($type,"dest")){?>
 </script>
 <?php
 	}
-else if(0==strcmp($type,"nodest")){?>
+else{?>
+<script>
+	var mylat = "<?php echo $_SESSION['lat']; ?>";
+   	var mylng = "<?php echo $_SESSION['lng']; ?>";
+	var mylatd = "<?php echo $_SESSION['latd']; ?>";
+   	var mylngd = "<?php echo $_SESSION['lngd']; ?>";
+	var locations = <?php echo json_encode($_SESSION['nearby']); ?>;
+	makeMap(mylat,mylng,12,"mapholder");
+	addPointMap(mylat,mylng,"You","images/male.png",1);
+	addPointMap(mylatd,mylngd,"Your destination","images/mydest.png");
+	arrayMap(locations,"images/walking.png","images/dest.png");
+</script>
+<?php
+	}
+}
+else if(0==strcmp($dest,"nodest")){?>
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script src="scripts/main.js"></script>
@@ -150,6 +168,9 @@ else if(0==strcmp($type,"nodest")){?>
     </div>
 <div id="mapholder"></div>
 </form>
+<?php
+
+if(0==strcmp($icons,"cars")){?>
 <script>
 	var mylat = "<?php echo $_SESSION['lat']; ?>";
    	var mylng = "<?php echo $_SESSION['lng']; ?>";
@@ -160,6 +181,18 @@ else if(0==strcmp($type,"nodest")){?>
 </script>
 <?php
 	}
+else{?>
+<script>
+	var mylat = "<?php echo $_SESSION['lat']; ?>";
+   	var mylng = "<?php echo $_SESSION['lng']; ?>";
+	var locations = <?php echo json_encode($_SESSION['nearby']); ?>;
+	makeMap(mylat,mylng,12,"mapholder");
+	addPointMap(mylat,mylng,"You","images/male.png",1);
+	arrayMap(locations,"images/walking.png");
+</script>
+<?php
+	}
+}
 }
 
 function setDest(){
@@ -193,5 +226,37 @@ if(isset($_POST['setDestB'])) {
 		}
 
 	}
+	}
+
+function inMyCar(){
+	
+	if(isset($_SESSION['inmycar'])) unset($_SESSION['inmycar']);
+
+	$table = "carpool_members";
+	$myusername = $_SESSION['username'];
+	$myride = $_SESSION['myride'];
+	$mytype = $_SESSION['type'];
+
+	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+
+	if (mysqli_connect_errno()){
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+
+	if(0==strcmp($mytype,"offer")) $query = "SELECT username FROM $table WHERE ridingwith='$myusername' AND NOT username = '$myusername';";
+	
+	else if(0==strcmp($mytype,"need")) $query = "SELECT username FROM $table WHERE ridingwith='$myride' AND NOT username = '$myusername';";
+
+	if ($result = mysqli_query($con, $query)) {
+
+	    	for ($i = 0;$row = mysqli_fetch_row($result);$i++) {
+				$_SESSION['inmycar'][$i] = $row[0];
+   			 }
+
+    		mysqli_free_result($result);
+		}
+
+	mysqli_close($con);
+
 	}
 ?>
