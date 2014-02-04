@@ -8,7 +8,7 @@ if(isset($_POST['askride'])) {
 	$whatname = $_SESSION['username'];
 	if(!$myride) exit ("<meta http-equiv='refresh' content='0'>");
 	$table="carpool_members"; // Table name
-
+	echo "<script>console.log('myride : $myride');</script>";
 	// Create connection
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
 
@@ -20,7 +20,7 @@ if(isset($_POST['askride'])) {
 	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$whatname'");
 	
 	if(1 == mysqli_num_rows($result)){
-		mysqli_query($con,"UPDATE $table SET dlatitude = $whatlat, dlongitude = $whatlng WHERE username='$whatname';");
+		mysqli_query($con,"UPDATE $table SET ridingwith = '$myride' WHERE username='$whatname';");
 		}
 	else{
 		echo "<script>alert('Shit nigga it didn't work');</script>";

@@ -23,7 +23,7 @@ function getNearBy($range){
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-	$query = "SELECT username, latitude, longitude, type FROM $table WHERE latitude BETWEEN $mylatsub AND $mylatadd AND longitude BETWEEN $mylngsub AND $mylngadd AND NOT type = '$mytype' AND NOT username = '$myusername';";
+	$query = "SELECT username, latitude, longitude, type FROM $table WHERE latitude BETWEEN $mylatsub AND $mylatadd AND longitude BETWEEN $mylngsub AND $mylngadd AND NOT username = '$myusername';";
 
 	if ($result = mysqli_query($con, $query)) {
 
@@ -88,7 +88,7 @@ function getNearDest($range){
 	echo "<script>console.log('mylatsub:$mylatdsub mylatsub:$mylatdadd mylatsub:$mylngdsub mylatsub:$mylngdadd');</script>";
 	*/
 
-	$query = "SELECT username, latitude, longitude, type, dlatitude, dlongitude FROM $table WHERE latitude BETWEEN $mylatsub AND $mylatadd AND longitude BETWEEN $mylngsub AND $mylngadd AND dlatitude BETWEEN $mylatdsub AND $mylatdadd AND dlongitude BETWEEN $mylngdsub AND $mylngdadd AND NOT type = '$mytype' AND NOT username = '$myusername';";
+	$query = "SELECT username, latitude, longitude, type, dlatitude, dlongitude FROM $table WHERE latitude BETWEEN $mylatsub AND $mylatadd AND longitude BETWEEN $mylngsub AND $mylngadd AND dlatitude BETWEEN $mylatdsub AND $mylatdadd AND dlongitude BETWEEN $mylngdsub AND $mylngdadd AND NOT username = '$myusername';";
 
 	if ($result = mysqli_query($con, $query)) {
 
@@ -107,25 +107,23 @@ function getNearDest($range){
 
 	}
 
-function makeMap($dest,$icons){
+function makeMap($dest){
 
+?>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="scripts/main.js"></script>
+  <script type='text/javascript' src='http://code.jquery.com/jquery-1.6.2.js'></script>
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" name="destform">
+<input name="GPSlatd" id="GPSlatd" type="hidden" value="">
+<input name="GPSlongd" id="GPSlongd" type="hidden" value="">
+    <div id="panel">
+      <input id="address" type="textbox" placeholder="Destination">
+      <input type="button" value="Find" onclick="codeAddress('images/mydest.png')">
+    </div>
+<div id="mapholder"></div>
+</form>
+<?php
 if(0==strcmp($dest,"dest")){?>
-
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-<script src="scripts/main.js"></script>
-  <script type='text/javascript' src='http://code.jquery.com/jquery-1.6.2.js'></script>
-<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" name="destform">
-<input name="GPSlatd" id="GPSlatd" type="hidden" value="">
-<input name="GPSlongd" id="GPSlongd" type="hidden" value="">
-    <div id="panel">
-      <input id="address" type="textbox" placeholder="Destination">
-      <input type="button" value="Find" onclick="codeAddress('images/male.png')">
-    </div>
-<div id="mapholder"></div>
-</form>
-<?php
-
-if(0==strcmp($icons,"cars")){?>
 <script>
 	var mylat = "<?php echo $_SESSION['lat']; ?>";
    	var mylng = "<?php echo $_SESSION['lng']; ?>";
@@ -135,64 +133,21 @@ if(0==strcmp($icons,"cars")){?>
 	makeMap(mylat,mylng,12,"mapholder");
 	addPointMap(mylat,mylng,"You","images/male.png",1);
 	addPointMap(mylatd,mylngd,"Your destination","images/mydest.png");
-	arrayMap(locations,"images/car.png","images/dest.png");
+	arrayMap(locations);
 </script>
 <?php
 	}
-else{?>
-<script>
-	var mylat = "<?php echo $_SESSION['lat']; ?>";
-   	var mylng = "<?php echo $_SESSION['lng']; ?>";
-	var mylatd = "<?php echo $_SESSION['latd']; ?>";
-   	var mylngd = "<?php echo $_SESSION['lngd']; ?>";
-	var locations = <?php echo json_encode($_SESSION['nearby']); ?>;
-	makeMap(mylat,mylng,12,"mapholder");
-	addPointMap(mylat,mylng,"You","images/male.png",1);
-	addPointMap(mylatd,mylngd,"Your destination","images/mydest.png");
-	arrayMap(locations,"images/walking.png","images/dest.png");
-</script>
-<?php
-	}
-}
 else if(0==strcmp($dest,"nodest")){?>
-
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-<script src="scripts/main.js"></script>
-  <script type='text/javascript' src='http://code.jquery.com/jquery-1.6.2.js'></script>
-<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" name="destform">
-<input name="GPSlatd" id="GPSlatd" type="hidden" value="">
-<input name="GPSlongd" id="GPSlongd" type="hidden" value="">
-    <div id="panel">
-      <input id="address" type="textbox" placeholder="Destination">
-      <input type="button" value="Find" onclick="codeAddress('images/male.png')">
-    </div>
-<div id="mapholder"></div>
-</form>
-<?php
-
-if(0==strcmp($icons,"cars")){?>
 <script>
 	var mylat = "<?php echo $_SESSION['lat']; ?>";
    	var mylng = "<?php echo $_SESSION['lng']; ?>";
 	var locations = <?php echo json_encode($_SESSION['nearby']); ?>;
 	makeMap(mylat,mylng,12,"mapholder");
 	addPointMap(mylat,mylng,"You","images/male.png",1);
-	arrayMap(locations,"images/car.png");
+	arrayMap(locations);
 </script>
 <?php
 	}
-else{?>
-<script>
-	var mylat = "<?php echo $_SESSION['lat']; ?>";
-   	var mylng = "<?php echo $_SESSION['lng']; ?>";
-	var locations = <?php echo json_encode($_SESSION['nearby']); ?>;
-	makeMap(mylat,mylng,12,"mapholder");
-	addPointMap(mylat,mylng,"You","images/male.png",1);
-	arrayMap(locations,"images/walking.png");
-</script>
-<?php
-	}
-}
 }
 
 function setDest(){
@@ -243,9 +198,9 @@ function inMyCar(){
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-	if(0==strcmp($mytype,"offer")) $query = "SELECT username FROM $table WHERE ridingwith='$myusername' AND NOT username = '$myusername';";
+	if(0==strcmp($mytype,"offer")) $query = "SELECT username FROM $table WHERE incar='$myusername' AND NOT username = '$myusername';";
 	
-	else if(0==strcmp($mytype,"need")) $query = "SELECT username FROM $table WHERE ridingwith='$myride' AND NOT username = '$myusername';";
+	else $query = "SELECT username FROM $table WHERE incar='$myride' AND NOT username = '$myusername';";
 
 	if ($result = mysqli_query($con, $query)) {
 
@@ -258,5 +213,19 @@ function inMyCar(){
 
 	mysqli_close($con);
 
+	}
+
+
+function showMyCar(){
+
+	if(0==strcmp($_SESSION['mytype'],"offer")) echo "There are " . (count($_SESSION['inmycar'])) . " people in your car.<br>";
+	else{
+		echo "You're riding with  " . $_SESSION['myride'] . " and there are " . (count($_SESSION['inmycar'])+2) . " people in your car.<br>";
+		echo "The driver is " . $_SESSION['myride'] . "<br>";
+		echo "Person number 2 is me (" . $_SESSION['username'] . ")<br>";
+		}
+	for($i = 0; $i < count($_SESSION['inmycar']); $i ++){
+		echo "Person number " . ($i+3) . " is " . $_SESSION['inmycar'][$i] . "<br>";
+		}
 	}
 ?>

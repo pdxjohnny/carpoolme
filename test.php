@@ -29,8 +29,12 @@ if($_SESSION['username']!=NULL){
 		if(0==strcmp($_SESSION['type'],"offer")) makeMap("nodest","walking");
 		else makeMap("nodest","cars");
 		}
-	
+	if($_SESSION['myride']){
+		inMyCar();
+		showMyCar();
+		}
 	require 'scripts/clearDest.php';
+	require 'scripts/askForRide.php';
 	}
 else{
 	require 'scripts/login.php';

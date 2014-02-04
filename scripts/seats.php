@@ -33,7 +33,8 @@ if(isset($_POST['seatsform'])) {
 
 else{?>
 <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" name="seatsupdateform">
-Update Seats Avalable :
+<?php if($_SESSION['seats']==NULL) echo "Seats Avalable: ";
+else echo "Update Seats Avalable: "; ?>
 <select name="seats" id="seats">
 <script>
 for(var i = 1;i<=10;i++){
@@ -41,7 +42,8 @@ for(var i = 1;i<=10;i++){
 	}
 </script>
 </select>
-<input value="Update" id="seatsform" name="seatsform" type="submit"><br>
+<?php if($_SESSION['seats']==NULL) echo '<input value="Set" id="seatsform" name="seatsform" type="submit"><br>';
+else echo '<input value="Update" id="seatsform" name="seatsform" type="submit"><br>'; ?>
 </div>
 </form>
 

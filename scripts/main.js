@@ -145,14 +145,15 @@ function makeMap(centerlat,centerlng,zoomval,divId){
 
 	}
 
-function arrayMap(locations,image1,image2){
+function arrayMap(locations){
 
 	var marker, i;
 
 	// Current locations
-	for (i = 0; i < locations.length; i++) {  
-		if(image1) marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][1], locations[i][2]), map: map, icon: image1 });
-		else marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][1], locations[i][2]), map: map });
+	for (i = 0; i < locations.length; i++) { 
+		if(locations[i][3]==="need") image1 ="images/walking.png";
+ 		else if(locations[i][3]==="offer") image1 ="images/car.png";
+		marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][1], locations[i][2]), map: map, icon: image1 });
 
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
         		return function() {
@@ -164,12 +165,16 @@ function arrayMap(locations,image1,image2){
 
 	// Destination locations
 	for (i = 0; i < locations.length; i++) {  
-		if(image2) marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][4], locations[i][5]), map: map, icon: image2 });
-		else marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][4], locations[i][5]), map: map });
+		marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][4], locations[i][5]), map: map, icon: "images/dest.png" });
 
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
         		return function() {
-				InfoWindow.setContent(locations[i][0]+'<input name="myride" id="myride" type="hidden" value="'+locations[i][0]+'"><input value="Ask for ride?" id="askride" name="askride" type="submit">');
+				if(type==="need"){
+					InfoWindow.setContent(locations[i][0]+'<input name="myride" id="myride" type="hidden" value="'+locations[i][0]+'"><input value="Ask for ride?" id="askride" name="askride" type="submit">');
+					}
+				else {
+					InfoWindow.setContent(locations[i][0]);
+					}
 				InfoWindow.open(map, marker);
 				}
 			})(marker, i));
