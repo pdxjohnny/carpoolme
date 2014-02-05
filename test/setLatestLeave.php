@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 	define('INCLUDE_CHECK',true);
 	require 'phpfunctions.php';
 	$_SESSION['latestLeave'] = $_POST['datetime'];

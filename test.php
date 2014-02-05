@@ -6,16 +6,17 @@ define('INCLUDE_CHECK',true);
 if($_SESSION['username']!=NULL){
 	echo "User " . $_SESSION['username'] . " is logged in.";
 	require 'test/parts.php';
-	includes();
-	require 'test/logout.php';
 	require 'test/phpfunctions.php';
+	logout("test/logout.php");
+	echo "<br>";
+	includes("test");
 	echo "<span id='returnSpan'></span>";
-?>
-<h3>Hey <?php echo $_SESSION['username']; ?> you are here!</h3>
-<?php
+	echo "<br><span id='leavetime'></span><br>";
+
 	setLatestLeave("test/setLatestLeave.php");
 	if(0==strcmp($_SESSION['type'],"offer")){
-		require 'test/seats.php';
+		echo "<br>";
+		seats("test/seats.php");
 		showSeats();
 		inMyCar("offer");
 		showMyCar("offer");
@@ -36,8 +37,8 @@ if($_SESSION['username']!=NULL){
 		setDest("test/setDest.php");
 		makeMap("nodest");
 		}
-	require 'test/clearDest.php';
-	require 'test/clearRide.php';
+	clearDest("test/clearDest.php");
+	clearRide("test/clearRide.php");
 	require 'test/askForRide.php';
 	}
 else {

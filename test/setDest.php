@@ -1,13 +1,15 @@
 <?php
 
-if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
+session_start();
+require 'phpfunctions.php';
+//if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
 
 	$whatlat = $_SESSION['latd'] = $_POST['GPSlatd'];
-	$whatlng = $_SESSION['lngd'] = $_POST['GPSlongd'];
+	$whatlng = $_SESSION['lngd'] = $_POST['GPSlngd'];
 	$whatname = $_POST['username'];
-	if((!$whatlat)||(!$whatlng)) exit ("No destination given");
-	$table="carpool_members"; // Table name
 
+	if((!$whatlat)||(!$whatlng)||(!$whatname)) exit ("No destination given");
+	$table="carpool_members"; // Table name
 	// Create connection
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
 
@@ -20,11 +22,14 @@ if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1)
 	
 	if(1 == mysqli_num_rows($result)){
 		mysqli_query($con,"UPDATE $table SET dlatitude = $whatlat, dlongitude = $whatlng WHERE username='$whatname';");
+		echo "Destination updated";
 		}
 	else{
 		echo "Destination failed to update";
 		}
 
 	mysqli_close($con);
-	echo "Destination updated";
+
+	getNearDest(0.15);
+	makeMap("dest");
 ?>

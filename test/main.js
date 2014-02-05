@@ -97,6 +97,22 @@ function readFile(filename){
 	else alert("Error executing XMLHttpRequest call!");
 	}
 
+
+function dateSufix(date){
+	if(date == 1) {
+		return "st";
+		}
+	else if(date == 2){
+		return "nd";
+		}
+	else if(date == 3){
+		return "rd";
+		}
+	else {
+		return "th";
+		}
+	}
+
 function userTime(time){
 
 	if(time!=null){
@@ -106,6 +122,33 @@ function userTime(time){
 		var out = [temp1[0], temp1[1], temp2[0], temp3[0], temp3[1], temp3[2]];
 		return out;
 		}
+	}
+
+function readableDate(mysqltime){
+	var pre = userTime(mysqltime);
+	day = pre[2];
+	if(day[0] == 0) day = day[1];
+
+	hour = pre[3];
+	if(hour[0] == 0) hour = hour[1];
+
+	minute = pre[4];
+	if(day.length == 1) sufix = dateSufix(day);
+	else if (day[0] == 1) sufix = dateSufix(day);
+	else sufix = dateSufix(day[1]);
+	
+	if(hour < 12) {
+		var ampm = "am";
+		}
+	else if(hour == 24) {
+		var ampm = "am";
+		}
+	else {
+		var ampm = "pm";
+		}
+
+	var toreturn = hour+':'+minute+' '+ampm+" on the "+day+sufix;
+	return toreturn;
 	}
 
 function oneOnMap(lat,lng,lat1,lng1){
@@ -138,6 +181,28 @@ function showPosition(position){
 var map;
 var InfoWindow = new google.maps.InfoWindow();
 //var setDestButton = "<?php require 'test2.php'; ?>";
+var markers = [];
+function setAllMap(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+  setAllMap(null);
+}
+
+// Shows any markers currently in the array.
+function showMarkers() {
+  setAllMap(map);
+}
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+  clearMarkers();
+  markers = [];
+}
 
 function setDestButton(){
 	document.write("<?php require 'test2.php'; ?>");
@@ -174,6 +239,7 @@ function arrayMap(locations){
 				InfoWindow.open(map, marker);
 				}
 			})(marker, i));
+		markers.push(marker);
 		}
 
 	// Destination locations
@@ -186,6 +252,7 @@ function arrayMap(locations){
 				if(pretime==null) var time = " No leave time set.";
 				else {
 					if(pretime[3]>12) var hm = (pretime[3]-12) + ':' + pretime[4] + "pm";
+					else if(pretime[3]==0) var hm = "12" + ':' + pretime[4] + "am";
 					else var hm = pretime[3] + ':' + pretime[4] + "am";
 					var time = " They will be leaving on "+ pretime[2] + " at " + hm + ". ";
 					}
@@ -211,6 +278,7 @@ function arrayMap(locations){
 				InfoWindow.open(map, marker);
 				}
 			})(marker, i));
+		markers.push(marker);
 		}
 	}
 
@@ -225,6 +293,7 @@ function addPointMap(lat,lng,name,image,isuser){
 			InfoWindow.open(map, marker);
 			}
 		})(marker));
+	markers.push(marker);
 	}
 
 var dest;
@@ -255,7 +324,8 @@ function placeMarker(location) {
 
 function codeAddress(image) {
   var geocoder = new google.maps.Geocoder();
-  var address = document.getElementById('address').value;
+  if(document.getElementById('togeocode').value === null) alert('No Destinatoin searched for.');
+  var address = document.getElementById('togeocode').value;
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       map.setCenter(results[0].geometry.location);
@@ -267,16 +337,17 @@ function codeAddress(image) {
         });
 	google.maps.event.addListener(dest, 'click', (function(dest, i) {
         	return function() {
-			InfoWindow.setContent('<input value="Set As Destination?" id="setDestB" name="setDestB" type="submit">');
+			InfoWindow.setContent('<button id="setDestB" name="setDestB" onclick="setDestClick();" >Set As Destination?</button>');
 			InfoWindow.open(map, dest);
 			}
 		})(dest));
 	google.maps.event.addListener(dest, 'click', function(evt){
 		$('#GPSlatd').val(evt.latLng.lat().toFixed(8));
-  		$('#GPSlongd').val(evt.latLng.lng().toFixed(8));
+  		$('#GPSlngd').val(evt.latLng.lng().toFixed(8));
 		});
     } else {
       alert('There was an error : ' + status);
     }
   });
+	markers.push(dest);
 }

@@ -1,8 +1,7 @@
 <?php
 
-if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
+//if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
 
-if(isset($_POST['clearRide'])) {
 
 	$whatname = $_SESSION['username'];
 	$table="carpool_members"; // Table name
