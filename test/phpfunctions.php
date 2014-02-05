@@ -365,20 +365,6 @@ function showMyCar($type){
 
 function approveMyCar($type){
 
-	if(isset($_POST['acceptgo'])){
-		$accept = $_POST['accept'];
-		if(empty($accept)) {
-			echo "<script>alert('No one was approved.');</script> <meta http-equiv='refresh' content='0'>";
-			} 
-		else{
-			for($i=0; $i < count($accept); $i++){
-				updateString("incar",$_SESSION['username'],$accept[$i]);
-				updateNull("ridingwith",$accept[$i]);
-				}
-			}
-			echo "<meta http-equiv='refresh' content='0'>";
-		}
-
 	$wantcar = count($_SESSION['wantmycar']);
 	if($wantcar==0) echo "There is no waiting to be approved for your car.<br>";
 	else {
@@ -392,11 +378,11 @@ function approveMyCar($type){
 		 echo '<input value="Accept" id="acceptgo" name="acceptgo" type="submit"></form>';
 		}
 	}
-
+/*
 function showSeats(){
 
 	if($_SESSION['numberavailableSeats']>1) echo "There are currently " . $_SESSION['numberavailableSeats'] . " seats avalable in your car.<br>";
 	else if($_SESSION['numberavailableSeats']==1) echo "There is currently " . $_SESSION['numberavailableSeats'] . " seat avalable in your car.<br>";
 	else if($_SESSION['numberavailableSeats']==0) echo "There are currently no seats avalable in your car.<br>";
-	}
+	}*/
 ?>

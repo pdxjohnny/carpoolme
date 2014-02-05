@@ -97,6 +97,24 @@ function readFile(filename){
 	else alert("Error executing XMLHttpRequest call!");
 	}
 
+function askForRide(){
+		var myrideval = $('#askride').val();
+		$.ajax(
+			{
+			type: "POST",
+			url: "test/askForRide.php",
+			data: {
+				myride: myrideval,
+				username: "<?php echo $_SESSION['username']; ?>"
+				},
+			success: function(data){
+				$('#returnSpan').show();
+				$('#returnSpan').html(data);
+				$('#returnSpan').delay(9000).fadeOut();
+				}
+			});
+		event.preventDefault();
+		}
 
 function dateSufix(date){
 	if(date == 1) {
@@ -145,6 +163,10 @@ function readableDate(mysqltime){
 		}
 	else {
 		var ampm = "pm";
+		}
+
+	if(hour > 12) {
+		hour = hour-12;
 		}
 
 	var toreturn = hour+':'+minute+' '+ampm+" on the "+day+sufix;
@@ -264,12 +286,12 @@ function arrayMap(locations){
 						else {
 							if(locations[i][7]==1) var spots = locations[i][7] + " seat avalable.";
 							else var spots = locations[i][7] + " seats avalable.";
-							InfoWindow.setContent(locations[i][0]+' has '+spots+time+'<input name="myride" id="myride" type="hidden" value="'+locations[i][0]+'"><input value="Ask for ride?" id="askride" name="askride" type="submit">');
+							InfoWindow.setContent(locations[i][0]+' has '+spots+time+'<button id="askride" value="'+locations[i][0]+'" onclick="askForRide();" >Ask for ride</button>');
 							}
 						}
 					else {
 						var spots = "not set avalable seats yet.";
-						InfoWindow.setContent(locations[i][0]+' has '+spots+time+'<input name="myride" id="myride" type="hidden" value="'+locations[i][0]+'"><input value="Ask for ride?" id="askride" name="askride" type="submit">');
+						InfoWindow.setContent(locations[i][0]+' has '+spots+time+'<button id="askride" value="'+locations[i][0]+'" onclick="askForRide();" >Ask for ride</button>');
 						}
 					}
 				else {

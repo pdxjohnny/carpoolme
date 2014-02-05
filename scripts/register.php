@@ -10,7 +10,7 @@ if(isset($_POST['reg'])) {
 	$whatpass = $_POST['password'];
 	$whatemail = $_POST['email'];
 	$whattype = $_POST['type'];
-	if (!filter_var($whatemail, FILTER_VALIDATE_EMAIL));
+	if (filter_var($whatemail, FILTER_VALIDATE_EMAIL));
 	else echo "<script>alert('$whatname you have an invalid email.');</script><meta http-equiv='refresh' content='0'>";
 
 	if((!$whatname)||(!$whatpass)||(!$whatemail)||(!$whatlat)||(!$whatlng)) exit ("<script>alert('$whatname please fill in all fields and enable location.');</script><meta http-equiv='refresh' content='0'>");

@@ -11,7 +11,9 @@ function includes($dir){?>
 
 <script>
 $( document ).ready(function() {
-        $('#leavetime').html("You are currently set to leave at "+readableDate("<?php echo $_SESSION['latestleave']; ?>"));
+
+	$('#leavetime').html("You are currently set to leave at "+readableDate("<?php echo $_SESSION['latestleave']; ?>"));
+
 });
 </script>
 <?php
@@ -214,14 +216,10 @@ function clearRide($postto){ ?>
 <button id="clearRide" name="clearRide" onclick="clearRide()">Clear Ride</button>
 <script>
 function clearRide(){
-	var GPSlatdval = $('#GPSlatd').val();
-	var GPSlngdval = $('#GPSlngd').val();
 	$.ajax({
 		type: "POST",
 		url: "<?php echo $postto; ?>",
 		data: {
-			GPSlatd: GPSlatdval, 
-			GPSlngd: GPSlngdval, 
 			username: "<?php echo $_SESSION['username']; ?>"
 			},
 		success: function(data){
@@ -235,21 +233,15 @@ function clearRide(){
 </script>
 <?php
 	}
-
-
 
 function clearDest($postto){ ?>
-<button id="clearRide" name="clearRide" onclick="clearRide()">Clear Destination</button>
+<button id="clearDest" name="clearDest" onclick="clearDest()">Clear Destination</button>
 <script>
-function clearRide(){
-	var GPSlatdval = $('#GPSlatd').val();
-	var GPSlngdval = $('#GPSlngd').val();
+function clearDest(){
 	$.ajax({
 		type: "POST",
 		url: "<?php echo $postto; ?>",
 		data: {
-			GPSlatd: GPSlatdval, 
-			GPSlngd: GPSlngdval, 
 			username: "<?php echo $_SESSION['username']; ?>"
 			},
 		success: function(data){
@@ -264,7 +256,7 @@ function clearRide(){
 <?php
 	}
 
-function seats($postto){
+function seats($update,$display){
 	$whatname  = $_SESSION['username'];
 	$table="carpool_members"; // Table name
 
@@ -295,15 +287,17 @@ for(var i = 1;i<=10;i++){
 	}
 </script>
 </select>
-<button onclick="seats()">Update</button><br>
+<button onclick="updateSeats();">Update</button><br>
+<span id="availableSeats"></span>
 </form>
 
 <script>
-function seats(){
+function updateSeats(){
+	// Update the Seats Available
 	var seatsval = $('#seats').val();
 	$.ajax({
 		type: "POST",
-		url: "<?php echo $postto; ?>",
+		url: "<?php echo $update; ?>",
 		data: {
 			seats: seatsval,  
 			username: "<?php echo $_SESSION['username']; ?>"
@@ -315,9 +309,59 @@ function seats(){
 			}
 		});
 	event.preventDefault();
+	// Display Updated Seats Available
+	$.ajax({
+		type: "POST",
+		url: "<?php echo $display; ?>",
+		data: { 
+			username: "<?php echo $_SESSION['username']; ?>"
+			},
+		success: function(data){
+			$('#availableSeats').html(data);
+			}
+		});
+	event.preventDefault();
 	}
+
+$( document ).ready(function() {
+	// Display Initial Seats Available
+	$.ajax({
+		type: "POST",
+		url: "<?php echo $display; ?>",
+		data: { 
+			username: "<?php echo $_SESSION['username']; ?>"
+			},
+		success: function(data){
+			$('#availableSeats').html(data);
+			}
+		});
+	event.preventDefault();
+
+});
 </script>
 
+<?php
+	}
+
+function help($postto){ ?>
+<button id="help" name="help" onclick="help()">Help</button><br>
+<span id="helpSpan" style="display:none;"></span>
+<script>
+function help(){
+	$('#helpSpan').toggle();
+	$.ajax({
+		type: "POST",
+		url: "<?php echo $postto; ?>",
+		data: { 
+			username: "<?php echo $_SESSION['username']; ?>"
+			},
+		success: function(data){
+			$('#helpSpan').html(data);
+			}
+		});
+	event.preventDefault();
+	}
+</script>
 <?php
 	}
 ?>

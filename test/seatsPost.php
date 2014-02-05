@@ -1,11 +1,12 @@
 <?php
 
+session_start();
 //if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
 
 	$_SESSION['totalSeats'] = $_POST['seats'];
 	if(!$_POST['seats']) exit ("<meta http-equiv='refresh' content='0'>");
 	
-	updateNum("spots",$$_POST['seats'],$_POST['username']);
+	updateNum("spots",$$_POST['seats'],$_SESSION['username']);
 	echo "<meta http-equiv='refresh' content='0'>";
 
 else { ?>

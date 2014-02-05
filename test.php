@@ -16,8 +16,7 @@ if($_SESSION['username']!=NULL){
 	setLatestLeave("test/setLatestLeave.php");
 	if(0==strcmp($_SESSION['type'],"offer")){
 		echo "<br>";
-		seats("test/seats.php");
-		showSeats();
+		seats("test/seats.php","test/seatsDisplay.php");
 		inMyCar("offer");
 		showMyCar("offer");
 		wantMyCar();
@@ -39,7 +38,7 @@ if($_SESSION['username']!=NULL){
 		}
 	clearDest("test/clearDest.php");
 	clearRide("test/clearRide.php");
-	require 'test/askForRide.php';
+	help("test/help.php");
 	}
 else {
 	require 'test/login.php';
