@@ -16,7 +16,7 @@ if(isset($_POST['setLatestLeave'])) {
 else {?>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" name="lateleaveform">
+<form action="lateleaveform" method="post" name="lateleaveform">
 <select name="hour" id="hour">
 <script>
 for(var i = 1;i<=24;i++){
@@ -34,7 +34,7 @@ for(var i = 0;i<=60;i++){
 	}
 </script>
 </select>
-<div id="amorpm"></div>
+<span id="amorpm"></span>
 on the
 <select name="date" id="date">
 <script>
@@ -48,7 +48,37 @@ for(var i = 0;i<=14;i++){
 	if(inputdate>maxdate) inputdate = inputdate-maxdate;
 	document.write("<option value='"+inputdate+"'>"+inputdate+"</option>");
 	}
+</script>
+</select>
+<span id="datesufix"></span>
+<input value="" id="datetime" name="datetime" type="hidden">
+<input value="Latest Leave Time" id="setLatestLeave" name="setLatestLeave" type="submit">
+</form>
+<script>
+function dateSufix(date){
+	if(date == 1) {
+		return "st";
+		}
+	else if(date == 2){
+		return "nd";
+		}
+	else if(date == 3){
+		return "rd";
+		}
+	else {
+		return "th";
+		}
+	}
+
 $( document ).ready(function() {
+	$('#amorpm').html(" am");
+
+	var val = $("#date").val();
+	if(val.length == 1) var sufix = dateSufix(val);
+	else if (val[0] == 1) var sufix = dateSufix(val);
+	else var sufix = dateSufix(val[1]);
+	$('#datesufix').html(sufix);
+
 	$( '#setLatestLeave' ).click(function() {
 		if((dateYMD.getMonth()+1)<10) var month = '0'+(dateYMD.getMonth()+1);
 		else var month = dateYMD.getMonth()+1;
@@ -62,19 +92,26 @@ $( document ).ready(function() {
 		var ymd = dateYMD.getFullYear()+'-'+month+'-'+date+' '+hour+':'+minute+':00';
 		$('#datetime').val(ymd);
 		});
-	 $("#select").change(function() {
+	 $("#hour").click(function() {
 		var val = $(this).val();
-		if(val === "pilot") {
-			$('#amorpm').html(ymd);
-			$("#seatsdiv").show();
-			});
+		if(val <= 12) {
+			$('#amorpm').html(" am");
+			}
+		else {
+			$('#amorpm').html(" pm");
+			}
+		});
+	 $("#date").click(function() {
+		var val = $(this).val();
+		var sufix;
+		if(val.length == 1) sufix = dateSufix(val);
+		else if (val[0] == 1) sufix = dateSufix(val);
+		else sufix = dateSufix(val[1]);
+		$('#datesufix').html(sufix);
 		});
 	});
 </script>
-</select>
-<input value="" id="datetime" name="datetime" type="hidden">
-<input value="Latest Leave Time" id="setLatestLeave" name="setLatestLeave" type="submit">
-</form>
 <?php
 	}
 ?>
+<!--<?php echo $_SERVER['PHP_SELF']?>-->

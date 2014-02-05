@@ -1321,3 +1321,79 @@
 [Tue Feb 04 19:03:50 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
 [Tue Feb 04 19:03:55 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
 [Tue Feb 04 19:03:57 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpoolme.net/
+[Tue Feb 04 19:04:39 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: inmycaroffer in /var/www/carpool/scripts/phpfunctions.php on line 390, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 19:04:39 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/home.php on line 26 and defined in /var/www/carpool/scripts/phpfunctions.php on line 413, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 19:04:39 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/phpfunctions.php on line 429, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 19:05:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Tue Feb 04 19:05:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6
+[Tue Feb 04 19:05:37 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:05:37 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:05:37 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:06:31 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpoolme.net/home.php
+[Tue Feb 04 19:06:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpoolme.net/home.php
+[Tue Feb 04 19:06:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpoolme.net/home.php
+[Tue Feb 04 19:07:19 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:07:19 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:07:36 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:07:37 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/home.php on line 26 and defined in /var/www/carpool/scripts/phpfunctions.php on line 413
+[Tue Feb 04 19:07:37 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/phpfunctions.php on line 429
+[Tue Feb 04 19:07:40 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:07:45 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpoolme.net/
+[Tue Feb 04 19:07:52 2014] [error] [client 24.20.209.246] Directory index forbidden by Options directive: /var/www/carpool/scripts/
+[Tue Feb 04 19:09:11 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:09:11 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:09:28 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:09:28 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:10:19 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:10:19 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:10:41 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:10:41 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:11:18 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:11:18 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:11:30 2014] [error] [client 66.249.74.133] script '/var/www/carpool/login.php' not found or unable to stat
+[Tue Feb 04 19:13:52 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:13:52 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:14:05 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:14:05 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:15:44 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:15:44 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:15:54 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:15:54 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:15:55 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:15:55 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:16:00 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpoolme.net/home.php
+[Tue Feb 04 19:16:01 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpoolme.net/home.php
+[Tue Feb 04 19:16:10 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpoolme.net/home.php
+[Tue Feb 04 19:16:42 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:16:42 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:19:18 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:19:18 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:24:03 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:24:03 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:25:45 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:25:45 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:27:33 2014] [error] [client 172.12.143.78] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:28:10 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:28:10 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:29:04 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:29:04 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:29:49 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:29:49 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:30:06 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:30:06 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:30:15 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/testphpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:30:15 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/testphpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 19:30:38 2014] [error] [client 66.249.74.133] File does not exist: /var/www/carpool/robots.txt
+[Tue Feb 04 19:30:38 2014] [error] [client 66.249.74.133] File does not exist: /var/www/carpool/scripts/createpage.html
+[Tue Feb 04 19:33:07 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:33:07 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:33:07 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:33:08 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:33:08 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:33:09 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:33:10 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:33:22 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:33:22 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:33:23 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:33:23 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:33:23 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
