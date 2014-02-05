@@ -4,19 +4,18 @@ session_start();
 define('INCLUDE_CHECK',true);
 
 if($_SESSION['username']!=NULL){
-	echo "User " . $_SESSION['username'] . " is logged in<br>";
-	require 'scripts/logout.php';
-	require 'scripts/testphpfunctions.php';
+	echo "User " . $_SESSION['username'] . " is logged in.";
+	require 'test/parts.php';
+	includes();
+	require 'test/logout.php';
+	require 'test/phpfunctions.php';
+	echo "<span id='returnSpan'></span>";
 ?>
-  <head>
-    <title>Carpool</title>
-  </head>
 <h3>Hey <?php echo $_SESSION['username']; ?> you are here!</h3>
 <?php
-	require 'scripts/setLatestLeave.php';
-	require 'scripts/setDest.php';
+	setLatestLeave("test/setLatestLeave.php");
 	if(0==strcmp($_SESSION['type'],"offer")){
-		require 'scripts/seats.php';
+		require 'test/seats.php';
 		showSeats();
 		inMyCar("offer");
 		showMyCar("offer");
@@ -29,18 +28,20 @@ if($_SESSION['username']!=NULL){
 		}
 	if($_SESSION['latd']&&$_SESSION['lngd']){
 		getNearDest(0.15);
+		setDest("test/setDest.php");
 		makeMap("dest");
 		}
 	else {
 		getNearBy(0.15);
+		setDest("test/setDest.php");
 		makeMap("nodest");
 		}
-	require 'scripts/clearDest.php';
-	require 'scripts/clearRide.php';
-	require 'scripts/askForRide.php';
+	require 'test/clearDest.php';
+	require 'test/clearRide.php';
+	require 'test/askForRide.php';
 	}
-else{
-	require 'scripts/login.php';
-	require 'scripts/register.php';
+else {
+	require 'test/login.php';
+	require 'test/register.php';
 	}
 ?>

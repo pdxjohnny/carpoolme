@@ -2,18 +2,61 @@
 
 if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
 
-if(isset($_POST['setLatestLeave'])) {
-
-	$whattime = $_SESSION['latestLeave'] = $_POST['datetime'];
-	$whattime = mysql_real_escape_string($whattime);
-	$whatname = $_SESSION['username'];
-	if((!$whattime)) exit ("<meta http-equiv='refresh' content='0'>");
-	
-	updateString("latestleave",$whattime,$whatname);
-
+function includes(){?>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<?php
 	}
-else {?>
 
+function test(){?>
+<form id="form">
+<input id="address" type="textbox" placeholder="Destination">
+<input id="other" type="textbox" placeholder="other">
+<input value="Submit" type="submit"><br>
+</form>
+
+<script>
+$( document ).ready(function() {
+	$( "#form" ).submit(function( event ) {
+	var add = $('#address').val();
+	var other = $('#other').val();
+	$.ajax({
+		type: "POST",
+		url: "test3.php",
+		data: {test1: add, test2: other},
+		success: function(data){
+			$('#returnSpan').html(data);
+			}
+		});
+	event.preventDefault();
+	});
+});
+</script>
+<?php
+	}
+
+function logout($postto){?>
+
+<form method="post" id="logoutform">
+<input type="submit" name="logout" id="logout" value="Logout" />
+</form>
+<script>
+$( document ).ready(function() {
+	$( "#logoutform" ).submit(function( event ) {
+	$.ajax({
+		url: "<?php echo $postto; ?>",
+		success: function(data){
+			$('#returnSpan').html(data);
+			}
+		});
+	event.preventDefault();
+	});
+});
+</script>
+
+<?php
+	}
+
+function setLatestLeave($postto){ ?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <form id="lateleaveform">
 <select name="hour" id="hour">
@@ -53,6 +96,7 @@ for(var i = 0;i<=14;i++){
 <input value="" id="datetime" name="datetime" type="hidden">
 <input value="Latest Leave Time" id="setLatestLeave" name="setLatestLeave" type="submit">
 </form>
+<div id="returnSpan"></div>
 <script>
 function dateSufix(date){
 	if(date == 1) {
@@ -113,8 +157,8 @@ $( document ).ready(function() {
 		var datetimeval = $('#datetime').val();
 		$.ajax({
 			type: "POST",
-			url: "scripts/setLatestLeave.php",
-			data: {datetime: datetimeval},
+			url: "<?php echo $postto; ?>",
+			data: {datetime: datetimeval, username: "<?php echo $_SESSION['username']; ?>"},
 			success: function(data){
 				$('#returnSpan').html(data);
 				}
@@ -125,4 +169,5 @@ $( document ).ready(function() {
 </script>
 <?php
 	}
+
 ?>

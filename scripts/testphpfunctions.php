@@ -74,7 +74,7 @@ function updateString($what,$with,$user){
 		return 0;
 		}
 	else{
-		echo "<script>alert('Shit nigga it didn't work');</script>";
+		echo "Shit nigga it didn't work";
 		mysqli_close($con);
 		return 1;
 		}

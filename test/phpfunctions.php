@@ -239,21 +239,7 @@ function getNearDest($range){
 
 function makeMap($dest){
 
-?>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-<script src="scripts/main.js"></script>
-  <script type='text/javascript' src='http://code.jquery.com/jquery-1.6.2.js'></script>
-<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" name="destform">
-<input name="GPSlatd" id="GPSlatd" type="hidden" value="">
-<input name="GPSlongd" id="GPSlongd" type="hidden" value="">
-    <div id="panel">
-      <input id="address" type="textbox" placeholder="Destination">
-      <input type="button" value="Find" onclick="codeAddress('images/mydest.png')">
-    </div>
-<div id="mapholder"></div>
-</form>
-<?php
-if(0==strcmp($dest,"dest")){?>
+	if(0==strcmp($dest,"dest")){?>
 <script>
 	var mylat = "<?php echo $_SESSION['lat']; ?>";
    	var mylng = "<?php echo $_SESSION['lng']; ?>";
@@ -277,40 +263,7 @@ else if(0==strcmp($dest,"nodest")){?>
 	arrayMap(locations);
 </script>
 <?php
-	}
-}
-
-function setDest(){
-
-if(isset($_POST['setDestB'])) {
-
-	$whatlat = $_SESSION['latd'] = $_POST['GPSlatd'];
-	$whatlng = $_SESSION['lngd'] = $_POST['GPSlongd'];
-	$whatname = $_SESSION['username'];
-	if((!$whatlat)||(!$whatlng)) exit ("<meta http-equiv='refresh' content='0'>");
-	$table="carpool_members"; // Table name
-
-	// Create connection
-	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
-
-	// Check connection
-	if (mysqli_connect_errno()){
-		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
-
-	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$whatname'");
-	
-	if(1 == mysqli_num_rows($result)){
-		mysqli_query($con,"UPDATE $table SET dlatitude = $whatlat, dlongitude = $whatlng WHERE username='$whatname';");
-		mysqli_close($con);
-		return 0;
-		}
-	else{
-		echo "<script>alert('Shit nigga it didn't work');</script>";
-		return 1;
-		}
-
-	}
 	}
 
 function inMyCar($type){

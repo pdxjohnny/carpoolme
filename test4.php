@@ -1,19 +1,3 @@
-<?php
-
-if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
-
-if(isset($_POST['setLatestLeave'])) {
-
-	$whattime = $_SESSION['latestLeave'] = $_POST['datetime'];
-	$whattime = mysql_real_escape_string($whattime);
-	$whatname = $_SESSION['username'];
-	if((!$whattime)) exit ("<meta http-equiv='refresh' content='0'>");
-	
-	updateString("latestleave",$whattime,$whatname);
-
-	}
-else {?>
-
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <form id="lateleaveform">
 <select name="hour" id="hour">
@@ -50,9 +34,10 @@ for(var i = 0;i<=14;i++){
 </script>
 </select>
 <span id="datesufix"></span>
-<input value="" id="datetime" name="datetime" type="hidden">
+<input value="" id="datetime" name="datetime" type="text">
 <input value="Latest Leave Time" id="setLatestLeave" name="setLatestLeave" type="submit">
 </form>
+<div id="returnSpan"></div>
 <script>
 function dateSufix(date){
 	if(date == 1) {
@@ -113,7 +98,7 @@ $( document ).ready(function() {
 		var datetimeval = $('#datetime').val();
 		$.ajax({
 			type: "POST",
-			url: "scripts/setLatestLeave.php",
+			url: "scripts/testsetLatestLeave.php",
 			data: {datetime: datetimeval},
 			success: function(data){
 				$('#returnSpan').html(data);
@@ -123,6 +108,3 @@ $( document ).ready(function() {
 		});
 	});
 </script>
-<?php
-	}
-?>
