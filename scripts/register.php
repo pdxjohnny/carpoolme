@@ -35,7 +35,7 @@ if(isset($_POST['reg'])) {
 		exit($whatname . " is already taken");
 		}
 	else{
-		mysqli_query($con,"INSERT INTO $table (username,password,email,type) VALUES('$whatname','$whatpass','$whatemail','$whattype');");
+		mysqli_query($con,"INSERT INTO $table (username,password,email,type,latitude,longitude) VALUES('$whatname','$whatpass','$whatemail','$whattype',$whatlat,$whatlng);");
 		$_SESSION['username'] = $whatname;
 		$_SESSION['type'] = $whattype;
 		echo $_SESSION['username'] . " is now logged in" . "<meta http-equiv='refresh' content='0'>";

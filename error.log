@@ -937,3 +937,387 @@
 [Tue Feb 04 13:44:24 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
 [Tue Feb 04 13:44:25 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
 [Tue Feb 04 13:44:28 2014] [error] [client 159.191.186.32] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 13:44:33 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 13:44:35 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:44:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:44:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:44:36 2014] [error] [client 159.191.186.216] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 13:44:38 2014] [error] [client 159.191.186.216] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:44:40 2014] [error] [client 159.191.186.32] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:44:52 2014] [error] [client 159.191.186.148] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 13:44:55 2014] [error] [client 159.191.186.148] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:45:02 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:45:06 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:45:06 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:45:29 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:45:29 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:53:51 2014] [error] [client 159.191.186.219] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 13:53:52 2014] [error] [client 159.191.186.219] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 13:54:01 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 13:54:01 2014] [error] [client 159.191.186.254] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 13:54:02 2014] [error] [client 159.191.186.221] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 13:54:03 2014] [error] [client 159.191.186.221] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 13:54:03 2014] [error] [client 159.191.186.159] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 13:54:03 2014] [error] [client 159.191.186.159] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 13:54:09 2014] [error] [client 159.191.186.128] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 13:54:09 2014] [error] [client 159.191.186.128] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 13:54:10 2014] [error] [client 159.191.186.69] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 13:54:11 2014] [error] [client 159.191.186.69] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 13:54:11 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 13:54:12 2014] [error] [client 159.191.186.254] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 13:54:14 2014] [error] [client 159.191.186.32] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 13:54:15 2014] [error] [client 159.191.186.32] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 13:54:16 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 13:54:16 2014] [error] [client 159.191.186.254] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 13:54:18 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 13:54:19 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 13:54:19 2014] [error] [client 159.191.186.254] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 13:54:20 2014] [error] [client 159.191.186.254] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 13:54:22 2014] [error] [client 159.191.186.184] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 13:54:22 2014] [error] [client 159.191.186.184] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 13:54:24 2014] [error] [client 159.191.186.148] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 13:54:27 2014] [error] [client 159.191.186.148] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 13:54:29 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 13:54:30 2014] [error] [client 159.191.186.254] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 13:54:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28
+[Tue Feb 04 13:54:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32
+[Tue Feb 04 13:54:43 2014] [error] [client 159.191.186.32] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 13:54:46 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 13:54:46 2014] [error] [client 159.191.186.206] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 13:54:47 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 13:54:50 2014] [error] [client 159.191.186.32] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:54:51 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 13:54:53 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:54:53 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:54:57 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 13:54:57 2014] [error] [client 159.191.186.219] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 13:54:58 2014] [error] [client 159.191.186.254] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 13:55:00 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:03 2014] [error] [client 159.191.186.219] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:03 2014] [error] [client 159.191.186.219] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:04 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 13:55:07 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:07 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:08 2014] [error] [client 159.191.186.32] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:14 2014] [error] [client 159.191.186.32] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:16 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 13:55:20 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:24 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:26 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 13:55:26 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 13:55:26 2014] [error] [client 159.191.186.159] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 13:55:28 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: seats in /var/www/carpool/scripts/seats.php on line 39, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:28 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: seats in /var/www/carpool/scripts/seats.php on line 48, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:28 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/phpfunctions.php on line 320, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:28 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: inmycaroffer in /var/www/carpool/scripts/phpfunctions.php on line 390, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:29 2014] [error] [client 159.191.186.206] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/home.php on line 26 and defined in /var/www/carpool/scripts/phpfunctions.php on line 413, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:29 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/phpfunctions.php on line 429, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:29 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:29 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:30 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:30 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:32 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:34 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:34 2014] [error] [client 159.191.186.69] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 13:55:34 2014] [error] [client 159.191.186.159] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:34 2014] [error] [client 159.191.186.159] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:36 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:37 2014] [error] [client 159.191.186.69] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:37 2014] [error] [client 159.191.186.69] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:46 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:47 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:48 2014] [error] [client 159.191.186.69] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 13:55:49 2014] [error] [client 159.191.186.69] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 13:55:52 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: seats in /var/www/carpool/scripts/seats.php on line 39, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:52 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: seats in /var/www/carpool/scripts/seats.php on line 48, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:52 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/phpfunctions.php on line 320, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:52 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: inmycaroffer in /var/www/carpool/scripts/phpfunctions.php on line 390, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:52 2014] [error] [client 159.191.186.206] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/home.php on line 26 and defined in /var/www/carpool/scripts/phpfunctions.php on line 413, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:52 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/phpfunctions.php on line 429, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:52 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:52 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:53 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: seats in /var/www/carpool/scripts/seats.php on line 39, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:53 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: seats in /var/www/carpool/scripts/seats.php on line 48, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:53 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/phpfunctions.php on line 320, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:53 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: inmycaroffer in /var/www/carpool/scripts/phpfunctions.php on line 390, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:53 2014] [error] [client 159.191.186.206] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/home.php on line 26 and defined in /var/www/carpool/scripts/phpfunctions.php on line 413, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:53 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/phpfunctions.php on line 429, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:53 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:53 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:55:53 2014] [error] [client 159.191.186.69] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 13:55:56 2014] [error] [client 159.191.186.148] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 13:56:00 2014] [error] [client 159.191.186.219] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:00 2014] [error] [client 159.191.186.219] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:01 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 13:56:05 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:05 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:14 2014] [error] [client 159.191.186.148] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:16 2014] [error] [client 159.191.186.219] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:16 2014] [error] [client 159.191.186.219] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:16 2014] [error] [client 159.191.186.219] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:16 2014] [error] [client 159.191.186.219] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:34 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:41 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:53 2014] [error] [client 159.191.186.219] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:53 2014] [error] [client 159.191.186.219] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:54 2014] [error] [client 159.191.186.219] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:57 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: seats in /var/www/carpool/scripts/seats.php on line 39, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:57 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: seats in /var/www/carpool/scripts/seats.php on line 48, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:57 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/phpfunctions.php on line 320, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:57 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: inmycaroffer in /var/www/carpool/scripts/phpfunctions.php on line 390, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:57 2014] [error] [client 159.191.186.206] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/home.php on line 26 and defined in /var/www/carpool/scripts/phpfunctions.php on line 413, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:57 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/phpfunctions.php on line 429, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:57 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:57 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:56:58 2014] [error] [client 159.191.186.206] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:57:01 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:57:04 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: myride in /var/www/carpool/home.php on line 28, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 13:57:04 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: latd in /var/www/carpool/home.php on line 32, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 14:00:04 2014] [error] [client 159.191.186.221] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 14:00:08 2014] [error] [client 159.191.186.221] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 14:08:19 2014] [error] [client 159.191.186.128] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 14:08:20 2014] [error] [client 159.191.186.128] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 14:08:21 2014] [error] [client 159.191.186.128] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 14:08:25 2014] [error] [client 159.191.186.128] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 14:08:42 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 14:08:42 2014] [error] [client 159.191.186.254] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 14:09:28 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 14:09:32 2014] [error] [client 159.191.186.254] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 14:09:32 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 14:09:47 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 14:09:55 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 14:42:52 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 14:42:56 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 14:42:56 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 14:48:06 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 6, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 14:48:08 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/phpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 14:48:08 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/phpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 14:50:12 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/phpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 14:50:12 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/phpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 14:53:54 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/phpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 14:53:54 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/phpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 14:54:32 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/phpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 14:54:32 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/phpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 14:54:50 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/test.php on line 24 and defined in /var/www/carpool/scripts/phpfunctions.php on line 413, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 14:54:50 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/phpfunctions.php on line 429, referer: http://carpool.sytes.net/test.php
+[Tue Feb 04 17:23:05 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 17:43:52 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 17:44:51 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 17:46:45 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 17:47:35 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 17:48:20 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 17:48:20 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 18:12:19 2014] [error] [client 54.198.194.36] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: q in /var/www/carpool/test3.php on line 35, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:15:40 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: q in /var/www/carpool/test3.php on line 35, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:18 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: q in /var/www/carpool/test3.php on line 35, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:16:24 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: q in /var/www/carpool/test3.php on line 35, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:22 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: q in /var/www/carpool/test3.php on line 35, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:23 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: q in /var/www/carpool/test3.php on line 35, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:18:29 2014] [error] [client 24.20.209.246] PHP Warning:  stristr(): Empty delimiter in /var/www/carpool/test3.php on line 41, referer: http://carpool.sytes.net/test2.php
+[Tue Feb 04 18:25:53 2014] [error] [client 24.20.209.246] script '/var/www/carpool/index.php' not found or unable to stat
+[Tue Feb 04 18:26:10 2014] [error] [client 24.20.209.246] script '/var/www/carpool/index.php' not found or unable to stat
+[Tue Feb 04 18:26:15 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 18:26:15 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 18:26:22 2014] [error] [client 24.20.209.246] script '/var/www/carpool/index.php' not found or unable to stat
+[Tue Feb 04 18:26:28 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 18:26:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 18:27:27 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 18:27:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: inmycaroffer in /var/www/carpool/scripts/phpfunctions.php on line 390, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 18:27:29 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/home.php on line 26 and defined in /var/www/carpool/scripts/phpfunctions.php on line 413, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 18:27:29 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/phpfunctions.php on line 429, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 18:28:02 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 18:28:17 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpool.sytes.net/
+[Tue Feb 04 19:03:30 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:03:33 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 19:03:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: inmycaroffer in /var/www/carpool/scripts/phpfunctions.php on line 390, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 19:03:34 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/home.php on line 26 and defined in /var/www/carpool/scripts/phpfunctions.php on line 413, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 19:03:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/phpfunctions.php on line 429, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 19:03:35 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: inmycaroffer in /var/www/carpool/scripts/phpfunctions.php on line 390, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 19:03:35 2014] [error] [client 24.20.209.246] PHP Warning:  Missing argument 1 for approveMyCar(), called in /var/www/carpool/home.php on line 26 and defined in /var/www/carpool/scripts/phpfunctions.php on line 413, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 19:03:35 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/scripts/phpfunctions.php on line 429, referer: http://carpool.sytes.net/home.php
+[Tue Feb 04 19:03:45 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:03:45 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 19:03:50 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:03:50 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/favicon.ico
+[Tue Feb 04 19:03:55 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6
+[Tue Feb 04 19:03:57 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/home.php on line 6, referer: http://carpoolme.net/

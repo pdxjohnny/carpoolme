@@ -20,8 +20,8 @@ else {?>
 <select name="hour" id="hour">
 <script>
 for(var i = 1;i<=24;i++){
-	if(i<=12) document.write("<option value='"+i+"'>"+i+" am</option>");
-	else document.write("<option value='"+i+"'>"+(i-12)+" pm</option>");
+	if(i<=12) document.write("<option value='"+i+"'>"+i+"</option>");
+	else document.write("<option value='"+i+"'>"+(i-12)+"</option>");
 	}
 </script>
 </select>
@@ -34,6 +34,7 @@ for(var i = 0;i<=60;i++){
 	}
 </script>
 </select>
+<div id="amorpm"></div>
 on the
 <select name="date" id="date">
 <script>
@@ -60,6 +61,13 @@ $( document ).ready(function() {
 		else var hour = prehour;
 		var ymd = dateYMD.getFullYear()+'-'+month+'-'+date+' '+hour+':'+minute+':00';
 		$('#datetime').val(ymd);
+		});
+	 $("#select").change(function() {
+		var val = $(this).val();
+		if(val === "pilot") {
+			$('#amorpm').html(ymd);
+			$("#seatsdiv").show();
+			});
 		});
 	});
 </script>

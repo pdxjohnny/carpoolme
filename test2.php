@@ -1,25 +1,25 @@
-<select id="select">
-<option value="2014-02-12 19:09:00">2014-02-12 19:09:00</option>
-<option value="2014-02-03 14:00:00">2014-02-03 14:00:00</option>
-</select>
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.6.2.js'></script>
+<form id="form">
+<input id="address" type="textbox" placeholder="Destination">
+<input id="other" type="textbox" placeholder="other">
+<input value="Submit" type="submit"><br>
+</form>
+<div id="resultDiv" ></div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
-
-function userTime(time){
-
-	var temp1 = time.split('-');
-	var temp2 = temp1[2].split(' ');
-	var temp3 = temp2[1].split(':');
-	var out = [temp1[0], temp1[1], temp2[0], temp3[0], temp3[1], temp3[2]];
-	return out;
-
-	}
-
-$(function () {
-  $("#select").click(function() {
-    var val = $(this).val();
-    userTime(val);
-  });
+$( document ).ready(function() {
+	$( "#form" ).submit(function( event ) {
+	var add = $('#address').val();
+	var other = $('#other').val();
+	$.ajax({
+		type: "POST",
+		url: "test3.php",
+		data: {test1: add, test2: other},
+		success: function(data){
+			$('#resultDiv').html(data);
+			}
+		});
+	event.preventDefault();
+	});
 });
 </script>

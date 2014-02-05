@@ -6,7 +6,7 @@ define('INCLUDE_CHECK',true);
 if($_SESSION['username']!=NULL){
 	echo "User " . $_SESSION['username'] . " is logged in<br>";
 	require 'scripts/logout.php';
-	require 'scripts/phpfunctions.php';
+	require 'scripts/testphpfunctions.php';
 ?>
   <head>
     <title>Carpool</title>
