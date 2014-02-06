@@ -8,21 +8,19 @@ if($_SESSION['username']!=NULL){
 	require 'test/parts.php';
 	require 'test/phpfunctions.php';
 	logout("test/logout.php");
-	echo "<br>";
 	includes("test");
-	echo "<span id='returnSpan'></span>";
-	echo "<br><span id='leavetime'></span><br>";
-
+	echo "<br><span id='returnSpan'></span><br>";
+	echo "<span id='leavetime'><br></span><br>";
 	setLatestLeave("test/setLatestLeave.php");
+	echo "<br>";
+
 	if(0==strcmp($_SESSION['type'],"offer")){
-		echo "<br>";
 		seats("test/seats.php","test/seatsDisplay.php");
-		inMyCar("offer");
-		showMyCar("offer");
-		wantMyCar();
-		approveMyCar();
+		myCar("test/myCar.php");
 		}
 	if($_SESSION['myride']){
+		// Below should be in ajax requested function
+			// myRide();
 		inMyCar("need");
 		showMyCar("need");
 		}
@@ -44,4 +42,5 @@ else {
 	require 'test/login.php';
 	require 'test/register.php';
 	}
+// Ask for ride is in main.js
 ?>

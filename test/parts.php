@@ -12,9 +12,18 @@ function includes($dir){?>
 <script>
 $( document ).ready(function() {
 
+myCar();
+displaySeats();
+
+window.setInterval(function(){
+	// Functions that need to be called repeatedly evezy x seconds 
+	myCar();
+}, 30000);
+
 	$('#leavetime').html("You are currently set to leave at "+readableDate("<?php echo $_SESSION['latestleave']; ?>"));
 
-});
+
+	});
 </script>
 <?php
 	}
@@ -213,7 +222,7 @@ function setDestClick(){
 	}
 
 function clearRide($postto){ ?>
-<button id="clearRide" name="clearRide" onclick="clearRide()">Clear Ride</button>
+<button id="clearRide" name="clearRide" onclick="clearRide()">Clear My Ride</button>
 <script>
 function clearRide(){
 	$.ajax({
@@ -256,29 +265,7 @@ function clearDest(){
 <?php
 	}
 
-function seats($update,$display){
-	$whatname  = $_SESSION['username'];
-	$table="carpool_members"; // Table name
-
-	// Create connection
-	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
-
-	// Check connection
-	if (mysqli_connect_errno()){
-		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-		}
-
-	$result = mysqli_query($con,"SELECT username FROM $table WHERE ridingwith='$whatname' AND NOT username = '$whatname';");
-	$_SESSION['numberWantSeats'] = mysqli_num_rows($result);
-
-	$result = mysqli_query($con,"SELECT username FROM $table WHERE incar='$whatname' AND NOT username = '$whatname';");
-	$_SESSION['numberApprovedSeats'] = mysqli_num_rows($result);
-	
-	$_SESSION['totalSeats'] = get("spots",$whatname);
-	$_SESSION['numberavailableSeats'] = $_SESSION['totalSeats']-$_SESSION['numberApprovedSeats'];
-	updateNum("availablespots",$_SESSION['numberavailableSeats'],$whatname);
-
-	mysqli_close($con);?>
+function seats($update,$display){?>
 Update Seats Available: 
 <select name="seats" id="seats">
 <script>
@@ -309,7 +296,11 @@ function updateSeats(){
 			}
 		});
 	event.preventDefault();
-	// Display Updated Seats Available
+	displaySeats();
+	}
+
+function displaySeats(){
+// Display Updated Seats Available
 	$.ajax({
 		type: "POST",
 		url: "<?php echo $display; ?>",
@@ -322,22 +313,6 @@ function updateSeats(){
 		});
 	event.preventDefault();
 	}
-
-$( document ).ready(function() {
-	// Display Initial Seats Available
-	$.ajax({
-		type: "POST",
-		url: "<?php echo $display; ?>",
-		data: { 
-			username: "<?php echo $_SESSION['username']; ?>"
-			},
-		success: function(data){
-			$('#availableSeats').html(data);
-			}
-		});
-	event.preventDefault();
-
-});
 </script>
 
 <?php
@@ -357,6 +332,77 @@ function help(){
 			},
 		success: function(data){
 			$('#helpSpan').html(data);
+			}
+		});
+	event.preventDefault();
+	}
+</script>
+<?php
+	}
+
+function myCar($postto){ ?>
+<span id="myCarSpan" ></span>
+<span id="wantMyCarSpan" ></span>
+<script>
+function myCar(){
+	$.ajax({
+		type: "GET",
+		url: "<?php echo $postto; ?>",
+		data: {},
+		success: function(data){
+			data = data.split('%');
+
+			var returnval = data[2];
+			$('#returnSpan').show();
+			$('#returnSpan').html(returnval);
+			$('#returnSpan').delay(9000).fadeOut();
+
+			var incar = JSON.parse(data[0]);
+			$('#myCarSpan').html(incar);
+
+			var wantcar = JSON.parse(data[1]);
+			wantMyCar(wantcar);
+			displaySeats();
+			}
+		});
+	}
+function wantMyCar(wantcar){
+	if(wantcar == null) $('#wantMyCarSpan').html("There is no waiting to be approved for your car.<br>");
+	else {
+		$('#wantMyCarSpan').html("<form id='approvalForm' >");
+		if(wantcar.length == 1) $('#wantMyCarSpan').append("There is one person waiting to be approved for your car.<br>");
+		else $('#wantMyCarSpan').append("There are " + wantcar.length + " people waiting to be approved for your car.<br>");
+		for(var i = 0; i < wantcar.length; i++){
+			$('#wantMyCarSpan').append('Person number ' + (i+1) + ' is ' + wantcar[i]);
+			$('#wantMyCarSpan').append('<input type="checkbox" id="accept" name="accept[]" value="' + wantcar[i] + '"><br>');
+			}
+		$('#wantMyCarSpan').append('<button id="acceptgo" onclick="approve()" >Accept</button></form><br>');
+		}
+	}
+
+function approve(){
+	var acceptval = [];
+	$(':checkbox:checked').each(function(i){
+		acceptval[i] = $(this).val();
+		});
+	$.ajax(
+		{
+		type: "POST",
+		url: "<?php echo $postto; ?>",		
+		data: {
+			accept: acceptval
+			},
+		success: function(data){
+			data = data.split('%');
+
+			var returnval = data[2];
+			$('#returnSpan').show();
+			$('#returnSpan').html(returnval);
+			$('#returnSpan').delay(9000).fadeOut();
+
+			var incar = JSON.parse(data[0]);
+			var wantcar = JSON.parse(data[1]);
+			myCar(wantcar);
 			}
 		});
 	event.preventDefault();

@@ -11,7 +11,7 @@ require 'phpfunctions.php';
 	
 	if(1==checkString("incar",$myride,$whatname)){
 		updateString("ridingwith",$myride,$whatname);
-		echo "Sent $myride a request to be in their car. ";
+		echo "$myride was sent a request to be in their car. ";
 		inMyCar("need");
 		}
 	else echo "You are already riding with $myride. ";

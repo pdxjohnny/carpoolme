@@ -378,6 +378,34 @@ function approveMyCar($type){
 		 echo '<input value="Accept" id="acceptgo" name="acceptgo" type="submit"></form>';
 		}
 	}
+
+function getSeats(){
+
+	$whatname  = $_SESSION['username'];
+	$table="carpool_members"; // Table name
+
+	// Create connection
+	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+
+	// Check connection
+	if (mysqli_connect_errno()){
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+
+	$result = mysqli_query($con,"SELECT username FROM $table WHERE ridingwith='$whatname' AND NOT username = '$whatname';");
+	$_SESSION['numberWantSeats'] = mysqli_num_rows($result);
+
+	$result = mysqli_query($con,"SELECT username FROM $table WHERE incar='$whatname' AND NOT username = '$whatname';");
+	$_SESSION['numberApprovedSeats'] = mysqli_num_rows($result);
+	
+	$_SESSION['totalSeats'] = get("spots",$whatname);
+	$_SESSION['numberavailableSeats'] = $_SESSION['totalSeats']-$_SESSION['numberApprovedSeats'];
+	updateNum("availablespots",$_SESSION['numberavailableSeats'],$whatname);
+
+	mysqli_close($con);
+	
+	}
+
 /*
 function showSeats(){
 

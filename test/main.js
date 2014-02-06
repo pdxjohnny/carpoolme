@@ -99,6 +99,7 @@ function readFile(filename){
 
 function askForRide(){
 		var myrideval = $('#askride').val();
+		$('#returnSpan').html("Asking "+myrideval+" for ride.").fadeIn();
 		$.ajax(
 			{
 			type: "POST",
@@ -279,8 +280,8 @@ function arrayMap(locations){
 					var time = " They will be leaving on "+ pretime[2] + " at " + hm + ". ";
 					}
 				if(locations[i][3]==="offer"){
-					if(locations[i][7]!==null){
-						if(locations[i][7]>=locations[i][6]){
+					if(locations[i][6]!==null){
+						if(locations[i][7]<=0){
 							InfoWindow.setContent(locations[i][0]+' has a full car.');
 							}
 						else {
@@ -373,3 +374,23 @@ function codeAddress(image) {
   });
 	markers.push(dest);
 }
+
+
+
+function approve(){
+	var acceptval = $('#accept').val();
+	console.log(acceptval);
+	/*$('#returnSpan').html("You are currently set to leave at "+readableDate(datetimeval));
+	$.ajax(
+		{
+		type: "POST",
+		url: "<?php echo $postto; ?>",
+		data: {datetime: datetimeval, username: "<?php echo $_SESSION['username']; ?>"},
+		success: function(data){
+			$('#returnSpan').show();
+			$('#returnSpan').html(data);
+			$('#returnSpan').delay(9000).fadeOut();
+			}
+		});
+	event.preventDefault();*/
+	}
