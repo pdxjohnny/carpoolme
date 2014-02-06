@@ -254,7 +254,7 @@ function makeMap(centerlat,centerlng,zoomval,divId){
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 		});
 	mapholder=document.getElementById(divId)
-	mapholder.style.height='250px';
+	mapholder.style.height='340px';
 	mapholder.style.width='100%';
 
 
