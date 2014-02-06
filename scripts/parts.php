@@ -65,7 +65,7 @@ $( document ).ready(function() {
 
 function logout($postto){?>
 
-<button id="logout" onclick="logout()" value="Logout" >Logout</button>
+<button class="remove-bottom" id="logout" onclick="logout()" value="Logout" >Logout</button>
 <script>
 function logout(){
 	var logoutval = $('#logout').val();
@@ -170,7 +170,7 @@ $( document ).ready(function() {
 		else sufix = dateSufix(val[1]);
 		$('#datesufix').html(sufix);
 		});
-	setLatestLeave();
+	getLeaveTime();
 	});
 
 function setLatestLeave() {
@@ -310,6 +310,8 @@ for(var i = 1;i<=10;i++){
 <button onclick="updateSeats();">Update</button><br><script>
 function updateSeats(){
 	// Update the Seats Available
+	$('#returnSpan').show();
+	$('#returnSpan').html("Updating seats...<br>");
 	var seatsval = $('#seats').val();
 	$.ajax({
 		type: "POST",

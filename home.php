@@ -72,7 +72,7 @@ function toggleHelp(){
 	<div class="container">
 		<div class="sixteen columns remove-bottom">
 			<h1 class="remove-bottom" style="margin-top: 40px">Carpoolme</h1>
-			<h5>Beta 1</h5>
+			<h5>Beta v1 <a href="#" data-mailto="johnandersenpdx@gmail.com">Report Bug</a></h5><br>
 <?php
 
 session_start();
@@ -84,12 +84,11 @@ if($_SESSION['username']!=NULL){
 	require 'scripts/phpfunctions.php';
 	logout("scripts/logout.php");
 	includes("scripts");
-	echo "<br><span id='returnSpan'></span>";
-	echo "<br>";
 ?>
+			<br><center><span style="color: #4593C4; margin-top:10px;" id='returnSpan'></span></center>
 			<hr style="remove-bottom" />
 		</div>
-		<div class="sixteen columns remove-bottom" style="margin-top: 10px; margin-bottom: 10px;"">
+		<div class="sixteen columns remove-bottom" style="margin-top: 10px; margin-bottom: 10px;">
 			<center>
 			<button class="remove-bottom" onclick="toggleMap();">Map</button>
 			<button class="remove-bottom" onclick="toggleCar();">Car</button>
@@ -140,7 +139,9 @@ if($_SESSION['username']!=NULL){
 <?php
 	}
 else {
+	echo "<hr style='remove-bottom' />";
 	require 'scripts/login.php';
+	echo "<br>";
 	require 'scripts/register.php';
 	}
 // Ask for ride is in main.js
@@ -151,4 +152,11 @@ else {
 <!-- End Document
 ================================================== -->
 </body>
+<script>
+$('a[data-mailto]').click(function(){
+  var link = 'scripts/mailto.html#mailto:johnandersenpdx@gmail.com?subject=Carpoolme.net Bug&body=There was a bug in the Carpoolme.net site.';
+  window.open(link, 'Mailer');
+  return false;
+});
+</script>
 </html>

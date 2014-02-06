@@ -71,10 +71,10 @@ Password<br>
 <select id="typel" name="type">
   <option value="need">Need Ride</option>
   <option value="offer">Offering Ride</option>
-</select>
+</select><br>
 <input name="GPSlatl" id="GPSlatl" type="hidden" value="">
 <input name="GPSlongl" id="GPSlongl" type="hidden" value="">
-<input value="Login" id="logingo" name="logingo" type="submit"><br>
+<input value="Login" id="logingo" name="logingo" type="submit">
 </form>
 </html>
 <?php

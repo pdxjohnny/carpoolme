@@ -3,6 +3,7 @@
 if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
 
 if(isset($_POST['reg'])) {
+	if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ("<script>alert('$whatname passwords do not match.');</script><meta http-equiv='refresh' content='0'>");
 
 	$whatlat = $_SESSION['lat'] = $_POST['GPSlatr'];
 	$whatlng = $_SESSION['lng'] = $_POST['GPSlongr'];
@@ -62,15 +63,17 @@ Username<br>
 <input name='username' type="text"><br>
 Password<br>
 <input name="password" type="password"><br>
+Confirm password<br>
+<input name="confirmpassword" type="password"><br>
 Email<br>
 <input name="email" type="text"><br>
 <select id="typer" name="type">
   <option value="need">Need Ride</option>
   <option value="offer">Offering Ride</option>
-</select>
+</select><br>
 <input name="GPSlatr" id="GPSlatr" type="hidden" value="">
 <input name="GPSlongr" id="GPSlongr" type="hidden" value="">
-<input value="Register" id="reg" name="reg" type="submit"><br>
+<input value="Register" id="reg" name="reg" type="submit">
 </form>
 
 </html>

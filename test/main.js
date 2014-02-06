@@ -115,7 +115,7 @@ function askForRide(){
 	$.ajax(
 		{
 		type: "POST",
-		url: "test/askForRide.php",
+		url: "scripts/askForRide.php",
 		data: {
 			myride: myrideval,
 			username: "<?php echo $_SESSION['username']; ?>"

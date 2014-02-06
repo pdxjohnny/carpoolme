@@ -1,7 +1,6 @@
 <?php
 
-echo '
-<br><br><strong>Start by setting your destination and leave time.</strong><br>
+echo '<strong>Start by setting your destination and leave time.</strong><br>
 Type your destination into the <input type="textbox" placeholder="Destination"> box and hit <button>Find</button><br>
 Click on the green checkered flag you want as your destination and hit <button>Set as destination</button><br>
 Set your leave time with the <button>Update Leave Time</button> button.<br>

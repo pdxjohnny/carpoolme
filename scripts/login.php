@@ -62,16 +62,16 @@ navigator.geolocation.getCurrentPosition(function(position){
 	});
 </script>
 
-<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" name="loginform">
+<form action="//carpoolme.net" method="post" name="loginform">
 <h4>Login</h4>
 Username<br>
-<input name='username' type="text">
+<input name='username' type="text"><br>
 Password<br>
-<input name="password" type="password">
+<input name="password" type="password"><br>
 <select id="typel" name="type">
   <option value="need">Need Ride</option>
   <option value="offer">Offering Ride</option>
-</select>
+</select><br>
 <input name="GPSlatl" id="GPSlatl" type="hidden" value="">
 <input name="GPSlongl" id="GPSlongl" type="hidden" value="">
 <input value="Login" id="logingo" name="logingo" type="submit">
