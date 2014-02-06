@@ -9,13 +9,14 @@ if($_SESSION['username']!=NULL){
 	require 'test/phpfunctions.php';
 	logout("test/logout.php");
 	includes("test");
-	echo "<br><span id='returnSpan'></span><br>";
+	echo "<br><span id='returnSpan'></span>";
 	echo "<span id='leavetime'><br></span><br>";
 	setLatestLeave("test/setLatestLeave.php");
 	echo "<br>";
 
 	if(0==strcmp($_SESSION['type'],"offer")){
 		seats("test/seats.php","test/seatsDisplay.php");
+		echo "<br>";
 		myCar("test/myCar.php");
 		}
 	if($_SESSION['myride']){

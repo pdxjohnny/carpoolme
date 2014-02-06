@@ -46,7 +46,7 @@ $( document ).ready(function() {
 		data: {test1: add, test2: other},
 		success: function(data){
 			$('#returnSpan').show();
-			$('#returnSpan').html(data);
+			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 			}
 		});
@@ -71,7 +71,7 @@ function logout(){
 			},
 		success: function(data){
 			$('#returnSpan').show();
-			$('#returnSpan').html(data);
+			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 			}
 		});
@@ -174,7 +174,7 @@ $( document ).ready(function() {
 			data: {datetime: datetimeval, username: "<?php echo $_SESSION['username']; ?>"},
 			success: function(data){
 				$('#returnSpan').show();
-				$('#returnSpan').html(data);
+				$('#returnSpan').html(data+"<br>");
 				$('#returnSpan').delay(9000).fadeOut();
 				}
 			});
@@ -210,7 +210,7 @@ function setDestClick(){
 			},
 		success: function(data){
 			$('#returnSpan').show();
-			$('#returnSpan').html(data);
+			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 			}
 		});
@@ -233,7 +233,7 @@ function clearRide(){
 			},
 		success: function(data){
 			$('#returnSpan').show();
-			$('#returnSpan').html(data);
+			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 			}
 		});
@@ -255,7 +255,7 @@ function clearDest(){
 			},
 		success: function(data){
 			$('#returnSpan').show();
-			$('#returnSpan').html(data);
+			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 			}
 		});
@@ -274,11 +274,7 @@ for(var i = 1;i<=10;i++){
 	}
 </script>
 </select>
-<button onclick="updateSeats();">Update</button><br>
-<span id="availableSeats"></span>
-</form>
-
-<script>
+<button onclick="updateSeats();">Update</button><br><script>
 function updateSeats(){
 	// Update the Seats Available
 	var seatsval = $('#seats').val();
@@ -291,7 +287,7 @@ function updateSeats(){
 			},
 		success: function(data){
 			$('#returnSpan').show();
-			$('#returnSpan').html(data);
+			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 			}
 		});
@@ -314,7 +310,7 @@ function displaySeats(){
 	event.preventDefault();
 	}
 </script>
-
+<span id="availableSeats"></span>
 <?php
 	}
 
@@ -341,7 +337,7 @@ function help(){
 	}
 
 function myCar($postto){ ?>
-<span id="myCarSpan" ></span>
+<span id="inMyCarSpan" ></span>
 <span id="wantMyCarSpan" ></span>
 <script>
 function myCar(){
@@ -352,13 +348,13 @@ function myCar(){
 		success: function(data){
 			data = data.split('%');
 
-			var returnval = data[2];
+			/*var returnval = data[2];
 			$('#returnSpan').show();
-			$('#returnSpan').html(returnval);
-			$('#returnSpan').delay(9000).fadeOut();
+			$('#returnSpan').html(returnval+"<br>");
+			$('#returnSpan').delay(9000).fadeOut();*/
 
 			var incar = JSON.parse(data[0]);
-			$('#myCarSpan').html(incar);
+			inMyCar(incar);
 
 			var wantcar = JSON.parse(data[1]);
 			wantMyCar(wantcar);
@@ -366,6 +362,7 @@ function myCar(){
 			}
 		});
 	}
+
 function wantMyCar(wantcar){
 	if(wantcar == null) $('#wantMyCarSpan').html("There is no waiting to be approved for your car.<br>");
 	else {
@@ -373,10 +370,20 @@ function wantMyCar(wantcar){
 		if(wantcar.length == 1) $('#wantMyCarSpan').append("There is one person waiting to be approved for your car.<br>");
 		else $('#wantMyCarSpan').append("There are " + wantcar.length + " people waiting to be approved for your car.<br>");
 		for(var i = 0; i < wantcar.length; i++){
-			$('#wantMyCarSpan').append('Person number ' + (i+1) + ' is ' + wantcar[i]);
-			$('#wantMyCarSpan').append('<input type="checkbox" id="accept" name="accept[]" value="' + wantcar[i] + '"><br>');
+			$('#wantMyCarSpan').append('Person number ' + (i+1) + ' is ' + wantcar[i]+'<input type="checkbox" id="accept" name="accept[]" value="' + wantcar[i] + '"><br>');
 			}
 		$('#wantMyCarSpan').append('<button id="acceptgo" onclick="approve()" >Accept</button></form><br>');
+		}
+	}
+
+function inMyCar(incar){
+	if(incar == null) $('#inMyCarSpan').html("There is no one in your car.<br>");
+	else {
+		if(incar.length == 1) $('#inMyCarSpan').html("There is one person in your car.<br>");
+		else $('#inMyCarSpan').html("There are " + incar.length + " people in your car.<br>");
+		for(var i = 0; i < incar.length; i++){
+			$('#inMyCarSpan').append('Person number ' + (i+1) + ' is ' + incar[i]+'<br>');
+			}
 		}
 	}
 
@@ -397,7 +404,7 @@ function approve(){
 
 			var returnval = data[2];
 			$('#returnSpan').show();
-			$('#returnSpan').html(returnval);
+			$('#returnSpan').html(returnval+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 
 			var incar = JSON.parse(data[0]);
