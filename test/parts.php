@@ -12,12 +12,13 @@ function includes($dir){?>
 <script>
 $( document ).ready(function() {
 
-myCar();
-displaySeats();
+//myCar();
+//myRide();
 
 window.setInterval(function(){
 	// Functions that need to be called repeatedly evezy x seconds 
-	myCar();
+	//myCar();
+	//myRide();
 }, 30000);
 
 	$('#leavetime').html("You are currently set to leave at "+readableDate("<?php echo $_SESSION['latestleave']; ?>"));
@@ -83,6 +84,7 @@ function logout(){
 	}
 
 function setLatestLeave($postto){ ?>
+<span id='leavetime'><br></span><br>
 <select name="hour" id="hour">
 <script>
 for(var i = 0;i<24;i++){
@@ -222,7 +224,7 @@ function setDestClick(){
 	}
 
 function clearRide($postto){ ?>
-<button id="clearRide" name="clearRide" onclick="clearRide()">Clear My Ride</button>
+<button id="clearRide" name="clearRide" onclick="clearRide()">Remove me for my ride's car</button>
 <script>
 function clearRide(){
 	$.ajax({
@@ -238,6 +240,7 @@ function clearRide(){
 			}
 		});
 	event.preventDefault();
+	myRide();
 	}
 </script>
 <?php
@@ -413,6 +416,42 @@ function approve(){
 			}
 		});
 	event.preventDefault();
+	}
+</script>
+<?php
+	}
+
+function myRide($postto){ ?>
+<span id="myRideSpan" ></span>
+<script>
+
+function myRide(){
+	$.ajax({
+		type: "GET",
+		url: "<?php echo $postto; ?>",
+		data: {},
+		success: function(data){
+			data = data.split('%');
+			if(tryParseJSON(data[0])!=false){
+				var incar = JSON.parse(data[0]);
+				inMyRide(incar,data[1]);
+				}
+			else {
+				$('#myRideSpan').html(data[0]+"<br>");
+				}
+			}
+		});
+	}
+
+function inMyRide(incar,ridename){
+	if(incar == null) $('#myRideSpan').html("There is no one in "+ridename+"'s car.<br>");
+	else {
+		if(incar.length == 1) $('#myRideSpan').html("There is one person in "+ridename+"'s car.<br>");
+		else $('#myRideSpan').html("There are " + incar.length + " people in "+ridename+"'s car.<br>");
+		for(var i = 0; i < incar.length; i++){
+			$('#myRideSpan').append('Person number ' + (i+1) + ' is ' + incar[i]+'<br>');
+			}
+		}
 	}
 </script>
 <?php

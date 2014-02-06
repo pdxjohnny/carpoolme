@@ -10,7 +10,7 @@ if($_SESSION['username']!=NULL){
 	logout("test/logout.php");
 	includes("test");
 	echo "<br><span id='returnSpan'></span>";
-	echo "<span id='leavetime'><br></span><br>";
+
 	setLatestLeave("test/setLatestLeave.php");
 	echo "<br>";
 
@@ -19,24 +19,21 @@ if($_SESSION['username']!=NULL){
 		echo "<br>";
 		myCar("test/myCar.php");
 		}
-	if($_SESSION['myride']){
-		// Below should be in ajax requested function
-			// myRide();
-		inMyCar("need");
-		showMyCar("need");
+	if(isset($_SESSION['myride'])){
+		myRide("test/myRide.php");
+		clearRide("test/clearRide.php");
 		}
-	if($_SESSION['latd']&&$_SESSION['lngd']){
+	if(isset($_SESSION['latd'])&&isset($_SESSION['lngd'])){
 		getNearDest(0.15);
 		setDest("test/setDest.php");
 		makeMap("dest");
+		clearDest("test/clearDest.php");
 		}
 	else {
 		getNearBy(0.15);
 		setDest("test/setDest.php");
 		makeMap("nodest");
 		}
-	clearDest("test/clearDest.php");
-	clearRide("test/clearRide.php");
 	help("test/help.php");
 	}
 else {

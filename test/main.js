@@ -97,6 +97,17 @@ function readFile(filename){
 	else alert("Error executing XMLHttpRequest call!");
 	}
 
+function tryParseJSON (jsonString){
+	try {
+		var o = JSON.parse(jsonString);
+		if (o && typeof o === "object" ) {
+			return o;
+			}
+		}
+	catch (e) { }
+	return false;
+	}
+
 function askForRide(){
 		var myrideval = $('#askride').val();
 		$('#returnSpan').html("Asking "+myrideval+" for ride.").fadeIn();
