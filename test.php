@@ -8,6 +8,7 @@ if($_SESSION['username']!=NULL){
 	require 'test/parts.php';
 	require 'test/phpfunctions.php';
 	logout("test/logout.php");
+	help("test/help.php");
 	includes("test");
 	echo "<br><span id='returnSpan'></span>";
 
@@ -19,22 +20,20 @@ if($_SESSION['username']!=NULL){
 		echo "<br>";
 		myCar("test/myCar.php");
 		}
-	if(isset($_SESSION['myride'])){
-		myRide("test/myRide.php");
-		clearRide("test/clearRide.php");
-		}
+	myRide("test/myRide.php");
+		
 	if(isset($_SESSION['latd'])&&isset($_SESSION['lngd'])){
 		getNearDest(0.15);
 		setDest("test/setDest.php");
 		makeMap("dest");
-		clearDest("test/clearDest.php");
 		}
 	else {
 		getNearBy(0.15);
 		setDest("test/setDest.php");
 		makeMap("nodest");
 		}
-	help("test/help.php");
+	clearDest("test/clearDest.php");
+	clearRide("test/clearRide.php");
 	}
 else {
 	require 'test/login.php';

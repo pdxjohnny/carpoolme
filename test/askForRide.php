@@ -7,14 +7,14 @@ require 'phpfunctions.php';
 
 	$myride = $_SESSION['myride'] = $_POST['myride'];
 	$whatname = $_SESSION['username'];
-	if(!$myride) exit ("User to ride with not set. ");
+	if(!$myride) exit ("User to ride with not set.<br>");
 	
 	if(1==checkString("incar",$myride,$whatname)){
 		updateString("ridingwith",$myride,$whatname);
-		echo "$myride was sent a request to be in their car. ";
+		echo "$myride was sent a request to be in their car.<br>";
 		inMyCar("need");
 		}
-	else echo "You are already riding with $myride. ";
+	else echo "You are already riding with $myride.<br>";
 
 
 ?>

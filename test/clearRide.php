@@ -19,13 +19,12 @@ session_start();
 	
 	if(1 == mysqli_num_rows($result)){
 		mysqli_query($con,"UPDATE $table SET ridingwith = NULL, incar = NULL WHERE username='$whatname';");
-		echo "Ride cleared. ";
+		echo "You were removed from " . $_SESSION['myride'] . "'s car. ";
 		}
 	else{
-		echo "Ride not cleared. ";
+		echo "Failed to remove you from " . $_SESSION['myride'] . "'s car. ";
 		}
 	mysqli_close($con);
-	unset($_POST['clearRide']);
 	unset($_SESSION['myride']);
-	unset($_SESSION['inmycar']);
+	unset($_SESSION['inmycarneed']);
 ?>

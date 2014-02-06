@@ -6,7 +6,7 @@ require 'phpfunctions.php';
 	$myride = $_SESSION['myride'];
 	if($myride==NULL) exit("You haven't asked anyone for a ride. ");
 
-	if(get("incar",$_SESSION['username'])==NULL) exit("You haven't been approved to ride in $myride's car yet. ");
+	if(get("incar",$_SESSION['username'])==NULL) exit("You haven't been approved to ride in $myride's car yet. %$myride");
 
 	$table = "carpool_members";
 	$myusername = $_SESSION['username'];

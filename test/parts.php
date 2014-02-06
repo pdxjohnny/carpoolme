@@ -10,15 +10,20 @@ function includes($dir){?>
 <script src="<?php echo $dir; ?>/main.js"></script>
 
 <script>
+var jsmyride;
+
 $( document ).ready(function() {
 
-//myCar();
-//myRide();
+getLeaveTime();
+$('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from my ride's car</button>");
+
+myRide();
+<?php if(0==strcmp($_SESSION['type'],"offer")) echo "myCar();"; ?>
 
 window.setInterval(function(){
 	// Functions that need to be called repeatedly evezy x seconds 
-	//myCar();
-	//myRide();
+	<?php if(0==strcmp($_SESSION['type'],"offer")) echo "myCar();"; ?>
+	myRide();
 }, 30000);
 
 	$('#leavetime').html("You are currently set to leave at "+readableDate("<?php echo $_SESSION['latestleave']; ?>"));
@@ -84,7 +89,7 @@ function logout(){
 	}
 
 function setLatestLeave($postto){ ?>
-<span id='leavetime'><br></span><br>
+<span id='leavetime'></span><br>
 <select name="hour" id="hour">
 <script>
 for(var i = 0;i<24;i++){
@@ -121,7 +126,7 @@ for(var i = 0;i<=14;i++){
 </select>
 <span id="datesufix"></span>
 <input value="" id="datetime" name="datetime" type="hidden">
-<input value="Update Leave Time" id="setLatestLeave" name="setLatestLeave" type="submit">
+<button onclick="setLatestLeave()" id="setLatestLeave">Update Leave Time</button>
 <script>
 $( document ).ready(function() {
 	$('#amorpm').html(" am");
@@ -165,24 +170,48 @@ $( document ).ready(function() {
 		else sufix = dateSufix(val[1]);
 		$('#datesufix').html(sufix);
 		});
-
-	$( "#setLatestLeave" ).click(function( event ) {
-		var datetimeval = $('#datetime').val();
-		$('#leavetime').html("You are currently set to leave at "+readableDate(datetimeval));
-		$.ajax(
-			{
-			type: "POST",
-			url: "<?php echo $postto; ?>",
-			data: {datetime: datetimeval, username: "<?php echo $_SESSION['username']; ?>"},
-			success: function(data){
-				$('#returnSpan').show();
-				$('#returnSpan').html(data+"<br>");
-				$('#returnSpan').delay(9000).fadeOut();
-				}
-			});
-		event.preventDefault();
-		});
+	setLatestLeave();
 	});
+
+function setLatestLeave() {
+	if((dateYMD.getMonth()+1)<10) var month = '0'+(dateYMD.getMonth()+1);
+	else var month = dateYMD.getMonth()+1;
+	var predate = $( "#date" ).val();
+	var prehour = $( "#hour" ).val();
+	var minute = $( "#minute" ).val();
+	if(predate<10) var date = '0'+predate;
+	else var date = predate;
+	if(prehour<10) var hour = '0'+prehour;
+	else var hour = prehour;
+	var ymd = dateYMD.getFullYear()+'-'+month+'-'+date+' '+hour+':'+minute+':00';
+	$('#datetime').val(ymd);
+	var datetimeval = $('#datetime').val();
+	$('#leavetime').html("You are currently set to leave at "+readableDate(datetimeval));
+	$.ajax(
+		{
+		type: "POST",
+		url: "<?php echo $postto; ?>",
+		data: {datetime: datetimeval},
+		success: function(data){
+			$('#returnSpan').show();
+			$('#returnSpan').html(data+"<br>");
+			$('#returnSpan').delay(9000).fadeOut();
+			}
+		});
+	event.preventDefault();
+	}
+
+function getLeaveTime(){
+	$.ajax(
+		{
+		type: "POST",
+		url: "<?php echo $postto; ?>",
+		data: {"getLeaveTime": "getLeaveTime"},
+		success: function(data){
+			$('#leavetime').html("You are currently set to leave at "+readableDate(data));
+			}
+		});
+	}
 </script>
 <?php
 	}
@@ -224,7 +253,7 @@ function setDestClick(){
 	}
 
 function clearRide($postto){ ?>
-<button id="clearRide" name="clearRide" onclick="clearRide()">Remove me for my ride's car</button>
+<span id="clearRideSpan" ></span>
 <script>
 function clearRide(){
 	$.ajax({
@@ -237,10 +266,11 @@ function clearRide(){
 			$('#returnSpan').show();
 			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
+			jsmyride = "nouserride";
+			myRide();
 			}
 		});
 	event.preventDefault();
-	myRide();
 	}
 </script>
 <?php
@@ -318,17 +348,15 @@ function displaySeats(){
 	}
 
 function help($postto){ ?>
-<button id="help" name="help" onclick="help()">Help</button><br>
+<button id="help" name="help" onclick="help()">Help</button>
 <span id="helpSpan" style="display:none;"></span>
 <script>
 function help(){
 	$('#helpSpan').toggle();
 	$.ajax({
-		type: "POST",
+		type: "GET",
 		url: "<?php echo $postto; ?>",
-		data: { 
-			username: "<?php echo $_SESSION['username']; ?>"
-			},
+		data: {},
 		success: function(data){
 			$('#helpSpan').html(data);
 			}
@@ -424,11 +452,22 @@ function approve(){
 function myRide($postto){ ?>
 <span id="myRideSpan" ></span>
 <script>
+function jsMyRide(){
+	$.ajax({
+		type: "GET",
+		url: "test/myRide.php",
+		data: {},
+		success: function(data){
+			data = data.split('%');
+			jsmyride = data[1];
+			}
+		});
+	}
 
 function myRide(){
 	$.ajax({
 		type: "GET",
-		url: "<?php echo $postto; ?>",
+		url: "test/myRide.php",
 		data: {},
 		success: function(data){
 			data = data.split('%');
@@ -438,6 +477,7 @@ function myRide(){
 				}
 			else {
 				$('#myRideSpan').html(data[0]+"<br>");
+				jsmyride = data[1];
 				}
 			}
 		});
@@ -453,6 +493,7 @@ function inMyRide(incar,ridename){
 			}
 		}
 	}
+
 </script>
 <?php
 	}

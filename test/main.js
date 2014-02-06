@@ -1,4 +1,5 @@
 var sitename = "carpool";
+var dir = "test";
 
 var site = document.URL;
 site = site.substring(site.indexOf("/") + 2);
@@ -109,24 +110,25 @@ function tryParseJSON (jsonString){
 	}
 
 function askForRide(){
-		var myrideval = $('#askride').val();
-		$('#returnSpan').html("Asking "+myrideval+" for ride.").fadeIn();
-		$.ajax(
-			{
-			type: "POST",
-			url: "test/askForRide.php",
-			data: {
-				myride: myrideval,
-				username: "<?php echo $_SESSION['username']; ?>"
-				},
-			success: function(data){
-				$('#returnSpan').show();
-				$('#returnSpan').html(data);
-				$('#returnSpan').delay(9000).fadeOut();
-				}
-			});
-		event.preventDefault();
-		}
+	var myrideval = $('#askride').val();
+	$('#returnSpan').html("Asking "+myrideval+" for ride.<br>").fadeIn();
+	$.ajax(
+		{
+		type: "POST",
+		url: "test/askForRide.php",
+		data: {
+			myride: myrideval,
+			username: "<?php echo $_SESSION['username']; ?>"
+			},
+		success: function(data){
+			$('#returnSpan').show();
+			$('#returnSpan').html(data);
+			$('#returnSpan').delay(9000).fadeOut();
+			}
+		});
+	event.preventDefault();
+	myRide();
+	}
 
 function dateSufix(date){
 	if(date == 1) {
@@ -156,6 +158,7 @@ function userTime(time){
 
 function readableDate(mysqltime){
 	var pre = userTime(mysqltime);
+	if(!pre) return false;
 	day = pre[2];
 	if(day[0] == 0) day = day[1];
 
@@ -180,6 +183,7 @@ function readableDate(mysqltime){
 	if(hour > 12) {
 		hour = hour-12;
 		}
+	if(hour == 0) hour = 12;
 
 	var toreturn = hour+':'+minute+' '+ampm+" on the "+day+sufix;
 	return toreturn;
@@ -278,18 +282,14 @@ function arrayMap(locations){
 
 	// Destination locations
 	for (i = 0; i < locations.length; i++) {  
-		marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][4], locations[i][5]), map: map, icon: "images/dest.png" });
+		if(locations[i][3]==="offer") marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][4], locations[i][5]), map: map, icon: "images/dest.png", zIndex: 10000 });
+		else marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][4], locations[i][5]), map: map, icon: "images/dest.png", zIndex: 5000 });
 
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
         		return function() {
-				var pretime = userTime(locations[i][8]);
-				if(pretime==null) var time = " No leave time set.";
-				else {
-					if(pretime[3]>12) var hm = (pretime[3]-12) + ':' + pretime[4] + "pm";
-					else if(pretime[3]==0) var hm = "12" + ':' + pretime[4] + "am";
-					else var hm = pretime[3] + ':' + pretime[4] + "am";
-					var time = " They will be leaving on "+ pretime[2] + " at " + hm + ". ";
-					}
+				var pretime = readableDate(locations[i][8]);
+				if(pretime!==false) var time = " Leaving at " + readableDate(locations[i][8]);
+				else var time = " No leave time set. ";
 				if(locations[i][3]==="offer"){
 					if(locations[i][6]!==null){
 						if(locations[i][7]<=0){
@@ -371,7 +371,7 @@ function codeAddress(image) {
         });
 	google.maps.event.addListener(dest, 'click', (function(dest, i) {
         	return function() {
-			InfoWindow.setContent('<button id="setDestB" name="setDestB" onclick="setDestClick();" >Set As Destination?</button>');
+			InfoWindow.setContent('<button id="setDestB" name="setDestB" onclick="setDestClick();" >Set as destination</button>');
 			InfoWindow.open(map, dest);
 			}
 		})(dest));
@@ -385,23 +385,3 @@ function codeAddress(image) {
   });
 	markers.push(dest);
 }
-
-
-
-function approve(){
-	var acceptval = $('#accept').val();
-	console.log(acceptval);
-	/*$('#returnSpan').html("You are currently set to leave at "+readableDate(datetimeval));
-	$.ajax(
-		{
-		type: "POST",
-		url: "<?php echo $postto; ?>",
-		data: {datetime: datetimeval, username: "<?php echo $_SESSION['username']; ?>"},
-		success: function(data){
-			$('#returnSpan').show();
-			$('#returnSpan').html(data);
-			$('#returnSpan').delay(9000).fadeOut();
-			}
-		});
-	event.preventDefault();*/
-	}
