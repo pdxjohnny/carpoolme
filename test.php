@@ -8,7 +8,7 @@ if($_SESSION['username']!=NULL){
 	require 'test/parts.php';
 	require 'test/phpfunctions.php';
 	logout("test/logout.php");
-	help("test/help.php");
+	help("help.php");
 	includes("test");
 	echo "<br><span id='returnSpan'></span>";
 

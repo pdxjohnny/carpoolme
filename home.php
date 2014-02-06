@@ -4,45 +4,40 @@ session_start();
 define('INCLUDE_CHECK',true);
 
 if($_SESSION['username']!=NULL){
-	echo "User " . $_SESSION['username'] . " is logged in<br>";
-	require 'scripts/logout.php';
+	echo "User " . $_SESSION['username'] . " is logged in.";
+	require 'scripts/parts.php';
 	require 'scripts/phpfunctions.php';
-?>
-  <head>
-    <title>Carpool</title>
-  </head>
-<h3>Hey <?php echo $_SESSION['username']; ?> you are here!</h3>
-<?php
-	require 'scripts/setLatestLeave.php';
-	require 'scripts/setDest.php';
+	logout("scripts/logout.php");
+	help("help.php");
+	includes("test");
+	echo "<br><span id='returnSpan'></span>";
+
+	setLatestLeave("scripts/setLatestLeave.php");
+	echo "<br>";
+
 	if(0==strcmp($_SESSION['type'],"offer")){
-		require 'scripts/seats.php';
-		if($_SESSION['numberavailableSeats']>1) echo "There are currently " . $_SESSION['numberavailableSeats'] . " seats avalable in your car.<br>";
-		else if($_SESSION['numberavailableSeats']==1) echo "There is currently " . $_SESSION['numberavailableSeats'] . " seat avalable in your car.<br>";
-		else if($_SESSION['numberavailableSeats']==0) echo "There are currently no seats avalable in your car.<br>";
-		inMyCar("offer");
-		showMyCar("offer");
-		wantMyCar();
-		approveMyCar();
+		seats("scripts/seats.php","scripts/seatsDisplay.php");
+		echo "<br>";
+		myCar("scripts/myCar.php");
 		}
-	if($_SESSION['myride']){
-		inMyCar("need");
-		showMyCar("need");
-		}
-	if($_SESSION['latd']&&$_SESSION['lngd']){
+	myRide("scripts/myRide.php");
+		
+	if(isset($_SESSION['latd'])&&isset($_SESSION['lngd'])){
 		getNearDest(0.15);
+		setDest("scripts/setDest.php");
 		makeMap("dest");
 		}
 	else {
 		getNearBy(0.15);
+		setDest("scripts/setDest.php");
 		makeMap("nodest");
 		}
-	require 'scripts/clearDest.php';
-	require 'scripts/clearRide.php';
-	require 'scripts/askForRide.php';
+	clearDest("scripts/clearDest.php");
+	clearRide("scripts/clearRide.php");
 	}
-else{
+else {
 	require 'scripts/login.php';
 	require 'scripts/register.php';
 	}
+// Ask for ride is in main.js
 ?>

@@ -1,8 +1,8 @@
 <?php
 
-if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
+//if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
 
-if(isset($_POST['clearRide'])) {
+session_start();
 
 	$whatname = $_SESSION['username'];
 	$table="carpool_members"; // Table name
@@ -19,20 +19,12 @@ if(isset($_POST['clearRide'])) {
 	
 	if(1 == mysqli_num_rows($result)){
 		mysqli_query($con,"UPDATE $table SET ridingwith = NULL, incar = NULL WHERE username='$whatname';");
-		mysqli_close($con);
+		echo "You were removed from " . $_SESSION['myride'] . "'s car. ";
 		}
 	else{
-		echo "<script>alert('Shit nigga it didn't work');</script>";
+		echo "Failed to remove you from " . $_SESSION['myride'] . "'s car. ";
 		}
-	unset($_POST['clearRide']);
+	mysqli_close($con);
 	unset($_SESSION['myride']);
-	unset($_SESSION['inmycar']);
-	echo "<meta http-equiv='refresh' content='0'>";
-	}
-else{?>
-<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" name="clearRideForm">
-<input value="Clear Ride" id="clearRide" name="clearRide" type="submit">
-</form>
-<?php
-	}
+	unset($_SESSION['inmycarneed']);
 ?>

@@ -1,16 +1,20 @@
 <?php
 
-if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
+session_start();
+require 'phpfunctions.php';
 
-if(isset($_POST['askride'])) {
+//if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
 
 	$myride = $_SESSION['myride'] = $_POST['myride'];
 	$whatname = $_SESSION['username'];
-	if(!$myride) exit ("<meta http-equiv='refresh' content='0'>");
+	if(!$myride) exit ("User to ride with not set.<br>");
 	
-	if(0==checkString("incar",$myride,$whatname)) updateString("ridingwith",$myride,$whatname);
-	else echo "<script>alert('You are already riding with $myride.');</script>";
+	if(1==checkString("incar",$myride,$whatname)){
+		updateString("ridingwith",$myride,$whatname);
+		echo "$myride was sent a request to be in their car.<br>";
+		inMyCar("need");
+		}
+	else echo "You are already riding with $myride.<br>";
 
-	echo "<meta http-equiv='refresh' content='0'>";
-	}
+
 ?>
