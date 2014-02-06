@@ -37,29 +37,20 @@
 <body>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
-function toggleMap(){
-	$('#toggleMap').show();
-	$('#toggleCar').hide();
-	$('#help').hide();
+function show1(){
+	$('#one').show();
+	$('#two').hide();
+	$('#three').hide();
 	}
-function toggleCar(){
-	$('#toggleMap').hide();
-	$('#toggleCar').show();
-	$('#help').hide();
+function show2(){
+	$('#one').hide();
+	$('#two').show();
+	$('#three').hide();
 	}
-function toggleHelp(){
-	$.ajax({
-		type: "GET",
-		url: "help.php",
-		data: {},
-		success: function(data){
-			$('#help').html(data);
-			}
-		});
-	event.preventDefault();
-	$('#toggleMap').hide();
-	$('#toggleCar').hide();
-	$('#help').show();
+function show3(){
+	$('#one').hide();
+	$('#two').hide();
+	$('#three').show();
 	}
 </script>
 
@@ -73,78 +64,34 @@ function toggleHelp(){
 		<div class="sixteen columns remove-bottom">
 			<h1 class="remove-bottom" style="margin-top: 40px">Carpoolme</h1>
 			<h5>Beta 1</h5>
-<?php
-
-session_start();
-define('INCLUDE_CHECK',true);
-
-if($_SESSION['username']!=NULL){
-	echo "User " . $_SESSION['username'] . " is logged in.";
-	require 'scripts/parts.php';
-	require 'scripts/phpfunctions.php';
-	logout("scripts/logout.php");
-	includes("scripts");
-	echo "<br><span id='returnSpan'></span>";
-	echo "<br>";
-?>
 			<hr style="remove-bottom" />
 		</div>
 		<div class="sixteen columns remove-bottom" style="margin-top: 10px; margin-bottom: 10px;"">
 			<center>
-			<button class="remove-bottom" onclick="toggleMap();">Map</button>
-			<button class="remove-bottom" onclick="toggleCar();">Car</button>
-			<button class="remove-bottom" onclick="toggleHelp();">Help</button>
+			<button class="remove-bottom" onclick="show1();">Link 1</button>
+			<button class="remove-bottom" onclick="show2();">Link 2</button>
+			<button class="remove-bottom" onclick="show3();">Link 3</button>
 			</center>
 			<hr style="margin-bottom: 10px;"/>
 		</div>
-		<div id="toggleMap" class="sixteen columns remove-bottom">
-<?php		
-	if(isset($_SESSION['latd'])&&isset($_SESSION['lngd'])){
-		getNearDest(0.15);
-		setDest("scripts/setDest.php");
-		makeMap("dest");
-		}
-	else {
-		getNearBy(0.15);
-		setDest("scripts/setDest.php");
-		makeMap("nodest");
-		}
-	clearDest("scripts/clearDest.php");
-	clearRide("scripts/clearRide.php");
-?>
+		<div id="one" class="one-third column">
+			<h3>About Skeleton?</h3>
+			<p>Skeleton is a small collection of well-organized CSS files that can help you rapidly develop sites that look beautiful at any size, be it a 17" laptop screen or an iPhone. It's based on a responsive grid, but also provides very basic CSS for typography, buttons, forms and media queries. Go ahead, resize this super basic page to see the grid in action.</p>
 		</div>
-		<div id="toggleCar" style="display:none;" class="sixteen columns remove-bottom">
-			<div class="five columns ">
-<?php
+		<div id="two" style="display:none;" class="one-third column">
+			<h3>Three Core Principles</h3>
+			<p>Skeleton is built on three core principles:</p>
+			<ul class="square">
+				<li><strong>A Responsive Grid Down To Mobile</strong>: Elegant scaling from a browser to tablets to mobile.</li>
+				<li><strong>Fast to Start</strong>: It's a tool for rapid development with best practices</li>
+				<li><strong>Style Agnostic</strong>: It provides the most basic, beautiful styles, but is meant to be overwritten.</li>
+			</ul>
+		</div>
+		<div id="three" style="display:none;" class="one-third column">
+			<h3>Docs &amp; Support</h3>
+			<p>The easiest way to really get started with Skeleton is to check out the full docs and info at <a href="http://www.getskeleton.com">www.getskeleton.com.</a>. Skeleton is also open-source and has a <a href="https://github.com/dhgamache/skeleton">project on git</a>, so check that out if you want to report bugs or create a pull request. If you have any questions, thoughts, concerns or feedback, please don't hesitate to email me at <a href="mailto:hi@getskeleton.com">hi@getskeleton.com</a>.</p>
+		</div>
 
-	setLatestLeave("scripts/setLatestLeave.php");
-?>
-			</div>
-			<div class="five columns ">
-<?php
-	if(0==strcmp($_SESSION['type'],"offer")){
-		seats("scripts/seats.php","scripts/seatsDisplay.php");
-		echo "<br>";
-		myCar("scripts/myCar.php");
-		}
-?>
-			</div>
-			<div class="five columns ">
-<?php
-	myRide("scripts/myRide.php");
-?>
-			</div>
-		</div>
-		<div id="help" style="display:none;" class="sixteen columns remove-bottom">
-		</div>
-<?php
-	}
-else {
-	require 'scripts/login.php';
-	require 'scripts/register.php';
-	}
-// Ask for ride is in main.js
-?>
 	</div><!-- container -->
 
 

@@ -1,5 +1,6 @@
 help.php
 home.php
+index.html
 test2.php
 test3.php
 test4.php

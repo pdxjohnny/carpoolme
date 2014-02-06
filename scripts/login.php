@@ -65,16 +65,16 @@ navigator.geolocation.getCurrentPosition(function(position){
 <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" name="loginform">
 <h4>Login</h4>
 Username<br>
-<input name='username' type="text"><br>
+<input name='username' type="text">
 Password<br>
-<input name="password" type="password"><br>
+<input name="password" type="password">
 <select id="typel" name="type">
   <option value="need">Need Ride</option>
   <option value="offer">Offering Ride</option>
 </select>
 <input name="GPSlatl" id="GPSlatl" type="hidden" value="">
 <input name="GPSlongl" id="GPSlongl" type="hidden" value="">
-<input value="Login" id="logingo" name="logingo" type="submit"><br>
+<input value="Login" id="logingo" name="logingo" type="submit">
 </form>
 </html>
 <?php
