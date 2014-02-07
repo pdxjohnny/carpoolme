@@ -1,3 +1,11 @@
+<!--
+Application: Carpoolme.net
+File: Home page
+Date: 2/6/14
+Author: John Andersen
+(c) Copyright 2014 All rights reserved
+-->
+
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -61,6 +69,19 @@ function toggleHelp(){
 	$('#toggleCar').hide();
 	$('#help').show();
 	}
+function toggleHelpNotLogedin(){
+	$('#help').toggle();
+	$('#help').html("Loading help... <br>");
+	$.ajax({
+		type: "GET",
+		url: "help.php",
+		data: {},
+		success: function(data){
+			$('#help').html(data);
+			}
+		});
+	event.preventDefault();
+	}
 </script>
 
 
@@ -72,16 +93,16 @@ function toggleHelp(){
 	<div class="container">
 		<div class="sixteen columns remove-bottom">
 			<h1 class="remove-bottom" style="margin-top: 40px">Carpoolme</h1>
-			<h5>Beta v1 <a href="#" data-mailto="johnandersenpdx@gmail.com">Report Bug</a></h5><br>
+			<h5 class="remove-bottom" >Beta v1 <a href="#" data-mailto="johnandersenpdx@gmail.com">Report Bug</a></h5>
 <?php
 
 session_start();
 define('INCLUDE_CHECK',true);
+require 'scripts/parts.php';
+require 'scripts/phpfunctions.php';
 
 if($_SESSION['username']!=NULL){
 	echo "User " . $_SESSION['username'] . " is logged in.";
-	require 'scripts/parts.php';
-	require 'scripts/phpfunctions.php';
 	logout("scripts/logout.php");
 	includes("scripts");
 ?>
@@ -138,14 +159,32 @@ if($_SESSION['username']!=NULL){
 		</div>
 <?php
 	}
-else {
-	echo "<hr style='remove-bottom' />";
-	require 'scripts/login.php';
-	echo "<br>";
-	require 'scripts/register.php';
+else {?>
+	<center><span style="color: #4593C4; margin-top:10px;" id='returnSpan'></span></center>
+	<hr /><br>
+	<div id="logindiv" style="display: table; margin: 0 auto;">
+<?php
+	login("scripts/login.php");
+?>
+	<a href="#" id="toggleRegister" >Register</a>
+	</div>
+	<div id="registerdiv" style="display:none;" >
+		<div style="display: table; margin: 0 auto;">
+<?php
+	register("scripts/register.php");
+?>	
+		<a href="#" id="toggleLogin" >Login</a>
+		</div>
+	</div>
+	
+		<center><button class="remove-bottom" onclick="toggleHelpNotLogedin();">Help</button></center>
+		<div id="help" style="display:none;" class="sixteen columns remove-bottom">
+		</div>
+<?php
 	}
 // Ask for ride is in main.js
-?>
+?>	
+	</center></div>
 	</div><!-- container -->
 
 
@@ -154,9 +193,19 @@ else {
 </body>
 <script>
 $('a[data-mailto]').click(function(){
-  var link = 'scripts/mailto.html#mailto:johnandersenpdx@gmail.com?subject=Carpoolme.net Bug&body=There was a bug in the Carpoolme.net site.';
-  window.open(link, 'Mailer');
-  return false;
-});
+	var link = 'scripts/mailto.html#mailto:johnandersenpdx@gmail.com?subject=Carpoolme.net Bug&body=There was a bug in the Carpoolme.net site.';
+	window.open(link, 'Mailer');
+	return false;
+	});
+
+$('#toggleRegister').click(function(){
+	$('#registerdiv').show();
+	$('#logindiv').hide();
+	});
+
+$('#toggleLogin').click(function(){
+	$('#registerdiv').hide();
+	$('#logindiv').show();
+	});
 </script>
 </html>

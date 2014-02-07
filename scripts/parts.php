@@ -1,3 +1,10 @@
+<!--
+Application: Carpoolme.net
+File: Home page
+Date: 2/6/14
+Author: John Andersen
+(c) Copyright 2014 All rights reserved
+-->
 <?php
 
 if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
@@ -496,6 +503,112 @@ function inMyRide(incar,ridename){
 		}
 	}
 
+</script>
+<?php
+	}
+
+function login($postto){?>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+navigator.geolocation.getCurrentPosition(function(position){ 
+      	$('#GPSlatl').val(position.coords.latitude);
+  	$('#GPSlngl').val(position.coords.longitude);
+	});
+</script>
+
+<form id="loginfrom">
+<center><h4>Login</h4></center>
+Username<br>
+<input id='usernamel' type="text"><br>
+Password<br>
+<input id="passwordl" type="password"><br>
+<center><select id="typel" name="type">
+  <option value="need">Need a ride</option>
+  <option value="offer">Offering and or looking for ride</option>
+</select></center>
+<input name="GPSlatl" id="GPSlatl" type="hidden" value="">
+<input name="GPSlngl" id="GPSlngl" type="hidden" value="">
+<center><input value="Login" id="login" name="login" type="submit"></center>
+</form>
+<script>
+
+$('#loginfrom').submit(function(){
+	$('#returnSpan').show();
+	$('#returnSpan').html("Logging in...<br>");
+	$.ajax({
+		type: "POST",
+		url: "<?php echo $postto; ?>",
+		data: {
+			usernamel: $('#usernamel').val(), 
+			passwordl: $('#passwordl').val(),
+			typel: $('#typel').val(),
+			GPSlatl: $('#GPSlatl').val(),
+			GPSlngl: $('#GPSlngl').val()
+			},
+		success: function(data){
+			$('#returnSpan').show();
+			$('#returnSpan').html(data+"<br>");
+			$('#returnSpan').delay(9000).fadeOut();
+			}
+		});
+	event.preventDefault();
+	});
+</script>
+<?php
+	}
+
+function register($postto){?>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+navigator.geolocation.getCurrentPosition(function(position){ 
+      	$('#GPSlatr').val(position.coords.latitude);
+  	$('#GPSlngr').val(position.coords.longitude);
+	});
+</script>
+
+<form id="registerfrom">
+<center><h4>Register</h4></center>
+Username<br>
+<input id='usernamer' type="text"><br>
+Password<br>
+<input id="passwordr" type="password"><br>
+Confirm password<br>
+<input id="confirmpassword" type="password"><br>
+Email<br>
+<input id="email" type="text"><br>
+<center><select id="typer" name="type">
+  <option value="need">Need a ride</option>
+  <option value="offer">Offering and or looking for ride</option>
+</select></center>
+<input name="GPSlatr" id="GPSlatr" type="hidden" value="">
+<input name="GPSlngr" id="GPSlngr" type="hidden" value="">
+<center><input value="Register" id="reg" name="reg" type="submit"></center>
+</form>
+<script>
+
+$('#registerfrom').submit(function(){
+	$('#returnSpan').show();
+	$('#returnSpan').html("Registering...<br>");
+	$.ajax({
+		type: "POST",
+		url: "<?php echo $postto; ?>",
+		data: {
+			username: $('#usernamer').val(), 
+			password: $('#passwordr').val(), 
+			confirmpassword: $('#confirmpassword').val(), 
+			email: $('#email').val(),
+			type: $('#typer').val(),
+			GPSlatr: $('#GPSlatr').val(),
+			GPSlngr: $('#GPSlngr').val()
+			},
+		success: function(data){
+			$('#returnSpan').show();
+			$('#returnSpan').html(data+"<br>");
+			$('#returnSpan').delay(9000).fadeOut();
+			}
+		});
+	event.preventDefault();
+	});
 </script>
 <?php
 	}
