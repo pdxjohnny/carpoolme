@@ -8,8 +8,7 @@ Author: John Andersen
 <?php
 
 if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
-
-define('INCLUDE_CHECK',true);
+else define('INCLUDE_CHECK',true);
 
 function includes($dir){?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -511,8 +510,8 @@ function login($postto){?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
 navigator.geolocation.getCurrentPosition(function(position){ 
-      	$('#GPSlatl').val(position.coords.latitude);
-  	$('#GPSlngl').val(position.coords.longitude);
+      	$('#GPSlat').val(position.coords.latitude);
+  	$('#GPSlng').val(position.coords.longitude);
 	});
 </script>
 
@@ -526,8 +525,8 @@ Password<br>
   <option value="need">Need Ride</option>
   <option value="offer">Offering Ride</option>
 </select></center>
-<input name="GPSlatl" id="GPSlatl" type="hidden" value="">
-<input name="GPSlngl" id="GPSlngl" type="hidden" value="">
+<input name="GPSlat" id="GPSlat" type="hidden" value="">
+<input name="GPSlng" id="GPSlng" type="hidden" value="">
 <center><input value="Login" id="login" name="login" type="submit"></center>
 </form>
 <script>
@@ -541,9 +540,9 @@ $('#loginfrom').submit(function(){
 		data: {
 			username: $('#usernamel').val(), 
 			password: $('#passwordl').val(),
-			type: $('#typer').val(),
-			GPSlatl: $('#GPSlatr').val(),
-			GPSlngl: $('#GPSlngr').val()
+			type: $('#typel').val(),
+			GPSlat: $('#GPSlat').val(),
+			GPSlng: $('#GPSlng').val()
 			},
 		success: function(data){
 			$('#returnSpan').show();
@@ -561,8 +560,8 @@ function register($postto){?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
 navigator.geolocation.getCurrentPosition(function(position){ 
-      	$('#GPSlatr').val(position.coords.latitude);
-  	$('#GPSlngr').val(position.coords.longitude);
+      	$('#GPSlat').val(position.coords.latitude);
+  	$('#GPSlng').val(position.coords.longitude);
 	});
 </script>
 
@@ -580,8 +579,8 @@ Email<br>
   <option value="need">Need Ride</option>
   <option value="offer">Offering Ride</option>
 </select></center>
-<input name="GPSlatr" id="GPSlatr" type="hidden" value="">
-<input name="GPSlngr" id="GPSlngr" type="hidden" value="">
+<input name="GPSlat" id="GPSlat" type="hidden" value="">
+<input name="GPSlng" id="GPSlng" type="hidden" value="">
 <center><input value="Register" id="reg" name="reg" type="submit"></center>
 </form>
 <script>
@@ -598,8 +597,8 @@ $('#registerfrom').submit(function(){
 			confirmpassword: $('#confirmpassword').val(), 
 			email: $('#email').val(),
 			type: $('#typer').val(),
-			GPSlatr: $('#GPSlatr').val(),
-			GPSlngr: $('#GPSlngr').val()
+			GPSlat: $('#GPSlat').val(),
+			GPSlng: $('#GPSlng').val()
 			},
 		success: function(data){
 			$('#returnSpan').show();
