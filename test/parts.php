@@ -8,8 +8,7 @@ Author: John Andersen
 <?php
 
 if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
-
-define('INCLUDE_CHECK',true);
+else define('INCLUDE_CHECK',true);
 
 function includes($dir){?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -406,8 +405,18 @@ function wantMyCar(wantcar){
 	if(wantcar == null) $('#wantMyCarSpan').html("There is no waiting to be approved for your car.<br>");
 	else {
 		$('#wantMyCarSpan').html("<form id='approvalForm' >");
-		if(wantcar.length == 1) $('#wantMyCarSpan').append("There is one person waiting to be approved for your car.<br>");
-		else $('#wantMyCarSpan').append("There are " + wantcar.length + " people waiting to be approved for your car.<br>");
+		if(wantcar.length == 1){
+			$('#wantMyCarSpan').append("There is one person waiting to be approved for your car.<br>");
+			$('#returnSpan').show();
+			$('#returnSpan').html("There is one person waiting to be approved for your car.<br>");
+			$('#returnSpan').delay(3000).fadeOut();
+			}
+		else {
+			$('#wantMyCarSpan').append("There are " + wantcar.length + " people waiting to be approved for your car.<br>");
+			$('#returnSpan').show();
+			$('#returnSpan').html("There are " + wantcar.length + " people waiting to be approved for your car.<br>");
+			$('#returnSpan').delay(3000).fadeOut();
+			}
 		for(var i = 0; i < wantcar.length; i++){
 			$('#wantMyCarSpan').append('Person number ' + (i+1) + ' is ' + wantcar[i]+'<input type="checkbox" id="accept" name="accept[]" value="' + wantcar[i] + '"><br>');
 			}
@@ -472,6 +481,7 @@ function jsMyRide(){
 		});
 	}
 
+var initail = 0;
 function myRide(){
 	$.ajax({
 		type: "GET",
@@ -482,11 +492,17 @@ function myRide(){
 			if(tryParseJSON(data[0])!=false){
 				var incar = JSON.parse(data[0]);
 				inMyRide(incar,data[1]);
-				$('#returnSpan').html(data[2]+"<br>");
+				if(initail==0){
+					initail = 1;
+					$('#returnSpan').show();
+					$('#returnSpan').html(data[2]+"<br>");
+					$('#returnSpan').delay(9000).fadeOut();
+					}
 				}
 			else {
 				$('#myRideSpan').html(data[0]+"<br>");
 				jsmyride = data[1];
+				initail = 0;
 				}
 			}
 		});
@@ -511,8 +527,8 @@ function login($postto){?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
 navigator.geolocation.getCurrentPosition(function(position){ 
-      	$('#GPSlatl').val(position.coords.latitude);
-  	$('#GPSlngl').val(position.coords.longitude);
+      	$('#GPSlat').val(position.coords.latitude);
+  	$('#GPSlng').val(position.coords.longitude);
 	});
 </script>
 
@@ -526,8 +542,8 @@ Password<br>
   <option value="need">Need Ride</option>
   <option value="offer">Offering Ride</option>
 </select></center>
-<input name="GPSlatl" id="GPSlatl" type="hidden" value="">
-<input name="GPSlngl" id="GPSlngl" type="hidden" value="">
+<input name="GPSlat" id="GPSlat" type="hidden" value="">
+<input name="GPSlng" id="GPSlng" type="hidden" value="">
 <center><input value="Login" id="login" name="login" type="submit"></center>
 </form>
 <script>
@@ -541,9 +557,9 @@ $('#loginfrom').submit(function(){
 		data: {
 			username: $('#usernamel').val(), 
 			password: $('#passwordl').val(),
-			type: $('#typer').val(),
-			GPSlatl: $('#GPSlatr').val(),
-			GPSlngl: $('#GPSlngr').val()
+			type: $('#typel').val(),
+			GPSlat: $('#GPSlat').val(),
+			GPSlng: $('#GPSlng').val()
 			},
 		success: function(data){
 			$('#returnSpan').show();
@@ -561,8 +577,8 @@ function register($postto){?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
 navigator.geolocation.getCurrentPosition(function(position){ 
-      	$('#GPSlatr').val(position.coords.latitude);
-  	$('#GPSlngr').val(position.coords.longitude);
+      	$('#GPSlat').val(position.coords.latitude);
+  	$('#GPSlng').val(position.coords.longitude);
 	});
 </script>
 
@@ -580,8 +596,8 @@ Email<br>
   <option value="need">Need Ride</option>
   <option value="offer">Offering Ride</option>
 </select></center>
-<input name="GPSlatr" id="GPSlatr" type="hidden" value="">
-<input name="GPSlngr" id="GPSlngr" type="hidden" value="">
+<input name="GPSlat" id="GPSlat" type="hidden" value="">
+<input name="GPSlng" id="GPSlng" type="hidden" value="">
 <center><input value="Register" id="reg" name="reg" type="submit"></center>
 </form>
 <script>
@@ -598,8 +614,8 @@ $('#registerfrom').submit(function(){
 			confirmpassword: $('#confirmpassword').val(), 
 			email: $('#email').val(),
 			type: $('#typer').val(),
-			GPSlatr: $('#GPSlatr').val(),
-			GPSlngr: $('#GPSlngr').val()
+			GPSlat: $('#GPSlat').val(),
+			GPSlng: $('#GPSlng').val()
 			},
 		success: function(data){
 			$('#returnSpan').show();

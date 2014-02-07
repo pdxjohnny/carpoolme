@@ -64,3 +64,34 @@
 [Fri Feb 07 14:06:15 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/myRide.php on line 6, referer: http://carpoolme.net/
 [Fri Feb 07 14:06:45 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/myRide.php on line 6, referer: http://carpoolme.net/
 [Fri Feb 07 14:07:15 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/myRide.php on line 6, referer: http://carpoolme.net/
+[Fri Feb 07 14:07:45 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/myRide.php on line 6, referer: http://carpoolme.net/
+[Fri Feb 07 14:08:15 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/myRide.php on line 6, referer: http://carpoolme.net/
+[Fri Feb 07 14:08:39 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11
+[Fri Feb 07 14:08:45 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/myRide.php on line 6, referer: http://carpoolme.net/
+[Fri Feb 07 14:08:59 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11, referer: http://carpoolme.net/
+[Fri Feb 07 14:09:15 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/myRide.php on line 6, referer: http://carpoolme.net/
+[Fri Feb 07 14:09:30 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11, referer: http://carpoolme.net/
+[Fri Feb 07 14:09:35 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/myRide.php on line 6, referer: http://carpoolme.net/
+[Fri Feb 07 14:09:40 2014] [error] [client 24.20.209.246] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /var/www/carpool/scripts/phpfunctions.php on line 52, referer: http://carpoolme.net/
+[Fri Feb 07 14:13:07 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11, referer: http://carpoolme.net/
+[Fri Feb 07 14:13:29 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11, referer: http://carpoolme.net/
+[Fri Feb 07 14:14:46 2014] [error] [client 107.150.32.130] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11
+[Fri Feb 07 14:15:22 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11, referer: http://carpoolme.net/
+[Fri Feb 07 14:35:00 2014] [error] [client 67.107.9.173] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11
+[Fri Feb 07 14:35:00 2014] [error] [client 67.107.9.173] File does not exist: /var/www/carpool/HNAP1, referer: http://24.20.209.246/
+[Fri Feb 07 14:36:02 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11
+[Fri Feb 07 14:37:30 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11, referer: http://carpoolme.net/
+[Fri Feb 07 14:37:51 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11, referer: http://carpoolme.net/
+[Fri Feb 07 14:38:33 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/myRide.php on line 6, referer: http://carpoolme.net/
+[Fri Feb 07 14:38:42 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11
+[Fri Feb 07 14:38:52 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/myRide.php on line 6, referer: http://carpoolme.net/
+[Fri Feb 07 14:39:22 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/myRide.php on line 6, referer: http://carpoolme.net/
+[Fri Feb 07 14:39:22 2014] [error] [client 24.20.209.246] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /var/www/carpool/scripts/phpfunctions.php on line 52, referer: http://carpoolme.net/
+[Fri Feb 07 14:40:49 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11, referer: http://carpoolme.net/
+[Fri Feb 07 14:41:08 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11, referer: http://carpoolme.net/
+[Fri Feb 07 14:42:37 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11, referer: http://carpoolme.net/
+[Fri Feb 07 14:42:45 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11, referer: http://carpoolme.net/
+[Fri Feb 07 14:43:12 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/myRide.php on line 6, referer: http://carpoolme.net/
+[Fri Feb 07 14:43:16 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/myRide.php on line 6, referer: http://carpoolme.net/
+[Fri Feb 07 14:43:29 2014] [error] [client 24.20.209.246] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /var/www/carpool/scripts/phpfunctions.php on line 52, referer: http://carpoolme.net/
+[Fri Feb 07 14:43:45 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11

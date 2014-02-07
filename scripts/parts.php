@@ -405,8 +405,18 @@ function wantMyCar(wantcar){
 	if(wantcar == null) $('#wantMyCarSpan').html("There is no waiting to be approved for your car.<br>");
 	else {
 		$('#wantMyCarSpan').html("<form id='approvalForm' >");
-		if(wantcar.length == 1) $('#wantMyCarSpan').append("There is one person waiting to be approved for your car.<br>");
-		else $('#wantMyCarSpan').append("There are " + wantcar.length + " people waiting to be approved for your car.<br>");
+		if(wantcar.length == 1){
+			$('#wantMyCarSpan').append("There is one person waiting to be approved for your car.<br>");
+			$('#returnSpan').show();
+			$('#returnSpan').html("There is one person waiting to be approved for your car.<br>");
+			$('#returnSpan').delay(3000).fadeOut();
+			}
+		else {
+			$('#wantMyCarSpan').append("There are " + wantcar.length + " people waiting to be approved for your car.<br>");
+			$('#returnSpan').show();
+			$('#returnSpan').html("There are " + wantcar.length + " people waiting to be approved for your car.<br>");
+			$('#returnSpan').delay(3000).fadeOut();
+			}
 		for(var i = 0; i < wantcar.length; i++){
 			$('#wantMyCarSpan').append('Person number ' + (i+1) + ' is ' + wantcar[i]+'<input type="checkbox" id="accept" name="accept[]" value="' + wantcar[i] + '"><br>');
 			}
@@ -471,6 +481,7 @@ function jsMyRide(){
 		});
 	}
 
+var initail = 0;
 function myRide(){
 	$.ajax({
 		type: "GET",
@@ -481,11 +492,17 @@ function myRide(){
 			if(tryParseJSON(data[0])!=false){
 				var incar = JSON.parse(data[0]);
 				inMyRide(incar,data[1]);
-				$('#returnSpan').html(data[2]+"<br>");
+				if(initail==0){
+					initail = 1;
+					$('#returnSpan').show();
+					$('#returnSpan').html(data[2]+"<br>");
+					$('#returnSpan').delay(9000).fadeOut();
+					}
 				}
 			else {
 				$('#myRideSpan').html(data[0]+"<br>");
 				jsmyride = data[1];
+				initail = 0;
 				}
 			}
 		});
