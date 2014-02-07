@@ -21,20 +21,19 @@ var jsmyride;
 
 $( document ).ready(function() {
 
-getLeaveTime();
-$('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from my ride's car</button>");
-
-myRide();
-<?php if(0==strcmp($_SESSION['type'],"offer")) echo "myCar();"; ?>
-
-window.setInterval(function(){
-	// Functions that need to be called repeatedly evezy x seconds 
-	<?php if(0==strcmp($_SESSION['type'],"offer")) echo "myCar();"; ?>
-	myRide();
-}, 30000);
-
+	getLeaveTime();
+	$('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from my ride's car</button>");
 	$('#leavetime').html("You are currently set to leave at "+readableDate("<?php echo $_SESSION['latestleave']; ?>"));
 
+	myRide();
+	<?php if(0==strcmp($_SESSION['type'],"offer")) echo "myCar();"; ?>
+
+	window.setInterval(function(){
+		// Functions that need to be called repeatedly evezy x seconds 
+		<?php if(0==strcmp($_SESSION['type'],"offer")) echo "myCar();"; ?>
+		myRide();
+	
+		}, 30000);
 
 	});
 </script>
@@ -464,7 +463,7 @@ function myRide($postto){ ?>
 function jsMyRide(){
 	$.ajax({
 		type: "GET",
-		url: "test/myRide.php",
+		url: "<?php echo $postto; ?>",
 		data: {},
 		success: function(data){
 			data = data.split('%');
@@ -476,13 +475,14 @@ function jsMyRide(){
 function myRide(){
 	$.ajax({
 		type: "GET",
-		url: "test/myRide.php",
+		url: "<?php echo $postto; ?>",
 		data: {},
 		success: function(data){
 			data = data.split('%');
 			if(tryParseJSON(data[0])!=false){
 				var incar = JSON.parse(data[0]);
 				inMyRide(incar,data[1]);
+				$('#returnSpan').html(data[2]+"<br>");
 				}
 			else {
 				$('#myRideSpan').html(data[0]+"<br>");
@@ -523,8 +523,8 @@ Username<br>
 Password<br>
 <input id="passwordl" type="password"><br>
 <center><select id="typel" name="type">
-  <option value="need">Need a ride</option>
-  <option value="offer">Offering and or looking for ride</option>
+  <option value="need">Need Ride</option>
+  <option value="offer">Offering Ride</option>
 </select></center>
 <input name="GPSlatl" id="GPSlatl" type="hidden" value="">
 <input name="GPSlngl" id="GPSlngl" type="hidden" value="">
@@ -539,11 +539,11 @@ $('#loginfrom').submit(function(){
 		type: "POST",
 		url: "<?php echo $postto; ?>",
 		data: {
-			usernamel: $('#usernamel').val(), 
-			passwordl: $('#passwordl').val(),
-			typel: $('#typel').val(),
-			GPSlatl: $('#GPSlatl').val(),
-			GPSlngl: $('#GPSlngl').val()
+			username: $('#usernamel').val(), 
+			password: $('#passwordl').val(),
+			type: $('#typer').val(),
+			GPSlatl: $('#GPSlatr').val(),
+			GPSlngl: $('#GPSlngr').val()
 			},
 		success: function(data){
 			$('#returnSpan').show();
@@ -577,8 +577,8 @@ Confirm password<br>
 Email<br>
 <input id="email" type="text"><br>
 <center><select id="typer" name="type">
-  <option value="need">Need a ride</option>
-  <option value="offer">Offering and or looking for ride</option>
+  <option value="need">Need Ride</option>
+  <option value="offer">Offering Ride</option>
 </select></center>
 <input name="GPSlatr" id="GPSlatr" type="hidden" value="">
 <input name="GPSlngr" id="GPSlngr" type="hidden" value="">

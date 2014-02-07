@@ -1,25 +1,10 @@
-<script type='text/javascript' src='http://code.jquery.com/jquery-1.6.2.js'></script>
-<form id="form">
-<input id="address" type="textbox" placeholder="Destination">
-<input id="other" type="textbox" placeholder="other">
-<input value="Submit" type="submit"><br>
-</form>
-<div id="resultDiv" ></div>
+<?php
+// The message
+$message = "Line 1\r\nLine 2\r\nLine 3";
 
-<script>
-$( document ).ready(function() {
-	$( "#form" ).submit(function( event ) {
-	var add = $('#address').val();
-	var other = $('#other').val();
-	$.ajax({
-		type: "POST",
-		url: "test3.php",
-		data: {test1: add, test2: other},
-		success: function(data){
-			$('#resultDiv').html(data);
-			}
-		});
-	event.preventDefault();
-	});
-});
-</script>
+// In case any of our lines are larger than 70 characters, we should use wordwrap()
+$message = wordwrap($message, 70, "\r\n");
+
+// Send
+mail('johnandersenpdx@gmail.com', 'My Subject', $message);
+?>

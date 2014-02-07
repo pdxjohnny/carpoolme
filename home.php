@@ -36,6 +36,9 @@ Author: John Andersen
 
 	<!-- Favicons
 	================================================== -->
+	<meta name="mobile-web-app-capable" content="yes">
+	<link rel="shortcut icon" sizes="196x196" href="images/nice-highres.png">
+	<link rel="shortcut icon" sizes="114x114" href="images/niceicon.png">
 	<link rel="shortcut icon" href="images/favicon.ico">
 	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
@@ -101,7 +104,7 @@ define('INCLUDE_CHECK',true);
 require 'scripts/parts.php';
 require 'scripts/phpfunctions.php';
 
-if($_SESSION['username']!=NULL){
+if(isset($_SESSION['username'])){
 	echo "User " . $_SESSION['username'] . " is logged in.";
 	logout("scripts/logout.php");
 	includes("scripts");

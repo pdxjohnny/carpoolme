@@ -23,8 +23,13 @@ function get($what,$user){
 		mysqli_close($con);
 		return $out;
 		}
-	else{
-		echo "<script>alert('Shit nigga it didn't work');</script>";
+	else if(1 < mysqli_num_rows($result)){
+		echo "More than one user was found. ";
+		mysqli_close($con);
+		return null;
+		}
+	else if(0 == mysqli_num_rows($result)){
+		echo "$user was not found. ";
 		mysqli_close($con);
 		return null;
 		}
@@ -73,8 +78,13 @@ function updateString($what,$with,$user){
 		mysqli_close($con);
 		return 0;
 		}
-	else{
-		echo "Shit nigga it didn't work";
+	else if(1 < mysqli_num_rows($result)){
+		echo "More than one user was found. ";
+		mysqli_close($con);
+		return 1;
+		}
+	else if(0 == mysqli_num_rows($result)){
+		echo "$user was not found. ";
 		mysqli_close($con);
 		return 1;
 		}
@@ -99,8 +109,13 @@ function updateNum($what,$with,$user){
 		mysqli_close($con);
 		return 0;
 		}
-	else{
-		echo "<script>alert('Shit nigga it didn't work');</script>";
+	else if(1 < mysqli_num_rows($result)){
+		echo "More than one user was found. ";
+		mysqli_close($con);
+		return 1;
+		}
+	else if(0 == mysqli_num_rows($result)){
+		echo "$user was not found. ";
 		mysqli_close($con);
 		return 1;
 		}
@@ -125,8 +140,13 @@ function updateNull($what,$user){
 		mysqli_close($con);
 		return 0;
 		}
-	else{
-		echo "<script>alert('Shit nigga it didn't work');</script>";
+	else if(1 < mysqli_num_rows($result)){
+		echo "More than one user was found. ";
+		mysqli_close($con);
+		return 1;
+		}
+	else if(0 == mysqli_num_rows($result)){
+		echo "$user was not found. ";
 		mysqli_close($con);
 		return 1;
 		}

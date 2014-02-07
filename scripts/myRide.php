@@ -26,7 +26,7 @@ require 'phpfunctions.php';
 			$_SESSION['inmycarneed'][$i] = $row[0];
 			 }
 		mysqli_free_result($result);
-		echo json_encode($_SESSION['inmycarneed']) . '%' . $myride;
+		echo json_encode($_SESSION['inmycarneed']) . '%' . $myride . "%You've been approved to ride in $myride's car. ";
 		}
 
 	mysqli_close($con);

@@ -36,7 +36,8 @@ require 'phpfunctions.php';
 				$_SESSION['wantmycar'][$i] = $row[0];
    			 }
     		mysqli_free_result($result);
-		echo json_encode($_SESSION['wantmycar']);
+		if(isset($_SESSION['wantmycar'])) echo json_encode($_SESSION['wantmycar']);
+		else echo "null";
 		}
 
 	mysqli_close($con);
