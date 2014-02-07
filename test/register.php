@@ -1,20 +1,29 @@
+<!--
+Application: Carpoolme.net
+File: Register
+Date: 2/6/14
+Author: John Andersen
+(c) Copyright 2014 All rights reserved
+-->
 <?php
 
-if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
+session_start();
 
-if(isset($_POST['reg'])) {
-	if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ("<script>alert('$whatname passwords do not match.');</script><meta http-equiv='refresh' content='0'>");
+//if(!defined('INCLUDE_CHECK')) die("INCLUDE_CHECK not defined<!--<script type='text/javascript'>history.go(-1);</script>-->");
+
+if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ($_POST['username'] . " your passwords do not match. ");
 
 	$whatlat = $_SESSION['lat'] = $_POST['GPSlatr'];
-	$whatlng = $_SESSION['lng'] = $_POST['GPSlongr'];
+	$whatlng = $_SESSION['lng'] = $_POST['GPSlngr'];
 	$whatname = $_POST['username'];
 	$whatpass = $_POST['password'];
 	$whatemail = $_POST['email'];
 	$whattype = $_POST['type'];
-	if (filter_var($whatemail, FILTER_VALIDATE_EMAIL));
-	else echo "<script>alert('$whatname you have an invalid email.');</script><meta http-equiv='refresh' content='0'>";
+	if((!$whatname)||(!$whatpass)||(!$whatemail)||(!$whatlat)||(!$whatlng)) exit ("$whatname please fill in all fields and enable location. ");
 
-	if((!$whatname)||(!$whatpass)||(!$whatemail)||(!$whatlat)||(!$whatlng)) exit ("<script>alert('$whatname please fill in all fields and enable location.');</script><meta http-equiv='refresh' content='0'>");
+	if (filter_var($whatemail, FILTER_VALIDATE_EMAIL));
+	else exit ("$whatname you have an invalid email. ");
+
 	$table="carpool_members"; // Table name 
 
 	// Create connection
@@ -39,44 +48,8 @@ if(isset($_POST['reg'])) {
 		mysqli_query($con,"INSERT INTO $table (username,password,email,type,latitude,longitude) VALUES('$whatname','$whatpass','$whatemail','$whattype',$whatlat,$whatlng);");
 		$_SESSION['username'] = $whatname;
 		$_SESSION['type'] = $whattype;
-		echo $_SESSION['username'] . " is now logged in" . "<meta http-equiv='refresh' content='0'>";
+		echo $_SESSION['username'] . " you are now logged in <meta http-equiv='refresh' content='0'>";
 		}
 
 	mysqli_close($con);
-	}
-
-else{
-?>
-<html>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script>
-navigator.geolocation.getCurrentPosition(function(position){ 
-      	$('#GPSlatr').val(position.coords.latitude);
-  	$('#GPSlongr').val(position.coords.longitude);
-	});
-</script>
-
-<form action="//carpoolme.net" method="post" name="registerfrom">
-<h4>Register</h4>
-Username<br>
-<input name='username' type="text"><br>
-Password<br>
-<input name="password" type="password"><br>
-Confirm password<br>
-<input name="confirmpassword" type="password"><br>
-Email<br>
-<input name="email" type="text"><br>
-<select id="typer" name="type">
-  <option value="need">Need Ride</option>
-  <option value="offer">Offering Ride</option>
-</select><br>
-<input name="GPSlatr" id="GPSlatr" type="hidden" value="">
-<input name="GPSlongr" id="GPSlongr" type="hidden" value="">
-<input value="Register" id="reg" name="reg" type="submit">
-</form>
-
-</html>
-<?php
-	}
 ?>

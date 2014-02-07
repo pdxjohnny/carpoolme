@@ -4,6 +4,8 @@
 
 session_start();
 
+	if(!isset($_SESSION['myride'])) exit ("You aren't riding with anyone. ");
+
 	$whatname = $_SESSION['username'];
 	$table="carpool_members"; // Table name
 

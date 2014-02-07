@@ -1,3 +1,11 @@
+<!--
+Application: Carpoolme.net
+File: Home page
+Date: 2/6/14
+Author: John Andersen
+(c) Copyright 2014 All rights reserved
+-->
+
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -72,18 +80,18 @@ function toggleHelp(){
 	<div class="container">
 		<div class="sixteen columns remove-bottom">
 			<h1 class="remove-bottom" style="margin-top: 40px">Carpoolme</h1>
-			<h5>Beta v1 <a href="#" data-mailto="johnandersenpdx@gmail.com">Report Bug</a></h5><br>
+			<h5 class="remove-bottom" >Beta v1 <a href="#" data-mailto="johnandersenpdx@gmail.com">Report Bug</a></h5>
 <?php
 
 session_start();
 define('INCLUDE_CHECK',true);
+require 'test/parts.php';
+require 'test/phpfunctions.php';
 
 if($_SESSION['username']!=NULL){
 	echo "User " . $_SESSION['username'] . " is logged in.";
-	require 'scripts/parts.php';
-	require 'scripts/phpfunctions.php';
-	logout("scripts/logout.php");
-	includes("scripts");
+	logout("test/logout.php");
+	includes("test");
 ?>
 			<br><center><span style="color: #4593C4; margin-top:10px;" id='returnSpan'></span></center>
 			<hr style="remove-bottom" />
@@ -100,37 +108,37 @@ if($_SESSION['username']!=NULL){
 <?php		
 	if(isset($_SESSION['latd'])&&isset($_SESSION['lngd'])){
 		getNearDest(0.15);
-		setDest("scripts/setDest.php");
+		setDest("test/setDest.php");
 		makeMap("dest");
 		}
 	else {
 		getNearBy(0.15);
-		setDest("scripts/setDest.php");
+		setDest("test/setDest.php");
 		makeMap("nodest");
 		}
-	clearDest("scripts/clearDest.php");
-	clearRide("scripts/clearRide.php");
+	clearDest("test/clearDest.php");
+	clearRide("test/clearRide.php");
 ?>
 		</div>
 		<div id="toggleCar" style="display:none;" class="sixteen columns remove-bottom">
 			<div class="five columns ">
 <?php
 
-	setLatestLeave("scripts/setLatestLeave.php");
+	setLatestLeave("test/setLatestLeave.php");
 ?>
 			</div>
 			<div class="five columns ">
 <?php
 	if(0==strcmp($_SESSION['type'],"offer")){
-		seats("scripts/seats.php","scripts/seatsDisplay.php");
+		seats("test/seats.php","test/seatsDisplay.php");
 		echo "<br>";
-		myCar("scripts/myCar.php");
+		myCar("test/myCar.php");
 		}
 ?>
 			</div>
 			<div class="five columns ">
 <?php
-	myRide("scripts/myRide.php");
+	myRide("test/myRide.php");
 ?>
 			</div>
 		</div>
@@ -138,14 +146,28 @@ if($_SESSION['username']!=NULL){
 		</div>
 <?php
 	}
-else {
-	echo "<hr style='remove-bottom' />";
-	require 'scripts/login.php';
-	echo "<br>";
-	require 'scripts/register.php';
+else {?>
+	<center><span style="color: #4593C4; margin-top:10px;" id='returnSpan'></span></center>
+	<hr /><br>
+	<div id="logindiv" style="display: table; margin: 0 auto;">
+<?php
+	login("test/login.php");
+?>
+	<a href="#" id="toggleRegister" >Register</a>
+	</div>
+	<div id="registerdiv" style="display:none;" >
+		<div style="display: table; margin: 0 auto;">
+<?php
+	register("test/register.php");
+?>	
+		<a href="#" id="toggleLogin" >Login</a>
+		</div>
+	</div>
+<?php
 	}
 // Ask for ride is in main.js
-?>
+?>	
+	</center></div>
 	</div><!-- container -->
 
 
@@ -154,9 +176,19 @@ else {
 </body>
 <script>
 $('a[data-mailto]').click(function(){
-  var link = 'scripts/mailto.html#mailto:johnandersenpdx@gmail.com?subject=Carpoolme.net Bug&body=There was a bug in the Carpoolme.net site.';
-  window.open(link, 'Mailer');
-  return false;
-});
+	var link = 'test/mailto.html#mailto:johnandersenpdx@gmail.com?subject=Carpoolme.net Bug&body=There was a bug in the Carpoolme.net site.';
+	window.open(link, 'Mailer');
+	return false;
+	});
+
+$('#toggleRegister').click(function(){
+	$('#registerdiv').show();
+	$('#logindiv').hide();
+	});
+
+$('#toggleLogin').click(function(){
+	$('#registerdiv').hide();
+	$('#logindiv').show();
+	});
 </script>
 </html>
