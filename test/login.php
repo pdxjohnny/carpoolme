@@ -9,12 +9,13 @@ Author: John Andersen
 
 session_start();
 
-	$whatlat = $_SESSION['lat'] = $_POST['GPSlatl'];
-	$whatlng = $_SESSION['lng'] = $_POST['GPSlngl'];
+	$whatlat = $_SESSION['lat'] = $_POST['GPSlat'];
+	$whatlng = $_SESSION['lng'] = $_POST['GPSlng'];
 	$whatname = $_POST['username'];
 	$whatpass = $_POST['password'];
 	$whattype = $_POST['type'];
-	if((!$whatname)||(!$whatpass)||(!$whatlat)||(!$whatlng)) exit ("$whatname please fill in all fields and enable location. ");
+	if((!$whatname)||(!$whatpass)) exit ("$whatname please fill in all fields. ");
+	else if((!$whatlat)||(!$whatlng)) exit ("$whatname please enable location. ");
 	$table="carpool_members"; // Table name
 
 	// Create connection

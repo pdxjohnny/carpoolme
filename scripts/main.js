@@ -282,37 +282,38 @@ function arrayMap(locations){
 
 	// Destination locations
 	for (i = 0; i < locations.length; i++) {  
-		if(locations[i][3]==="offer") marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][4], locations[i][5]), map: map, icon: "images/dest.png", zIndex: 10000 });
-		else marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][4], locations[i][5]), map: map, icon: "images/dest.png", zIndex: 5000 });
+		if(locations[i][3]==="offer"){
+			marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][4], locations[i][5]), map: map, icon: "images/dest.png", zIndex: 10000 });
 
-		google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        		return function() {
-				var pretime = readableDate(locations[i][8]);
-				if(pretime!==false) var time = " Leaving at " + readableDate(locations[i][8]);
-				else var time = " No leave time set. ";
-				if(locations[i][3]==="offer"){
-					if(locations[i][6]!==null){
-						if(locations[i][7]<=0){
-							InfoWindow.setContent(locations[i][0]+' has a full car.');
+			google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        			return function() {
+					var pretime = readableDate(locations[i][8]);
+					if(pretime!==false) var time = " Leaving at " + readableDate(locations[i][8]);
+					else var time = " No leave time set. ";
+					if(locations[i][3]==="offer"){
+						if(locations[i][6]!==null){
+							if(locations[i][7]<=0){
+								InfoWindow.setContent(locations[i][0]+' has a full car.');
+								}
+							else {
+								if(locations[i][7]==1) var spots = locations[i][7] + " seat avalable.";
+								else var spots = locations[i][7] + " seats avalable.";
+								InfoWindow.setContent(locations[i][0]+' has '+spots+time+'<button id="askride" value="'+locations[i][0]+'" onclick="askForRide();" >Ask for ride</button>');
+								}
 							}
 						else {
-							if(locations[i][7]==1) var spots = locations[i][7] + " seat avalable.";
-							else var spots = locations[i][7] + " seats avalable.";
+							var spots = "not set avalable seats yet.";
 							InfoWindow.setContent(locations[i][0]+' has '+spots+time+'<button id="askride" value="'+locations[i][0]+'" onclick="askForRide();" >Ask for ride</button>');
 							}
 						}
 					else {
-						var spots = "not set avalable seats yet.";
-						InfoWindow.setContent(locations[i][0]+' has '+spots+time+'<button id="askride" value="'+locations[i][0]+'" onclick="askForRide();" >Ask for ride</button>');
+						InfoWindow.setContent(locations[i][0]);
 						}
+					InfoWindow.open(map, marker);
 					}
-				else {
-					InfoWindow.setContent(locations[i][0]);
-					}
-				InfoWindow.open(map, marker);
-				}
-			})(marker, i));
-		markers.push(marker);
+				})(marker, i));
+			markers.push(marker);
+			}
 		}
 	}
 

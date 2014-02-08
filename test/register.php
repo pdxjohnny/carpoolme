@@ -13,8 +13,8 @@ session_start();
 
 if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ($_POST['username'] . " your passwords do not match. ");
 
-	$whatlat = $_SESSION['lat'] = $_POST['GPSlatr'];
-	$whatlng = $_SESSION['lng'] = $_POST['GPSlngr'];
+	$whatlat = $_SESSION['lat'] = $_POST['GPSlat'];
+	$whatlng = $_SESSION['lng'] = $_POST['GPSlng'];
 	$whatname = $_POST['username'];
 	$whatpass = $_POST['password'];
 	$whatemail = $_POST['email'];
