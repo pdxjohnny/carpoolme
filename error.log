@@ -139,3 +139,31 @@
 [Fri Feb 07 21:42:01 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: wantmycar in /var/www/carpool/test/myCar.php on line 39, referer: http://carpoolme.net/test.php
 [Fri Feb 07 21:42:20 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11
 [Fri Feb 07 21:42:45 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11, referer: http://carpoolme.net/
+[Fri Feb 07 21:50:31 2014] [error] [client 125.210.204.242] File does not exist: /var/www/carpool/w00tw00t.at.blackhats.romanian.anti-sec:)
+[Fri Feb 07 21:50:32 2014] [error] [client 125.210.204.242] File does not exist: /var/www/carpool/phpMyAdmin
+[Fri Feb 07 21:50:33 2014] [error] [client 125.210.204.242] client denied by server configuration: /usr/share/phpmyadmin/scripts
+[Fri Feb 07 21:50:33 2014] [error] [client 125.210.204.242] File does not exist: /var/www/carpool/pma
+[Fri Feb 07 21:50:34 2014] [error] [client 125.210.204.242] File does not exist: /var/www/carpool/myadmin
+[Fri Feb 07 21:50:34 2014] [error] [client 125.210.204.242] File does not exist: /var/www/carpool/MyAdmin
+[Fri Feb 07 21:50:48 2014] [error] [client 125.210.204.242] File does not exist: /var/www/carpool/w00tw00t.at.blackhats.romanian.anti-sec:)
+[Fri Feb 07 21:50:48 2014] [error] [client 125.210.204.242] File does not exist: /var/www/carpool/phpMyAdmin
+[Fri Feb 07 21:50:49 2014] [error] [client 125.210.204.242] client denied by server configuration: /usr/share/phpmyadmin/scripts
+[Fri Feb 07 21:50:49 2014] [error] [client 125.210.204.242] File does not exist: /var/www/carpool/pma
+[Fri Feb 07 21:50:50 2014] [error] [client 125.210.204.242] File does not exist: /var/www/carpool/myadmin
+[Fri Feb 07 21:50:51 2014] [error] [client 125.210.204.242] File does not exist: /var/www/carpool/MyAdmin
+[Fri Feb 07 22:08:16 2014] [error] [client 121.37.24.202] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11
+[Fri Feb 07 22:09:41 2014] [error] [client 186.136.2.12] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11
+[Fri Feb 07 22:09:54 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/test/parts.php on line 11
+[Fri Feb 07 22:09:54 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test.php on line 91
+[Fri Feb 07 22:10:05 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/test/parts.php on line 11, referer: http://carpoolme.net/test.php
+[Fri Feb 07 22:10:05 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: nearby in /var/www/carpool/test/phpfunctions.php on line 247, referer: http://carpoolme.net/test.php
+[Fri Feb 07 22:13:06 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/test/parts.php on line 11, referer: http://carpoolme.net/test.php
+[Fri Feb 07 22:13:07 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: nearby in /var/www/carpool/test/phpfunctions.php on line 247, referer: http://carpoolme.net/test.php
+[Fri Feb 07 22:21:47 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/test/parts.php on line 11, referer: http://carpoolme.net/test.php
+[Fri Feb 07 22:21:48 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: nearby in /var/www/carpool/test/phpfunctions.php on line 247, referer: http://carpoolme.net/test.php
+[Fri Feb 07 22:22:13 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/test/parts.php on line 11, referer: http://carpoolme.net/test.php
+[Fri Feb 07 22:23:02 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/test/parts.php on line 11, referer: http://carpoolme.net/test.php
+[Fri Feb 07 22:23:02 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: nearby in /var/www/carpool/test/phpfunctions.php on line 247, referer: http://carpoolme.net/test.php
+[Fri Feb 07 22:27:29 2014] [error] [client 24.20.209.3] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11
+[Fri Feb 07 22:33:44 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/test/parts.php on line 11, referer: http://carpoolme.net/test.php
+[Fri Feb 07 22:35:57 2014] [error] [client 24.20.209.246] PHP Notice:  Constant INCLUDE_CHECK already defined in /var/www/carpool/scripts/parts.php on line 11

@@ -88,7 +88,7 @@ define('INCLUDE_CHECK',true);
 require 'test/parts.php';
 require 'test/phpfunctions.php';
 
-if($_SESSION['username']!=NULL){
+if(isset($_SESSION['username'])){
 	echo "User " . $_SESSION['username'] . " is logged in.";
 	logout("test/logout.php");
 	includes("test");

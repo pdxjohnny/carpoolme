@@ -462,6 +462,12 @@ function approve(){
 		});
 	event.preventDefault();
 	}
+
+function (){
+
+	myCar();
+	}
+
 </script>
 <?php
 	}

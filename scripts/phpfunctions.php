@@ -193,19 +193,6 @@ function getNearBy($range){
 	if(!$_SESSION['nearby']) getNearBy($range+0.05);
 	}
 
-function showNearBy(){
-
-	for($i = 0; $i < count($_SESSION['nearby']); $i ++){
-		echo "Number ";
-		echo $i+1 . " : ";
-		for($j = 0; $j < count($_SESSION['nearby'][$i]); $j++){
-			echo $_SESSION['nearby'][$i][$j] . " ";
-			}
-		echo "<br>";
-		}
-	}
-
-
 function getNearDest($range){
 	
 	if(isset($_SESSION['nearby'])) unset($_SESSION['nearby']);
@@ -229,16 +216,8 @@ function getNearDest($range){
 	if (mysqli_connect_errno()){
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
-	
-	/*
-	echo "<script>console.log('about to query');</script>";
-	echo "<script>console.log('lats and lngs');</script>";
-	echo "<script>console.log('mylatsub:$mylatsub mylatsub:$mylatadd mylatsub:$mylngsub mylatsub:$mylngadd');</script>";
-	echo "<script>console.log('latds and lngds');</script>";
-	echo "<script>console.log('mylatsub:$mylatdsub mylatsub:$mylatdadd mylatsub:$mylngdsub mylatsub:$mylngdadd');</script>";
-	*/
 
-	$query = "SELECT username, latitude, longitude, type, dlatitude, dlongitude, spots, availablespots, latestleave FROM $table WHERE latitude BETWEEN $mylatsub AND $mylatadd AND longitude BETWEEN $mylngsub AND $mylngadd AND dlatitude BETWEEN $mylatdsub AND $mylatdadd AND dlongitude BETWEEN $mylngdsub AND $mylngdadd AND NOT username = '$myusername';";
+	$query = "SELECT username, latitude, longitude, type, dlatitude, dlongitude, spots, availablespots, latestleave FROM $table WHERE latitude BETWEEN $mylatsub AND $mylatadd AND longitude BETWEEN $mylngsub AND $mylngadd AND dlatitude BETWEEN $mylatdsub AND $mylatdadd AND dlongitude BETWEEN $mylngdsub AND $mylngdadd AND (latestleave >= NOW() OR latestleave is NULL) AND NOT username = '$myusername';";
 
 	if ($result = mysqli_query($con, $query)) {
 
@@ -357,48 +336,6 @@ function wantMyCar(){
 
 	}
 
-function showMyCar($type){
-
-	if(0==strcmp($type,"offer")){
-		$incar = count($_SESSION['inmycaroffer']);
-		if($incar==0) echo "There is no one in your car.<br>";
-		else {
-			if($incar==1) echo "There is one person in your car.<br>";
-			else echo "There are " . $incar . " people in your car.<br>";
-			for($i = 0; $i < count($_SESSION['inmycaroffer']); $i ++){
-				echo "Person number " . ($i+1) . " is " . $_SESSION['inmycaroffer'][$i] . "<br>";
-				}
-			}
-		}
-	else {
-		if(get("incar",$_SESSION['username'])==NULL) echo "You haven't been approved to ride in " . $_SESSION['myride'] . "'s car yet.<br>";
-		else{
-			$incar = count($_SESSION['inmycarneed']);
-			echo "You're riding with  " . $_SESSION['myride'] . " there are " . ($incar+1) . " people in your car.<br>";
-			for($i = 0; $i < count($_SESSION['inmycarneed']); $i ++){
-				if($_SESSION['username']==$_SESSION['inmycarneed'][$i]) echo "Person number " . ($i+2) . " is you (" . $_SESSION['inmycarneed'][$i] . ")<br>";
-				else echo "Person number " . ($i+2) . " is " . $_SESSION['inmycarneed'][$i] . "<br>";
-				}
-			}
-		}
-	}
-
-function approveMyCar($type){
-
-	$wantcar = count($_SESSION['wantmycar']);
-	if($wantcar==0) echo "There is no waiting to be approved for your car.<br>";
-	else {
-		if($wantcar==1) echo "There is one person who is waiting to be approved for your car.<br>";
-		else echo "There are " . $wantcar . " people who are waiting to be approved for your car.<br>";
-		echo "<form action=" . $_SERVER['PHP_SELF'] . " method='post' name='aprovalform'>";
-		for($i = 0; $i < count($_SESSION['wantmycar']); $i ++){
-			echo 'Person number ' . ($i+1) . ' is ' . $_SESSION['wantmycar'][$i];
-			echo '<input type="checkbox" name="accept[]" value="' . $_SESSION['wantmycar'][$i] . '"><br>';
-			}
-		 echo '<input value="Accept" id="acceptgo" name="acceptgo" type="submit"></form>';
-		}
-	}
-
 function getSeats(){
 
 	$whatname  = $_SESSION['username'];
@@ -425,12 +362,4 @@ function getSeats(){
 	mysqli_close($con);
 	
 	}
-
-/*
-function showSeats(){
-
-	if($_SESSION['numberavailableSeats']>1) echo "There are currently " . $_SESSION['numberavailableSeats'] . " seats avalable in your car.<br>";
-	else if($_SESSION['numberavailableSeats']==1) echo "There is currently " . $_SESSION['numberavailableSeats'] . " seat avalable in your car.<br>";
-	else if($_SESSION['numberavailableSeats']==0) echo "There are currently no seats avalable in your car.<br>";
-	}*/
 ?>
