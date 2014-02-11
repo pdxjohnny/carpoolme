@@ -69,6 +69,10 @@ function toggleHelp(){
 	$('#toggleCar').hide();
 	$('#help').show();
 	}
+function toggleProfile(){
+
+
+	}
 </script>
 
 

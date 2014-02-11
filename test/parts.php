@@ -328,6 +328,7 @@ function updateSeats(){
 			$('#returnSpan').show();
 			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
+			myCar();
 			}
 		});
 	event.preventDefault();
