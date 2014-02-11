@@ -24,7 +24,7 @@ require 'phpfunctions.php';
    			 }
 		mysqli_free_result($result);
 		if(isset($_SESSION['inmycaroffer'])) echo json_encode($_SESSION['inmycaroffer']);
-		else echo "none";
+		else echo "There is currently no one riding in your car. "
 		}
 
 	echo "%";
@@ -41,7 +41,7 @@ require 'phpfunctions.php';
 			 }
     		mysqli_free_result($result);
 		if(isset($_SESSION['wantmycar'])) echo json_encode($_SESSION['wantmycar']);
-		else echo "none";
+		else echo "No one waiting to be accepted. "
 		}
 
 	mysqli_close($con);

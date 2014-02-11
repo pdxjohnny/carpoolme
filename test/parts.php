@@ -386,11 +386,12 @@ function myCar(){
 		success: function(data){
 			data = data.split('%');
 
-			var incar = JSON.parse(data[0]);
-			inMyCar(incar);
+			if(data[0]!=="none") inMyCar(JSON.parse(data[0]));
+			else inMyCar(null);
 
-			var wantcar = JSON.parse(data[1]);
-			wantMyCar(wantcar);
+			if(data[1]!=="none") wantMyCar(JSON.parse(data[1]));
+			else wantMyCar(null);
+
 			displaySeats();
 			}
 		});
