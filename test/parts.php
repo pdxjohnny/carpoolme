@@ -422,12 +422,10 @@ function inMyCar(incar){
 	if(incar == null) $('#inMyCarSpan').html("There is no one in your car.<br>");
 	else {
 		if(incar.length == 1) $('#inMyCarSpan').html("There is one person in your car.<br>");
-		else {
-			$('#inMyCarSpan').html("There are " + incar.length + " people in your car.<br>");
-			for(var i = 0; i < incar.length; i++){
-				var tokick = '"'+incar[i][0]+'"';
-				$('#inMyCarSpan').append(incar[i][0]+'<button onclick="kickFromCar('+tokick+');" >kick</button><br>');
-				}
+		else $('#inMyCarSpan').html("There are " + incar.length + " people in your car.<br>");
+		for(var i = 0; i < incar.length; i++){
+			var tokick = '"'+incar[i][0]+'"';
+			$('#inMyCarSpan').append(incar[i][0]+'<button onclick="kickFromCar(this);" value="'+incar[i][0]+'" >kick</button><br>');
 			}
 		}
 	}
@@ -459,26 +457,27 @@ function approve(){
 	event.preventDefault();
 	}
 
-function kickFromCar(tokickval){
-	console.log("clicked");
-	}
-
-	//$('#returnSpan').show();
-	//$('#returnSpan').html("Kicking "+tokickval+"... <br>");
-	/*$.ajax({
-		type: "POST",
-		url: "test/kick.php",		
-		data: {
-			tokick: tokickval
-			},
-		success: function(data){
-			$('#returnSpan').show();
-			$('#returnSpan').html(data+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();
-			}
+function kickFromCar(tokickel){
+	$(tokickel).attr('value', function() {
+		var tokickval = this.value;
+		$('#returnSpan').show();
+		$('#returnSpan').html("Kicking "+tokickval+"... <br>");
+		$.ajax({
+			type: "POST",
+			url: "test/kick.php",		
+			data: {
+				tokick: tokickval
+				},
+			success: function(data){
+				$('#returnSpan').show();
+				$('#returnSpan').html(data+"<br>");
+				$('#returnSpan').delay(9000).fadeOut();
+				myCar();
+				}
+			});
+		event.preventDefault();
 		});
-	event.preventDefault();*/
-	//myCar();
+	}
 </script>
 <?php
 	}
