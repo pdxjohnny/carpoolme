@@ -13,12 +13,14 @@ require 'phpfunctions.php';
 		}
 
 	if(isset($_SESSION['inmycaroffer'])) unset($_SESSION['inmycaroffer']);
-	$query = "SELECT username FROM $table WHERE incar='$myusername' AND NOT username = '$myusername';";
+
+	$query = "SELECT username, email FROM $table WHERE incar='$myusername' AND NOT username = '$myusername';";
 
 	if ($result = mysqli_query($con, $query)) {
 
 	    	for ($i = 0;$row = mysqli_fetch_row($result);$i++) {
-			$_SESSION['inmycaroffer'][$i] = $row[0];
+			$_SESSION['inmycaroffer'][$i][0] = $row[0];
+			$_SESSION['inmycaroffer'][$i][1] = get_gravatar($row[1]);
    			 }
 		mysqli_free_result($result);
 		echo json_encode($_SESSION['inmycaroffer']);
@@ -26,15 +28,16 @@ require 'phpfunctions.php';
 
 	echo "%";
 
-	$query = "SELECT username FROM $table WHERE ridingwith='$myusername' AND NOT username = '$myusername';";
+	$query = "SELECT username, email FROM $table WHERE ridingwith='$myusername' AND NOT username = '$myusername';";
 	
 	if(isset($_SESSION['wantmycar'])) unset($_SESSION['wantmycar']);
 
 	if ($result = mysqli_query($con, $query)) {
 
 	    	for ($i = 0;$row = mysqli_fetch_row($result);$i++) {
-				$_SESSION['wantmycar'][$i] = $row[0];
-   			 }
+			$_SESSION['wantmycar'][$i][0] = $row[0];
+			$_SESSION['wantmycar'][$i][1] = get_gravatar($row[1]);
+			 }
     		mysqli_free_result($result);
 		echo json_encode($_SESSION['wantmycar']);
 		}

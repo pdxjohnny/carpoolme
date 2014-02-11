@@ -8,7 +8,6 @@ Author: John Andersen
 <?php
 
 if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
-else define('INCLUDE_CHECK',true);
 
 function includes($dir){?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -386,11 +385,6 @@ function myCar(){
 		success: function(data){
 			data = data.split('%');
 
-			/*var returnval = data[2];
-			$('#returnSpan').show();
-			$('#returnSpan').html(returnval+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();*/
-
 			var incar = JSON.parse(data[0]);
 			inMyCar(incar);
 
@@ -428,9 +422,12 @@ function inMyCar(incar){
 	if(incar == null) $('#inMyCarSpan').html("There is no one in your car.<br>");
 	else {
 		if(incar.length == 1) $('#inMyCarSpan').html("There is one person in your car.<br>");
-		else $('#inMyCarSpan').html("There are " + incar.length + " people in your car.<br>");
-		for(var i = 0; i < incar.length; i++){
-			$('#inMyCarSpan').append('Person number ' + (i+1) + ' is ' + incar[i]+'<br>');
+		else {
+			$('#inMyCarSpan').html("There are " + incar.length + " people in your car.<br>");
+			for(var i = 0; i < incar.length; i++){
+				var tokick = '"'+incar[i][0]+'"';
+				$('#inMyCarSpan').append(incar[i][0]+'<button onclick="kickFromCar('+tokick+');" >kick</button><br>');
+				}
 			}
 		}
 	}
@@ -440,8 +437,7 @@ function approve(){
 	$(':checkbox:checked').each(function(i){
 		acceptval[i] = $(this).val();
 		});
-	$.ajax(
-		{
+	$.ajax({
 		type: "POST",
 		url: "<?php echo $postto; ?>",		
 		data: {
@@ -463,11 +459,26 @@ function approve(){
 	event.preventDefault();
 	}
 
-function (){
-
-	myCar();
+function kickFromCar(tokickval){
+	console.log("clicked");
 	}
 
+	//$('#returnSpan').show();
+	//$('#returnSpan').html("Kicking "+tokickval+"... <br>");
+	/*$.ajax({
+		type: "POST",
+		url: "test/kick.php",		
+		data: {
+			tokick: tokickval
+			},
+		success: function(data){
+			$('#returnSpan').show();
+			$('#returnSpan').html(data+"<br>");
+			$('#returnSpan').delay(9000).fadeOut();
+			}
+		});
+	event.preventDefault();*/
+	//myCar();
 </script>
 <?php
 	}

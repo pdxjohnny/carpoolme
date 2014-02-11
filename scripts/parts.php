@@ -8,7 +8,6 @@ Author: John Andersen
 <?php
 
 if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
-else define('INCLUDE_CHECK',true);
 
 function includes($dir){?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
