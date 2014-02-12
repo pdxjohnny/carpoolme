@@ -6,7 +6,8 @@ require 'phpfunctions.php';
 
 if(isset($_POST['getLeaveTime'])){
 	$time = get("latestleave",$_SESSION['username']);
-	exit ($time);
+	if($time==null) exit ("none");
+	else exit ($time);
 	}
 
 	$_SESSION['latestLeave'] = $_POST['datetime'];

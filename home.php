@@ -36,9 +36,6 @@ Author: John Andersen
 
 	<!-- Favicons
 	================================================== -->
-	<meta name="mobile-web-app-capable" content="yes">
-	<link rel="shortcut icon" sizes="196x196" href="images/nice-highres.png">
-	<link rel="shortcut icon" sizes="114x114" href="images/niceicon.png">
 	<link rel="shortcut icon" href="images/favicon.ico">
 	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
@@ -51,11 +48,13 @@ Author: John Andersen
 function toggleMap(){
 	$('#toggleMap').show();
 	$('#toggleCar').hide();
+	$('#toggleProfile').hide();
 	$('#help').hide();
 	}
 function toggleCar(){
 	$('#toggleMap').hide();
 	$('#toggleCar').show();
+	$('#toggleProfile').hide();
 	$('#help').hide();
 	}
 function toggleHelp(){
@@ -70,20 +69,14 @@ function toggleHelp(){
 	event.preventDefault();
 	$('#toggleMap').hide();
 	$('#toggleCar').hide();
+	$('#toggleProfile').hide();
 	$('#help').show();
 	}
-function toggleHelpNotLogedin(){
-	$('#help').toggle();
-	$('#help').html("Loading help... <br>");
-	$.ajax({
-		type: "GET",
-		url: "help.php",
-		data: {},
-		success: function(data){
-			$('#help').html(data);
-			}
-		});
-	event.preventDefault();
+function toggleProfile(){
+	$('#toggleMap').hide();
+	$('#toggleCar').hide();
+	$('#toggleProfile').show();
+	$('#help').hide();
 	}
 </script>
 
@@ -116,6 +109,7 @@ if(isset($_SESSION['username'])){
 			<center>
 			<button class="remove-bottom" onclick="toggleMap();">Map</button>
 			<button class="remove-bottom" onclick="toggleCar();">Car</button>
+			<button class="remove-bottom" onclick="toggleProfile();">Profiles</button>
 			<button class="remove-bottom" onclick="toggleHelp();">Help</button>
 			</center>
 			<hr style="margin-bottom: 10px;"/>
@@ -158,6 +152,11 @@ if(isset($_SESSION['username'])){
 ?>
 			</div>
 		</div>
+		<div id="toggleProfile" style="display:none;" class="sixteen columns remove-bottom">
+<?php
+	myProfile("profiles/profile.php");
+?>
+		</div>
 		<div id="help" style="display:none;" class="sixteen columns remove-bottom">
 		</div>
 <?php
@@ -179,10 +178,6 @@ else {?>
 		<a href="#" id="toggleLogin" >Login</a>
 		</div>
 	</div>
-	
-		<center><button class="remove-bottom" onclick="toggleHelpNotLogedin();">Help</button></center>
-		<div id="help" style="display:none;" class="sixteen columns remove-bottom">
-		</div>
 <?php
 	}
 // Ask for ride is in main.js

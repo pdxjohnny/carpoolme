@@ -1,5 +1,5 @@
 var sitename = "carpool";
-var dir = "test";
+var dir = "scripts";
 
 var site = document.URL;
 site = site.substring(site.indexOf("/") + 2);
@@ -146,7 +146,7 @@ function dateSufix(date){
 	}
 
 function userTime(time){
-
+	console.log(time);
 	if(time!=null){
 		var temp1 = time.split('-');
 		var temp2 = temp1[2].split(' ');
@@ -218,7 +218,6 @@ function showPosition(position){
 
 var map;
 var InfoWindow = new google.maps.InfoWindow();
-//var setDestButton = "<?php require 'test2.php'; ?>";
 var markers = [];
 function setAllMap(map) {
   for (var i = 0; i < markers.length; i++) {
@@ -241,10 +240,6 @@ function deleteMarkers() {
   clearMarkers();
   markers = [];
 }
-
-function setDestButton(){
-	document.write("<?php require 'test2.php'; ?>");
-	}
 
 function makeMap(centerlat,centerlng,zoomval,divId){
 
@@ -316,7 +311,7 @@ function arrayMap(locations){
 			}
 		}
 	}
-
+	
 function addPointMap(lat,lng,name,image,isuser){
 	if(isuser) var ontop = 9999999999;
 	else var ontop = 0;

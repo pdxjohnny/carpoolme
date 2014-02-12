@@ -21,7 +21,6 @@ $( document ).ready(function() {
 
 	getLeaveTime();
 	$('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from my ride's car</button>");
-	$('#leavetime').html("You are currently set to leave at "+readableDate("<?php echo $_SESSION['latestleave']; ?>"));
 
 	myRide();
 	<?php if(0==strcmp($_SESSION['type'],"offer")) echo "myCar();"; ?>
@@ -212,7 +211,8 @@ function getLeaveTime(){
 		url: "<?php echo $postto; ?>",
 		data: {"getLeaveTime": "getLeaveTime"},
 		success: function(data){
-			$('#leavetime').html("You are currently set to leave at "+readableDate(data));
+			if(data !== "none") $('#leavetime').html("You are currently set to leave at "+readableDate(data));
+			else $('#leavetime').html("You haven't set your leave time yet. ");
 			}
 		});
 	}
@@ -328,6 +328,7 @@ function updateSeats(){
 			$('#returnSpan').show();
 			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
+			myCar();
 			}
 		});
 	event.preventDefault();
@@ -385,16 +386,12 @@ function myCar(){
 		success: function(data){
 			data = data.split('%');
 
-			/*var returnval = data[2];
-			$('#returnSpan').show();
-			$('#returnSpan').html(returnval+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();*/
+			if(data[0]!=="none") inMyCar(JSON.parse(data[0]));
+			else inMyCar(null);
 
-			var incar = JSON.parse(data[0]);
-			inMyCar(incar);
+			if(data[1]!=="none") wantMyCar(JSON.parse(data[1]));
+			else wantMyCar(null);
 
-			var wantcar = JSON.parse(data[1]);
-			wantMyCar(wantcar);
 			displaySeats();
 			}
 		});
@@ -429,7 +426,8 @@ function inMyCar(incar){
 		if(incar.length == 1) $('#inMyCarSpan').html("There is one person in your car.<br>");
 		else $('#inMyCarSpan').html("There are " + incar.length + " people in your car.<br>");
 		for(var i = 0; i < incar.length; i++){
-			$('#inMyCarSpan').append('Person number ' + (i+1) + ' is ' + incar[i]+'<br>');
+			var tokick = '"'+incar[i]+'"';
+			$('#inMyCarSpan').append(incar[i]+'<button onclick="kickFromCar(this);" value="'+incar[i]+'" >kick</button><br>');
 			}
 		}
 	}
@@ -439,8 +437,7 @@ function approve(){
 	$(':checkbox:checked').each(function(i){
 		acceptval[i] = $(this).val();
 		});
-	$.ajax(
-		{
+	$.ajax({
 		type: "POST",
 		url: "<?php echo $postto; ?>",		
 		data: {
@@ -454,12 +451,32 @@ function approve(){
 			$('#returnSpan').html(returnval+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 
-			var incar = JSON.parse(data[0]);
-			var wantcar = JSON.parse(data[1]);
-			myCar(wantcar);
+			myCar();
 			}
 		});
 	event.preventDefault();
+	}
+
+function kickFromCar(tokickel){
+	$(tokickel).attr('value', function() {
+		var tokickval = this.value;
+		$('#returnSpan').show();
+		$('#returnSpan').html("Kicking "+tokickval+"... <br>");
+		$.ajax({
+			type: "POST",
+			url: "scripts/kick.php",		
+			data: {
+				tokick: tokickval
+				},
+			success: function(data){
+				$('#returnSpan').show();
+				$('#returnSpan').html(data+"<br>");
+				$('#returnSpan').delay(9000).fadeOut();
+				myCar();
+				}
+			});
+		event.preventDefault();
+		});
 	}
 </script>
 <?php
@@ -624,6 +641,96 @@ $('#registerfrom').submit(function(){
 		});
 	event.preventDefault();
 	});
+</script>
+<?php
+	}
+
+function myProfile($postto){ ?>
+<div style="display: table; margin: 0 auto;">
+	<input id="getProfile" type="text" value="<?php echo $_SESSION['username']; ?>" ></input>
+</div>
+<h3 id="profileName" ></h3><br>
+<img id="profilePicture" style="display: table; margin: 0 auto; max-width:128px; max-height:128px;" src='images/nopicture.png' align="left" >
+<span id="profileInfo" ></span>
+<span id="myProfile" ></span>
+<span id="profileEditButtons" style="display:none;" >
+<button id="profileInfoEditButton" onclick='showEditProfile();' >Edit Profile</button>
+
+</span>
+<span id="profileInfoEdit" style="display:none;" >
+	<textarea id="profileInfoEditText" rows="20" cols="3000" ></textarea>
+	<button onclick="updateProfile();">Update</button>
+</span>
+<script>
+profile($('#getProfile').val());
+
+$("#getProfile").keyup(function( event ) {
+	profile($(this).val());
+	});
+
+function profile(usernameval){
+	if (usernameval===""){
+		$('#profilePicture').hide();
+		$('#profileEditButtons').hide();
+		$('#profileInfoEdit').hide();
+		$('#profileInfo').hide();
+		$('#profileName').html("Type a user name to see their profile.<br>");
+		return "no username given";
+		}
+	$('#profilePicture').show();
+	$('#profileInfo').show();
+	$('#profileInfoEdit').hide();
+	if(usernameval==="<?php echo $_SESSION['username']; ?>") $('#profileEditButtons').show();
+	else $('#profileEditButtons').hide();
+	$('#profileName').html(usernameval);
+	$.ajax({
+		type: "POST",
+		url: "<?php echo $postto; ?>",
+		data: {
+			username: usernameval
+			},
+		success: function(data){
+			data = data.split('%');
+			if(data[0]!=="none") $('#profilePicture').attr("src", data[0]);
+			else $('#profilePicture').attr("src", 'images/nopicture.png');
+			
+			if(data[1]!=="none"){
+				$('#profileInfo').html(data[1]+"<br>");
+				}
+			else{
+				if($('#getProfile').val()==="<?php echo $_SESSION['username']; ?>") $('#profileInfo').html("Write about your self.<br>");
+				else $('#profileInfo').html("Hasn't said anything about themself.<br>");
+				}
+			}
+		});
+	}
+
+function updateProfile(){
+	$.ajax({
+		type: "POST",
+		url: "<?php echo $postto; ?>",
+		data: {
+			username: "<?php echo $_SESSION['username']; ?>",
+			userinfo: $('#profileInfoEditText').val()
+			},
+		success: function(data){
+			data = data.split('%');
+
+			$('#returnSpan').show();
+			$('#returnSpan').html(data[2]+"<br>");
+			$('#returnSpan').delay(9000).fadeOut();
+			profile("<?php echo $_SESSION['username']; ?>");
+			}
+		});
+	}
+
+function showEditProfile(){
+	$('#profileInfoEditText').val($('#profileInfo').html().replace(/<br>/g, '')+" ");
+	$('#profileInfoEdit').show();
+	$('#profileInfo').hide();
+	$('#profileEditButtons').hide();
+	}
+
 </script>
 <?php
 	}

@@ -13,7 +13,8 @@ require 'phpfunctions.php';
 		}
 
 	if(isset($_SESSION['inmycaroffer'])) unset($_SESSION['inmycaroffer']);
-	$query = "SELECT username FROM $table WHERE incar='$myusername' AND NOT username = '$myusername';";
+
+	$query = "SELECT username, email FROM $table WHERE incar='$myusername' AND NOT username = '$myusername';";
 
 	if ($result = mysqli_query($con, $query)) {
 
@@ -21,33 +22,31 @@ require 'phpfunctions.php';
 			$_SESSION['inmycaroffer'][$i] = $row[0];
    			 }
 		mysqli_free_result($result);
-		echo json_encode($_SESSION['inmycaroffer']);
+		if(isset($_SESSION['inmycaroffer'])) echo json_encode($_SESSION['inmycaroffer']);
+		else echo "none";
 		}
 
 	echo "%";
 
-	$query = "SELECT username FROM $table WHERE ridingwith='$myusername' AND NOT username = '$myusername';";
+	$query = "SELECT username, email FROM $table WHERE ridingwith='$myusername' AND NOT username = '$myusername';";
 	
 	if(isset($_SESSION['wantmycar'])) unset($_SESSION['wantmycar']);
 
 	if ($result = mysqli_query($con, $query)) {
 
 	    	for ($i = 0;$row = mysqli_fetch_row($result);$i++) {
-				$_SESSION['wantmycar'][$i] = $row[0];
-   			 }
+			$_SESSION['wantmycar'][$i] = $row[0];
+			 }
     		mysqli_free_result($result);
 		if(isset($_SESSION['wantmycar'])) echo json_encode($_SESSION['wantmycar']);
-		else echo "null";
+		else echo "none";
 		}
 
 	mysqli_close($con);
 
 	echo "%";
 		
-	if(empty($_POST['accept'])) {
-
-		} 
-	else{
+	if(!empty($_POST['accept'])) {
 		$accept = $_POST['accept'];
 		for($i=0; $i < count($accept); $i++){
 			updateString("incar",$_SESSION['username'],$accept[$i]);

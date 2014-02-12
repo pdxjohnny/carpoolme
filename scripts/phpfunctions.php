@@ -47,7 +47,7 @@ function checkString($if,$is,$user){
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-	$check = mysqli_query($con,"SELECT $table WHERE $if = '$is' AND username='$user';");
+	$check = mysqli_query($con,"SELECT username FROM $table WHERE $if = '$is' AND username='$user';");
 	
 	if(1 == mysqli_num_rows($check)){
 		mysqli_close($con);
@@ -362,4 +362,18 @@ function getSeats(){
 	mysqli_close($con);
 	
 	}
+
+function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
+    $url = 'http://www.gravatar.com/avatar/';
+    $url .= md5( strtolower( trim( $email ) ) );
+    $url .= "?s=$s&d=$d&r=$r";
+    if ( $img ) {
+        $url = '<img src="' . $url . '"';
+        foreach ( $atts as $key => $val )
+            $url .= ' ' . $key . '="' . $val . '"';
+        $url .= ' />';
+    }
+    return $url;
+}
+
 ?>
