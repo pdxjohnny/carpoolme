@@ -1,12 +1,18 @@
 <?php
 
 if(isset($_POST['username'])){
+$_POST['username'] = strtolower($_POST['username']);
 
-	$picture = "pictures/" . $_POST['username'];
-	if (file_exists($picture)) {
-		echo $picture;
-		} 
-	else {
+	for($i = 0 ; $i < 3 ; $i++){
+		if($i == 0)$picture = "pictures/" . $_POST['username'] . ".png";
+		else if($i == 1)$picture = "pictures/" . $_POST['username'] . ".jpg";
+		else if($i == 2)$picture = "pictures/" . $_POST['username'] . ".gif";
+		if (file_exists($picture)) {
+			echo "profiles/" . $picture;
+			$ispic = 1;
+			} 
+		}
+	if($ispic == 0) {
    		echo "none";
 		}
 	}

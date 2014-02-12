@@ -647,15 +647,16 @@ $('#registerfrom').submit(function(){
 
 function myProfile($postto){ ?>
 <div style="display: table; margin: 0 auto;">
-	<form id="profileFrom">
-		<input id="getProfile" type="text" value="<?php echo $_SESSION['username']; ?>" ></input>
-	</form>
+	<input id="getProfile" type="text" value="<?php echo $_SESSION['username']; ?>" ></input>
 </div>
-<span id="profileName" ></span><br>
-<span id="profilePicture" ></span>
+<h3 id="profileName" ></h3><br>
+<img id="profilePicture" style="display: table; margin: 0 auto; max-width:128px; max-height:128px;" src='images/nopicture.png' align="left" >
 <span id="profileInfo" ></span>
 <span id="myProfile" ></span>
-<button id="profileInfoEditButton"  style="display:none;" onclick='showEditProfile();' >Edit Profile</button>
+<span id="profileEditButtons" style="display:none;" >
+<button id="profileInfoEditButton" onclick='showEditProfile();' >Edit Profile</button>
+
+</span>
 <span id="profileInfoEdit" style="display:none;" >
 	<textarea id="profileInfoEditText" rows="20" cols="3000" ></textarea>
 	<button onclick="updateProfile();">Update</button>
@@ -663,16 +664,25 @@ function myProfile($postto){ ?>
 <script>
 profile($('#getProfile').val());
 
-$( "#getProfile" ).keyup(function( event ) {
+$("#getProfile").keyup(function( event ) {
 	profile($(this).val());
 	});
 
 function profile(usernameval){
+	if (usernameval===""){
+		$('#profilePicture').hide();
+		$('#profileEditButtons').hide();
+		$('#profileInfoEdit').hide();
+		$('#profileInfo').hide();
+		$('#profileName').html("Type a user name to see their profile.<br>");
+		return "no username given";
+		}
+	$('#profilePicture').show();
 	$('#profileInfo').show();
 	$('#profileInfoEdit').hide();
-	if(usernameval==="<?php echo $_SESSION['username']; ?>") $('#profileInfoEditButton').show();
-	else $('#profileInfoEditButton').hide();
-	$('#profileName').html("<h3>"+usernameval+"</h3>");
+	if(usernameval==="<?php echo $_SESSION['username']; ?>") $('#profileEditButtons').show();
+	else $('#profileEditButtons').hide();
+	$('#profileName').html(usernameval);
 	$.ajax({
 		type: "POST",
 		url: "<?php echo $postto; ?>",
@@ -680,10 +690,9 @@ function profile(usernameval){
 			username: usernameval
 			},
 		success: function(data){
-			console.log(data);
 			data = data.split('%');
-			if(data[0]!=="none") $('#profilePicture').html(data[0]);
-			else $('#profilePicture').html("<img src='images/noProfilePicture.png' ></img>");
+			if(data[0]!=="none") $('#profilePicture').attr("src", data[0]);
+			else $('#profilePicture').attr("src", 'images/nopicture.png');
 			
 			if(data[1]!=="none"){
 				$('#profileInfo').html(data[1]+"<br>");
@@ -719,7 +728,7 @@ function showEditProfile(){
 	$('#profileInfoEditText').val($('#profileInfo').html().replace(/<br>/g, '')+" ");
 	$('#profileInfoEdit').show();
 	$('#profileInfo').hide();
-	$('#profileInfoEditButton').hide();
+	$('#profileEditButtons').hide();
 	}
 
 </script>

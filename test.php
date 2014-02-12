@@ -109,7 +109,7 @@ if(isset($_SESSION['username'])){
 			<center>
 			<button class="remove-bottom" onclick="toggleMap();">Map</button>
 			<button class="remove-bottom" onclick="toggleCar();">Car</button>
-			<button class="remove-bottom" onclick="toggleProfile();">Profile</button>
+			<button class="remove-bottom" onclick="toggleProfile();">Profiles</button>
 			<button class="remove-bottom" onclick="toggleHelp();">Help</button>
 			</center>
 			<hr style="margin-bottom: 10px;"/>
