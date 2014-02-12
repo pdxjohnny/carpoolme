@@ -426,8 +426,8 @@ function inMyCar(incar){
 		if(incar.length == 1) $('#inMyCarSpan').html("There is one person in your car.<br>");
 		else $('#inMyCarSpan').html("There are " + incar.length + " people in your car.<br>");
 		for(var i = 0; i < incar.length; i++){
-			var tokick = '"'+incar[i][0]+'"';
-			$('#inMyCarSpan').append(incar[i][0]+'<button onclick="kickFromCar(this);" value="'+incar[i][0]+'" >kick</button><br>');
+			var tokick = '"'+incar[i]+'"';
+			$('#inMyCarSpan').append(incar[i]+'<button onclick="kickFromCar(this);" value="'+incar[i]+'" >kick</button><br>');
 			}
 		}
 	}
@@ -451,9 +451,7 @@ function approve(){
 			$('#returnSpan').html(returnval+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 
-			var incar = JSON.parse(data[0]);
-			var wantcar = JSON.parse(data[1]);
-			myCar(wantcar);
+			myCar();
 			}
 		});
 	event.preventDefault();
@@ -643,6 +641,87 @@ $('#registerfrom').submit(function(){
 		});
 	event.preventDefault();
 	});
+</script>
+<?php
+	}
+
+function myProfile($postto){ ?>
+<div style="display: table; margin: 0 auto;">
+	<form id="profileFrom">
+		<input id="getProfile" type="text" value="<?php echo $_SESSION['username']; ?>" ></input>
+	</form>
+</div>
+<span id="profileName" ></span><br>
+<span id="profilePicture" ></span>
+<span id="profileInfo" ></span>
+<span id="myProfile" ></span>
+<button id="profileInfoEditButton"  style="display:none;" onclick='showEditProfile();' >Edit Profile</button>
+<span id="profileInfoEdit" style="display:none;" >
+	<textarea id="profileInfoEditText" rows="20" cols="3000" ></textarea>
+	<button onclick="updateProfile();">Update</button>
+</span>
+<script>
+profile($('#getProfile').val());
+
+$( "#getProfile" ).keyup(function( event ) {
+	profile($(this).val());
+	});
+
+function profile(usernameval){
+	$('#profileInfo').show();
+	$('#profileInfoEdit').hide();
+	if(usernameval==="<?php echo $_SESSION['username']; ?>") $('#profileInfoEditButton').show();
+	else $('#profileInfoEditButton').hide();
+	$('#profileName').html("<h3>"+usernameval+"</h3>");
+	$.ajax({
+		type: "POST",
+		url: "<?php echo $postto; ?>",
+		data: {
+			username: usernameval
+			},
+		success: function(data){
+			console.log(data);
+			data = data.split('%');
+			if(data[0]!=="none") $('#profilePicture').html(data[0]);
+			else $('#profilePicture').html("<img src='images/noProfilePicture.png' ></img>");
+			
+			if(data[1]!=="none"){
+				$('#profileInfo').html(data[1]+"<br>");
+				}
+			else{
+				if($('#getProfile').val()==="<?php echo $_SESSION['username']; ?>") $('#profileInfo').html("Write about your self.<br>");
+				else $('#profileInfo').html("Hasn't said anything about themself.<br>");
+				}
+			}
+		});
+	}
+
+function updateProfile(){
+	$.ajax({
+		type: "POST",
+		url: "<?php echo $postto; ?>",
+		data: {
+			username: "<?php echo $_SESSION['username']; ?>",
+			userinfo: $('#profileInfoEditText').val()
+			},
+		success: function(data){
+			data = data.split('%');
+
+			$('#returnSpan').show();
+			$('#returnSpan').html(data[2]+"<br>");
+			$('#returnSpan').delay(9000).fadeOut();
+			profile("<?php echo $_SESSION['username']; ?>");
+			}
+		});
+	}
+
+function showEditProfile(){
+	$('#profileInfoEditText').val($('#profileInfo').html().replace(/<br>/g, '')+" ");
+	$('#profileInfoEdit').show();
+	$('#profileInfo').hide();
+	$('#profileInfoEditButton').hide();
+	}
+
 </script>
 <?php
 	}

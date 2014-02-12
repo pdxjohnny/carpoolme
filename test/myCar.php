@@ -19,8 +19,7 @@ require 'phpfunctions.php';
 	if ($result = mysqli_query($con, $query)) {
 
 	    	for ($i = 0;$row = mysqli_fetch_row($result);$i++) {
-			$_SESSION['inmycaroffer'][$i][0] = $row[0];
-			$_SESSION['inmycaroffer'][$i][1] = get_gravatar($row[1]);
+			$_SESSION['inmycaroffer'][$i] = $row[0];
    			 }
 		mysqli_free_result($result);
 		if(isset($_SESSION['inmycaroffer'])) echo json_encode($_SESSION['inmycaroffer']);
@@ -36,8 +35,7 @@ require 'phpfunctions.php';
 	if ($result = mysqli_query($con, $query)) {
 
 	    	for ($i = 0;$row = mysqli_fetch_row($result);$i++) {
-			$_SESSION['wantmycar'][$i][0] = $row[0];
-			$_SESSION['wantmycar'][$i][1] = get_gravatar($row[1]);
+			$_SESSION['wantmycar'][$i] = $row[0];
 			 }
     		mysqli_free_result($result);
 		if(isset($_SESSION['wantmycar'])) echo json_encode($_SESSION['wantmycar']);

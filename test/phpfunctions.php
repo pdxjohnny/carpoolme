@@ -47,7 +47,7 @@ function checkString($if,$is,$user){
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-	$check = mysqli_query($con,"SELECT $table WHERE $if = '$is' AND username='$user';");
+	$check = mysqli_query($con,"SELECT username FROM $table WHERE $if = '$is' AND username='$user';");
 	
 	if(1 == mysqli_num_rows($check)){
 		mysqli_close($con);

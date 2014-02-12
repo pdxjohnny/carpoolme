@@ -19,12 +19,11 @@ require 'phpfunctions.php';
 
 	if(isset($_SESSION['inmycarneed'])) unset($_SESSION['inmycarneed']);
 
-	$query = "SELECT username, email FROM $table WHERE incar='$myride';";
+	$query = "SELECT username FROM $table WHERE incar='$myride';";
 
 	if ($result = mysqli_query($con, $query)) {
 	    	for ($i = 0;$row = mysqli_fetch_row($result);$i++) {
-			$_SESSION['inmycarneed'][$i][0] = $row[0];
-			$_SESSION['inmycarneed'][$i][1] = get_gravatar($row[1]);
+			$_SESSION['inmycarneed'][$i] = $row[0];
 			 }
 		mysqli_free_result($result);
 		echo json_encode($_SESSION['inmycarneed']) . '%' . $myride . "%You've been approved to ride in $myride's car. ";

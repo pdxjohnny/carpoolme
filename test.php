@@ -48,11 +48,13 @@ Author: John Andersen
 function toggleMap(){
 	$('#toggleMap').show();
 	$('#toggleCar').hide();
+	$('#toggleProfile').hide();
 	$('#help').hide();
 	}
 function toggleCar(){
 	$('#toggleMap').hide();
 	$('#toggleCar').show();
+	$('#toggleProfile').hide();
 	$('#help').hide();
 	}
 function toggleHelp(){
@@ -67,11 +69,14 @@ function toggleHelp(){
 	event.preventDefault();
 	$('#toggleMap').hide();
 	$('#toggleCar').hide();
+	$('#toggleProfile').hide();
 	$('#help').show();
 	}
 function toggleProfile(){
-
-
+	$('#toggleMap').hide();
+	$('#toggleCar').hide();
+	$('#toggleProfile').show();
+	$('#help').hide();
 	}
 </script>
 
@@ -104,6 +109,7 @@ if(isset($_SESSION['username'])){
 			<center>
 			<button class="remove-bottom" onclick="toggleMap();">Map</button>
 			<button class="remove-bottom" onclick="toggleCar();">Car</button>
+			<button class="remove-bottom" onclick="toggleProfile();">Profile</button>
 			<button class="remove-bottom" onclick="toggleHelp();">Help</button>
 			</center>
 			<hr style="margin-bottom: 10px;"/>
@@ -145,6 +151,11 @@ if(isset($_SESSION['username'])){
 	myRide("test/myRide.php");
 ?>
 			</div>
+		</div>
+		<div id="toggleProfile" style="display:none;" class="sixteen columns remove-bottom">
+<?php
+	myProfile("profiles/profile.php");
+?>
 		</div>
 		<div id="help" style="display:none;" class="sixteen columns remove-bottom">
 		</div>
