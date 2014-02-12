@@ -21,7 +21,6 @@ $( document ).ready(function() {
 
 	getLeaveTime();
 	$('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from my ride's car</button>");
-	$('#leavetime').html("You are currently set to leave at "+readableDate("<?php echo $_SESSION['latestleave']; ?>"));
 
 	myRide();
 	<?php if(0==strcmp($_SESSION['type'],"offer")) echo "myCar();"; ?>
@@ -212,7 +211,8 @@ function getLeaveTime(){
 		url: "<?php echo $postto; ?>",
 		data: {"getLeaveTime": "getLeaveTime"},
 		success: function(data){
-			$('#leavetime').html("You are currently set to leave at "+readableDate(data));
+			if(data !== "none") $('#leavetime').html("You are currently set to leave at "+readableDate(data));
+			else $('#leavetime').html("You haven't set your leave time yet. ");
 			}
 		});
 	}

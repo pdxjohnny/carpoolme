@@ -146,7 +146,7 @@ function dateSufix(date){
 	}
 
 function userTime(time){
-
+	console.log(time);
 	if(time!=null){
 		var temp1 = time.split('-');
 		var temp2 = temp1[2].split(' ');
