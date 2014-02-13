@@ -1,0 +1,2 @@
+[Wed Feb 12 21:34:00 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: ispic in /var/www/carpool/profiles/profile.php on line 15, referer: http://carpoolme.net/test.php
+[Wed Feb 12 21:41:43 2014] [error] [client 24.20.209.246] PHP Warning:  file_put_contents(profiles/users): failed to open stream: No such file or directory in /var/www/carpool/test/register.php on line 52, referer: http://carpoolme.net/test.php

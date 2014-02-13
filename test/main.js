@@ -51,18 +51,11 @@ function doesFileExist(urlToFile){
 	}
 
 function readFile(filename){
-	var oRequest = new XMLHttpRequest();
-	var sURL = "/" + filename;
-
-	oRequest.open("GET",sURL,false);
-	oRequest.setRequestHeader("User-Agent",navigator.userAgent);
-	oRequest.send(null);
-
-	if (oRequest.status==200){
-		var res = oRequest.responseText;
-		return res;
-		}
-	else console.log("Error executing XMLHttpRequest call for "+sURL);
+	filename = "/"+filename;
+	var http=new XMLHttpRequest();
+	http.open("GET",filename,false);
+	http.send();
+	return http.responseText;
 	}
 
 function tryParseJSON (jsonString){

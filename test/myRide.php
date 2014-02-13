@@ -3,8 +3,8 @@
 session_start();
 require 'phpfunctions.php';
 
+	if(!isset($_SESSION['myride'])) exit("You haven't asked anyone for a ride. ");
 	$myride = $_SESSION['myride'];
-	if($myride==NULL) exit("You haven't asked anyone for a ride. ");
 
 	if(get("incar",$_SESSION['username'])==NULL) exit("You haven't been approved to ride in $myride's car yet. %$myride");
 

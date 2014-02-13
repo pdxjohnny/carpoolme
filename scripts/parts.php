@@ -636,9 +636,11 @@ function myProfile($postto){ ?>
 </span>
 <script>
 profile($('#getProfile').val());
+var availableUsers = readFile("profiles/users").split('\n');
 
 $("#getProfile").keyup(function( event ) {
 	profile($(this).val());
+	availableUsers = readFile("profiles/users").split('\n');
 	});
 
 function profile(usernameval){
@@ -705,10 +707,13 @@ function showEditProfile(){
 	$('#profileInfo').hide();
 	$('#profileEditButtons').hide();
 	}
-var availableUsers = readFile("profiles/users").split('\n');
-    $( "#getProfile" ).autocomplete({
-      source: availableUsers.slice(0 , 5)
-    });
+
+$( "#getProfile" ).autocomplete({
+	source: function(request, response) {
+		var results = $.ui.autocomplete.filter(availableUsers, request.term);
+		response(results.slice(0, 5));
+		}
+	});
 
 </script>
 <?php

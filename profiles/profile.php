@@ -3,6 +3,7 @@
 if(isset($_POST['username'])){
 $_POST['username'] = strtolower($_POST['username']);
 
+	$ispic = 0;
 	for($i = 0 ; $i < 3 ; $i++){
 		if($i == 0)$picture = "pictures/" . $_POST['username'] . ".png";
 		else if($i == 1)$picture = "pictures/" . $_POST['username'] . ".jpg";
