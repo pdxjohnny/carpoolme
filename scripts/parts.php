@@ -12,6 +12,8 @@ if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1)
 function includes($dir){?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="<?php echo $dir; ?>/main.js"></script>
 
 <script>
@@ -33,35 +35,6 @@ $( document ).ready(function() {
 		}, 30000);
 
 	});
-</script>
-<?php
-	}
-
-function test(){?>
-<form id="form">
-<input id="address" type="textbox" placeholder="Destination">
-<input id="other" type="textbox" placeholder="other">
-<input value="Submit" type="submit"><br>
-</form>
-
-<script>
-$( document ).ready(function() {
-	$( "#form" ).submit(function( event ) {
-	var add = $('#address').val();
-	var other = $('#other').val();
-	$.ajax({
-		type: "POST",
-		url: "test3.php",
-		data: {test1: add, test2: other},
-		success: function(data){
-			$('#returnSpan').show();
-			$('#returnSpan').html(data+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();
-			}
-		});
-	event.preventDefault();
-	});
-});
 </script>
 <?php
 	}
@@ -646,7 +619,7 @@ $('#registerfrom').submit(function(){
 	}
 
 function myProfile($postto){ ?>
-<div style="display: table; margin: 0 auto;">
+<div class="ui-widget" style="display: table; margin: 0 auto;">
 	<input id="getProfile" type="text" value="<?php echo $_SESSION['username']; ?>" ></input>
 </div>
 <h3 id="profileName" ></h3><br>
@@ -683,6 +656,8 @@ function profile(usernameval){
 	if(usernameval==="<?php echo $_SESSION['username']; ?>") $('#profileEditButtons').show();
 	else $('#profileEditButtons').hide();
 	$('#profileName').html(usernameval);
+
+	// Get picture and info
 	$.ajax({
 		type: "POST",
 		url: "<?php echo $postto; ?>",
@@ -730,6 +705,10 @@ function showEditProfile(){
 	$('#profileInfo').hide();
 	$('#profileEditButtons').hide();
 	}
+var availableUsers = readFile("profiles/users").split('\n');
+    $( "#getProfile" ).autocomplete({
+      source: availableUsers.slice(0 , 5)
+    });
 
 </script>
 <?php

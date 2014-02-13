@@ -15,7 +15,7 @@ function links(file,dir,linktype){
 	}
 
 function upload(subdir){
-	document.write("<form action='test/upload.php' method='post' enctype='multipart/form-data'><input type='hidden' name='uploadto' value="+subdir+"/><input type='submit' name='submit' value='Upload'> <input type='file' name='file' id='file'></form>");
+	document.write("<form action='"+dir+"/upload.php' method='post' enctype='multipart/form-data'><input type='hidden' name='uploadto' value="+subdir+"/><input type='submit' name='submit' value='Upload'> <input type='file' name='file' id='file'></form>");
 	}
 
 function removeLeading(string,find){
@@ -38,54 +38,21 @@ function removeLeading(string,find){
 	return temp;
 	}
 
-function stringsToLinks(list,directory,linktype){
-	
-	for (var i = 0 ; i < list.length ; i++){
-		var n = list[i].indexOf('.');
-		var temp = list[i].substring(0, n != -1 ? n : list[i].length);
-		temp = temp.replace('_',' ');
-
-		if(typeof linktype !== 'undefined'){
-			if(linktype === "images"){
-				if(typeof directory === 'undefined'){
-					console.log("No directory passed to 'function stringsToImageLinks'");
-					}
-				else{
-					if(i==0) var links = ["<li id="+temp+" class='figure'><a href="+directory+list[i]+"><img src="+directory+list[i]+" alt="+temp+" /><span class='figcaption'><b>"+temp+"</b></span></a></li>"];
-					else links.push("<li id="+temp+" class='figure'><a href="+directory+list[i]+"><img src="+directory+list[i]+" alt="+temp+" /><span class='figcaption'><b>"+temp+"</b></span></a></li>");
-					}
-				}
-			else if(linktype === "list"){
-				if(typeof directory === 'undefined'){
-					if(i==0) var links = ["<li class='first'><a href=/>Home</a></li>"];
-					if (temp!=="index") links.push("<li class='first'><a href="+list[i]+">"+temp+"</a></li>");
-					}
-				else{
-					if(i==0) var links = ["<li class='first'><a href="+directory+list[i]+">"+temp+"</a></li>"];
-					else links.push("<li class='first'><a href="+directory+list[i]+">"+temp+"</a></li>");
-					}
-				}
-			}
-		else{
-			if(typeof directory === 'undefined'){
-				if(i==0) var links = ["<a href=/>Home</a>"];
-				if ((temp!=="index")&&(temp!=="login")) links.push("<a href="+list[i]+">"+temp+"</a>");
-				}
-			else{
-				if(i==0) var links = ["<a href="+directory+list[i]+">"+temp+"</a><br>"];
-				else links.push("<a href="+directory+list[i]+">"+temp+"</a><br>");
-				}
-			}
-		}
-	return links;
-	}		
+function doesFileExist(urlToFile){
+	$.ajax({
+		url: urlToFile,
+		success: function(data){
+			return true;
+			},
+		error: function(data){
+			return false;
+			},
+		})
+	}
 
 function readFile(filename){
 	var oRequest = new XMLHttpRequest();
-	var sURL = /*"http://"
-        	 + site
-        	 +*/ "/readfiles/"
-		 + filename;
+	var sURL = "/" + filename;
 
 	oRequest.open("GET",sURL,false);
 	oRequest.setRequestHeader("User-Agent",navigator.userAgent);
@@ -95,7 +62,7 @@ function readFile(filename){
 		var res = oRequest.responseText;
 		return res;
 		}
-	else alert("Error executing XMLHttpRequest call!");
+	else console.log("Error executing XMLHttpRequest call for "+sURL);
 	}
 
 function tryParseJSON (jsonString){
@@ -115,7 +82,7 @@ function askForRide(){
 	$.ajax(
 		{
 		type: "POST",
-		url: "test/askForRide.php",
+		url: dir+"/askForRide.php",
 		data: {
 			myride: myrideval,
 			username: "<?php echo $_SESSION['username']; ?>"
@@ -146,7 +113,6 @@ function dateSufix(date){
 	}
 
 function userTime(time){
-	console.log(time);
 	if(time!=null){
 		var temp1 = time.split('-');
 		var temp2 = temp1[2].split(' ');
@@ -218,7 +184,7 @@ function showPosition(position){
 
 var map;
 var InfoWindow = new google.maps.InfoWindow();
-//var setDestButton = "<?php require 'test2.php'; ?>";
+
 var markers = [];
 function setAllMap(map) {
   for (var i = 0; i < markers.length; i++) {
@@ -241,10 +207,6 @@ function deleteMarkers() {
   clearMarkers();
   markers = [];
 }
-
-function setDestButton(){
-	document.write("<?php require 'test2.php'; ?>");
-	}
 
 function makeMap(centerlat,centerlng,zoomval,divId){
 
