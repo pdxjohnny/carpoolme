@@ -671,8 +671,8 @@ function profile(usernameval){
 			if(data[0]!=="none") $('#profilePicture').attr("src", data[0]);
 			else $('#profilePicture').attr("src", 'images/nopicture.png');
 			
-			if(data[1]!=="none"){
-				$('#profileInfo').html(data[1]+"<br>");
+			if(data[1]==="exists"){
+				$('#profileInfo').html(readFile("profiles/infos/"+usernameval)+"<br>");
 				}
 			else{
 				if($('#getProfile').val()==="<?php echo $_SESSION['username']; ?>") $('#profileInfo').html("Write about your self.<br>");

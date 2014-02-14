@@ -1,2 +1,48 @@
 [Wed Feb 12 21:34:00 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: ispic in /var/www/carpool/profiles/profile.php on line 15, referer: http://carpoolme.net/test.php
 [Wed Feb 12 21:41:43 2014] [error] [client 24.20.209.246] PHP Warning:  file_put_contents(profiles/users): failed to open stream: No such file or directory in /var/www/carpool/test/register.php on line 52, referer: http://carpoolme.net/test.php
+[Wed Feb 12 22:20:04 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/phpfunctions.php on line 341, referer: http://carpoolme.net/
+[Wed Feb 12 22:27:16 2014] [error] [client 64.246.187.42] File does not exist: /var/www/carpool/robots.txt
+[Wed Feb 12 22:59:22 2014] [error] [client 50.21.193.143] File does not exist: /var/www/carpool/HNAP1, referer: http://24.20.209.246/
+[Thu Feb 13 03:54:44 2014] [error] [client 66.129.61.108] File does not exist: /var/www/carpool/HNAP1, referer: http://24.20.209.246/
+[Thu Feb 13 05:42:24 2014] [error] [client 74.62.212.107] File does not exist: /var/www/carpool/HNAP1, referer: http://24.20.209.246/
+[Thu Feb 13 08:29:45 2014] [error] [client 201.48.16.116] File does not exist: /var/www/carpool/cgi-bin
+[Thu Feb 13 08:29:45 2014] [error] [client 201.48.16.116] File does not exist: /var/www/carpool/cgi-bin
+[Thu Feb 13 08:29:45 2014] [error] [client 201.48.16.116] File does not exist: /var/www/carpool/cgi-bin
+[Thu Feb 13 08:29:46 2014] [error] [client 201.48.16.116] File does not exist: /var/www/carpool/cgi-bin
+[Thu Feb 13 08:29:46 2014] [error] [client 201.48.16.116] File does not exist: /var/www/carpool/cgi-bin
+[Thu Feb 13 09:05:38 2014] [error] [client 196.22.160.45] File does not exist: /var/www/carpool/user
+[Thu Feb 13 09:32:20 2014] [error] [client 66.249.74.202] File does not exist: /var/www/carpool/robots.txt
+[Thu Feb 13 10:43:27 2014] [error] [client 99.234.229.186] Invalid URI in request \x9aG\xc4\x1dk\xddFD\x82\xfd\xd8l\x18\x0c\xbctn=\xd4\xb3l\xf9\xda\xc8\xb5\x150F\xf4D=\xcdZv-j\xcb\xc9
+[Thu Feb 13 11:21:37 2014] [error] [client 182.173.212.198] File does not exist: /var/www/carpool/HNAP1, referer: http://24.20.209.246/
+[Thu Feb 13 12:10:53 2014] [error] [client 50.57.104.33] PHP Notice:  Undefined index: GPSlat in /var/www/carpool/scripts/login.php on line 12
+[Thu Feb 13 12:10:53 2014] [error] [client 50.57.104.33] PHP Notice:  Undefined index: GPSlng in /var/www/carpool/scripts/login.php on line 13
+[Thu Feb 13 12:10:53 2014] [error] [client 50.57.104.33] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/login.php on line 14
+[Thu Feb 13 12:10:53 2014] [error] [client 50.57.104.33] PHP Notice:  Undefined index: password in /var/www/carpool/scripts/login.php on line 15
+[Thu Feb 13 12:10:53 2014] [error] [client 50.57.104.33] PHP Notice:  Undefined index: type in /var/www/carpool/scripts/login.php on line 16
+[Thu Feb 13 12:10:56 2014] [error] [client 50.57.190.50] PHP Notice:  Undefined index: datetime in /var/www/carpool/scripts/setLatestLeave.php on line 13
+[Thu Feb 13 12:10:56 2014] [error] [client 50.57.190.50] PHP Notice:  Undefined index: datetime in /var/www/carpool/scripts/setLatestLeave.php on line 14
+[Thu Feb 13 12:10:57 2014] [error] [client 50.57.64.198] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/myRide.php on line 6
+[Thu Feb 13 12:45:09 2014] [error] [client 211.24.37.130] File does not exist: /var/www/carpool/HNAP1, referer: http://24.20.209.246/
+[Thu Feb 13 15:02:24 2014] [error] [client 64.71.197.53] File does not exist: /var/www/carpool/robots.txt
+[Thu Feb 13 15:19:06 2014] [error] [client 206.80.118.114] File does not exist: /var/www/carpool/robots.txt
+[Thu Feb 13 15:27:53 2014] [error] [client 64.71.205.23] File does not exist: /var/www/carpool/robots.txt
+[Thu Feb 13 17:16:02 2014] [error] [client 24.6.123.214] File does not exist: /var/www/carpool/HNAP1, referer: http://24.20.209.246/
+[Thu Feb 13 19:45:03 2014] [error] [client 66.249.74.19] File does not exist: /var/www/carpool/robots.txt
+[Thu Feb 13 20:37:14 2014] [error] [client 186.154.250.68] File does not exist: /var/www/carpool/cgi-bin
+[Thu Feb 13 20:37:14 2014] [error] [client 186.154.250.68] File does not exist: /var/www/carpool/cgi-bin
+[Thu Feb 13 20:37:15 2014] [error] [client 186.154.250.68] File does not exist: /var/www/carpool/cgi-bin
+[Thu Feb 13 20:37:15 2014] [error] [client 186.154.250.68] File does not exist: /var/www/carpool/cgi-bin
+[Thu Feb 13 20:37:16 2014] [error] [client 186.154.250.68] File does not exist: /var/www/carpool/cgi-bin
+[Fri Feb 14 05:31:41 2014] [error] [client 199.192.207.146] File does not exist: /var/www/carpool/robots.txt
+[Fri Feb 14 06:30:33 2014] [error] [client 170.210.232.240] File does not exist: /var/www/carpool/cgi-bin
+[Fri Feb 14 06:30:33 2014] [error] [client 170.210.232.240] File does not exist: /var/www/carpool/cgi-bin
+[Fri Feb 14 06:30:34 2014] [error] [client 170.210.232.240] File does not exist: /var/www/carpool/cgi-bin
+[Fri Feb 14 06:30:35 2014] [error] [client 170.210.232.240] File does not exist: /var/www/carpool/cgi-bin
+[Fri Feb 14 06:30:35 2014] [error] [client 170.210.232.240] File does not exist: /var/www/carpool/cgi-bin
+[Fri Feb 14 07:37:17 2014] [error] [client 110.153.8.93] File does not exist: /var/www/carpool/cgi-bin
+[Fri Feb 14 08:00:09 2014] [error] [client 120.68.94.23] File does not exist: /var/www/carpool/cgi-bin
+[Fri Feb 14 10:15:47 2014] [error] [client 66.249.74.19] File does not exist: /var/www/carpool/robots.txt
+[Fri Feb 14 11:10:04 2014] [error] [client 66.249.74.202] File does not exist: /var/www/carpool/robots.txt
+[Fri Feb 14 11:43:10 2014] [error] [client 66.249.74.133] File does not exist: /var/www/carpool/robots.txt
+[Fri Feb 14 13:33:08 2014] [error] [client 63.142.210.176] File does not exist: /var/www/carpool/HNAP1, referer: http://24.20.209.246/
+[Fri Feb 14 13:34:30 2014] [error] [client 24.143.72.204] File does not exist: /var/www/carpool/HNAP1, referer: http://24.20.209.246/

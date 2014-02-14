@@ -23,7 +23,7 @@ $_POST['username'] = strtolower($_POST['username']);
 if(isset($_POST['username'])){
 	$file = "infos/" . $_POST['username'];
 	if (file_exists($file)) {
-		echo file_get_contents($file);
+		echo "exists";
 		} 
 	else {
    		echo "none";
