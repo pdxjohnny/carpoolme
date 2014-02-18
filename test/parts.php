@@ -628,7 +628,10 @@ function myProfile($postto){ ?>
 <span id="myProfile" ></span>
 <span id="profileEditButtons" style="display:none;" >
 <button id="profileInfoEditButton" onclick='showEditProfile();' >Edit Profile</button>
-
+	<form id="profilePictureUpload" enctype='multipart/form-data'>
+		<input type='submit' name='submit' value='Upload'>
+		<input type='file' name='file' id='file'>
+	</form>
 </span>
 <span id="profileInfoEdit" style="display:none;" >
 	<textarea id="profileInfoEditText" rows="20" cols="3000" ></textarea>
@@ -675,7 +678,10 @@ function profile(usernameval){
 				$('#profileInfo').html(readFile("profiles/infos/"+usernameval)+"<br>");
 				}
 			else{
-				if($('#getProfile').val()==="<?php echo $_SESSION['username']; ?>") $('#profileInfo').html("Write about your self.<br>");
+				if($('#getProfile').val()==="<?php echo $_SESSION['username']; ?>"){
+					$('#profileInfo').html("Write about your self.<br>");
+
+					}
 				else $('#profileInfo').html("Hasn't said anything about themself.<br>");
 				}
 			}
@@ -713,6 +719,11 @@ $( "#getProfile" ).autocomplete({
 		var results = $.ui.autocomplete.filter(availableUsers, request.term);
 		response(results.slice(0, 5));
 		}
+	});
+
+$('#profilePictureUpload').submit(function(){
+	console.log("uploaded");
+	return false;
 	});
 
 </script>
