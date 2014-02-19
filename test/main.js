@@ -140,6 +140,7 @@ function makeMap(centerOn,zoomval,divId){
 function arrayMap(locations){
 
 	var marker, i;
+	if(locations == null) return 1;
 
 	// Current locations
 	for (i = 0; i < locations.length; i++) { 
@@ -168,7 +169,8 @@ function arrayMap(locations){
 					if(pretime!==false) var time = " Leaving at " + readableDate(locations[i][8]);
 					else var time = " No leave time set. ";
 					if(locations[i][3]==="offer"){
-						getFromTable("username, latitude, longitude, dlatitude, dlongitude, mpg ", "username", locations[i][0], 6, function(jsondata){
+						distanceInfo(locations[i][0], "distanceDiv");
+						/*getFromTable("username, latitude, longitude, dlatitude, dlongitude, mpg ", "username", locations[i][0], 6, function(jsondata){
 							userinfo = JSON.parse(jsondata);
 							console.log(userinfo);
 							start = new google.maps.LatLng(userinfo[0][1],userinfo[0][2]);
@@ -182,7 +184,7 @@ function arrayMap(locations){
 									distances(start, end);
 									}
 								});
-							});
+							});*/
 						if(locations[i][6]!==null){
 							if(locations[i][7]<=0){
 								InfoWindow.setContent(locations[i][0]+' has a full car.');
@@ -278,136 +280,58 @@ function getFromTable(stuff, something, isthis, howmany, callback){
 			callback(data);
 			}
 		});
-	event.preventDefault();
 	}
 
-// Distance Stuff
+// Distance Stuff in distance.js
 
-var allCallbacks = 0;
-var totalCallbacks = false;
-var totalDistance = 0;
-var riderpos = [];
-var p = 0;
+// Show the route
 
-function makeRiderPos(riders){
-	riderpos = [];
-	for(var i = 0; i < riders.length; i++){
-		riderpos.push(new google.maps.LatLng(riders[i][1], riders[i][2]));
-		}
-	}
 
-function distances(start, end, riderpos){
-	allCallbacks = 0;
-	totalCallbacks = false;
-	totalDistance = 0;
-	p = 0;
-	if (riderpos == null){
-		totalCallbacks = 1;
-		calculateDistance(start, end, function(distance){
-			totalDistance = distance;
-			calldone();
+var bounds = new google.maps.LatLngBounds();
+var markersArray = [];
+
+var renderOptions = { draggable: true };
+var directionDisplay = new google.maps.DirectionsRenderer(renderOptions);
+var directionsService = new google.maps.DirectionsService();
+
+function calcRoute(user) {
+	var start;
+	var end;
+	var waypoints = [];
+	getFromTable("username, latitude, longitude, dlatitude, dlongitude, mpg ", "username", user, 6, function(jsondata){
+		userinfo = JSON.parse(jsondata);
+		console.log(userinfo);
+		start = new google.maps.LatLng(userinfo[0][1],userinfo[0][2]);
+		end = new google.maps.LatLng(userinfo[0][3],userinfo[0][4]);
+		getFromTable("username, latitude, longitude", "incar", user, 3, function(jsondata){
+			if(JSON.parse(jsondata) != null){
+				var riders = JSON.parse(jsondata);
+				console.log(riders);
+				for(var i = 0; i < riders.length; i++){
+					waypoints.push({location: new google.maps.LatLng(riders[i][1], riders[i][2]),stopover: true});
+					}		
+				}
+			else{
+				}
 			});
-		}
-	else if (riderpos.length == 1){
-		totalCallbacks = 2;
-
-		calculateDistance(start, riderpos[0], function(distance){
-			totalDistance = totalDistance + distance;
-			
-			calldone();
-			});
-
-		calculateDistance(riderpos[riderpos.length-1], end, function(distance){
-			totalDistance = totalDistance + distance;
-			
-			calldone();
-			});
-		}
-	else if (riderpos.length > 1){
-		totalCallbacks = (2 + riderpos.length-1);
-
-		calculateDistance(start, riderpos[0], function(distance){
-			totalDistance = totalDistance + distance;
-			calldone();
-			});
-
-		riderToRider(riderpos);
-
-		calculateDistance(riderpos[riderpos.length-1], end, function(distance){
-			totalDistance = totalDistance + distance;
-			
-			calldone();
-			});
-		}
-	}
-
-function calldone(){
-	allCallbacks++;
-	if(allCallbacks == totalCallbacks) {
-    		document.getElementById("distanceDiv").innerHTML = userinfo[0][0]+ " is traveling " + toMiles(totalDistance) + " miles. ";
-		var mpg = userinfo[0][5];
-		if (mpg == null) document.getElementById("distanceDiv").innerHTML += "They have not given their mpg to calculate contibution. ";
-		else document.getElementById("distanceDiv").innerHTML += "This will take "+ toPrice(toMiles(totalDistance),mpg,userinfo[0][0]) +" dollars. ";
-		}
-	}
-
-function riderToRider(riderpos) {
-	calculateDistance(riderpos[p], riderpos[p+1], function(distance){
-		totalDistance = totalDistance + distance;
-		
-		calldone();
-		p++;
-
-		if(p < riderpos.length-1){
-			riderToRider(riderpos);
-			}
 		});
-	}
-
-function calculateDistance(point1, point2, callback) {
-
 	var request = {
-		origins: [point1],
-		destinations: [point2],
-		travelMode: google.maps.TravelMode.DRIVING,
-		unitSystem: google.maps.UnitSystem.IMPERIAL,
-		avoidHighways: false,
-		avoidTolls: false
+		origin: start,
+		destination: end,
+		waypoints: waypoints,
+		travelMode: google.maps.TravelMode.DRIVING
 		};
-
-	var service = new google.maps.DistanceMatrixService();
-	service.getDistanceMatrix(request, function(response, status) {
-		if (status != google.maps.DistanceMatrixStatus.OK) {
-			console.log('getDistanceMatrix error was: ' + status);
-			}
-		else {
-			var origins = response.originAddresses;
-			var destinations = response.destinationAddresses;
-			var results = response.rows[0].elements;
-			var meters = results[0].distance.value;
-			callback(meters);
+	directionsService.route(request, function(response, status) {
+		if (status == google.maps.DirectionsStatus.OK) {
+			directionDisplay.setDirections(response);
+			distances(riderpos);
 			}
 		});
 	}
 
-function toMiles(meters){
-	return Math.round((meters * 0.000621371192)*100)/100;
+function deleteOverlays() {
+	for (var i = 0; i < markersArray.length; i++) {
+		markersArray[i].setMap(null);
 	}
-
-function toKm(meters){
-	return Math.round((meters / 1000)*100)/100;
-	}
-
-function toPrice(miles, mpg, user){
-	var priceofgas = 3.49;
-	getFromTable("username", "incar", user, 1, function(jsondata){
-		if(JSON.parse(jsondata) != null){
-			console.log("dividing by " + (JSON.parse(jsondata).length+2));
-			return Math.round((((miles/mpg)*priceofgas)/(JSON.parse(jsondata).length+2)/*two people driver and you*/)*100)/100;
-			}
-		else{
-			console.log("dividing by 2");
-			return Math.round((((miles/mpg)*priceofgas)/2/*two people driver and you*/)*100)/100;
-			}
-		});
-	}
+	markersArray = [];
+}

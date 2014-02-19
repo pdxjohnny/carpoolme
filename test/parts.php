@@ -15,10 +15,11 @@ function includes($dir){?>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="<?php echo $dir; ?>/main.js"></script>
+<script src="<?php echo $dir; ?>/distance.js"></script>
 
 <script>
 var jsmyride;
-
+distanceInfo("<?php echo $_SESSION['username']; ?>", "myCarInfo");
 $( document ).ready(function() {
 
 	getLeaveTime();
@@ -727,6 +728,12 @@ $('#profilePictureUpload').submit(function(){
 	});
 
 </script>
+<?php
+	}
+
+function myCarInfo($postto){ ?>
+<span id="myCarInfo" ></span><br>
+
 <?php
 	}
 ?>

@@ -45,17 +45,28 @@ Author: John Andersen
 <body>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
-function toggleMap(){
-	$('#toggleMap').show();
+function hideAll(){
+	$('#toggleMap').hide();
 	$('#toggleCar').hide();
 	$('#toggleProfile').hide();
+	$('#toggleMyTrip').hide();
 	$('#help').hide();
 	}
+function toggleMap(){
+	hideAll();
+	$('#toggleMap').show();
+	}
 function toggleCar(){
-	$('#toggleMap').hide();
+	hideAll();
 	$('#toggleCar').show();
-	$('#toggleProfile').hide();
-	$('#help').hide();
+	}
+function toggleProfile(){
+	hideAll();
+	$('#toggleProfile').show();
+	}
+function toggleMyTrip(){
+	hideAll();
+	$('#toggleMyTrip').show();
 	}
 function toggleHelp(){
 	$.ajax({
@@ -67,16 +78,8 @@ function toggleHelp(){
 			}
 		});
 	event.preventDefault();
-	$('#toggleMap').hide();
-	$('#toggleCar').hide();
-	$('#toggleProfile').hide();
+	hideAll();
 	$('#help').show();
-	}
-function toggleProfile(){
-	$('#toggleMap').hide();
-	$('#toggleCar').hide();
-	$('#toggleProfile').show();
-	$('#help').hide();
 	}
 </script>
 
@@ -110,6 +113,7 @@ if(isset($_SESSION['username'])){
 			<button class="remove-bottom" onclick="toggleMap();">Map</button>
 			<button class="remove-bottom" onclick="toggleCar();">Car</button>
 			<button class="remove-bottom" onclick="toggleProfile();">Profiles</button>
+			<button class="remove-bottom" onclick="toggleMyTrip();">My Trip</button>
 			<button class="remove-bottom" onclick="toggleHelp();">Help</button>
 			</center>
 			<hr style="margin-bottom: 10px;"/>
@@ -155,6 +159,11 @@ if(isset($_SESSION['username'])){
 		<div id="toggleProfile" style="display:none;" class="sixteen columns remove-bottom">
 <?php
 	myProfile("profiles/profile.php");
+?>
+		</div>
+		<div id="toggleMyCar" style="display:none;" class="sixteen columns remove-bottom">
+<?php
+	myCarInfo("profiles/profile.php");
 ?>
 		</div>
 		<div id="help" style="display:none;" class="sixteen columns remove-bottom">
