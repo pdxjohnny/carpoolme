@@ -173,7 +173,7 @@ function arrayMap(locations){
 							console.log(userinfo);
 							start = new google.maps.LatLng(userinfo[0][1],userinfo[0][2]);
 							end = new google.maps.LatLng(userinfo[0][3],userinfo[0][4]);
-							getFromTable("username, latitude, longitude", "username"/*incar*/, "phill"/*locations[i][0]*/, 3, function(jsondata){
+							getFromTable("username, latitude, longitude", "incar", locations[i][0], 3, function(jsondata){
 								if(JSON.parse(jsondata) != null){
 									makeRiderPos(JSON.parse(jsondata));
 									distances(start, end, riderpos);
@@ -344,8 +344,10 @@ function distances(start, end, riderpos){
 function calldone(){
 	allCallbacks++;
 	if(allCallbacks == totalCallbacks) {
-		console.log(userinfo[0][5]);
-    		document.getElementById("distanceDiv").innerHTML= userinfo[0][0]+ " is traveling " + toMiles(totalDistance) + " miles. ";
+    		document.getElementById("distanceDiv").innerHTML = userinfo[0][0]+ " is traveling " + toMiles(totalDistance) + " miles. ";
+		var mpg = userinfo[0][5];
+		if (mpg == null) document.getElementById("distanceDiv").innerHTML += "They have not given their mpg to calculate contibution. ";
+		else document.getElementById("distanceDiv").innerHTML += "This will take "+ toPrice(toMiles(totalDistance),mpg,userinfo[0][0]) +" dollars. ";
 		}
 	}
 
@@ -396,3 +398,16 @@ function toKm(meters){
 	return Math.round((meters / 1000)*100)/100;
 	}
 
+function toPrice(miles, mpg, user){
+	var priceofgas = 3.49;
+	getFromTable("username", "incar", user, 1, function(jsondata){
+		if(JSON.parse(jsondata) != null){
+			console.log("dividing by " + (JSON.parse(jsondata).length+2));
+			return Math.round((((miles/mpg)*priceofgas)/(JSON.parse(jsondata).length+2)/*two people driver and you*/)*100)/100;
+			}
+		else{
+			console.log("dividing by 2");
+			return Math.round((((miles/mpg)*priceofgas)/2/*two people driver and you*/)*100)/100;
+			}
+		});
+	}

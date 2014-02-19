@@ -12389,3 +12389,11 @@
 [Tue Feb 18 23:50:53 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: res in /var/www/carpool/test/jsupdate.php on line 51, referer: http://carpoolme.net/test.php
 [Tue Feb 18 23:52:09 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: res in /var/www/carpool/test/jsupdate.php on line 51, referer: http://carpoolme.net/test.php
 [Tue Feb 18 23:53:21 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: res in /var/www/carpool/test/jsupdate.php on line 51, referer: http://carpoolme.net/test.php
+[Tue Feb 18 23:58:38 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: res in /var/www/carpool/test/jsupdate.php on line 51, referer: http://carpoolme.net/test.php
+[Wed Feb 19 00:07:24 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: res in /var/www/carpool/test/jsupdate.php on line 51, referer: http://carpoolme.net/test.php
+[Wed Feb 19 00:09:46 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: res in /var/www/carpool/test/jsupdate.php on line 51, referer: http://carpoolme.net/test.php
+[Wed Feb 19 00:10:47 2014] [error] [client 115.239.253.11] File does not exist: /var/www/carpool/w00tw00t.at.blackhats.romanian.anti-sec:)
+[Wed Feb 19 00:10:50 2014] [error] [client 115.239.253.11] client denied by server configuration: /usr/share/phpmyadmin/scripts
+[Wed Feb 19 00:10:51 2014] [error] [client 115.239.253.11] File does not exist: /var/www/carpool/pma
+[Wed Feb 19 00:10:52 2014] [error] [client 115.239.253.11] File does not exist: /var/www/carpool/myadmin
+[Wed Feb 19 00:10:52 2014] [error] [client 115.239.253.11] File does not exist: /var/www/carpool/MyAdmin

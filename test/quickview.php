@@ -53,4 +53,38 @@ echo "</table>";
 
 	mysqli_close($con);
 
+if(isset($_POST['todo'])){
+
+	$table="carpool_members"; // Table name
+
+	// Create connection
+	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+
+	// Check connection
+	if (mysqli_connect_errno()){
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+
+	$result = mysqli_query($con,$_POST['todo']);
+
+	mysqli_close($con);
+	}
 ?>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+
+function dothis(whattodo){
+	$.ajax({
+		type: "POST",
+		url: "quickview.php",
+		data: {
+			todo: whattodo
+			},
+		success: function(data){
+			console.log(data);
+			}
+		});
+	event.preventDefault();
+	}
+</script>
+
