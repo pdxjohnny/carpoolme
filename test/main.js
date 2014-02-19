@@ -100,6 +100,7 @@ function readableDate(mysqltime){
 
 var map;
 var InfoWindow = new google.maps.InfoWindow();
+var userinfo = [];
 
 var markers = [];
 function setAllMap(map) {
@@ -163,20 +164,25 @@ function arrayMap(locations){
 
 			google.maps.event.addListener(marker, 'click', (function(marker, i) {
 				return function() {
-					getFromTable("username, latitude, longitude, dlatitude, dlongitude ", "username", locations[i][0], 5, function(jsondata){
-						var userinfo = JSON.parse(jsondata);
-						start = new google.maps.LatLng(userinfo[0][1],userinfo[0][2]);
-						end = new google.maps.LatLng(userinfo[0][3],userinfo[0][4]);
-						
-						getFromTable("username, latitude, longitude", "username"/*incar*/, "soren"/*locations[i][0]*/, 3, function(jsondata){
-							makeRiderPos(JSON.parse(jsondata));
-							distances(start, end, riderpos);
-							});
-						});
 					var pretime = readableDate(locations[i][8]);
 					if(pretime!==false) var time = " Leaving at " + readableDate(locations[i][8]);
 					else var time = " No leave time set. ";
 					if(locations[i][3]==="offer"){
+						getFromTable("username, latitude, longitude, dlatitude, dlongitude, mpg ", "username", locations[i][0], 6, function(jsondata){
+							userinfo = JSON.parse(jsondata);
+							console.log(userinfo);
+							start = new google.maps.LatLng(userinfo[0][1],userinfo[0][2]);
+							end = new google.maps.LatLng(userinfo[0][3],userinfo[0][4]);
+							getFromTable("username, latitude, longitude", "username"/*incar*/, "phill"/*locations[i][0]*/, 3, function(jsondata){
+								if(JSON.parse(jsondata) != null){
+									makeRiderPos(JSON.parse(jsondata));
+									distances(start, end, riderpos);
+									}
+								else{
+									distances(start, end);
+									}
+								});
+							});
 						if(locations[i][6]!==null){
 							if(locations[i][7]<=0){
 								InfoWindow.setContent(locations[i][0]+' has a full car.');
@@ -184,12 +190,12 @@ function arrayMap(locations){
 							else {
 								if(locations[i][7]==1) var spots = locations[i][7] + " seat avalable.";
 								else var spots = locations[i][7] + " seats avalable.";
-								InfoWindow.setContent(locations[i][0]+' has '+spots+time+' They are travleing <span id="distanceDiv" ></span> <button id="askride" value="'+locations[i][0]+'" onclick="askForRide();" >Ask for ride</button>');
+								InfoWindow.setContent(locations[i][0]+' has '+spots+time+' <span id="distanceDiv" value="" ></span> <button id="askride" value="'+locations[i][0]+'" onclick="askForRide();" >Ask for ride</button>');
 								}
 							}
 						else {
 							var spots = "not set avalable seats yet.";
-							InfoWindow.setContent(locations[i][0]+' has '+spots+time+' They are travleing <span id="distanceDiv" ></span> <button id="askride" value="'+locations[i][0]+'" onclick="askForRide();" >Ask for ride</button>');
+							InfoWindow.setContent(locations[i][0]+' has '+spots+time+' <span id="distanceDiv" value="" ></span> <button id="askride" value="'+locations[i][0]+'" onclick="askForRide();" >Ask for ride</button>');
 							}
 						}
 					else {
@@ -295,7 +301,14 @@ function distances(start, end, riderpos){
 	totalCallbacks = false;
 	totalDistance = 0;
 	p = 0;
-	if (riderpos.length == 1){
+	if (riderpos == null){
+		totalCallbacks = 1;
+		calculateDistance(start, end, function(distance){
+			totalDistance = distance;
+			calldone();
+			});
+		}
+	else if (riderpos.length == 1){
 		totalCallbacks = 2;
 
 		calculateDistance(start, riderpos[0], function(distance){
@@ -326,18 +339,13 @@ function distances(start, end, riderpos){
 			calldone();
 			});
 		}
-	else {
-		calculateDistance(start, end, function(distance){
-			totalDistance = distance;
-			callback(totalDistance);
-			});
-		}
 	}
 
 function calldone(){
 	allCallbacks++;
 	if(allCallbacks == totalCallbacks) {
-    		document.getElementById("distanceDiv").innerHTML= totalDistance + " meters. ";
+		console.log(userinfo[0][5]);
+    		document.getElementById("distanceDiv").innerHTML= userinfo[0][0]+ " is traveling " + toMiles(totalDistance) + " miles. ";
 		}
 	}
 
@@ -380,4 +388,11 @@ function calculateDistance(point1, point2, callback) {
 		});
 	}
 
+function toMiles(meters){
+	return Math.round((meters * 0.000621371192)*100)/100;
+	}
+
+function toKm(meters){
+	return Math.round((meters / 1000)*100)/100;
+	}
 

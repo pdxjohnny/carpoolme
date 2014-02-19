@@ -12382,3 +12382,10 @@
 [Tue Feb 18 22:17:02 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/carpool/test/phpfunctions.php on line 339, referer: http://carpoolme.net/test.php
 [Tue Feb 18 22:29:39 2014] [error] [client 66.249.74.133] File does not exist: /var/www/carpool/robots.txt
 [Tue Feb 18 22:47:34 2014] [error] [client 24.222.213.66] File does not exist: /var/www/carpool/HNAP1, referer: http://24.20.209.246/
+[Tue Feb 18 23:47:17 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: res in /var/www/carpool/test/jsupdate.php on line 51, referer: http://carpoolme.net/test.php
+[Tue Feb 18 23:48:20 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: res in /var/www/carpool/test/jsupdate.php on line 51, referer: http://carpoolme.net/test.php
+[Tue Feb 18 23:49:03 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: res in /var/www/carpool/test/jsupdate.php on line 51, referer: http://carpoolme.net/test.php
+[Tue Feb 18 23:49:54 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: res in /var/www/carpool/test/jsupdate.php on line 51, referer: http://carpoolme.net/test.php
+[Tue Feb 18 23:50:53 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: res in /var/www/carpool/test/jsupdate.php on line 51, referer: http://carpoolme.net/test.php
+[Tue Feb 18 23:52:09 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: res in /var/www/carpool/test/jsupdate.php on line 51, referer: http://carpoolme.net/test.php
+[Tue Feb 18 23:53:21 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: res in /var/www/carpool/test/jsupdate.php on line 51, referer: http://carpoolme.net/test.php
