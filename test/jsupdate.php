@@ -1,5 +1,5 @@
 <?php
-
+/*
 if(isset($_POST['string'])){
 	$what = $_POST['what'];
 	$with = $_POST['string'];
@@ -7,19 +7,53 @@ if(isset($_POST['string'])){
 	updateString($what,$with,$user);
 	}
 
-if(isset($_POST['num'])){
+else if(isset($_POST['num'])){
 	$what = $_POST['what'];
 	$with = $_POST['num'];
 	$user = $_POST['user'];
 	updateNum($what,$with,$user);
 	}
 
-if(isset($_POST['null'])){
+else if(isset($_POST['null'])){
 	$what = $_POST['what'];
 	$user = $_POST['user'];
 	updateNull($what,$user);
 	}
 
+else */ if(isset($_POST['get'])){
+	$stuff = $_POST['get'];
+	$something = $_POST['something'];
+	$howmany = $_POST['howmany'];
+	$isthis = $_POST['isthis'];
+	echo get($stuff,$something,$isthis,$howmany);
+	}
+
+function get($stuff,$something,$isthis,$howmany){
+
+	$table="carpool_members"; // Table name
+
+	// Create connection
+	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+
+	// Check connection
+	if (mysqli_connect_errno()){
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+
+	$query = "SELECT $stuff FROM $table WHERE $something='$isthis';";
+
+	if ($result = mysqli_query($con, $query)) {
+	   	for ($i = 0;$row = mysqli_fetch_row($result);$i++) {
+	   		for ($j = 0 ; $j < $howmany ; $j++) {
+				$res[$i][$j] = $row[$j];
+   				 }
+   			 }
+		return json_encode($res);
+    		mysqli_free_result($result);
+		mysqli_close($con);
+		}	
+	}
+/*
 function updateString($what,$with,$user){
 
 	$table="carpool_members"; // Table name
@@ -111,5 +145,5 @@ function updateNull($what,$user){
 		return 1;
 		}
 	}
-
+*/
 ?>

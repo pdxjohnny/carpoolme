@@ -12359,3 +12359,19 @@
 [Tue Feb 18 12:07:59 2014] [error] [client 209.126.230.78] File does not exist: /var/www/carpool/robots.txt
 [Tue Feb 18 12:39:38 2014] [error] [client 50.57.190.90] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/myCar.php on line 7
 [Tue Feb 18 12:39:38 2014] [error] [client 50.57.190.90] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/phpfunctions.php on line 341
+[Tue Feb 18 16:21:03 2014] [error] [client 96.47.88.31] File does not exist: /var/www/carpool/HNAP1, referer: http://24.20.209.246/
+[Tue Feb 18 16:49:33 2014] [error] [client 87.248.70.43] File does not exist: /var/www/carpool/HNAP1, referer: http://24.20.209.246/
+[Tue Feb 18 18:54:16 2014] [error] [client 125.24.188.204] File does not exist: /var/www/carpool/phpTest
+[Tue Feb 18 18:54:17 2014] [error] [client 125.24.188.204] File does not exist: /var/www/carpool/phpMyAdmin
+[Tue Feb 18 18:54:17 2014] [error] [client 125.24.188.204] File does not exist: /var/www/carpool/pma
+[Tue Feb 18 18:54:18 2014] [error] [client 125.24.188.204] File does not exist: /var/www/carpool/myadmin
+[Tue Feb 18 18:57:21 2014] [error] [client 187.108.193.52] File does not exist: /var/www/carpool/manager
+[Tue Feb 18 20:11:29 2014] [error] [client 24.20.209.246] PHP Parse error:  syntax error, unexpected $end in /var/www/carpool/test/jsupdate.php on line 150, referer: http://carpoolme.net/test.php
+[Tue Feb 18 20:12:22 2014] [error] [client 24.20.209.246] PHP Parse error:  syntax error, unexpected $end in /var/www/carpool/test/jsupdate.php on line 150, referer: http://carpoolme.net/test.php
+[Tue Feb 18 20:12:24 2014] [error] [client 24.20.209.246] PHP Parse error:  syntax error, unexpected $end in /var/www/carpool/test/jsupdate.php on line 150, referer: http://carpoolme.net/test.php
+[Tue Feb 18 20:13:35 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: where in /var/www/carpool/test/jsupdate.php on line 25, referer: http://carpoolme.net/test.php
+[Tue Feb 18 20:15:15 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: where in /var/www/carpool/test/jsupdate.php on line 25, referer: http://carpoolme.net/test.php
+[Tue Feb 18 20:15:46 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: where in /var/www/carpool/test/jsupdate.php on line 25, referer: http://carpoolme.net/test.php
+[Tue Feb 18 20:16:07 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: where in /var/www/carpool/test/jsupdate.php on line 25, referer: http://carpoolme.net/test.php
+[Tue Feb 18 20:16:14 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: where in /var/www/carpool/test/jsupdate.php on line 25, referer: http://carpoolme.net/test.php
+[Tue Feb 18 20:16:17 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: where in /var/www/carpool/test/jsupdate.php on line 25, referer: http://carpoolme.net/test.php

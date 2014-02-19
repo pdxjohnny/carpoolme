@@ -238,27 +238,25 @@ function getNearDest($range){
 
 function makeMap($dest){
 
-	if(0==strcmp($dest,"dest")){?>
+	if(isset($_SESSION['latd'])&&isset($_SESSION['lngd'])){?>
 <script>
-	var mylat = "<?php echo $_SESSION['lat']; ?>";
-   	var mylng = "<?php echo $_SESSION['lng']; ?>";
-	var mylatd = "<?php echo $_SESSION['latd']; ?>";
-   	var mylngd = "<?php echo $_SESSION['lngd']; ?>";
+	var mypos = new google.maps.LatLng(<?php echo $_SESSION['lat']; ?>, <?php echo $_SESSION['lng']; ?>);
+	var mydest = new google.maps.LatLng(<?php echo $_SESSION['latd']; ?>, <?php echo $_SESSION['lngd']; ?>);
+	var centerOn = new google.maps.LatLng( ((<?php echo $_SESSION['lat']; ?> + <?php echo $_SESSION['latd']; ?>)/2), ((<?php echo $_SESSION['lng']; ?> + <?php echo $_SESSION['lngd']; ?>)/2) );
 	var locations = <?php echo json_encode($_SESSION['nearby']); ?>;
-	makeMap(mylat,mylng,12,"mapholder");
-	addPointMap(mylat,mylng,"You","images/male.png",1);
-	addPointMap(mylatd,mylngd,"Your destination","images/mydest.png");
+	makeMap(centerOn,12,"mapholder");
+	addPointMap(mypos,"You","images/male.png",true);
+	addPointMap(mydest,"Your destination","images/mydest.png",true);
 	arrayMap(locations);
 </script>
 <?php
 	}
-else if(0==strcmp($dest,"nodest")){?>
+else {?>
 <script>
-	var mylat = "<?php echo $_SESSION['lat']; ?>";
-   	var mylng = "<?php echo $_SESSION['lng']; ?>";
+	var mypos = new google.maps.LatLng(<?php echo $_SESSION['lat']; ?>, <?php echo $_SESSION['lng']; ?>);
 	var locations = <?php echo json_encode($_SESSION['nearby']); ?>;
-	makeMap(mylat,mylng,12,"mapholder");
-	addPointMap(mylat,mylng,"You","images/male.png",1);
+	makeMap(mypos,12,"mapholder");
+	addPointMap(mypos,"You","images/male.png",true);
 	arrayMap(locations);
 </script>
 <?php
@@ -362,18 +360,5 @@ function getSeats(){
 	mysqli_close($con);
 	
 	}
-
-function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
-    $url = 'http://www.gravatar.com/avatar/';
-    $url .= md5( strtolower( trim( $email ) ) );
-    $url .= "?s=$s&d=$d&r=$r";
-    if ( $img ) {
-        $url = '<img src="' . $url . '"';
-        foreach ( $atts as $key => $val )
-            $url .= ' ' . $key . '="' . $val . '"';
-        $url .= ' />';
-    }
-    return $url;
-}
 
 ?>
