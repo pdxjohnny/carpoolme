@@ -51,10 +51,6 @@ function initialize() {
 	addMarker(start, false);
 	addMarker(end, true);
 	directionDisplay.setMap(map);
-
-	var varsHTML = document.getElementById('vars');
-
-	varsHTML.innerHTML = "waypoints: " + waypoints + "<br><br>" + "mycord: " + mylat + " : " + mylng + "<br><br>" + "mydestcords: " + mylatd + " : " + mylngd + "<br><br>";
 	}
 
 function addMarker(location, isDestination) {

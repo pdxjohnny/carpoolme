@@ -38,18 +38,6 @@ function removeLeading(string,find){
 	return temp;
 	}
 
-function doesFileExist(urlToFile){
-	$.ajax({
-		url: urlToFile,
-		success: function(data){
-			return true;
-			},
-		error: function(data){
-			return false;
-			},
-		})
-	}
-
 function readFile(filename){
 	filename = "/"+filename;
 	var http=new XMLHttpRequest();
@@ -148,33 +136,6 @@ function readableDate(mysqltime){
 	return toreturn;
 	}
 
-function oneOnMap(lat,lng,lat1,lng1){
-
-  if (navigator.geolocation)
-    {
-    navigator.geolocation.getCurrentPosition(showPosition);
-    }
-  else{x.innerHTML="Geolocation is not supported by this browser.";}
-
-
-function showPosition(position){
-  latlon=new google.maps.LatLng(mylat, mylng)
-  latlon1=new google.maps.LatLng(lat1, lng1)
-  mapholder=document.getElementById('mapholder')
-  mapholder.style.height='250px';
-  mapholder.style.width='100%';
-
-  var myOptions={
-  center:latlon,zoom:12,
-  mapTypeId:google.maps.MapTypeId.ROADMAP,
-  mapTypeControl:false,
-  navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
-  };
-  var map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
-  var mymarker=new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
-  }
-}
-
 var map;
 var InfoWindow = new google.maps.InfoWindow();
 
@@ -205,7 +166,7 @@ function makeMap(centerlat,centerlng,zoomval,divId){
 
 	map = new google.maps.Map(document.getElementById(divId), {
  		zoom: zoomval,
-		center: new google.maps.LatLng(centerlat,centerlng),
+		center: centerOn,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 		});
 	mapholder=document.getElementById(divId)
@@ -213,6 +174,17 @@ function makeMap(centerlat,centerlng,zoomval,divId){
 	mapholder.style.width='100%';
 
 
+	}
+
+function initialize() {
+	var mapOptions = {
+		zoom: 3,
+		center: centerOn
+	}
+	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	addMarker(start, false);
+	addMarker(end, true);
+	directionDisplay.setMap(map);
 	}
 
 
