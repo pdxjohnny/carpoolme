@@ -2,6 +2,7 @@
 
 session_start();
 require 'phpfunctions.php';
+require 'parts.php';
 
 //if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
 
@@ -31,6 +32,6 @@ require 'phpfunctions.php';
 	unset($_SESSION['lngd']);
 
 	getNearBy(0.15);
-	makeMap("dest");
+	makeMap();
 	
 ?>

@@ -122,14 +122,12 @@ if(isset($_SESSION['username'])){
 <?php		
 	if(isset($_SESSION['latd'])&&isset($_SESSION['lngd'])){
 		getNearDest(0.15);
-		setDest("test/setDest.php");
-		makeMap();
 		}
 	else {
 		getNearBy(0.15);
-		setDest("test/setDest.php");
-		makeMap();
 		}
+	setDest("test/setDest.php");
+	makeMap();
 	clearDest("test/clearDest.php");
 	clearRide("test/clearRide.php");
 ?>

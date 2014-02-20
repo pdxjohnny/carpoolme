@@ -2,6 +2,17 @@
 var sitename = "carpool";
 var dir = "test";
 
+// Map stuff
+var map;
+var InfoWindow = new google.maps.InfoWindow();
+var userinfo = [];
+var markers = [];
+
+// Map route vars
+var renderOptions = { draggable: true };
+var directionDisplay = new google.maps.DirectionsRenderer(renderOptions);
+var directionsService = new google.maps.DirectionsService();
+
 // jsS - js session variables, global
 var jsSid;
 var jsSusername;
@@ -20,6 +31,31 @@ var jsSincar;
 var jsSavailablespots;
 var jsSmpg;
 var jsStripdistance;
+
+// Reload js
+function reload(myUsername){
+	getMyUserInfo(myUsername, function(){
+		if(jsSdlatitude != null){
+			if(jsStype==="offer"){
+				distanceInfo(jsSusername, "myCarInfo");
+				}
+			if(jsSincar != null){
+				showRoute(jsSincar);
+				distanceInfo(jsSusername, "myRideCarInfo");
+				}
+			else if(jsStype==="offer"){
+				
+				showRoute(jsSusername);
+				}
+			}
+		if((jsSincar != null) || (jsSridingwith != null)) $('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSincar+"'s car</button>");
+		if(jsStype==="offer"){
+			myCar();
+			}
+		myRide();
+		getLeaveTime();
+		});
+	}
 
 // Main
 function readFile(filename){
@@ -151,12 +187,6 @@ function getMyUserInfo(user, callback){
 		});
 	}
 
-// Map stuff
-var map;
-var InfoWindow = new google.maps.InfoWindow();
-var userinfo = [];
-
-var markers = [];
 function setAllMap(map) {
 	for (var i = 0; i < markers.length; i++) {
 		markers[i].setMap(map);
@@ -187,9 +217,7 @@ function makeMap(centerOn,zoomval,divId){
 		};
 	map = new google.maps.Map(document.getElementById(divId), mapOptions);
 	google.maps.event.trigger(map, 'resize');
-	mapholder=document.getElementById(divId);
-	mapholder.style.height='340px';
-	mapholder.style.width='100%';
+	directionDisplay.setMap(map);
 	}
 
 function arrayMap(locations){
@@ -294,6 +322,7 @@ function codeAddress(image) {
 		$('#returnSpan').html("Enter a destination to search. ");
 		$('#returnSpan').delay(9000).fadeOut();
 		}
+	else var address = document.getElementById('togeocode').value;
 	geocoder.geocode( { 'address': address}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			map.setCenter(results[0].geometry.location);

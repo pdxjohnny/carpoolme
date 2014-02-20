@@ -7,7 +7,7 @@ Author: John Andersen
 -->
 <?php
 
-if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
+//if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
 
 function includes($dir){?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -23,23 +23,12 @@ var jsmyride;
 var jsSESSION = [];
 $( document ).ready(function() {
 
-	getMyUserInfo("<?php echo $_SESSION['username']; ?>", function(){
-		if(jsSdlatitude != null){
-			distanceInfo(jsSusername, "myCarInfo");
-			makeRouteMap(jsSusername, 'myTripMapCanvas')
-			}
-		if((jsSincar != null) || (jsSridingwith != null)) $('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSincar+"'s car</button>");
-		if(jsStype==="offer") myCar();
-		myRide();
-		getLeaveTime();
-		});
-
+	reload("<?php echo $_SESSION['username']; ?>");
 
 	window.setInterval(function(){
 		// Functions that need to be called repeatedly evezy x seconds 
 		if(jsStype==="offer") myCar();
 		myRide();
-		if(jsSdlatitude != null) distanceInfo(jsSusername, "myCarInfo");
 	
 		}, 30000);
 
@@ -73,7 +62,7 @@ function logout(){
 <?php
 	}
 
-function makeMap($dest){
+function makeMap(){
 
 	if(isset($_SESSION['latd'])&&isset($_SESSION['lngd'])){?>
 <script>
@@ -233,14 +222,18 @@ function setDest($postto){ ?>
 <input name="GPSlatd" id="GPSlatd" type="hidden" value="">
 <input name="GPSlngd" id="GPSlngd" type="hidden" value="">
 
-<span id="geocodeSpan">
-<input id="togeocode" type="textbox" placeholder="Destination">
-<input type="button" value="Find" onclick="codeAddress('images/mydest.png')">
-</span>
 
-<div id="mapholder"></div>
+<form id="geocodeSpan"  style="display: table; margin: 0 auto;">
+<input id="togeocode" type="textbox" placeholder="Destination">
+<input type="submit" value="Find">
+</form>
+<div id="mapholder" style="height:340px; width:100%;" ></div>
 
 <script>
+$( '#geocodeSpan' ).submit(function() {
+	codeAddress('images/mydest.png');
+	return false;
+	});
 function setDestClick(){
 	var GPSlatdval = $('#GPSlatd').val();
 	var GPSlngdval = $('#GPSlngd').val();
@@ -260,6 +253,7 @@ function setDestClick(){
 		});
 	event.preventDefault();
 	deleteMarkers();
+	reload(jsSusername);
 	}
 </script>
 <?php
@@ -281,6 +275,7 @@ function clearRide(){
 			$('#returnSpan').delay(9000).fadeOut();
 			jsmyride = "nouserride";
 			myRide();
+			if((jsSincar != null) || (jsSridingwith != null)) $('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSincar+"'s car</button>");
 			}
 		});
 	event.preventDefault();
@@ -306,6 +301,7 @@ function clearDest(){
 			}
 		});
 	event.preventDefault();
+	reload(jsSusername);
 	}
 </script>
 <?php
@@ -384,6 +380,7 @@ function help(){
 	}
 
 function myCar($postto){ ?>
+<span id="myCarInfo" ></span><br>
 <span id="inMyCarSpan" ></span>
 <span id="wantMyCarSpan" ></span>
 <script>
@@ -492,7 +489,8 @@ function kickFromCar(tokickel){
 	}
 
 function myRide($postto){ ?>
-<span id="myRideSpan" ></span>
+<span id="myRideSpan" ></span><br>
+<span id="myRideCarInfo" ></span><br>
 <script>
 function jsMyRide(){
 	$.ajax({
@@ -769,94 +767,6 @@ $('#profilePictureUpload').submit(function(){
 function myCarInfo($postto){ ?>
 <span id="myCarInfo" >Loading distance and cost... </span><br>
 <div id="myTripMapCanvas" style="height:340px; width:100%;" ></div>
-<script defer="defer" type="text/javascript" >
-// Make the map
-var routeMap;
-var routeBounds = new google.maps.LatLngBounds();
-var markersArray = [];
-var riderWaypoints = [];
-var renderOptions = { draggable: true };
-var directionDisplay = new google.maps.DirectionsRenderer(renderOptions);
-var directionsService = new google.maps.DirectionsService();
-var routeStart;
-var routeEnd;
-
-function makeRouteMap(user, divId) {
-	getFromTable("username, latitude, longitude, dlatitude, dlongitude ", "username", user, 5, function(driverData){
-		var driverInfo = JSON.parse(driverData);
-		routeStart = new google.maps.LatLng(driverInfo[0][1],driverInfo[0][2]);
-		routeEnd = new google.maps.LatLng(driverInfo[0][3],driverInfo[0][4]);
-		var mapOptions = {
- 			zoom: 12,
-			center: routeStart,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-			};
-		routeMap = new google.maps.Map(document.getElementById(divId), mapOptions);
-		google.maps.event.trigger(routeMap, 'load');
-		google.maps.event.trigger(routeMap, 'resize');
-		addMarker(routeStart,"Start","images/male.png",true);
-		addMarker(routeEnd,"Destination","images/mydest.png",true);
-		directionDisplay.setMap(routeMap);
-		showRoute(user);
-		});
-	}
-
-function addMarker(pos,content,image,isuser) {
-	var marker = new google.maps.Marker({
-		position: pos,
-		map: routeMap,
-		icon: image,
-		animation: google.maps.Animation.DROP
-		});
-	google.maps.event.addListener(marker, 'click', (function(marker, i) {
-		return function() {
-			InfoWindow.setContent(content);
-			InfoWindow.open(map, marker);
-			}
-		})(marker));
-	markersArray.push(marker);
-	}
-
-// Plot the route
-
-function showRoute(user) {
-	getFromTable("username, latitude, longitude", "incar", user, 3, function(riderWaypointsNoParse){
-		riderWaypoints = JSON.parse(riderWaypointsNoParse);
-		if(riderWaypoints != null){
-			var waypoints = [];
-			for(var i = 0; i < riderWaypoints.length; i++){
-				waypoints.push({location: new google.maps.LatLng(riderWaypoints[i][1], riderWaypoints[i][2]),stopover: true});
-				}
-			console.log(waypoints);
-			var request = {
-				origin: routeStart,
-				destination: routeEnd,
-				waypoints: waypoints,
-				travelMode: google.maps.TravelMode.DRIVING
-				};
-			//directionDisplay.setDirections(null);
-			directionsService.route(request, function(response, status) {
-				if (status == google.maps.DirectionsStatus.OK) {
-					directionDisplay.setDirections(response);
-					}
-				});
-			}
-		else {
-			var request = {
-				origin: routeStart,
-				destination: routeEnd,
-				travelMode: google.maps.TravelMode.DRIVING
-				};
-			//directionDisplay.setDirections(null);
-			directionsService.route(request, function(response, status) {
-				if (status == google.maps.DirectionsStatus.OK) {
-					directionDisplay.setDirections(response);
-					}
-				});			
-			}
-		});
-	}
-</script>
 <?php
 	}
 ?>
