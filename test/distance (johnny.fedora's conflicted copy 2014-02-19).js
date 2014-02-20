@@ -5,11 +5,9 @@ var totalCallbacks = false;
 var allCallbacks = 0;
 var totalDistance = 0;
 var p = 0;
-var placeInDivGlobal;
 
-// distanceInfo fills placeInDivGlobal with the ride distance of user
-function distanceInfo(user, placeInDivLocal, callback){
-	placeInDivGlobal = placeInDivLocal;
+// distanceInfo fills placeInDiv with the ride distance of user
+function distanceInfo(user, placeInDiv){
 	getFromTable("username, latitude, longitude, dlatitude, dlongitude, mpg ", "username", user, 6, function(driverData){
 		driverInfo = JSON.parse(driverData);
 		start = new google.maps.LatLng(driverInfo[0][1],driverInfo[0][2]);
@@ -18,10 +16,10 @@ function distanceInfo(user, placeInDivLocal, callback){
 		getFromTable("username, latitude, longitude", "incar", user, 3, function(usersInCar){
 			if(JSON.parse(usersInCar) != null){
 				makeriderPositions(JSON.parse(usersInCar));
-				distances(start, end, riderPositions, placeInDivGlobal);
+				distances(start, end, riderPositions, placeInDiv);
 				}
 			else{
-				distances(start, end, placeInDivGlobal);
+				distances(start, end, placeInDiv);
 				}
 			});
 		});
@@ -38,7 +36,7 @@ function makeriderPositions(riders){
 	}
 
 // Sums the distances from all points
-function distances(start, end, riderPositions){
+function distances(start, end, riderPositions, placeInDiv){
 	// Clean these so that a new distance can be calculated
 	allCallbacks = 0;
 	totalCallbacks = false;
@@ -49,7 +47,7 @@ function distances(start, end, riderPositions){
 		totalCallbacks = 1;
 		calculateDistance(start, end, function(distance){
 			totalDistance = distance;
-			calldone();
+			calldone(placeInDiv);
 			});
 		}
 	// There is one rider in the car
@@ -58,12 +56,12 @@ function distances(start, end, riderPositions){
 
 		calculateDistance(start, riderPositions[0], function(distance){
 			totalDistance = totalDistance + distance;
-			calldone();
+			calldone(placeInDiv);
 			});
 
 		calculateDistance(riderPositions[riderPositions.length-1], end, function(distance){
 			totalDistance = totalDistance + distance;
-			calldone();
+			calldone(placeInDiv);
 			});
 		}
 	// There is more than one rider in the car
@@ -72,14 +70,14 @@ function distances(start, end, riderPositions){
 
 		calculateDistance(start, riderPositions[0], function(distance){
 			totalDistance = totalDistance + distance;
-			calldone();
+			calldone(placeInDiv);
 			});
 
 		riderToRider(riderPositions);
 
 		calculateDistance(riderPositions[riderPositions.length-1], end, function(distance){
 			totalDistance = totalDistance + distance;
-			calldone();
+			calldone(placeInDiv);
 			});
 		}
 	}
@@ -90,7 +88,7 @@ function riderToRider(riderPositions) {
 		totalDistance = totalDistance + distance;
 		
 		// Call calldone(); to see if this is the last request
-		calldone();
+		calldone(placeInDiv);
 		p++;
 
 		if(p < riderPositions.length-1){
@@ -128,29 +126,25 @@ function calculateDistance(point1, point2, callback) {
 	}
 
 // Checks if all callbacks are completed
-function calldone(){
+function calldone(placeInDiv){
 	// Incerment on call
 	allCallbacks++;
 	// Do this when all the callbacks have completed in distances
 	if(allCallbacks == totalCallbacks) {
 		// Driver is taveling toMiles(totalDistance) miles. 
-		if(jsSusername === driverInfo[0][0]){
-			document.getElementById(placeInDivGlobal).innerHTML = "You are traveling " + toMiles(totalDistance) + " miles. ";
-			}
-		else document.getElementById(placeInDivGlobal).innerHTML = driverInfo[0][0]+ " is traveling " + toMiles(totalDistance) + " miles. ";
+    		document.getElementById(placeInDiv).innerHTML = driverInfo[0][0]+ " is traveling " + toMiles(totalDistance) + " miles. ";
 		// Get drivers mpg
 		var mpg = driverInfo[0][5];
 		// Handel no mpg set
 		if (mpg == null) {
-			document.getElementById(placeInDivGlobal).innerHTML += "Mpg has not been set to calculate the cost per person. ";
+			document.getElementById(placeInDiv).innerHTML += "They have not given their mpg to calculate the cost per person. ";
 			}
 		// If there is a mpg
 		else {
 			// Get totalRideCost, this is unsplit
 			var totalRideCost = toDollars(toMiles(totalDistance),mpg);
-			if(jsSusername === driverInfo[0][0]) document.getElementById(placeInDivGlobal).innerHTML += "Total cost of this trip is "+ totalRideCost +" dollars. ";
 			splitCost(totalRideCost,driverInfo[0][0], function(price){
-				document.getElementById(placeInDivGlobal).innerHTML += "This will take "+ price +" dollars per person. ";
+				document.getElementById(placeInDiv).innerHTML += "This will take "+ price +" dollars. ";
 				});
 			}
 		}

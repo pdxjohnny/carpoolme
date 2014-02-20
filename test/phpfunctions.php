@@ -236,32 +236,6 @@ function getNearDest($range){
 
 	}
 
-function makeMap($dest){
-
-	if(isset($_SESSION['latd'])&&isset($_SESSION['lngd'])){?>
-<script>
-	var mypos = new google.maps.LatLng(<?php echo $_SESSION['lat']; ?>, <?php echo $_SESSION['lng']; ?>);
-	var mydest = new google.maps.LatLng(<?php echo $_SESSION['latd']; ?>, <?php echo $_SESSION['lngd']; ?>);
-	var centerOn = new google.maps.LatLng( ((<?php echo $_SESSION['lat']; ?> + <?php echo $_SESSION['latd']; ?>)/2), ((<?php echo $_SESSION['lng']; ?> + <?php echo $_SESSION['lngd']; ?>)/2) );
-	var locations = <?php echo json_encode($_SESSION['nearby']); ?>;
-	makeMap(centerOn,12,"mapholder");
-	addPointMap(mypos,"You","images/male.png",true);
-	addPointMap(mydest,"Your destination","images/mydest.png",true);
-	arrayMap(locations);
-</script>
-<?php
-	}
-else {?>
-<script>
-	var mypos = new google.maps.LatLng(<?php echo $_SESSION['lat']; ?>, <?php echo $_SESSION['lng']; ?>);
-	var locations = <?php echo json_encode($_SESSION['nearby']); ?>;
-	makeMap(mypos,12,"mapholder");
-	addPointMap(mypos,"You","images/male.png",true);
-	arrayMap(locations);
-</script>
-<?php
-		}
-	}
 
 function inMyCar($type){
 

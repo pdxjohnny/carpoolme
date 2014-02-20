@@ -1,27 +1,6 @@
-// Globals
 var sitename = "carpool";
 var dir = "test";
 
-// jsS - js session variables, global
-var jsSid;
-var jsSusername;
-var jsSpassword;
-var jsSemail;
-var jsSphone;
-var jsSlatitude;
-var jsSlongitude;
-var jsStype;
-var jsSdlatitude;
-var jsSdlongitude;
-var jsSlatestleave;
-var jsSspots;
-var jsSridingwith;
-var jsSincar;
-var jsSavailablespots;
-var jsSmpg;
-var jsStripdistance;
-
-// Main
 function readFile(filename){
 	filename = "/"+filename;
 	var http=new XMLHttpRequest();
@@ -119,39 +98,6 @@ function readableDate(mysqltime){
 	return toreturn;
 	}
 
-function getUserInfo(user, callback){
-	getFromTable("id, username, password, email, phone, latitude, longitude, type, dlongitude, dlatitude, latestleave, spots, ridingwith, incar, availablespots, mpg, tripdistance ", "username", user, 17, function(allUserInfo){
-		callback(JSON.parse(allUserInfo));
-		});
-	}
-
-function getMyUserInfo(user, callback){
-	getUserInfo(user, function(userInfo){
-		jsSESSION = userInfo[0];
-		jsSid = jsSESSION[0];
-		jsSusername = jsSESSION[1];
-		jsSpassword = jsSESSION[2];
-		jsSemail = jsSESSION[3];
-		jsSphone = jsSESSION[4];
-		jsSlatitude  = jsSESSION[5];
-		jsSlongitude = jsSESSION[6];
-		jsStype = jsSESSION[7];
-		jsSdlatitude = jsSESSION[8];
-		jsSdlongitude = jsSESSION[9];
-		jsSlatestleave = jsSESSION[10];
-		jsSspots = jsSESSION[11];
-		jsSridingwith = jsSESSION[12];
-		jsSincar = jsSESSION[13];
-		jsSavailablespots = jsSESSION[14];
-		jsSmpg = jsSESSION[15];
-		jsStripdistance = jsSESSION[16];
-		myPosition = new google.maps.LatLng(jsSlatitude, jsSlongitude);
-		if(jsSdlatitude != null) myDest = new google.maps.LatLng(jsSdlatitude, jsSdlongitude);
-		callback();
-		});
-	}
-
-// Map stuff
 var map;
 var InfoWindow = new google.maps.InfoWindow();
 var userinfo = [];
@@ -186,8 +132,7 @@ function makeMap(centerOn,zoomval,divId){
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 	map = new google.maps.Map(document.getElementById(divId), mapOptions);
-	google.maps.event.trigger(map, 'resize');
-	mapholder=document.getElementById(divId);
+	mapholder=document.getElementById(divId)
 	mapholder.style.height='340px';
 	mapholder.style.width='100%';
 	}

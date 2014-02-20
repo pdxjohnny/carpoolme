@@ -81,13 +81,11 @@ var riders = [
 	["rider3",52.087,14.421]
 	];
 
-var waypoints = [];
-
-for(var i = 0; i < riders.length; i++){
-	waypoints.push({location: new google.maps.LatLng(riders[i][1], riders[i][2]),stopover: true});
-	}
-
 function calcRoute() {
+	var waypoints = [];
+	for(var i = 0; i < riders.length; i++){
+		waypoints.push({location: new google.maps.LatLng(riders[i][1], riders[i][2]),stopover: true});
+		}
 	var request = {
 		origin: start,
 		destination: end,
@@ -97,11 +95,11 @@ function calcRoute() {
 	directionsService.route(request, function(response, status) {
 		if (status == google.maps.DirectionsStatus.OK) {
 			directionDisplay.setDirections(response);
-			distances(riderpos);
+			//distances(riderpos);
 			}
 		});
 	}
-
+/*
 var allCallbacks = 0;
 var totalCallbacks = false;
 var totalDistance = 0;
@@ -196,27 +194,6 @@ function calculateDistance(point1, point2, callback) {
 			}
 		});
 	}
-
-function deleteOverlays() {
-	for (var i = 0; i < markersArray.length; i++) {
-		markersArray[i].setMap(null);
-	}
-	markersArray = [];
-}
-
-		
-
-/*	var origins = [];
-	origins.push(start);
-	for(var i = 0; i < waypoints.length; i++){
-		origins.push(new google.maps.LatLng(riders[i][1], riders[i][2]));
-		}
-
-	var destinations = [];
-	destinations.push(end);
-	for(i = 0; i < waypoints.length; i++){
-		destinations.push(new google.maps.LatLng(riders[i][1], riders[i][2]));
-		}
 */
 		</script>
 	</head>

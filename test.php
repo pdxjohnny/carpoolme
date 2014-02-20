@@ -123,12 +123,12 @@ if(isset($_SESSION['username'])){
 	if(isset($_SESSION['latd'])&&isset($_SESSION['lngd'])){
 		getNearDest(0.15);
 		setDest("test/setDest.php");
-		makeMap("dest");
+		makeMap();
 		}
 	else {
 		getNearBy(0.15);
 		setDest("test/setDest.php");
-		makeMap("nodest");
+		makeMap();
 		}
 	clearDest("test/clearDest.php");
 	clearRide("test/clearRide.php");
@@ -161,7 +161,7 @@ if(isset($_SESSION['username'])){
 	myProfile("profiles/profile.php");
 ?>
 		</div>
-		<div id="toggleMyCar" style="display:none;" class="sixteen columns remove-bottom">
+		<div id="toggleMyTrip" style="display:none;" class="sixteen columns remove-bottom">
 <?php
 	myCarInfo("profiles/profile.php");
 ?>
