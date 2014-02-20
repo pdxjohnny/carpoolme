@@ -29,9 +29,5 @@ require 'parts.php';
 		}
 	unset($_POST['clearDestB']);
 	unset($_SESSION['latd']);
-	unset($_SESSION['lngd']);
-
-	getNearBy(0.15);
-	makeMap();
-	
+	unset($_SESSION['lngd']);	
 ?>

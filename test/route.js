@@ -46,6 +46,7 @@ function addMarker(pos,content,image,isuser) {
 // Plot the route
 
 function showRoute(user) {
+	directionDisplay.setMap(map);
 	getFromTable("username, latitude, longitude, dlatitude, dlongitude ", "username", user, 5, function(driverData){
 		var driverInfo = JSON.parse(driverData);
 		var routeStart = new google.maps.LatLng(driverInfo[0][1],driverInfo[0][2]);
@@ -57,7 +58,6 @@ function showRoute(user) {
 				for(var i = 0; i < riderWaypoints.length; i++){
 					waypoints.push({location: new google.maps.LatLng(riderWaypoints[i][1], riderWaypoints[i][2]),stopover: true});
 					}
-				console.log(waypoints);
 				var request = {
 					origin: routeStart,
 					destination: routeEnd,

@@ -17,8 +17,8 @@ Author: John Andersen
   ================================================== -->
 	<meta charset="utf-8">
 	<title>Carpoolme</title>
-	<meta name="description" content="">
-	<meta name="author" content="">
+	<meta name="description" content="Carpoolme">
+	<meta name="author" content="John Andersen">
 
 	<!-- Mobile Specific Metas
   ================================================== -->
@@ -49,7 +49,6 @@ function hideAll(){
 	$('#toggleMap').hide();
 	$('#toggleCar').hide();
 	$('#toggleProfile').hide();
-	$('#toggleMyTrip').hide();
 	$('#help').hide();
 	}
 function toggleMap(){
@@ -63,10 +62,6 @@ function toggleCar(){
 function toggleProfile(){
 	hideAll();
 	$('#toggleProfile').show();
-	}
-function toggleMyTrip(){
-	hideAll();
-	$('#toggleMyTrip').show();
 	}
 function toggleHelp(){
 	$.ajax({
@@ -113,7 +108,6 @@ if(isset($_SESSION['username'])){
 			<button class="remove-bottom" onclick="toggleMap();">Map</button>
 			<button class="remove-bottom" onclick="toggleCar();">Car</button>
 			<button class="remove-bottom" onclick="toggleProfile();">Profiles</button>
-			<button class="remove-bottom" onclick="toggleMyTrip();">My Trip</button>
 			<button class="remove-bottom" onclick="toggleHelp();">Help</button>
 			</center>
 			<hr style="margin-bottom: 10px;"/>
@@ -127,7 +121,7 @@ if(isset($_SESSION['username'])){
 		getNearBy(0.15);
 		}
 	setDest("test/setDest.php");
-	makeMap();
+	//makeMap();
 	clearDest("test/clearDest.php");
 	clearRide("test/clearRide.php");
 ?>
@@ -157,11 +151,6 @@ if(isset($_SESSION['username'])){
 		<div id="toggleProfile" style="display:none;" class="sixteen columns remove-bottom">
 <?php
 	myProfile("profiles/profile.php");
-?>
-		</div>
-		<div id="toggleMyTrip" style="display:none;" class="sixteen columns remove-bottom">
-<?php
-	myCarInfo("profiles/profile.php");
 ?>
 		</div>
 		<div id="help" style="display:none;" class="sixteen columns remove-bottom">

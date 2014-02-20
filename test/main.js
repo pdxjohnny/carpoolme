@@ -7,6 +7,11 @@ var map;
 var InfoWindow = new google.maps.InfoWindow();
 var userinfo = [];
 var markers = [];
+var myPosition;
+var myDest;
+var centerOn;
+var jsSnearby = [];
+var dest;
 
 // Map route vars
 var renderOptions = { draggable: true };
@@ -34,26 +39,25 @@ var jsStripdistance;
 
 // Reload js
 function reload(myUsername){
+	console.log("reloaded");
 	getMyUserInfo(myUsername, function(){
 		if(jsSdlatitude != null){
 			if(jsStype==="offer"){
 				distanceInfo(jsSusername, "myCarInfo");
 				}
 			if(jsSincar != null){
-				showRoute(jsSincar);
 				distanceInfo(jsSusername, "myRideCarInfo");
-				}
-			else if(jsStype==="offer"){
-				
-				showRoute(jsSusername);
 				}
 			}
 		if((jsSincar != null) || (jsSridingwith != null)) $('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSincar+"'s car</button>");
+		if(jsSdlatitude != null) $('#clearDest').show();
+		else if(jsSdlatitude == null) $('#clearDest').hide();
 		if(jsStype==="offer"){
 			myCar();
 			}
 		myRide();
 		getLeaveTime();
+		createMap();
 		});
 	}
 
@@ -75,26 +79,6 @@ function tryParseJSON (jsonString){
 		}
 	catch (e) { }
 	return false;
-	}
-
-function askForRide(){
-	var myrideval = $('#askride').val();
-	$('#returnSpan').html("Asking "+myrideval+" for ride.<br>").fadeIn();
-	$.ajax({
-		type: "POST",
-		url: dir+"/askForRide.php",
-		data: {
-			myride: myrideval,
-			username: "<?php echo $_SESSION['username']; ?>"
-			},
-		success: function(data){
-			$('#returnSpan').show();
-			$('#returnSpan').html(data);
-			$('#returnSpan').delay(9000).fadeOut();
-			}
-		});
-	event.preventDefault();
-	myRide();
 	}
 
 function dateSufix(date){
@@ -161,6 +145,35 @@ function getUserInfo(user, callback){
 		});
 	}
 
+function getFromTable(stuff, something, isthis, howmany, callback){
+	$.ajax({
+		type: "POST",
+		url: dir+"/jsupdate.php",
+		data: {
+			get: stuff,
+			something: something,
+			isthis: isthis, 
+			howmany: howmany
+			},
+		success: function(data){
+			callback(data);
+			}
+		});
+	}
+
+// Map functions
+function nearby(callback){
+	$.ajax({
+		type: "GET",
+		url: dir+"/nearby.php",
+		data: {},
+		success: function(data){
+			jsSnearby = JSON.parse(data);
+			callback();
+			}
+		});
+	}
+
 function getMyUserInfo(user, callback){
 	getUserInfo(user, function(userInfo){
 		jsSESSION = userInfo[0];
@@ -183,7 +196,9 @@ function getMyUserInfo(user, callback){
 		jsStripdistance = jsSESSION[16];
 		myPosition = new google.maps.LatLng(jsSlatitude, jsSlongitude);
 		if(jsSdlatitude != null) myDest = new google.maps.LatLng(jsSdlatitude, jsSdlongitude);
-		callback();
+		nearby(function(){
+			callback();
+			});
 		});
 	}
 
@@ -209,7 +224,8 @@ function deleteMarkers() {
 	markers = [];
 	}
 
-function makeMap(centerOn,zoomval,divId){
+function initMap(centerOn,zoomval,divId){
+	console.log("initMap");
 	var mapOptions = {
  		zoom: zoomval,
 		center: centerOn,
@@ -217,7 +233,32 @@ function makeMap(centerOn,zoomval,divId){
 		};
 	map = new google.maps.Map(document.getElementById(divId), mapOptions);
 	google.maps.event.trigger(map, 'resize');
-	directionDisplay.setMap(map);
+	if(jsSdlatitude != null) directionDisplay.setMap(map);
+	else if(jsSdlatitude == null) directionDisplay.setMap(null);
+	}
+
+function createMap(){
+	if (jsSdlatitude != null){
+		myPosition = new google.maps.LatLng(jsSlatitude, jsSlongitude);
+		myDest = new google.maps.LatLng(jsSdlatitude, jsSdlongitude);
+		//centerOn = new google.maps.LatLng( ((jsSlatitude + jsSlongitude)/2), ((jsSdlatitude + jsSdlongitude)/2) );
+		initMap(centerOn,12,"mapholder");
+		/*addPointMap(myPosition,"You","images/male.png",true);
+		addPointMap(myDest,"Your destination","images/mydest.png",true);
+		arrayMap(jsSnearby);*/
+		if(jsSincar != null){
+			showRoute(jsSincar);
+			}
+		else if(jsStype==="offer"){
+			showRoute(jsSusername);
+			}
+		}
+	else {
+		myPosition = new google.maps.LatLng(jsSlatitude, jsSlongitude);
+		initMap(myPosition,12,"mapholder");
+		addPointMap(myPosition,"You","images/male.png",true);
+		arrayMap(jsSnearby);
+		}
 	}
 
 function arrayMap(locations){
@@ -229,7 +270,12 @@ function arrayMap(locations){
 	for (i = 0; i < locations.length; i++) { 
 		if(locations[i][3]==="need") image1 ="images/walking.png";
  		else if(locations[i][3]==="offer") image1 ="images/car.png";
-		marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][1], locations[i][2]), map: map, icon: image1, animation: google.maps.Animation.DROP });
+		marker = new google.maps.Marker({
+			position: new google.maps.LatLng(locations[i][1], locations[i][2]), 
+			map: map, 
+			icon: image1, 
+			animation: google.maps.Animation.DROP
+			});
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
 					return function() {
 				InfoWindow.setContent(locations[i][0]);
@@ -253,21 +299,6 @@ function arrayMap(locations){
 					else var time = " No leave time set. ";
 					if(locations[i][3]==="offer"){
 						distanceInfo(locations[i][0], "distanceDiv");
-						/*getFromTable("username, latitude, longitude, dlatitude, dlongitude, mpg ", "username", locations[i][0], 6, function(jsondata){
-							userinfo = JSON.parse(jsondata);
-							console.log(userinfo);
-							start = new google.maps.LatLng(userinfo[0][1],userinfo[0][2]);
-							end = new google.maps.LatLng(userinfo[0][3],userinfo[0][4]);
-							getFromTable("username, latitude, longitude", "incar", locations[i][0], 3, function(jsondata){
-								if(JSON.parse(jsondata) != null){
-									makeRiderPos(JSON.parse(jsondata));
-									distances(start, end, riderpos);
-									}
-								else{
-									distances(start, end);
-									}
-								});
-							});*/
 						if(locations[i][6]!==null){
 							if(locations[i][7]<=0){
 								InfoWindow.setContent(locations[i][0]+' has a full car.');
@@ -293,6 +324,26 @@ function arrayMap(locations){
 			}
 		}
 	}
+
+function askForRide(){
+	var myrideval = $('#askride').val();
+	$('#returnSpan').html("Asking "+myrideval+" for ride.<br>").fadeIn();
+	$.ajax({
+		type: "POST",
+		url: dir+"/askForRide.php",
+		data: {
+			myride: myrideval,
+			username: "<?php echo $_SESSION['username']; ?>"
+			},
+		success: function(data){
+			$('#returnSpan').show();
+			$('#returnSpan').html(data);
+			$('#returnSpan').delay(9000).fadeOut();
+			}
+		});
+	event.preventDefault();
+	myRide();
+	}
 	
 function addPointMap(pos,content,image,isuser){
 	if(isuser) var ontop = 9999999999;
@@ -312,8 +363,6 @@ function addPointMap(pos,content,image,isuser){
 		})(marker));
 	markers.push(marker);
 	}
-
-var dest;
 
 function codeAddress(image) {
 	var geocoder = new google.maps.Geocoder();
@@ -347,22 +396,6 @@ function codeAddress(image) {
 		else {
 			console.log('There was a gecode error : ' + status);
 	 		}
-		});
-	}
-
-function getFromTable(stuff, something, isthis, howmany, callback){
-	$.ajax({
-		type: "POST",
-		url: dir+"/jsupdate.php",
-		data: {
-			get: stuff,
-			something: something,
-			isthis: isthis, 
-			howmany: howmany
-			},
-		success: function(data){
-			callback(data);
-			}
 		});
 	}
 

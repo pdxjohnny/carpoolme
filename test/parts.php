@@ -62,33 +62,6 @@ function logout(){
 <?php
 	}
 
-function makeMap(){
-
-	if(isset($_SESSION['latd'])&&isset($_SESSION['lngd'])){?>
-<script>
-	var myPosition = new google.maps.LatLng(<?php echo $_SESSION['lat']; ?>, <?php echo $_SESSION['lng']; ?>);
-	var myDest = new google.maps.LatLng(<?php echo $_SESSION['latd']; ?>, <?php echo $_SESSION['lngd']; ?>);
-	var centerOn = new google.maps.LatLng( ((<?php echo $_SESSION['lat']; ?> + <?php echo $_SESSION['latd']; ?>)/2), ((<?php echo $_SESSION['lng']; ?> + <?php echo $_SESSION['lngd']; ?>)/2) );
-	var locations = <?php echo json_encode($_SESSION['nearby']); ?>;
-	makeMap(centerOn,12,"mapholder");
-	addPointMap(myPosition,"You","images/male.png",true);
-	addPointMap(myDest,"Your destination","images/mydest.png",true);
-	arrayMap(locations);
-</script>
-<?php
-		}
-	else {?>
-<script>
-	var myPosition = new google.maps.LatLng(<?php echo $_SESSION['lat']; ?>, <?php echo $_SESSION['lng']; ?>);
-	var locations = <?php echo json_encode($_SESSION['nearby']); ?>;
-	makeMap(myPosition,12,"mapholder");
-	addPointMap(myPosition,"You","images/male.png",true);
-	arrayMap(locations);
-</script>
-<?php
-		}
-	}
-
 function setLatestLeave($postto){ ?>
 <span id='leavetime'></span><br>
 <select name="hour" id="hour">
@@ -246,8 +219,10 @@ function setDestClick(){
 			username: "<?php echo $_SESSION['username']; ?>"
 			},
 		success: function(data){
+			data = data.split('%');
+			jsSnearby = JSON.parse(data[1]);
 			$('#returnSpan').show();
-			$('#returnSpan').html(data+"<br>");
+			$('#returnSpan').html(data[0]+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 			}
 		});
@@ -285,7 +260,7 @@ function clearRide(){
 	}
 
 function clearDest($postto){ ?>
-<button id="clearDest" name="clearDest" onclick="clearDest()">Clear Destination</button>
+<button id="clearDest" style="display: none;" onclick="clearDest()">Clear Destination</button>
 <script>
 function clearDest(){
 	$.ajax({
@@ -295,8 +270,10 @@ function clearDest(){
 			username: "<?php echo $_SESSION['username']; ?>"
 			},
 		success: function(data){
+			data = data.split('%');
+			jsSnearby = JSON.parse(data[1]);
 			$('#returnSpan').show();
-			$('#returnSpan').html(data+"<br>");
+			$('#returnSpan').html(data[0]+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 			}
 		});

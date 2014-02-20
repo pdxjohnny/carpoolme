@@ -21,7 +21,7 @@ function distanceInfo(user, placeInDivLocal, callback){
 				distances(start, end, riderPositions, placeInDivGlobal);
 				}
 			else{
-				distances(start, end, placeInDivGlobal);
+				distances(start, end, null, placeInDivGlobal);
 				}
 			});
 		});
@@ -150,7 +150,7 @@ function calldone(){
 			var totalRideCost = toDollars(toMiles(totalDistance),mpg);
 			if(jsSusername === driverInfo[0][0]) document.getElementById(placeInDivGlobal).innerHTML += "Total cost of this trip is "+ totalRideCost +" dollars. ";
 			splitCost(totalRideCost,driverInfo[0][0], function(price){
-				document.getElementById(placeInDivGlobal).innerHTML += "This will take "+ price +" dollars per person. ";
+				document.getElementById(placeInDivGlobal).innerHTML += "This will take "+ round2(price) +" dollars per person. ";
 				});
 			}
 		}
@@ -182,12 +182,10 @@ function toDollars(miles, mpg){
 function splitCost(totalDollars, user, callback){
 	getFromTable("username", "incar", user, 1, function(jsondata){
 		if(JSON.parse(jsondata) == null){
-			console.log("dividing by 2");
 			callback(totalDollars/2);
 			}
 		// Add an if you are in the array so you are already in their car
 		else {
-			console.log("dividing by " + (JSON.parse(jsondata).length+2));
 			callback(round2(totalDollars/(JSON.parse(jsondata).length+2)/*people + driver then you*/));
 			}
 		});

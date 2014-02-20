@@ -31,6 +31,4 @@ require 'parts.php';
 
 	mysqli_close($con);
 
-	getNearDest(0.15);
-	makeMap();
 ?>

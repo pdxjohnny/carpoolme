@@ -186,6 +186,7 @@ function getNearBy($range){
    			 }
 
     		mysqli_free_result($result);
+		if(isset($_SESSION['nearby'])) return $_SESSION['nearby'];
 		}
 
 	mysqli_close($con);
@@ -230,6 +231,7 @@ function getNearDest($range){
    			 }
 
     		mysqli_free_result($result);
+		if(isset($_SESSION['nearby'])) return $_SESSION['nearby'];
 		}
 
 	mysqli_close($con);
