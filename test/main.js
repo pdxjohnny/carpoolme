@@ -8,7 +8,7 @@ var InfoWindow = new google.maps.InfoWindow();
 var userinfo = [];
 var markers = [];
 var myPosition;
-var myDest;
+var mydest;
 var centerOn;
 var jsSnearby = [];
 var dest;
@@ -39,8 +39,9 @@ var jsStripdistance;
 
 // Reload js
 function reload(myUsername){
-	console.log("reloaded");
 	getMyUserInfo(myUsername, function(){
+		console.log("reloaded");
+		createMap();
 		if(jsSdlatitude != null){
 			if(jsStype==="offer"){
 				distanceInfo(jsSusername, "myCarInfo");
@@ -57,7 +58,7 @@ function reload(myUsername){
 			}
 		myRide();
 		getLeaveTime();
-		createMap();
+		addPointMap(myDest,"Your destination","images/mydest.png",true);
 		});
 	}
 
@@ -185,8 +186,8 @@ function getMyUserInfo(user, callback){
 		jsSlatitude  = jsSESSION[5];
 		jsSlongitude = jsSESSION[6];
 		jsStype = jsSESSION[7];
-		jsSdlatitude = jsSESSION[8];
-		jsSdlongitude = jsSESSION[9];
+		jsSdlongitude = jsSESSION[8];
+		jsSdlatitude = jsSESSION[9];
 		jsSlatestleave = jsSESSION[10];
 		jsSspots = jsSESSION[11];
 		jsSridingwith = jsSESSION[12];
@@ -224,8 +225,7 @@ function deleteMarkers() {
 	markers = [];
 	}
 
-function initMap(centerOn,zoomval,divId){
-	console.log("initMap");
+function initMap(centerOn,zoomval,divId, callback){
 	var mapOptions = {
  		zoom: zoomval,
 		center: centerOn,
@@ -233,19 +233,17 @@ function initMap(centerOn,zoomval,divId){
 		};
 	map = new google.maps.Map(document.getElementById(divId), mapOptions);
 	google.maps.event.trigger(map, 'resize');
-	if(jsSdlatitude != null) directionDisplay.setMap(map);
-	else if(jsSdlatitude == null) directionDisplay.setMap(null);
+	directionDisplay.setMap(null);
 	}
 
 function createMap(){
 	if (jsSdlatitude != null){
 		myPosition = new google.maps.LatLng(jsSlatitude, jsSlongitude);
-		myDest = new google.maps.LatLng(jsSdlatitude, jsSdlongitude);
-		//centerOn = new google.maps.LatLng( ((jsSlatitude + jsSlongitude)/2), ((jsSdlatitude + jsSdlongitude)/2) );
-		initMap(centerOn,12,"mapholder");
-		/*addPointMap(myPosition,"You","images/male.png",true);
-		addPointMap(myDest,"Your destination","images/mydest.png",true);
-		arrayMap(jsSnearby);*/
+		mydest = new google.maps.LatLng(jsSdlatitude, jsSdlongitude);
+		initMap(myPosition,12,"mapholder");
+		addPointMap(myPosition,"You","images/male.png",true);
+		addPointMap(mydest,"Your destination","images/mydest.png",true);
+		arrayMap(jsSnearby);
 		if(jsSincar != null){
 			showRoute(jsSincar);
 			}

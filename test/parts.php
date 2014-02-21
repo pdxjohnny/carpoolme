@@ -207,6 +207,7 @@ $( '#geocodeSpan' ).submit(function() {
 	codeAddress('images/mydest.png');
 	return false;
 	});
+
 function setDestClick(){
 	var GPSlatdval = $('#GPSlatd').val();
 	var GPSlngdval = $('#GPSlngd').val();
@@ -219,10 +220,8 @@ function setDestClick(){
 			username: "<?php echo $_SESSION['username']; ?>"
 			},
 		success: function(data){
-			data = data.split('%');
-			jsSnearby = JSON.parse(data[1]);
 			$('#returnSpan').show();
-			$('#returnSpan').html(data[0]+"<br>");
+			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 			}
 		});
@@ -270,14 +269,13 @@ function clearDest(){
 			username: "<?php echo $_SESSION['username']; ?>"
 			},
 		success: function(data){
-			data = data.split('%');
-			jsSnearby = JSON.parse(data[1]);
 			$('#returnSpan').show();
-			$('#returnSpan').html(data[0]+"<br>");
+			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 			}
 		});
 	event.preventDefault();
+	deleteMarkers();
 	reload(jsSusername);
 	}
 </script>
