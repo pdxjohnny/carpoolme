@@ -121,7 +121,6 @@ if(isset($_SESSION['username'])){
 		getNearBy(0.15);
 		}
 	setDest("test/setDest.php");
-	//makeMap();
 	clearDest("test/clearDest.php");
 	clearRide("test/clearRide.php");
 ?>

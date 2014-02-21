@@ -15,6 +15,7 @@ function includes($dir){?>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="<?php echo $dir; ?>/main.js"></script>
+<script src="<?php echo $dir; ?>/map.js"></script>
 <script src="<?php echo $dir; ?>/distance.js"></script>
 <script src="<?php echo $dir; ?>/route.js"></script>
 
@@ -220,14 +221,14 @@ function setDestClick(){
 			username: "<?php echo $_SESSION['username']; ?>"
 			},
 		success: function(data){
+			deleteMarkers();
+			reload(jsSusername);
 			$('#returnSpan').show();
 			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 			}
 		});
 	event.preventDefault();
-	deleteMarkers();
-	reload(jsSusername);
 	}
 </script>
 <?php
@@ -262,6 +263,8 @@ function clearDest($postto){ ?>
 <button id="clearDest" style="display: none;" onclick="clearDest()">Clear Destination</button>
 <script>
 function clearDest(){
+	$('#returnSpan').show();
+	$('#returnSpan').html("Clearing your destination. <br>");
 	$.ajax({
 		type: "POST",
 		url: "<?php echo $postto; ?>",
@@ -272,11 +275,11 @@ function clearDest(){
 			$('#returnSpan').show();
 			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
+			deleteMarkers();
+			reload(jsSusername);
 			}
 		});
 	event.preventDefault();
-	deleteMarkers();
-	reload(jsSusername);
 	}
 </script>
 <?php
@@ -450,6 +453,7 @@ function kickFromCar(tokickel){
 				tokick: tokickval
 				},
 			success: function(data){
+				reload(jsSusername);
 				$('#returnSpan').show();
 				$('#returnSpan').html(data+"<br>");
 				$('#returnSpan').delay(9000).fadeOut();
