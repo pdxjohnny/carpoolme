@@ -20,16 +20,13 @@ function includes($dir){?>
 <script src="<?php echo $dir; ?>/route.js"></script>
 
 <script>
-var jsmyride;
-var jsSESSION = [];
 $( document ).ready(function() {
 
 	reload("<?php echo $_SESSION['username']; ?>");
 
 	window.setInterval(function(){
 		// Functions that need to be called repeatedly evezy x seconds 
-		if(jsStype==="offer") myCar();
-		myRide();
+		reload("<?php echo $_SESSION['username']; ?>");
 	
 		}, 30000);
 
@@ -248,9 +245,7 @@ function clearRide(){
 			$('#returnSpan').show();
 			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
-			jsmyride = "nouserride";
-			myRide();
-			if((jsSincar != null) || (jsSridingwith != null)) $('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSincar+"'s car</button>");
+			reload(jsSusername);
 			}
 		});
 	event.preventDefault();
@@ -435,7 +430,7 @@ function approve(){
 			$('#returnSpan').html(returnval+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 
-			myCar();
+			reload(jsSusername);
 			}
 		});
 	event.preventDefault();
@@ -457,7 +452,6 @@ function kickFromCar(tokickel){
 				$('#returnSpan').show();
 				$('#returnSpan').html(data+"<br>");
 				$('#returnSpan').delay(9000).fadeOut();
-				myCar();
 				}
 			});
 		event.preventDefault();
@@ -471,18 +465,6 @@ function myRide($postto){ ?>
 <span id="myRideSpan" ></span><br>
 <span id="myRideCarInfo" ></span><br>
 <script>
-function jsMyRide(){
-	$.ajax({
-		type: "GET",
-		url: "<?php echo $postto; ?>",
-		data: {},
-		success: function(data){
-			data = data.split('%');
-			jsmyride = data[1];
-			}
-		});
-	}
-
 var initail = 0;
 function myRide(){
 	$.ajax({
@@ -492,18 +474,17 @@ function myRide(){
 		success: function(data){
 			data = data.split('%');
 			if(tryParseJSON(data[0])!=false){
-				var incar = JSON.parse(data[0]);
-				inMyRide(incar,data[1]);
+				var ridersInCar = JSON.parse(data[0]);
+				inMyRide(ridersInCar,jsSincar);
 				if(initail==0){
 					initail = 1;
 					$('#returnSpan').show();
-					$('#returnSpan').html(data[2]+"<br>");
+					$('#returnSpan').html(data[1]+"<br>");
 					$('#returnSpan').delay(9000).fadeOut();
 					}
 				}
 			else {
 				$('#myRideSpan').html(data[0]+"<br>");
-				jsmyride = data[1];
 				initail = 0;
 				}
 			}

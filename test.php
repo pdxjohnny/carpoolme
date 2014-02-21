@@ -113,13 +113,7 @@ if(isset($_SESSION['username'])){
 			<hr style="margin-bottom: 10px;"/>
 		</div>
 		<div id="toggleMap" class="sixteen columns remove-bottom">
-<?php		
-	if(isset($_SESSION['latd'])&&isset($_SESSION['lngd'])){
-		getNearDest(0.15);
-		}
-	else {
-		getNearBy(0.15);
-		}
+<?php
 	setDest("test/setDest.php");
 	clearDest("test/clearDest.php");
 	clearRide("test/clearRide.php");
@@ -129,14 +123,16 @@ if(isset($_SESSION['username'])){
 			<div class="five columns ">
 <?php
 
-	setLatestLeave("test/setLatestLeave.php");
+	if(0==strcmp($_SESSION['type'],"offer")){
+		setLatestLeave("test/setLatestLeave.php");
+		seats("test/seats.php","test/seatsDisplay.php");
+		}
+		
 ?>
 			</div>
 			<div class="five columns ">
 <?php
 	if(0==strcmp($_SESSION['type'],"offer")){
-		seats("test/seats.php","test/seatsDisplay.php");
-		echo "<br>";
 		myCar("test/myCar.php");
 		}
 ?>

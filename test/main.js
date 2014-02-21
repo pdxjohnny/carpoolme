@@ -2,7 +2,8 @@
 var sitename = "carpool";
 var dir = "test";
 
-// jsS - js session variables, global
+// jsS - the javascript session variables
+var jsSESSION = [];
 var jsSid;
 var jsSusername;
 var jsSpassword;
@@ -38,10 +39,10 @@ function reload(myUsername){
 		if(jsSdlatitude != null) $('#clearDest').show();
 		else if(jsSdlatitude == null) $('#clearDest').hide();
 		if(jsStype==="offer"){
+			getLeaveTime();
 			myCar();
 			}
 		myRide();
-		getLeaveTime();
 		});
 	}
 
