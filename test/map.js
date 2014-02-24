@@ -27,34 +27,6 @@ function nearby(callback){
 		});
 	}
 
-function getMyUserInfo(user, callback){
-	getUserInfo(user, function(userInfo){
-		jsSESSION = userInfo[0];
-		jsSid = jsSESSION[0];
-		jsSusername = jsSESSION[1];
-		jsSpassword = jsSESSION[2];
-		jsSemail = jsSESSION[3];
-		jsSphone = jsSESSION[4];
-		jsSlatitude  = jsSESSION[5];
-		jsSlongitude = jsSESSION[6];
-		jsStype = jsSESSION[7];
-		jsSdlongitude = jsSESSION[8];
-		jsSdlatitude = jsSESSION[9];
-		jsSlatestleave = jsSESSION[10];
-		jsSspots = jsSESSION[11];
-		jsSridingwith = jsSESSION[12];
-		jsSincar = jsSESSION[13];
-		jsSavailablespots = jsSESSION[14];
-		jsSmpg = jsSESSION[15];
-		jsStripdistance = jsSESSION[16];
-		myPosition = new google.maps.LatLng(jsSlatitude, jsSlongitude);
-		if(jsSdlatitude != null) myDest = new google.maps.LatLng(jsSdlatitude, jsSdlongitude);
-		nearby(function(){
-			callback();
-			});
-		});
-	}
-
 function setAllMap(map) {
 	for (var i = 0; i < markers.length; i++) {
 		markers[i].setMap(map);
@@ -78,6 +50,7 @@ function deleteMarkers() {
 	}
 
 function initMap(centerOn,zoomval,divId, callback){
+	map = false;
 	var mapOptions = {
  		zoom: zoomval,
 		center: centerOn,
@@ -95,12 +68,12 @@ function createMap(){
 		addPointMap(myPosition,"You","images/male.png",true);
 		addPointMap(mydest,"Your destination","images/mydest.png",true);
 		arrayMap(jsSnearby);
-		if(jsSincar != null){
-			showRoute(jsSincar);
+		/*if(jsSincar != null){
+			route(jsSincar);
 			}
 		else if(jsStype==="offer"){
-			showRoute(jsSusername);
-			}
+			route(jsSusername);
+			}*/
 		}
 	else {
 		directionDisplay.setMap(null);
@@ -148,7 +121,7 @@ function arrayMap(locations){
 					if(pretime!==false) var time = " Leaving at " + readableDate(locations[i][8]);
 					else var time = " No leave time set. ";
 					if(locations[i][3]==="offer"){
-						distanceInfo(locations[i][0], "distanceDiv");
+						route(locations[i][0], false, "distanceDiv");
 						if(locations[i][6]!==null){
 							if(locations[i][7]<=0){
 								InfoWindow.setContent(locations[i][0]+' has a full car.');

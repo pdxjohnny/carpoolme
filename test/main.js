@@ -28,11 +28,11 @@ function reload(myUsername){
 		console.log("reloaded");
 		createMap();
 		if(jsSdlatitude != null){
-			if(jsStype==="offer"){
-				distanceInfo(jsSusername, "myCarInfo");
-				}
 			if(jsSincar != null){
-				distanceInfo(jsSusername, "myRideCarInfo");
+				route(jsSincar, true, "myRideCarInfo");
+				}
+			else if(jsStype==="offer"){
+				route(jsSusername, true, "myCarInfo");
 				}
 			}
 		if((jsSincar != null) || (jsSridingwith != null)) $('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSincar+"'s car</button>");
@@ -64,6 +64,34 @@ function tryParseJSON (jsonString){
 		}
 	catch (e) { }
 	return false;
+	}
+
+function getMyUserInfo(user, callback){
+	getUserInfo(user, function(userInfo){
+		jsSESSION = userInfo[0];
+		jsSid = jsSESSION[0];
+		jsSusername = jsSESSION[1];
+		jsSpassword = jsSESSION[2];
+		jsSemail = jsSESSION[3];
+		jsSphone = jsSESSION[4];
+		jsSlatitude  = jsSESSION[5];
+		jsSlongitude = jsSESSION[6];
+		jsStype = jsSESSION[7];
+		jsSdlongitude = jsSESSION[8];
+		jsSdlatitude = jsSESSION[9];
+		jsSlatestleave = jsSESSION[10];
+		jsSspots = jsSESSION[11];
+		jsSridingwith = jsSESSION[12];
+		jsSincar = jsSESSION[13];
+		jsSavailablespots = jsSESSION[14];
+		jsSmpg = jsSESSION[15];
+		jsStripdistance = jsSESSION[16];
+		myPosition = new google.maps.LatLng(jsSlatitude, jsSlongitude);
+		if(jsSdlatitude != null) myDest = new google.maps.LatLng(jsSdlatitude, jsSdlongitude);
+		nearby(function(){
+			callback();
+			});
+		});
 	}
 
 function dateSufix(date){

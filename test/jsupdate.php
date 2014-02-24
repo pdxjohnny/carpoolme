@@ -48,7 +48,8 @@ function get($stuff,$something,$isthis,$howmany){
 				$res[$i][$j] = $row[$j];
    				 }
    			 }
-		return json_encode($res);
+		if(isset($res)) return json_encode($res);
+		else return "none";
     		mysqli_free_result($result);
 		mysqli_close($con);
 		}	

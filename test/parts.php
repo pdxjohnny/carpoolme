@@ -16,7 +16,6 @@ function includes($dir){?>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="<?php echo $dir; ?>/main.js"></script>
 <script src="<?php echo $dir; ?>/map.js"></script>
-<script src="<?php echo $dir; ?>/distance.js"></script>
 <script src="<?php echo $dir; ?>/route.js"></script>
 
 <script>
@@ -26,7 +25,11 @@ $( document ).ready(function() {
 
 	window.setInterval(function(){
 		// Functions that need to be called repeatedly evezy x seconds 
-		reload("<?php echo $_SESSION['username']; ?>");
+		if(jsStype==="offer"){
+			getLeaveTime();
+			myCar();
+			}
+		myRide();
 	
 		}, 30000);
 
@@ -430,7 +433,8 @@ function approve(){
 			$('#returnSpan').html(returnval+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 
-			reload(jsSusername);
+			route(jsSusername, "myCarInfo");
+			myCar();
 			}
 		});
 	event.preventDefault();
@@ -448,7 +452,8 @@ function kickFromCar(tokickel){
 				tokick: tokickval
 				},
 			success: function(data){
-				reload(jsSusername);
+				route(jsSusername, "myCarInfo");
+				myCar();
 				$('#returnSpan').show();
 				$('#returnSpan').html(data+"<br>");
 				$('#returnSpan').delay(9000).fadeOut();
