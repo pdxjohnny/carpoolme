@@ -433,7 +433,7 @@ function approve(){
 			$('#returnSpan').html(returnval+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 
-			route(jsSusername, "myCarInfo");
+			route(jsSusername, true, "myCarInfo");
 			myCar();
 			}
 		});
@@ -452,7 +452,7 @@ function kickFromCar(tokickel){
 				tokick: tokickval
 				},
 			success: function(data){
-				route(jsSusername, "myCarInfo");
+				route(jsSusername, true, "myCarInfo");
 				myCar();
 				$('#returnSpan').show();
 				$('#returnSpan').html(data+"<br>");

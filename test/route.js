@@ -1,6 +1,5 @@
 // Plot the route
 function route(user, show, displayInDiv) {
-	console.log("Getting route for "+user);
 	directionDisplay.setMap(null);
 	directionDisplay.setMap(map);
 	getFromTable("username, latitude, longitude, dlatitude, dlongitude ", "username", user, 5, function(driverData){
@@ -60,6 +59,7 @@ function route(user, show, displayInDiv) {
 				}
 			});
 		});
+/**/
 	}
 
 function displayDistance(driverInfo, distance, displayInDiv){

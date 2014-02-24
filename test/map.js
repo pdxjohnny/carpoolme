@@ -10,7 +10,8 @@ var jsSnearby = [];
 var dest;
 
 // Map route vars
-var renderOptions = { draggable: true };
+var bounds = new google.maps.LatLngBounds();
+var renderOptions = { draggable: true, preserveViewport: true, };
 var directionDisplay = new google.maps.DirectionsRenderer(renderOptions);
 var directionsService = new google.maps.DirectionsService();
 
@@ -178,6 +179,8 @@ function addPointMap(pos,content,image,isuser){
 		zIndex: ontop,
 		animation: google.maps.Animation.DROP
 		});
+	bounds.extend(pos);
+	map.fitBounds(bounds);
 	google.maps.event.addListener(marker, 'click', (function(marker, i) {
 		return function() {
 			InfoWindow.setContent(content);

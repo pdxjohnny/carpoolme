@@ -190,7 +190,7 @@ function getNearBy($range){
 
 	mysqli_close($con);
 
-	if(!$_SESSION['nearby']) getNearBy($range+0.05);
+	if(!isset($_SESSION['nearby'])) getNearBy($range+0.05);
 	}
 
 function getNearDest($range){
@@ -234,6 +234,7 @@ function getNearDest($range){
 
 	mysqli_close($con);
 
+	if(!isset($_SESSION['nearby'])) getNearDest($range+0.05);
 	}
 
 function makeMap($dest){
