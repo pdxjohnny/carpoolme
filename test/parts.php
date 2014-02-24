@@ -478,9 +478,11 @@ function myRide(){
 		data: {},
 		success: function(data){
 			data = data.split('%');
-			if(tryParseJSON(data[0])!=false){
+			if(data[0] !== "none"){
+				jsSincar = data[2];
 				var ridersInCar = JSON.parse(data[0]);
 				inMyRide(ridersInCar,jsSincar);
+				route(jsSincar, true, "myRideCarInfo");
 				if(initail==0){
 					initail = 1;
 					$('#returnSpan').show();
@@ -489,7 +491,8 @@ function myRide(){
 					}
 				}
 			else {
-				$('#myRideSpan').html(data[0]+"<br>");
+				$('#myRideSpan').html(data[1]+"<br>");
+				document.getElementById("myRideCarInfo") = "";
 				initail = 0;
 				}
 			}

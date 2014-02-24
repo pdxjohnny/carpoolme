@@ -1,3 +1,8 @@
+// Route global vars
+var renderOptions = { draggable: true, preserveViewport: true, };
+var directionDisplay = new google.maps.DirectionsRenderer(renderOptions);
+var directionsService = new google.maps.DirectionsService();
+
 // Plot the route
 function route(user, show, displayInDiv) {
 	directionDisplay.setMap(null);
@@ -59,9 +64,9 @@ function route(user, show, displayInDiv) {
 				}
 			});
 		});
-/**/
 	}
 
+// Put the distance information in a div
 function displayDistance(driverInfo, distance, displayInDiv){
 	// var for the display element
 	var displayIn = document.getElementById(displayInDiv);

@@ -11,9 +11,6 @@ var dest;
 
 // Map route vars
 var bounds = new google.maps.LatLngBounds();
-var renderOptions = { draggable: true, preserveViewport: true, };
-var directionDisplay = new google.maps.DirectionsRenderer(renderOptions);
-var directionsService = new google.maps.DirectionsService();
 
 // Map functions
 function nearby(callback){

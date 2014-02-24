@@ -4,10 +4,10 @@ session_start();
 require 'phpfunctions.php';
 
 	if(get("incar",$_SESSION['username'])==NULL){
-		if(get("ridingwith",$_SESSION['username'])==NULL) exit("You haven't asked anyone for a ride yet. ");
+		if(get("ridingwith",$_SESSION['username'])==NULL) exit("none%You haven't asked anyone for a ride yet. ");
 		else {
 			$myride = get("ridingwith",$_SESSION['username']);
-			exit("You haven't been approved to ride in $myride's car yet. ");
+			exit("none%You haven't been approved to ride in $myride's car yet. ");
 			}
 		}
 	else $myride = get("incar",$_SESSION['username']);
@@ -30,7 +30,7 @@ require 'phpfunctions.php';
 			$_SESSION['inmycarneed'][$i] = $row[0];
 			 }
 		mysqli_free_result($result);
-		echo json_encode($_SESSION['inmycarneed']) . "%You've been approved to ride in $myride's car. ";
+		echo json_encode($_SESSION['inmycarneed']) . "%You've been approved to ride in $myride's car. %$myride";
 		}
 
 	mysqli_close($con);
