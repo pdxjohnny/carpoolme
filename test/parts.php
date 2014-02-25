@@ -492,7 +492,7 @@ function myRide(){
 				}
 			else {
 				$('#myRideSpan').html(data[1]+"<br>");
-				document.getElementById("myRideCarInfo") = "";
+				$('#myRideCarInfo').html("");
 				initail = 0;
 				}
 			}
