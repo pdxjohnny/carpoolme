@@ -1,32 +1,34 @@
 <?php
-/*
+
 if(isset($_POST['string'])){
 	$what = $_POST['what'];
 	$with = $_POST['string'];
 	$user = $_POST['user'];
-	updateString($what,$with,$user);
+	echo updateString($what,$with,$user);
 	}
 
 else if(isset($_POST['num'])){
 	$what = $_POST['what'];
 	$with = $_POST['num'];
 	$user = $_POST['user'];
-	updateNum($what,$with,$user);
+	echo updateNum($what,$with,$user);
 	}
 
 else if(isset($_POST['null'])){
 	$what = $_POST['what'];
 	$user = $_POST['user'];
-	updateNull($what,$user);
+	echo updateNull($what,$user);
 	}
 
-else */ if(isset($_POST['get'])){
+else if(isset($_POST['get'])){
 	$stuff = $_POST['get'];
 	$something = $_POST['something'];
 	$howmany = $_POST['howmany'];
 	$isthis = $_POST['isthis'];
 	echo get($stuff,$something,$isthis,$howmany);
 	}
+
+else echo "Not sure what to update. ";
 
 function get($stuff,$something,$isthis,$howmany){
 
@@ -54,7 +56,7 @@ function get($stuff,$something,$isthis,$howmany){
 		mysqli_close($con);
 		}	
 	}
-/*
+
 function updateString($what,$with,$user){
 
 	$table="carpool_members"; // Table name
@@ -72,7 +74,7 @@ function updateString($what,$with,$user){
 	if(1 == mysqli_num_rows($result)){
 		mysqli_query($con,"UPDATE $table SET $what = '$with' WHERE username='$user';");
 		mysqli_close($con);
-		return 0;
+		return "Updated";
 		}
 	else if(1 < mysqli_num_rows($result)){
 		echo "More than one user was found. ";
@@ -84,8 +86,11 @@ function updateString($what,$with,$user){
 		mysqli_close($con);
 		return 1;
 		}
+	}
 
 function updateNum($what,$with,$user){
+
+	if (!is_numeric($with)) return "Not a number";
 
 	$table="carpool_members"; // Table name
 
@@ -102,7 +107,7 @@ function updateNum($what,$with,$user){
 	if(1 == mysqli_num_rows($result)){
 		mysqli_query($con,"UPDATE $table SET $what = $with WHERE username='$user';");
 		mysqli_close($con);
-		return 0;
+		return "Updated";
 		}
 	else if(1 < mysqli_num_rows($result)){
 		echo "More than one user was found. ";
@@ -133,7 +138,7 @@ function updateNull($what,$user){
 	if(1 == mysqli_num_rows($result)){
 		mysqli_query($con,"UPDATE $table SET $what = NULL WHERE username='$user';");
 		mysqli_close($con);
-		return 0;
+		return "Updated";
 		}
 	else if(1 < mysqli_num_rows($result)){
 		echo "More than one user was found. ";
@@ -146,5 +151,4 @@ function updateNull($what,$user){
 		return 1;
 		}
 	}
-*/
 ?>

@@ -335,6 +335,38 @@ function displaySeats(){
 <?php
 	}
 
+function mpg($postto){?>
+<br>
+Update Your Mpg: 
+<span id="myMpg"></span>
+<input id="updateMpg" type="number" ></input>
+<button onclick="updateMpg();">Update</button><br><script>
+function updateMpg(){
+	// Update the Mpg
+	$('#returnSpan').show();
+	$('#returnSpan').html("Updating mpg...<br>");
+	$.ajax({
+		type: "POST",
+		url: dir+"/jsupdate.php",
+		data: {
+			what: "mpg",
+			num: $('#updateMpg').val(),  
+			user: "<?php echo $_SESSION['username']; ?>"
+			},
+		success: function(data){
+			$('#returnSpan').show();
+			$('#returnSpan').html(data+"<br>");
+			$('#returnSpan').delay(9000).fadeOut();
+			jsSmpg = $('#updateMpg').val();
+			route(jsSusername, false, "myCarInfo")
+			}
+		});
+	event.preventDefault();
+	}
+</script>
+<?php
+	}
+
 function help($postto){ ?>
 <button id="help" name="help" onclick="help()">Help</button>
 <span id="helpSpan" style="display:none;"></span>

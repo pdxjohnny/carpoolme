@@ -122,10 +122,10 @@ if(isset($_SESSION['username'])){
 		<div id="toggleCar" style="display:none;" class="sixteen columns remove-bottom">
 			<div class="five columns ">
 <?php
-
 	if(0==strcmp($_SESSION['type'],"offer")){
 		setLatestLeave("test/setLatestLeave.php");
 		seats("test/seats.php","test/seatsDisplay.php");
+		mpg("test/seats.php","test/seatsDisplay.php");
 		}
 		
 ?>
