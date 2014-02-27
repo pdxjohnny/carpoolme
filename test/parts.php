@@ -192,7 +192,10 @@ function getLeaveTime(){
 <?php
 	}
 
+// Map
 function setDest($postto){ ?>
+<div id="driverMapInfo" style="display:none;" ></div>
+
 <input name="GPSlatd" id="GPSlatd" type="hidden" value="">
 <input name="GPSlngd" id="GPSlngd" type="hidden" value="">
 

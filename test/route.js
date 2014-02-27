@@ -7,7 +7,7 @@ var directionsService = new google.maps.DirectionsService();
 function route(user, show, displayInDiv) {
 	directionDisplay.setMap(null);
 	directionDisplay.setMap(map);
-	getFromTable("username, latitude, longitude, dlatitude, dlongitude ", "username", user, 5, function(driverData){
+	getFromTable("username, latitude, longitude, dlatitude, dlongitude, mpg ", "username", user, 6, function(driverData){
 		var driverInfo = JSON.parse(driverData);
 		var routeStart = new google.maps.LatLng(driverInfo[0][1],driverInfo[0][2]);
 		var routeEnd = new google.maps.LatLng(driverInfo[0][3],driverInfo[0][4]);
@@ -86,9 +86,9 @@ function displayDistance(driverInfo, distance, displayInDiv){
 	else {
 		// Get totalRideCost, this is unsplit
 		var totalRideCost = toDollars(miles,mpg);
-		if(jsSusername === driverInfo[0][0]) displayIn.innerHTML += "Total cost of this trip is "+ totalRideCost +" dollars. ";
+		if(jsSusername === driverInfo[0][0]) displayIn.innerHTML += "Total cost of this trip is $"+ round2(totalRideCost) +". ";
 		splitCost(totalRideCost,driverInfo[0][0], function(price){
-			displayIn.innerHTML += "This will take "+ round2(price) +" dollars per person. ";
+			displayIn.innerHTML += "This will take $"+ round2(price) +" per person. <br>";
 			});
 		}
 	}

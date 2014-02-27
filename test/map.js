@@ -66,12 +66,6 @@ function createMap(){
 		addPointMap(myPosition,"You","images/male.png",true);
 		addPointMap(mydest,"Your destination","images/mydest.png",true);
 		arrayMap(jsSnearby);
-		/*if(jsSincar != null){
-			route(jsSincar);
-			}
-		else if(jsStype==="offer"){
-			route(jsSusername);
-			}*/
 		}
 	else {
 		directionDisplay.setMap(null);
@@ -115,24 +109,26 @@ function arrayMap(locations){
 
 			google.maps.event.addListener(marker, 'click', (function(marker, i) {
 				return function() {
+					$('#driverMapInfo').show();
 					var pretime = readableDate(locations[i][8]);
 					if(pretime!==false) var time = " Leaving at " + readableDate(locations[i][8]);
-					else var time = " No leave time set. ";
+					else var time = " They haven't set their leave time yet. ";
 					if(locations[i][3]==="offer"){
+						InfoWindow.setContent(locations[i][0]);
 						route(locations[i][0], false, "distanceDiv");
 						if(locations[i][6]!==null){
 							if(locations[i][7]<=0){
-								InfoWindow.setContent(locations[i][0]+' has a full car.');
+								$('#driverMapInfo').html(locations[i][0]+' has a full car.');
 								}
 							else {
 								if(locations[i][7]==1) var spots = locations[i][7] + " seat avalable.";
 								else var spots = locations[i][7] + " seats avalable.";
-								InfoWindow.setContent(locations[i][0]+' has '+spots+time+' <span id="distanceDiv" value="" ></span> <button id="askride" value="'+locations[i][0]+'" onclick="askForRide();" >Ask for ride</button>');
+								$('#driverMapInfo').html(locations[i][0]+' has '+spots+time+' <span id="distanceDiv" value="" ></span> <button id="askride" value="'+locations[i][0]+'" onclick="askForRide();" >Ask for ride</button>');
 								}
 							}
 						else {
 							var spots = "not set avalable seats yet.";
-							InfoWindow.setContent(locations[i][0]+' has '+spots+time+' <span id="distanceDiv" value="" ></span> <button id="askride" value="'+locations[i][0]+'" onclick="askForRide();" >Ask for ride</button>');
+							$('#driverMapInfo').html(locations[i][0]+' has '+spots+time+' <span id="distanceDiv" value="" ></span> <button id="askride" value="'+locations[i][0]+'" onclick="askForRide();" >Ask for ride</button>');
 							}
 						}
 					else {
