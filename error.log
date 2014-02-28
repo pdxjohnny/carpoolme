@@ -9,3 +9,8 @@
 [Thu Feb 27 17:11:12 2014] [error] [client 198.20.69.74] File does not exist: /var/www/carpool/robots.txt
 [Thu Feb 27 20:38:41 2014] [error] [client 24.20.209.246] PHP Warning:  file_put_contents(infos/pdxjohnny): failed to open stream: Permission denied in /var/www/carpool/profiles/profile.php on line 37, referer: http://carpoolme.net/test.php
 [Thu Feb 27 20:38:56 2014] [error] [client 24.20.209.246] PHP Warning:  file_put_contents(infos/pdxjohnny): failed to open stream: Permission denied in /var/www/carpool/profiles/profile.php on line 37, referer: http://carpoolme.net/test.php
+[Thu Feb 27 20:53:12 2014] [error] [client 135.19.113.96] Invalid URI in request v\xc9\x9fZ)Z\x0c\xf45\x1c\xb9#u\xb6K\xda\xe5\xf2
+[Thu Feb 27 21:12:40 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/upload.js, referer: http://carpoolme.net/test3.php
+[Thu Feb 27 21:13:01 2014] [error] [client 24.20.209.246] script '/var/www/carpool/upload.php' not found or unable to stat, referer: http://carpoolme.net/test3.php
+[Thu Feb 27 21:30:35 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: upload_dir in /var/www/carpool/test4.php on line 14, referer: http://carpoolme.net/test3.php
+[Thu Feb 27 21:30:35 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: upload_dir in /var/www/carpool/test4.php on line 23, referer: http://carpoolme.net/test3.php
