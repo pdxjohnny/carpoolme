@@ -14,7 +14,7 @@ require 'phpfunctions.php';
 
 	if(isset($_SESSION['inmycaroffer'])) unset($_SESSION['inmycaroffer']);
 
-	$query = "SELECT username, email FROM $table WHERE incar='$myusername' AND NOT username = '$myusername';";
+	$query = "SELECT username FROM $table WHERE incar='$myusername' AND NOT username = '$myusername';";
 
 	if ($result = mysqli_query($con, $query)) {
 
@@ -28,7 +28,7 @@ require 'phpfunctions.php';
 
 	echo "%";
 
-	$query = "SELECT username, email FROM $table WHERE ridingwith='$myusername' AND NOT username = '$myusername';";
+	$query = "SELECT username FROM $table WHERE ridingwith='$myusername' AND NOT username = '$myusername';";
 	
 	if(isset($_SESSION['wantmycar'])) unset($_SESSION['wantmycar']);
 
@@ -46,7 +46,7 @@ require 'phpfunctions.php';
 
 	echo "%";
 		
-	if(!empty($_POST['accept'])) {
+	if(isset($_POST['accept'])) {
 		$accept = $_POST['accept'];
 		for($i=0; $i < count($accept); $i++){
 			updateString("incar",$_SESSION['username'],$accept[$i]);

@@ -48,6 +48,7 @@ if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ($_POST['userna
 		mysqli_query($con,"INSERT INTO $table (username,password,email,type,latitude,longitude) VALUES('$whatname','$whatpass','$whatemail','$whattype',$whatlat,$whatlng);");
 		$_SESSION['username'] = $whatname;
 		$_SESSION['type'] = $whattype;
+		file_put_contents("profiles/users", $_SESSION['username'], FILE_APPEND);
 		echo $_SESSION['username'] . " you are now logged in <meta http-equiv='refresh' content='0'>";
 		}
 

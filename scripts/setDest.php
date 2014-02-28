@@ -2,6 +2,7 @@
 
 session_start();
 require 'phpfunctions.php';
+require 'parts.php';
 //if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
 
 	$whatlat = $_SESSION['latd'] = $_POST['GPSlatd'];
@@ -30,6 +31,4 @@ require 'phpfunctions.php';
 
 	mysqli_close($con);
 
-	getNearDest(0.15);
-	makeMap("dest");
 ?>

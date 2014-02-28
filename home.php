@@ -17,8 +17,8 @@ Author: John Andersen
   ================================================== -->
 	<meta charset="utf-8">
 	<title>Carpoolme</title>
-	<meta name="description" content="">
-	<meta name="author" content="">
+	<meta name="description" content="Carpoolme">
+	<meta name="author" content="John Andersen">
 
 	<!-- Mobile Specific Metas
   ================================================== -->
@@ -45,17 +45,23 @@ Author: John Andersen
 <body>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
-function toggleMap(){
-	$('#toggleMap').show();
+function hideAll(){
+	$('#toggleMap').hide();
 	$('#toggleCar').hide();
 	$('#toggleProfile').hide();
 	$('#help').hide();
 	}
+function toggleMap(){
+	hideAll();
+	$('#toggleMap').show();
+	}
 function toggleCar(){
-	$('#toggleMap').hide();
+	hideAll();
 	$('#toggleCar').show();
-	$('#toggleProfile').hide();
-	$('#help').hide();
+	}
+function toggleProfile(){
+	hideAll();
+	$('#toggleProfile').show();
 	}
 function toggleHelp(){
 	$.ajax({
@@ -67,16 +73,8 @@ function toggleHelp(){
 			}
 		});
 	event.preventDefault();
-	$('#toggleMap').hide();
-	$('#toggleCar').hide();
-	$('#toggleProfile').hide();
+	hideAll();
 	$('#help').show();
-	}
-function toggleProfile(){
-	$('#toggleMap').hide();
-	$('#toggleCar').hide();
-	$('#toggleProfile').show();
-	$('#help').hide();
 	}
 </script>
 
@@ -89,18 +87,19 @@ function toggleProfile(){
 	<div class="container">
 		<div class="sixteen columns remove-bottom">
 			<h1 class="remove-bottom" style="margin-top: 40px">Carpoolme</h1>
-			<h5 class="remove-bottom" >Beta v1 <a href="#" data-mailto="johnandersenpdx@gmail.com">Report Bug</a></h5>
+			<h5 class="remove-bottom" >Beta v1.1 <a href="#" data-mailto="johnandersenpdx@gmail.com">Report Bug</a></h5>
 <?php
 
 session_start();
 define('INCLUDE_CHECK',true);
-require 'scripts/parts.php';
-require 'scripts/phpfunctions.php';
+$dir = "scripts";
+require $dir . '/parts.php';
+require $dir . '/phpfunctions.php';
 
 if(isset($_SESSION['username'])){
 	echo "User " . $_SESSION['username'] . " is logged in.";
-	logout("scripts/logout.php");
-	includes("scripts");
+	logout($dir . "/logout.php");
+	includes($dir);
 ?>
 			<br><center><span style="color: #4593C4; margin-top:10px;" id='returnSpan'></span></center>
 			<hr style="remove-bottom" />
@@ -115,40 +114,33 @@ if(isset($_SESSION['username'])){
 			<hr style="margin-bottom: 10px;"/>
 		</div>
 		<div id="toggleMap" class="sixteen columns remove-bottom">
-<?php		
-	if(isset($_SESSION['latd'])&&isset($_SESSION['lngd'])){
-		getNearDest(0.15);
-		setDest("scripts/setDest.php");
-		makeMap("dest");
-		}
-	else {
-		getNearBy(0.15);
-		setDest("scripts/setDest.php");
-		makeMap("nodest");
-		}
-	clearDest("scripts/clearDest.php");
-	clearRide("scripts/clearRide.php");
+<?php
+	setDest($dir . "/setDest.php");
+	clearDest($dir . "/clearDest.php");
+	clearRide($dir . "/clearRide.php");
 ?>
 		</div>
 		<div id="toggleCar" style="display:none;" class="sixteen columns remove-bottom">
 			<div class="five columns ">
 <?php
-
-	setLatestLeave("scripts/setLatestLeave.php");
+	if(0==strcmp($_SESSION['type'],"offer")){
+		setLatestLeave($dir . "/setLatestLeave.php");
+		seats($dir . "/seats.php",$dir . "/seatsDisplay.php");
+		mpg($dir . "/seats.php",$dir . "/seatsDisplay.php");
+		}
+		
 ?>
 			</div>
 			<div class="five columns ">
 <?php
 	if(0==strcmp($_SESSION['type'],"offer")){
-		seats("scripts/seats.php","scripts/seatsDisplay.php");
-		echo "<br>";
-		myCar("scripts/myCar.php");
+		myCar($dir . "/myCar.php");
 		}
 ?>
 			</div>
 			<div class="five columns ">
 <?php
-	myRide("scripts/myRide.php");
+	myRide($dir . "/myRide.php");
 ?>
 			</div>
 		</div>
@@ -166,14 +158,14 @@ else {?>
 	<hr /><br>
 	<div id="logindiv" style="display: table; margin: 0 auto;">
 <?php
-	login("scripts/login.php");
+	login($dir . "/login.php");
 ?>
 	<a href="#" id="toggleRegister" >Register</a>
 	</div>
 	<div id="registerdiv" style="display:none;" >
 		<div style="display: table; margin: 0 auto;">
 <?php
-	register("scripts/register.php");
+	register($dir . "/register.php");
 ?>	
 		<a href="#" id="toggleLogin" >Login</a>
 		</div>

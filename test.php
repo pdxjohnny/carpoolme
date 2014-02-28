@@ -87,18 +87,19 @@ function toggleHelp(){
 	<div class="container">
 		<div class="sixteen columns remove-bottom">
 			<h1 class="remove-bottom" style="margin-top: 40px">Carpoolme</h1>
-			<h5 class="remove-bottom" >Beta v1 <a href="#" data-mailto="johnandersenpdx@gmail.com">Report Bug</a></h5>
+			<h5 class="remove-bottom" >Beta v1.1 <a href="#" data-mailto="johnandersenpdx@gmail.com">Report Bug</a></h5>
 <?php
 
 session_start();
 define('INCLUDE_CHECK',true);
-require 'test/parts.php';
-require 'test/phpfunctions.php';
+$dir = "test";
+require $dir . '/parts.php';
+require $dir . '/phpfunctions.php';
 
 if(isset($_SESSION['username'])){
 	echo "User " . $_SESSION['username'] . " is logged in.";
-	logout("test/logout.php");
-	includes("test");
+	logout($dir . "/logout.php");
+	includes($dir);
 ?>
 			<br><center><span style="color: #4593C4; margin-top:10px;" id='returnSpan'></span></center>
 			<hr style="remove-bottom" />
@@ -114,18 +115,18 @@ if(isset($_SESSION['username'])){
 		</div>
 		<div id="toggleMap" class="sixteen columns remove-bottom">
 <?php
-	setDest("test/setDest.php");
-	clearDest("test/clearDest.php");
-	clearRide("test/clearRide.php");
+	setDest($dir . "/setDest.php");
+	clearDest($dir . "/clearDest.php");
+	clearRide($dir . "/clearRide.php");
 ?>
 		</div>
 		<div id="toggleCar" style="display:none;" class="sixteen columns remove-bottom">
 			<div class="five columns ">
 <?php
 	if(0==strcmp($_SESSION['type'],"offer")){
-		setLatestLeave("test/setLatestLeave.php");
-		seats("test/seats.php","test/seatsDisplay.php");
-		mpg("test/seats.php","test/seatsDisplay.php");
+		setLatestLeave($dir . "/setLatestLeave.php");
+		seats($dir . "/seats.php",$dir . "/seatsDisplay.php");
+		mpg($dir . "/seats.php",$dir . "/seatsDisplay.php");
 		}
 		
 ?>
@@ -133,13 +134,13 @@ if(isset($_SESSION['username'])){
 			<div class="five columns ">
 <?php
 	if(0==strcmp($_SESSION['type'],"offer")){
-		myCar("test/myCar.php");
+		myCar($dir . "/myCar.php");
 		}
 ?>
 			</div>
 			<div class="five columns ">
 <?php
-	myRide("test/myRide.php");
+	myRide($dir . "/myRide.php");
 ?>
 			</div>
 		</div>
@@ -157,14 +158,14 @@ else {?>
 	<hr /><br>
 	<div id="logindiv" style="display: table; margin: 0 auto;">
 <?php
-	login("test/login.php");
+	login($dir . "/login.php");
 ?>
 	<a href="#" id="toggleRegister" >Register</a>
 	</div>
 	<div id="registerdiv" style="display:none;" >
 		<div style="display: table; margin: 0 auto;">
 <?php
-	register("test/register.php");
+	register($dir . "/register.php");
 ?>	
 		<a href="#" id="toggleLogin" >Login</a>
 		</div>

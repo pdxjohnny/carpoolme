@@ -7,7 +7,7 @@ Author: John Andersen
 -->
 <?php
 
-if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
+//if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
 
 function includes($dir){?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -15,21 +15,20 @@ function includes($dir){?>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="<?php echo $dir; ?>/main.js"></script>
+<script src="<?php echo $dir; ?>/map.js"></script>
+<script src="<?php echo $dir; ?>/route.js"></script>
 
 <script>
-var jsmyride;
-
 $( document ).ready(function() {
 
-	getLeaveTime();
-	$('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from my ride's car</button>");
-
-	myRide();
-	<?php if(0==strcmp($_SESSION['type'],"offer")) echo "myCar();"; ?>
+	reload("<?php echo $_SESSION['username']; ?>");
 
 	window.setInterval(function(){
 		// Functions that need to be called repeatedly evezy x seconds 
-		<?php if(0==strcmp($_SESSION['type'],"offer")) echo "myCar();"; ?>
+		if(jsStype==="offer"){
+			getLeaveTime();
+			myCar();
+			}
 		myRide();
 	
 		}, 30000);
@@ -193,18 +192,26 @@ function getLeaveTime(){
 <?php
 	}
 
+// Map
 function setDest($postto){ ?>
+<div id="driverMapInfo" style="display:none;" ></div>
+
 <input name="GPSlatd" id="GPSlatd" type="hidden" value="">
 <input name="GPSlngd" id="GPSlngd" type="hidden" value="">
 
-<span id="geocodeSpan">
-<input id="togeocode" type="textbox" placeholder="Destination">
-<input type="button" value="Find" onclick="codeAddress('images/mydest.png')">
-</span>
 
-<div id="mapholder"></div>
+<form id="geocodeSpan"  style="display: table; margin: 0 auto;">
+<input id="togeocode" type="textbox" placeholder="Destination">
+<input type="submit" value="Find">
+</form>
+<div id="mapholder" style="height:340px; width:100%;" ></div>
 
 <script>
+$( '#geocodeSpan' ).submit(function() {
+	codeAddress('images/mydest.png');
+	return false;
+	});
+
 function setDestClick(){
 	var GPSlatdval = $('#GPSlatd').val();
 	var GPSlngdval = $('#GPSlngd').val();
@@ -217,13 +224,14 @@ function setDestClick(){
 			username: "<?php echo $_SESSION['username']; ?>"
 			},
 		success: function(data){
+			deleteMarkers();
+			reload(jsSusername);
 			$('#returnSpan').show();
 			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 			}
 		});
 	event.preventDefault();
-	deleteMarkers();
 	}
 </script>
 <?php
@@ -243,8 +251,7 @@ function clearRide(){
 			$('#returnSpan').show();
 			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
-			jsmyride = "nouserride";
-			myRide();
+			reload(jsSusername);
 			}
 		});
 	event.preventDefault();
@@ -254,9 +261,11 @@ function clearRide(){
 	}
 
 function clearDest($postto){ ?>
-<button id="clearDest" name="clearDest" onclick="clearDest()">Clear Destination</button>
+<button id="clearDest" style="display: none;" onclick="clearDest()">Clear Destination</button>
 <script>
 function clearDest(){
+	$('#returnSpan').show();
+	$('#returnSpan').html("Clearing your destination. <br>");
 	$.ajax({
 		type: "POST",
 		url: "<?php echo $postto; ?>",
@@ -267,6 +276,9 @@ function clearDest(){
 			$('#returnSpan').show();
 			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
+			deleteMarkers();
+			reload(jsSusername);
+			$('#driverMapInfo').hide();
 			}
 		});
 	event.preventDefault();
@@ -276,6 +288,8 @@ function clearDest(){
 	}
 
 function seats($update,$display){?>
+<br><br>
+<span id="availableSeats"></span>
 Update Seats Available: 
 <select name="seats" id="seats">
 <script>
@@ -323,7 +337,42 @@ function displaySeats(){
 	event.preventDefault();
 	}
 </script>
-<span id="availableSeats"></span>
+<?php
+	}
+
+function mpg($postto){?>
+<br>
+<span id="myMpg"></span>
+Update Your Mpg: 
+<input id="updateMpg" type="number" style="width:30px"></input>
+<button onclick="updateMpg();">Update</button>
+<br>
+<br>
+<script>
+function updateMpg(){
+	// Update the Mpg
+	$('#returnSpan').show();
+	$('#returnSpan').html("Updating mpg...<br>");
+	$.ajax({
+		type: "POST",
+		url: dir+"/jsupdate.php",
+		data: {
+			what: "mpg",
+			num: $('#updateMpg').val(),  
+			user: "<?php echo $_SESSION['username']; ?>"
+			},
+		success: function(data){
+			$('#returnSpan').show();
+			$('#returnSpan').html(data+"<br>");
+			$('#returnSpan').delay(9000).fadeOut();
+			jsSmpg = $('#updateMpg').val();
+			route(jsSusername, false, "myCarInfo");
+			$('#myMpg').html("Your current mpg is "+jsSmpg+".<br>");
+			}
+		});
+	event.preventDefault();
+	}
+</script>
 <?php
 	}
 
@@ -348,6 +397,7 @@ function help(){
 	}
 
 function myCar($postto){ ?>
+<span id="myCarInfo" ></span><br>
 <span id="inMyCarSpan" ></span>
 <span id="wantMyCarSpan" ></span>
 <script>
@@ -424,6 +474,7 @@ function approve(){
 			$('#returnSpan').html(returnval+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 
+			route(jsSusername, true, "myCarInfo");
 			myCar();
 			}
 		});
@@ -442,10 +493,11 @@ function kickFromCar(tokickel){
 				tokick: tokickval
 				},
 			success: function(data){
+				route(jsSusername, true, "myCarInfo");
+				myCar();
 				$('#returnSpan').show();
 				$('#returnSpan').html(data+"<br>");
 				$('#returnSpan').delay(9000).fadeOut();
-				myCar();
 				}
 			});
 		event.preventDefault();
@@ -456,20 +508,9 @@ function kickFromCar(tokickel){
 	}
 
 function myRide($postto){ ?>
-<span id="myRideSpan" ></span>
+<span id="myRideSpan" ></span><br>
+<span id="myRideCarInfo" ></span><br>
 <script>
-function jsMyRide(){
-	$.ajax({
-		type: "GET",
-		url: "<?php echo $postto; ?>",
-		data: {},
-		success: function(data){
-			data = data.split('%');
-			jsmyride = data[1];
-			}
-		});
-	}
-
 var initail = 0;
 function myRide(){
 	$.ajax({
@@ -478,19 +519,21 @@ function myRide(){
 		data: {},
 		success: function(data){
 			data = data.split('%');
-			if(tryParseJSON(data[0])!=false){
-				var incar = JSON.parse(data[0]);
-				inMyRide(incar,data[1]);
+			if(data[0] !== "none"){
+				jsSincar = data[2];
+				var ridersInCar = JSON.parse(data[0]);
+				inMyRide(ridersInCar,jsSincar);
+				route(jsSincar, true, "myRideCarInfo");
 				if(initail==0){
 					initail = 1;
 					$('#returnSpan').show();
-					$('#returnSpan').html(data[2]+"<br>");
+					$('#returnSpan').html(data[1]+"<br>");
 					$('#returnSpan').delay(9000).fadeOut();
 					}
 				}
 			else {
-				$('#myRideSpan').html(data[0]+"<br>");
-				jsmyride = data[1];
+				$('#myRideSpan').html(data[1]+"<br>");
+				$('#myRideCarInfo').html("");
 				initail = 0;
 				}
 			}
@@ -626,15 +669,50 @@ function myProfile($postto){ ?>
 <img id="profilePicture" style="display: table; margin: 0 auto; max-width:128px; max-height:128px;" src='images/nopicture.png' align="left" >
 <span id="profileInfo" ></span>
 <span id="myProfile" ></span>
-<span id="profileEditButtons" style="display:none;" >
-<button id="profileInfoEditButton" onclick='showEditProfile();' >Edit Profile</button>
 
+<span id="profileEditButtons" style="display:none;" >
+	<button id="profileInfoEditButton" onclick='showEditProfile();' >Edit Profile</button>
+	<form id="profilePictureUpload" enctype="multipart/form-data">
+		<input name="file" type="file" />
+		<input type="submit" name="submit" value="Upload">
+	</form>
 </span>
+
 <span id="profileInfoEdit" style="display:none;" >
 	<textarea id="profileInfoEditText" rows="20" cols="3000" ></textarea>
 	<button onclick="updateProfile();">Update</button>
 </span>
 <script>
+
+$('#profilePictureUpload').submit(function(){
+	var formData = new FormData($('#profilePictureUpload')[0]);
+	if(formData == null) {
+		$('#returnSpan').show();
+		$('#returnSpan').html("Please select a file. <br>");
+		$('#returnSpan').delay(9000).fadeOut();	
+		return false;	
+		}
+	$.ajax({
+		url: 'profiles/pictures.php',
+		type: 'POST',
+		xhr: function() { 
+			var myXhr = $.ajaxSettings.xhr();
+			return myXhr;
+			},
+		data: formData,
+		success: function(data){
+			$('#returnSpan').show();
+			$('#returnSpan').html(data+"<br>");
+			$('#returnSpan').delay(9000).fadeOut();
+			profile(jsSusername);
+			},
+		cache: false,
+		contentType: false,
+		processData: false
+		});
+	return false;
+	});
+
 profile($('#getProfile').val());
 var availableUsers = readFile("profiles/users").split('\n');
 
@@ -672,10 +750,13 @@ function profile(usernameval){
 			else $('#profilePicture').attr("src", 'images/nopicture.png');
 			
 			if(data[1]==="exists"){
-				$('#profileInfo').html(readFile("profiles/infos/"+usernameval)+"<br>");
+				$('#profileInfo').html(readFile("profiles/infos/"+usernameval).replace(/\n/g, "<br>")+"<br>");
 				}
 			else{
-				if($('#getProfile').val()==="<?php echo $_SESSION['username']; ?>") $('#profileInfo').html("Write about your self.<br>");
+				if($('#getProfile').val()==="<?php echo $_SESSION['username']; ?>"){
+					$('#profileInfo').html("Write about your self.<br>");
+
+					}
 				else $('#profileInfo').html("Hasn't said anything about themself.<br>");
 				}
 			}
@@ -702,7 +783,7 @@ function updateProfile(){
 	}
 
 function showEditProfile(){
-	$('#profileInfoEditText').val($('#profileInfo').html().replace(/<br>/g, '')+" ");
+	$('#profileInfoEditText').val($('#profileInfo').html().replace(/<br>/g, '\n')+" ");
 	$('#profileInfoEdit').show();
 	$('#profileInfo').hide();
 	$('#profileEditButtons').hide();
@@ -716,6 +797,12 @@ $( "#getProfile" ).autocomplete({
 	});
 
 </script>
+<?php
+	}
+
+function myCarInfo($postto){ ?>
+<span id="myCarInfo" >Loading distance and cost... </span><br>
+<div id="myTripMapCanvas" style="height:340px; width:100%;" ></div>
 <?php
 	}
 ?>
