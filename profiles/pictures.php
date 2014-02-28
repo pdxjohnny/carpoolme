@@ -9,7 +9,7 @@ $maxsize = 2000000;
 
 if (	(0 != strcmp($extension,"jpg")) && 
 	(0 != strcmp($extension,"png")) &&
-	(0 != strcmp($extension,"gif"))    ) exit("Only jpg png and gif are allowed. ");
+	(0 != strcmp($extension,"gif"))    ) exit("Only jpg, png, and gif are allowed. ");
 
 if ($_FILES["file"]["size"] < $maxsize){
 	if ($_FILES["file"]["error"] > 0) {
@@ -25,13 +25,13 @@ if ($_FILES["file"]["size"] < $maxsize){
 			if (file_exists($picture)) {
 				unlink($picture);
 				move_uploaded_file($_FILES["file"]["tmp_name"], $upload_dir . $_SESSION['username'] . '.' . $extension);
-				exit ("File replaced");
+				exit ("Profile picture updated");
 				$ispic = 1;
 				} 
 			}
 		if($ispic == 0) {
 			move_uploaded_file($_FILES["file"]["tmp_name"], $upload_dir . $_SESSION['username'] . '.' . $extension);
-			echo "File uploaded";
+			echo "Profile picture uploaded";
 			}
 		}
 	}

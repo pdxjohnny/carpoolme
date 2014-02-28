@@ -1,2 +1,89 @@
 Beta v1.1
-
+	2/28/14 - Beta v1.1 migrated to production
+	2/27/14 - test of .gitignore
+	2/27/14 - Pre test to production
+	2/27/14 - profile picture uploading supported in test
+	2/27/14 - Working on ajax upload
+	2/27/14 - Fixed Profile updating
+	2/27/14 - Finalized mpg
+	2/27/14 - pre migration to production
+	2/27/14 - working on mpg update
+	2/25/14 - fixed invalid left hand assingment
+	2/24/14 - working on myride, wont clear my ride car info
+	2/24/14 - fixed zoom out on route();
+	2/20/14 - no need for distance.js
+	2/20/14 - done for today
+	2/20/14 - Bug in kick and accept on displaying map.
+	2/20/14 - finalizing reloads
+	2/20/14 - Fixed no desination bug
+	2/20/14 - More work on routes
+	2/20/14 - Test almost done
+	2/20/14 - distance and route working but not centering
+	2/19/14 - finishing distance
+	2/18/14 - working on price
+	2/18/14 - work on distances
+	2/18/14 - distance updated for meters
+	2/18/14 - further migration to test
+	2/18/14 - migrating test2 to test
+	2/18/14 - test2 distance and directions optimizing
+	2/14/14 - Profile info with javascript
+	2/12/14 - Production Autocomplete
+	2/12/14 - Auto complete on profiles
+	2/11/14 - Migrated test to prodction
+	2/11/14 - fixed issues with leavetime
+	2/11/14 - finished profiles in test
+	2/11/14 - profiles in test
+	2/11/14 - fixed no users in car for myCar.php
+	2/11/14 - Seats updates instantly
+	2/11/14 - Riders kicked in test/
+	2/11/14 - Working on kicking Riders
+	2/7/14 - Updated query in getNearDest for latestleave of >= now
+	2/7/14 - Removed rider destinations
+	2/7/14 - Updated returnSpan for ride acceptance
+	2/7/14 - Fixed login bugs
+	2/7/14 - Updated returnSpan for myRide.php
+	2/6/14 - Updated login and register on main
+	2/6/14 - Updated login and register to ajax on test
+	2/6/14 - Updated clearRide
+	2/6/14 - icon
+Beta v1.0
+	2/6/14 - Beta v1
+	2/6/14 - UI update
+	2/6/14 - Test is now Master, Ajax complete
+	2/6/14 - Ajax done(hopefully)
+	2/6/14 - doing ajax transition cleanup
+	2/5/14 - ajax, myCar finished
+	2/5/14 - ajax, finishing myCar
+	2/5/14 - working on ajax, just showing who is in cars left
+	2/5/14 - switching to ajax most functions done
+	2/4/14 - switching to ajax and test folder created
+	2/4/14 - setLatestLeave.php user friendly work
+	2/4/14 - Working on ajax
+Alpha
+	2/4/14 - Stable Alpha
+	2/4/14 - more fixes to incar/ridingwith
+	2/4/14 - fixed last build, in car/ show car
+	2/4/14 - Stable build, just time left before alpha
+	2/3/14 - Stable, working on approvals
+	2/3/14 - Fixed errors in clean up
+	2/3/14 - Clean up, maping icons
+	2/3/14 - Stable Woring on inmycar
+	2/3/14 - Working on Seats
+	2/3/14 - All destination locations
+	2/3/14 - Destinations ploted
+	2/3/14 - Working on getDestNear
+	2/2/14 - Latest Leave Time Set
+	1/31/14 - Setting Latest Leave Time
+	Fixed non-hidden lat and long on login
+	1/30/14 - Login updated
+	1/30/14 - Destination Set
+	1/30/14 - Login and Resgister Stability Updates
+	1/30/14 - Setting Destination
+	1/30/14 - Destination Ploted
+	1/30/14 - User and near on map
+	1/30/14 - all nearby on map
+	1/30/14 - nearby one on map
+	1/30/14 - phpfunctions
+	Working mysql
+	Working mysql
+	first commit

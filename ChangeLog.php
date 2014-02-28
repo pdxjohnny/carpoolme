@@ -91,6 +91,6 @@ $('a[data-mailto]').click(function(){
 	return false;
 	});
 
-$('#ChangeLog').html(readFile("ChangeLog.txt").replace(/\n/g, "<br>"));
+$('#ChangeLog').html(readFile("ChangeLog.txt").replace(/\n/g, "<br>").replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;"));
 </script>
 </html>
