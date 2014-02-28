@@ -1,41 +1,39 @@
-<form enctype="multipart/form-data">
-    <input name="file" type="file" />
-    <input type="button" value="Upload" />
+<span id="returnSpan" style="display:none;" ></span>
+
+<form id="profilePictureUpload" enctype="multipart/form-data">
+	<input name="file" type="file" />
+	<input type="submit" name="submit" value="Upload">
 </form>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
 
-$(':file').change(function(){
-    var file = this.files[0];
-    var name = file.name;
-    var size = file.size;
-    var type = file.type;
-    //Your validation
-});
-
-
-$(':button').click(function(){
-    var formData = new FormData($('form')[0]);
-    $.ajax({
-        url: 'test4.php',  //Server script to process data
-        type: 'POST',
-        xhr: function() {  // Custom XMLHttpRequest
-            var myXhr = $.ajaxSettings.xhr();
-            if(myXhr.upload){ // Check if upload property exists
-            }
-            return myXhr;
-        },
-        //Ajax events
-	data: formData,
-	success: function(data){
-		console.log(data);
-		},
-        //Options to tell jQuery not to process data or worry about content-type.
-        cache: false,
-        contentType: false,
-        processData: false
-    });
-});
+$('#profilePictureUpload').submit(function(){
+	var formData = new FormData($('#profilePictureUpload')[0]);
+	if(formData == null) {
+		$('#returnSpan').show();
+		$('#returnSpan').html("Please select a file. <br>");
+		$('#returnSpan').delay(9000).fadeOut();	
+		return false;	
+		}
+	$.ajax({
+		url: 'profiles/pictures.php',
+		type: 'POST',
+		xhr: function() { 
+			var myXhr = $.ajaxSettings.xhr();
+			return myXhr;
+			},
+		data: formData,
+		success: function(data){
+			$('#returnSpan').show();
+			$('#returnSpan').html(data+"<br>");
+			$('#returnSpan').delay(9000).fadeOut();
+			},
+		cache: false,
+		contentType: false,
+		processData: false
+		});
+	return false;
+	});
 
 </script>

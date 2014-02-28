@@ -668,18 +668,50 @@ function myProfile($postto){ ?>
 <img id="profilePicture" style="display: table; margin: 0 auto; max-width:128px; max-height:128px;" src='images/nopicture.png' align="left" >
 <span id="profileInfo" ></span>
 <span id="myProfile" ></span>
+
 <span id="profileEditButtons" style="display:none;" >
-<button id="profileInfoEditButton" onclick='showEditProfile();' >Edit Profile</button>
-	<form id="profilePictureUpload" enctype='multipart/form-data'>
-		<input type='submit' name='submit' value='Upload'>
-		<input type='file' name='file' id='file'>
+	<button id="profileInfoEditButton" onclick='showEditProfile();' >Edit Profile</button>
+	<form id="profilePictureUpload" enctype="multipart/form-data">
+		<input name="file" type="file" />
+		<input type="submit" name="submit" value="Upload">
 	</form>
 </span>
+
 <span id="profileInfoEdit" style="display:none;" >
 	<textarea id="profileInfoEditText" rows="20" cols="3000" ></textarea>
 	<button onclick="updateProfile();">Update</button>
 </span>
 <script>
+
+$('#profilePictureUpload').submit(function(){
+	var formData = new FormData($('#profilePictureUpload')[0]);
+	if(formData == null) {
+		$('#returnSpan').show();
+		$('#returnSpan').html("Please select a file. <br>");
+		$('#returnSpan').delay(9000).fadeOut();	
+		return false;	
+		}
+	$.ajax({
+		url: 'profiles/pictures.php',
+		type: 'POST',
+		xhr: function() { 
+			var myXhr = $.ajaxSettings.xhr();
+			return myXhr;
+			},
+		data: formData,
+		success: function(data){
+			$('#returnSpan').show();
+			$('#returnSpan').html(data+"<br>");
+			$('#returnSpan').delay(9000).fadeOut();
+			profile(jsSusername);
+			},
+		cache: false,
+		contentType: false,
+		processData: false
+		});
+	return false;
+	});
+
 profile($('#getProfile').val());
 var availableUsers = readFile("profiles/users").split('\n');
 
@@ -761,11 +793,6 @@ $( "#getProfile" ).autocomplete({
 		var results = $.ui.autocomplete.filter(availableUsers, request.term);
 		response(results.slice(0, 5));
 		}
-	});
-
-$('#profilePictureUpload').submit(function(){
-	console.log("uploaded");
-	return false;
 	});
 
 </script>

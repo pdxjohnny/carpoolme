@@ -6,6 +6,11 @@ $upload_dir = "/var/www/carpool/profiles/pictures/";
 $temp = explode(".", $_FILES["file"]["name"]);
 $extension = end($temp);
 $maxsize = 2000000;
+
+if (	(0 != strcmp($extension,"jpg")) && 
+	(0 != strcmp($extension,"png")) &&
+	(0 != strcmp($extension,"gif"))    ) exit("Only jpg png and gif are allowed. ");
+
 if ($_FILES["file"]["size"] < $maxsize){
 	if ($_FILES["file"]["error"] > 0) {
 		if(($_FILES["file"]["error"])==4) echo "No file selected";
@@ -31,7 +36,7 @@ if ($_FILES["file"]["size"] < $maxsize){
 		}
 	}
 else{
-	echo "Invalid file";
+	echo "Your picture is too large. ";
 	}
 
 
