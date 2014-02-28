@@ -18937,3 +18937,6 @@
 [Fri Feb 28 08:44:19 2014] [error] [client 50.57.190.90] PHP Notice:  Undefined index: lng in /var/www/carpool/test/nearby.php on line 21
 [Fri Feb 28 08:44:19 2014] [error] [client 50.57.190.90] PHP Notice:  Undefined index: username in /var/www/carpool/test/nearby.php on line 22
 [Fri Feb 28 08:44:19 2014] [error] [client 50.57.190.90] PHP Notice:  Undefined index: type in /var/www/carpool/test/nearby.php on line 23
+[Fri Feb 28 09:59:41 2014] [error] [client 65.55.55.229] File does not exist: /var/www/carpool/robots.txt
+[Fri Feb 28 10:05:32 2014] [error] [client 159.191.186.254] script '/var/www/carpool/Changelog.php' not found or unable to stat
+[Fri Feb 28 10:05:33 2014] [error] [client 50.56.58.47] script '/var/www/carpool/Changelog.php' not found or unable to stat
