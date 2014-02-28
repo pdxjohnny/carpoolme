@@ -278,6 +278,7 @@ function clearDest(){
 			$('#returnSpan').delay(9000).fadeOut();
 			deleteMarkers();
 			reload(jsSusername);
+			$('#driverMapInfo').hide();
 			}
 		});
 	event.preventDefault();
