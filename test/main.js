@@ -42,6 +42,8 @@ function reload(myUsername){
 			getLeaveTime();
 			myCar();
 			}
+		if(jsSmpg != null) $('#myMpg').html("Your current mpg is "+jsSmpg+".<br>");
+		else $('#myMpg').html("The mpg of your car is not set.<br>");
 		myRide();
 		});
 	}

@@ -287,6 +287,8 @@ function clearDest(){
 	}
 
 function seats($update,$display){?>
+<br><br>
+<span id="availableSeats"></span>
 Update Seats Available: 
 <select name="seats" id="seats">
 <script>
@@ -334,16 +336,18 @@ function displaySeats(){
 	event.preventDefault();
 	}
 </script>
-<span id="availableSeats"></span>
 <?php
 	}
 
 function mpg($postto){?>
 <br>
-Update Your Mpg: 
 <span id="myMpg"></span>
-<input id="updateMpg" type="number" ></input>
-<button onclick="updateMpg();">Update</button><br><script>
+Update Your Mpg: 
+<input id="updateMpg" type="number" style="width:30px"></input>
+<button onclick="updateMpg();">Update</button>
+<br>
+<br>
+<script>
 function updateMpg(){
 	// Update the Mpg
 	$('#returnSpan').show();
@@ -361,7 +365,8 @@ function updateMpg(){
 			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 			jsSmpg = $('#updateMpg').val();
-			route(jsSusername, false, "myCarInfo")
+			route(jsSusername, false, "myCarInfo");
+			$('#myMpg').html("Your current mpg is "+jsSmpg+".<br>");
 			}
 		});
 	event.preventDefault();
