@@ -534,6 +534,7 @@ function myRide(){
 			else {
 				$('#myRideSpan').html(data[1]+"<br>");
 				$('#myRideCarInfo').html("");
+				directionDisplay.setMap(null);
 				initail = 0;
 				}
 			}
@@ -802,7 +803,6 @@ $( "#getProfile" ).autocomplete({
 
 function myCarInfo($postto){ ?>
 <span id="myCarInfo" >Loading distance and cost... </span><br>
-<div id="myTripMapCanvas" style="height:340px; width:100%;" ></div>
 <?php
 	}
 ?>
