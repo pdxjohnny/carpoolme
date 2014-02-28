@@ -7,3 +7,5 @@
 [Thu Feb 27 13:19:48 2014] [error] [client 186.95.153.219] File does not exist: /var/www/carpool/cgi-bin
 [Thu Feb 27 13:44:28 2014] [error] [client 184.73.111.81] Invalid method in request "GET /cgi-bin/php HTTP/1.0 
 [Thu Feb 27 17:11:12 2014] [error] [client 198.20.69.74] File does not exist: /var/www/carpool/robots.txt
+[Thu Feb 27 20:38:41 2014] [error] [client 24.20.209.246] PHP Warning:  file_put_contents(infos/pdxjohnny): failed to open stream: Permission denied in /var/www/carpool/profiles/profile.php on line 37, referer: http://carpoolme.net/test.php
+[Thu Feb 27 20:38:56 2014] [error] [client 24.20.209.246] PHP Warning:  file_put_contents(infos/pdxjohnny): failed to open stream: Permission denied in /var/www/carpool/profiles/profile.php on line 37, referer: http://carpoolme.net/test.php

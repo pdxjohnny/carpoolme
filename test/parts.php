@@ -717,7 +717,7 @@ function profile(usernameval){
 			else $('#profilePicture').attr("src", 'images/nopicture.png');
 			
 			if(data[1]==="exists"){
-				$('#profileInfo').html(readFile("profiles/infos/"+usernameval)+"<br>");
+				$('#profileInfo').html(readFile("profiles/infos/"+usernameval).replace(/\n/g, "<br>")+"<br>");
 				}
 			else{
 				if($('#getProfile').val()==="<?php echo $_SESSION['username']; ?>"){
@@ -750,7 +750,7 @@ function updateProfile(){
 	}
 
 function showEditProfile(){
-	$('#profileInfoEditText').val($('#profileInfo').html().replace(/<br>/g, '')+" ");
+	$('#profileInfoEditText').val($('#profileInfo').html().replace(/<br>/g, '\n')+" ");
 	$('#profileInfoEdit').show();
 	$('#profileInfo').hide();
 	$('#profileEditButtons').hide();
