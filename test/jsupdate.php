@@ -1,45 +1,39 @@
 <?php
 
 if(isset($_POST['string'])){
-	$what = $_POST['what'];
-	$with = $_POST['string'];
-	$user = $_POST['user'];
-	echo updateString($what,$with,$user);
+	echo updateString($_POST['table'],$_POST['what'],$_POST['string'],$_POST['user']);
 	}
 
 else if(isset($_POST['num'])){
-	$what = $_POST['what'];
-	$with = $_POST['num'];
-	$user = $_POST['user'];
-	echo updateNum($what,$with,$user);
+	echo updateNum($_POST['table'],$_POST['what'],$_POST['num'],$_POST['user']);
 	}
 
 else if(isset($_POST['null'])){
-	$what = $_POST['what'];
-	$user = $_POST['user'];
-	echo updateNull($what,$user);
+	echo updateNull($_POST['table'],$_POST['what'],$_POST['user']);
 	}
 
 else if(isset($_POST['get'])){
-	$stuff = $_POST['get'];
-	$something = $_POST['something'];
-	$howmany = $_POST['howmany'];
-	$isthis = $_POST['isthis'];
-	echo get($stuff,$something,$isthis,$howmany);
+	echo get($_POST['table'], $_POST['get'], $_POST['something'], $_POST['isthis'], (substr_count($_POST['get'], ',') +1) );
+	}
+
+else if(isset($_POST['theseNum'])){
+	echo updateMultNum($_POST['table'], $_POST['theseNum'], $_POST['newvalues'], $_POST['user']);
+	}
+
+else if(isset($_POST['theseString'])){
+	echo updateMultString($_POST['table'], $_POST['theseString'], $_POST['newvalues'], $_POST['user']);
 	}
 
 else echo "Not sure what to update. ";
 
-function get($stuff,$something,$isthis,$howmany){
-
-	$table="carpool_members"; // Table name
+function get($table,$stuff,$something,$isthis,$howmany){
 
 	// Create connection
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
 
 	// Check connection
 	if (mysqli_connect_errno()){
-		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		return "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
 	$query = "SELECT $stuff FROM $table WHERE $something='$isthis';";
@@ -57,9 +51,7 @@ function get($stuff,$something,$isthis,$howmany){
 		}	
 	}
 
-function updateString($what,$with,$user){
-
-	$table="carpool_members"; // Table name
+function updateString($table,$what,$with,$user){
 
 	// Create connection
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
@@ -77,22 +69,18 @@ function updateString($what,$with,$user){
 		return "Updated";
 		}
 	else if(1 < mysqli_num_rows($result)){
-		echo "More than one user was found. ";
 		mysqli_close($con);
-		return 1;
+		return "More than one user was found. ";
 		}
 	else if(0 == mysqli_num_rows($result)){
-		echo "$user was not found. ";
 		mysqli_close($con);
-		return 1;
+		return "$user was not found. ";
 		}
 	}
 
-function updateNum($what,$with,$user){
+function updateNum($table,$what,$with,$user){
 
 	if (!is_numeric($with)) return "Not a number";
-
-	$table="carpool_members"; // Table name
 
 	// Create connection
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
@@ -110,20 +98,16 @@ function updateNum($what,$with,$user){
 		return "Updated";
 		}
 	else if(1 < mysqli_num_rows($result)){
-		echo "More than one user was found. ";
 		mysqli_close($con);
-		return 1;
+		return "More than one user was found. ";
 		}
 	else if(0 == mysqli_num_rows($result)){
-		echo "$user was not found. ";
 		mysqli_close($con);
-		return 1;
+		return "$user was not found. ";
 		}
 	}
 
-function updateNull($what,$user){
-
-	$table="carpool_members"; // Table name
+function updateNull($table,$what,$user){
 
 	// Create connection
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
@@ -141,14 +125,72 @@ function updateNull($what,$user){
 		return "Updated";
 		}
 	else if(1 < mysqli_num_rows($result)){
-		echo "More than one user was found. ";
 		mysqli_close($con);
-		return 1;
+		return "More than one user was found. ";
 		}
 	else if(0 == mysqli_num_rows($result)){
-		echo "$user was not found. ";
 		mysqli_close($con);
-		return 1;
+		return "$user was not found. ";
+		}
+	}
+
+function updateMultNum($table, $these, $newvalues, $user){
+	
+	if(count($these) != count($newvalues)) return "Updates don't match. ";
+
+	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+
+	// Check connection
+	if (mysqli_connect_errno()){
+		return "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+
+	$result = mysqli_query($con,"SELECT id FROM $table WHERE username='$user';");
+
+	if(1 == mysqli_num_rows($result)){
+		for($i = 0; $i < count($these); $i++ ){
+			mysqli_query($con,"UPDATE $table SET $these[$i] = $newvalues[$i] WHERE username='$user';");
+			}
+		mysqli_close($con);
+		return "Updated. ";
+		}
+	else if(1 < mysqli_num_rows($result)){
+		mysqli_close($con);
+		return "More than one user was found. ";
+		}
+	else if(0 == mysqli_num_rows($result)){
+		mysqli_close($con);
+		return "$user was not found. ";
+		}
+	}
+
+function updateMultString($table, $these, $newvalues, $user){
+	
+	if(count($these) != count($newvalues)) return "Updates don't match. ";
+
+	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+
+	// Check connection
+	if (mysqli_connect_errno()){
+		return "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+
+	$result = mysqli_query($con,"SELECT id FROM $table WHERE username='$user';");
+
+	if(1 == mysqli_num_rows($result)){
+		for($i = 0; $i < count($these); $i++ ){
+			mysqli_query($con,"UPDATE $table SET $these[$i] = '$newvalues[$i]' WHERE username='$user';");
+			}
+		mysqli_close($con);
+		return "Updated. ";
+		}
+	else if(1 < mysqli_num_rows($result)){
+		mysqli_close($con);
+		return "More than one user was found. ";
+		}
+	else if(0 == mysqli_num_rows($result)){
+		mysqli_close($con);
+		return "$user was not found. ";
 		}
 	}
 ?>

@@ -16,7 +16,7 @@ session_start();
 	$whattype = $_POST['type'];
 	if((!$whatname)||(!$whatpass)) exit ("$whatname please fill in all fields. ");
 	else if((!$whatlat)||(!$whatlng)) exit ("$whatname please enable location. ");
-	$table="carpool_members"; // Table name
+	$table="carpool_test"; // Table name
 
 	// Create connection
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
@@ -34,19 +34,14 @@ session_start();
 	if(1 == mysqli_num_rows($result)){
 		$_SESSION['username'] = $whatname;
 		$_SESSION['type'] = $whattype;
-		mysqli_query($con,"UPDATE $table SET latitude = $whatlat, longitude = $whatlng, type = '$whattype' WHERE username='$whatname';");		
+		mysqli_query($con,"UPDATE $table SET lat = $whatlat, lng = $whatlng, type = '$whattype' WHERE username='$whatname';");
+		mysqli_query($con,"UPDATE carpool_trip1 SET lat = $whatlat, lng = $whatlng WHERE username='$whatname';");	
+		mysqli_query($con,"UPDATE carpool_trip2 SET lat = $whatlat, lng = $whatlng WHERE username='$whatname';");	
+		mysqli_query($con,"UPDATE carpool_trip3 SET lat = $whatlat, lng = $whatlng WHERE username='$whatname';");	
+		mysqli_query($con,"UPDATE carpool_trip4 SET lat = $whatlat, lng = $whatlng WHERE username='$whatname';");	
+		mysqli_query($con,"UPDATE carpool_trip5 SET lat = $whatlat, lng = $whatlng WHERE username='$whatname';");	
 
-		if ($newresult = mysqli_query($con, "SELECT dlatitude, dlongitude, spots, ridingwith, incar, latestleave FROM $table WHERE username = '$whatname';")) {
-	    		$row = mysqli_fetch_row($newresult);
-			$_SESSION['latd'] = $row[0];
-			$_SESSION['lngd'] = $row[1];
-			$_SESSION['seats'] = $row[2];
-			$_SESSION['myride'] = $row[3];
-			$_SESSION['latestleave'] = $row[5];
-			if($row[4]!=NULL) $_SESSION['myride'] = $row[4];
-    			mysqli_free_result($newresult);
-			echo $_SESSION['username'] . " is now logged in. <meta http-equiv='refresh' content='1'>";
-   			}
+		echo $_SESSION['username'] . " is now logged in. <meta http-equiv='refresh' content='1'>";
     		mysqli_free_result($result);
 		}
 	else{

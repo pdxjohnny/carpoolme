@@ -21,15 +21,17 @@ function includes($dir){?>
 <script>
 $( document ).ready(function() {
 
+	for(var i = 0; i < 6; i++ ){
+		jsSride[i] = [];
+		}
 	reload("<?php echo $_SESSION['username']; ?>");
 
 	window.setInterval(function(){
-		// Functions that need to be called repeatedly evezy x seconds 
 		if(jsStype==="offer"){
-			getLeaveTime();
-			myCar();
+		//	getLeaveTime();
+		//	myCar("carpool_members");
 			}
-		myRide();
+		//myRide("carpool_members");
 	
 		}, 30000);
 
@@ -94,7 +96,9 @@ maxdate = maxdate.getDate();
 var inputdate;
 for(var i = 0;i<=14;i++){
 	inputdate = dateYMD.getDate()+i;
-	if(inputdate>maxdate) inputdate = inputdate-maxdate;
+	if(inputdate>maxdate){
+		inputdate = inputdate-maxdate;
+		}
 	document.write("<option value='"+inputdate+"'>"+inputdate+"</option>");
 	}
 </script>
@@ -111,21 +115,9 @@ $( document ).ready(function() {
 	else if (val[0] == 1) var sufix = dateSufix(val);
 	else var sufix = dateSufix(val[1]);
 	$('#datesufix').html(sufix);
+	});
 
-	$( '#setLatestLeave' ).click(function() {
-		if((dateYMD.getMonth()+1)<10) var month = '0'+(dateYMD.getMonth()+1);
-		else var month = dateYMD.getMonth()+1;
-		var predate = $( "#date" ).val();
-		var prehour = $( "#hour" ).val();
-		var minute = $( "#minute" ).val();
-		if(predate<10) var date = '0'+predate;
-		else var date = predate;
-		if(prehour<10) var hour = '0'+prehour;
-		else var hour = prehour;
-		var ymd = dateYMD.getFullYear()+'-'+month+'-'+date+' '+hour+':'+minute+':00';
-		$('#datetime').val(ymd);
-		});
-	 $("#hour").click(function() {
+	$("#hour").click(function() {
 		var val = $("#hour").val();
 		if(val < 12) {
 			$('#amorpm').html(" am");
@@ -137,7 +129,7 @@ $( document ).ready(function() {
 			$('#amorpm').html(" pm");
 			}
 		});
-	 $("#date").click(function() {
+	$("#date").click(function() {
 		var val = $(this).val();
 		var sufix;
 		if(val.length == 1) sufix = dateSufix(val);
@@ -145,8 +137,6 @@ $( document ).ready(function() {
 		else sufix = dateSufix(val[1]);
 		$('#datesufix').html(sufix);
 		});
-	getLeaveTime();
-	});
 
 function setLatestLeave() {
 	if((dateYMD.getMonth()+1)<10) var month = '0'+(dateYMD.getMonth()+1);
@@ -162,30 +152,24 @@ function setLatestLeave() {
 	$('#datetime').val(ymd);
 	var datetimeval = $('#datetime').val();
 	$('#leavetime').html("You are currently set to leave at "+readableDate(datetimeval));
-	$.ajax(
-		{
-		type: "POST",
-		url: "<?php echo $postto; ?>",
-		data: {datetime: datetimeval},
-		success: function(data){
-			$('#returnSpan').show();
-			$('#returnSpan').html(data+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();
-			}
+	// Change this table
+	updateString("carpool_members","latestleave",ymd,jsSusername,function(data){
+		$('#returnSpan').show();
+		$('#returnSpan').html("Your leave time for trip "+tableCheck($('#tripSelect').val())+" was "+data+"<br>");
+		$('#returnSpan').delay(9000).fadeOut();
+		getLeaveTime("carpool_members");
 		});
 	event.preventDefault();
 	}
 
-function getLeaveTime(){
-	$.ajax(
-		{
-		type: "POST",
-		url: "<?php echo $postto; ?>",
-		data: {"getLeaveTime": "getLeaveTime"},
-		success: function(data){
-			if(data !== "none") $('#leavetime').html("You are currently set to leave at "+readableDate(data));
-			else $('#leavetime').html("You haven't set your leave time yet. ");
+function getLeaveTime(table){
+	getFromTable(table,"latestleave","username = '"+jsSusername+"'",function(data){
+		data = JSON.parse(data);
+		if(data[0][0] != null){
+			$('#datetime').val(data[0][0]);
+			$('#leavetime').html("You are currently set to leave at "+readableDate(data[0][0]));
 			}
+		else $('#leavetime').html("You haven't set your leave time yet. ");
 		});
 	}
 </script>
@@ -215,7 +199,7 @@ $( '#geocodeSpan' ).submit(function() {
 function setDestClick(){
 	var GPSlatdval = $('#GPSlatd').val();
 	var GPSlngdval = $('#GPSlngd').val();
-	$.ajax({
+	/*$.ajax({
 		type: "POST",
 		url: "<?php echo $postto; ?>",
 		data: {
@@ -230,7 +214,7 @@ function setDestClick(){
 			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 			}
-		});
+		});*/
 	event.preventDefault();
 	}
 </script>
@@ -511,33 +495,62 @@ function myRide($postto){ ?>
 <span id="myRideSpan" ></span><br>
 <span id="myRideCarInfo" ></span><br>
 <script>
-var initail = 0;
-function myRide(){
-	$.ajax({
-		type: "GET",
-		url: "<?php echo $postto; ?>",
-		data: {},
-		success: function(data){
-			data = data.split('%');
-			if(data[0] !== "none"){
-				jsSincar = data[2];
-				var ridersInCar = JSON.parse(data[0]);
-				inMyRide(ridersInCar,jsSincar);
-				route(jsSincar, true, "myRideCarInfo");
-				if(initail==0){
-					initail = 1;
-					$('#returnSpan').show();
-					$('#returnSpan').html(data[1]+"<br>");
-					$('#returnSpan').delay(9000).fadeOut();
+var initail = [];
+
+function myRide(table){
+	var ridenum = tableCheck(table);
+	getFromTable(table, "ridingwith", "username = '"+jsSusername+"'", function(data){
+		if (data === "none"){
+			$('#myRideSpan').html("Couldn't find a trip number "+ridenum+" for you. ");
+			return 1;
+			}
+		data = JSON.parse(data);
+		if (data[0][0] == null){
+			getFromTable(table, "incar", "username = '"+jsSusername+"'", function(data){
+				data = JSON.parse(data);
+				if (data[0][0] == null){
+					jsSride[ridenum][0] = data[0][0];
+					jsSride[ridenum][1] = "none";
+					$('#myRideSpan').html("You haven't asked anyone for a ride yet.<br>");
+					$('#myRideCarInfo').html("");
+					directionDisplay.setMap(null);
+					initail[ridenum] = 0;
 					}
-				}
-			else {
-				$('#myRideSpan').html(data[1]+"<br>");
-				$('#myRideCarInfo').html("");
-				initail = 0;
-				}
+				else {
+					jsSride[ridenum][0] = data[0][0];
+					jsSride[ridenum][1] = "good";
+					getFromTable(table, "username", "incar = '"+jsSride[ridenum][0]+"'", function(data){
+						if (data !== "none"){
+							var othersInRide = JSON.parse(data);
+							inMyRide(othersInRide,jsSride[ridenum][0]);
+							route(jsSincar, true, "myRideCarInfo");
+							if(initail[ridenum] == 0){
+								initail[ridenum] = 1;
+								$('#returnSpan').show();
+								$('#returnSpan').html("You've been approved to ride in "+jsSride[ridenum][0]+"'s car. <br>");
+								$('#returnSpan').delay(9000).fadeOut();
+								}
+							}
+						});
+					}
+				});
+			}
+		else {
+			jsSride[ridenum][0] = data[0][0];
+			jsSride[ridenum][1] = "wait";
+			$('#myRideSpan').html("You haven't been approved to ride in "+jsSride[ridenum][0]+"'s car yet.<br>");
 			}
 		});
+	}
+
+function tableCheck(table){
+	if(table === "carpool_members") return 0;
+	else if(table === "carpool_trip1") return 1;
+	else if(table === "carpool_trip2") return 2;
+	else if(table === "carpool_trip3") return 3;
+	else if(table === "carpool_trip4") return 4;
+	else if(table === "carpool_trip5") return 5;
+	else return null;
 	}
 
 function inMyRide(incar,ridename){
@@ -802,7 +815,6 @@ $( "#getProfile" ).autocomplete({
 
 function myCarInfo($postto){ ?>
 <span id="myCarInfo" >Loading distance and cost... </span><br>
-<div id="myTripMapCanvas" style="height:340px; width:100%;" ></div>
 <?php
 	}
 ?>

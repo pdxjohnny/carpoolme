@@ -24,7 +24,7 @@ if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ($_POST['userna
 	if (filter_var($whatemail, FILTER_VALIDATE_EMAIL));
 	else exit ("$whatname you have an invalid email. ");
 
-	$table="carpool_members"; // Table name 
+	$table="carpool_test"; // Table name 
 
 	// Create connection
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
@@ -45,7 +45,12 @@ if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ($_POST['userna
 		exit($whatname . " is already taken");
 		}
 	else{
-		mysqli_query($con,"INSERT INTO $table (username,password,email,type,latitude,longitude) VALUES('$whatname','$whatpass','$whatemail','$whattype',$whatlat,$whatlng);");
+		mysqli_query($con,"INSERT INTO $table (username,password,email,type,lat,lng) VALUES('$whatname','$whatpass','$whatemail','$whattype',$whatlat,$whatlng);");
+		mysqli_query($con,"UPDATE carpool_trip1 SET lat = $whatlat, lng = $whatlng WHERE username='$whatname';");	
+		mysqli_query($con,"UPDATE carpool_trip2 SET lat = $whatlat, lng = $whatlng WHERE username='$whatname';");	
+		mysqli_query($con,"UPDATE carpool_trip3 SET lat = $whatlat, lng = $whatlng WHERE username='$whatname';");	
+		mysqli_query($con,"UPDATE carpool_trip4 SET lat = $whatlat, lng = $whatlng WHERE username='$whatname';");	
+		mysqli_query($con,"UPDATE carpool_trip5 SET lat = $whatlat, lng = $whatlng WHERE username='$whatname';");
 		$_SESSION['username'] = $whatname;
 		$_SESSION['type'] = $whattype;
 		file_put_contents("profiles/users", $_SESSION['username'], FILE_APPEND);

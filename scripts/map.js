@@ -13,14 +13,32 @@ var dest;
 var bounds = new google.maps.LatLngBounds();
 
 // Map functions
-function nearby(callback){
-	$.ajax({
-		type: "GET",
-		url: dir+"/nearby.php",
-		data: {},
-		success: function(data){
-			jsSnearby = JSON.parse(data);
-			callback();
+function nearby(range, callback){
+
+	if(jsSlat){
+		var mylatsub = jsSlat - range;
+		var mylatadd = jsSlat + range;
+		var mylngsub = jsSlng - range;
+		var mylngadd = jsSlng + range;
+
+		var get = "username, latitude, longitude";
+		var conditions = "latitude BETWEEN "+mylatsub+" AND "+mylatadd+" AND longitude BETWEEN "+mylngsub+" AND "+mylngadd+" AND NOT username = '"+jsSusername+"'";
+		}
+	if(jsSlatd){
+		var mylatdsub = jsSlatd - range;
+		var mylatdadd = jsSlatd + range;
+		var mylngdsub = jsSlngd - range;
+		var mylngdadd = jsSlngd + range;
+		var get = "username, latitude, longitude, type, dlatitude, dlongitude, spots, availablespots, latestleave";
+		var conditions = "latitude BETWEEN "+mylatsub+" AND "+mylatadd+" AND longitude BETWEEN "+mylngsub+" AND "+mylngadd+" AND dlatitude BETWEEN "+mylatdsub+" AND "+mylatdadd+" AND dlongitude BETWEEN "+mylngdsub+" AND "+mylngdadd+" AND NOT username = '"+jsSusername+"'";
+		}
+	else console.log("Error in nearby();");
+
+	getFromTable("carpool_members", get, conditions, function(data){
+		console.log(data);
+		if(data === "none") nearby(range+0.05, callback);
+		else {		
+			 if (typeof callback=="function") callback(JSON.parse(data));
 			}
 		});
 	}
@@ -60,8 +78,8 @@ function initMap(centerOn,zoomval,divId, callback){
 
 function createMap(){
 	if (jsSdlatitude != null){
-		myPosition = new google.maps.LatLng(jsSlatitude, jsSlongitude);
-		mydest = new google.maps.LatLng(jsSdlatitude, jsSdlongitude);
+		myPosition = new google.maps.LatLng(jsSlat, jsSlng);
+		mydest = new google.maps.LatLng(jsSlatd, jsSlngd);
 		initMap(myPosition,12,"mapholder");
 		addPointMap(myPosition,"You","images/male.png",true);
 		addPointMap(mydest,"Your destination","images/mydest.png",true);
@@ -69,7 +87,7 @@ function createMap(){
 		}
 	else {
 		directionDisplay.setMap(null);
-		myPosition = new google.maps.LatLng(jsSlatitude, jsSlongitude);
+		myPosition = new google.maps.LatLng(jsSlat, jsSlng);
 		initMap(myPosition,12,"mapholder");
 		addPointMap(myPosition,"You","images/male.png",true);
 		arrayMap(jsSnearby);

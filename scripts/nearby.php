@@ -1,20 +1,46 @@
 <?php
 
-session_start();
+//session_start();
 
-if(!isset($_SESSION['latd'])){
-	if(getNearBy(0.1) == 0) echo json_encode($_SESSION['nearby']);
+if(isset($_POST['latd'])){
+	echo $_POST['latd'] . ":" . $_POST['lngd'];
+/*	$found = false;
+	$range = 0.15;
+	while(!$found){
+		$res = getNearDest($range);
+		if($res != 1){
+			echo json_encode($res);
+			$found = true;
+			break;
+			}
+		$range = $range + 0.15
+		}
+*/
 	}
-else if(isset($_SESSION['latd'])){
-	if(getNearDest(0.1) == 0) echo json_encode($_SESSION['nearby']);
+
+else if(isset($_POST['lat'])){
+	echo $_POST['lat'] . ":" . $_POST['lng'];
+/*	$found = false;
+	$range = 0.15;
+	while(!$found){
+		$res = getNearBy($range);
+		if($res != 1){
+			echo json_encode($res);
+			$found = true;
+			break;
+			}
+		$range = $range + 0.15
+		}
+*/
 	}
+
 else{
 	echo "nearby error<br>";
 	}
-
+/*
 function getNearBy($range){
 	
-	if(isset($_SESSION['nearby'])) unset($_SESSION['nearby']);
+	if(isset($nearby)) unset($nearby);
 
 	$table = "carpool_members";
 	$templat = $_SESSION['lat'];
@@ -40,7 +66,7 @@ function getNearBy($range){
 		$starter=0;
 	    	while ($row = mysqli_fetch_row($result)) {
 			for($i = 0; $i < count($row); $i++){
-				$_SESSION['nearby'][$starter][$i] = $row[$i];
+				$nearby[$starter][$i] = $row[$i];
 				}
 				$starter++;
    			 }
@@ -50,13 +76,14 @@ function getNearBy($range){
 
 	mysqli_close($con);
 
-	if(isset($_SESSION['nearby'])) return 0;
-	else getNearBy($range+0.05);
+	if(isset($nearby)) return $nearby;
+	else return 1;
+
 	}
 
 function getNearDest($range){
 	
-	if(isset($_SESSION['nearby'])) unset($_SESSION['nearby']);
+	if(isset($nearby)) unset($nearby);
 
 	$table = "carpool_members";
 	$myusername = $_SESSION['username'];
@@ -85,7 +112,7 @@ function getNearDest($range){
 		$starter=0;
 	    	while ($row = mysqli_fetch_row($result)) {
 			for($i = 0; $i < count($row); $i++){
-				$_SESSION['nearby'][$starter][$i] = $row[$i];
+				$nearby[$starter][$i] = $row[$i];
 				}
 				$starter++;
    			 }
@@ -95,8 +122,9 @@ function getNearDest($range){
 
 	mysqli_close($con);
 
-	if(isset($_SESSION['nearby'])) return 0;
-	else getNearDest($range+0.05);
+	if(isset($nearby)) return $nearby;
+	else return 1;
 
 	}
+*/
 ?>

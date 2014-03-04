@@ -3,6 +3,7 @@ var sitename = "carpool";
 var dir = "scripts";
 
 // jsS - the javascript session variables
+var jsSride = [];
 var jsSESSION = [];
 var jsSid;
 var jsSusername;
@@ -26,8 +27,18 @@ var jsStripdistance;
 function reload(myUsername){
 	getMyUserInfo(myUsername, function(){
 		console.log("reloaded");
+		if((jsSincar != null) || (jsSridingwith != null)) $('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSincar+"'s car</button>");
+		if(jsSlngd != null) $('#clearDest').show();
+		else if(jsSlngd == null) $('#clearDest').hide();
+		if(jsStype==="offer"){
+			getLeaveTime("carpool_members");
+			myCar();
+			}
+		myRide("carpool_members");
+		if(jsSmpg != null) $('#myMpg').html("Your current mpg is "+jsSmpg+".<br>");
+		else $('#myMpg').html("The mpg of your car is not set.<br>");
 		createMap();
-		if(jsSdlatitude != null){
+/*		if(jsSdlatitude != null){
 			if(jsSincar != null){
 				route(jsSincar, true, "myRideCarInfo");
 				}
@@ -35,16 +46,7 @@ function reload(myUsername){
 				route(jsSusername, true, "myCarInfo");
 				}
 			}
-		if((jsSincar != null) || (jsSridingwith != null)) $('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSincar+"'s car</button>");
-		if(jsSdlatitude != null) $('#clearDest').show();
-		else if(jsSdlatitude == null) $('#clearDest').hide();
-		if(jsStype==="offer"){
-			getLeaveTime();
-			myCar();
-			}
-		if(jsSmpg != null) $('#myMpg').html("Your current mpg is "+jsSmpg+".<br>");
-		else $('#myMpg').html("The mpg of your car is not set.<br>");
-		myRide();
+*/
 		});
 	}
 
@@ -71,26 +73,19 @@ function tryParseJSON (jsonString){
 function getMyUserInfo(user, callback){
 	getUserInfo(user, function(userInfo){
 		jsSESSION = userInfo[0];
-		jsSid = jsSESSION[0];
-		jsSusername = jsSESSION[1];
-		jsSpassword = jsSESSION[2];
-		jsSemail = jsSESSION[3];
-		jsSphone = jsSESSION[4];
-		jsSlatitude  = jsSESSION[5];
-		jsSlongitude = jsSESSION[6];
+		jsSusername = jsSESSION[0];
+		jsSpassword = jsSESSION[1];
+		jsSemail = jsSESSION[2];
+		jsSlat = jsSESSION[3]*1;
+		jsSlng = jsSESSION[4]*1;
+		jsSlatd = jsSESSION[5]*1;
+		jsSlngd = jsSESSION[6]*1;
 		jsStype = jsSESSION[7];
-		jsSdlongitude = jsSESSION[8];
-		jsSdlatitude = jsSESSION[9];
-		jsSlatestleave = jsSESSION[10];
-		jsSspots = jsSESSION[11];
-		jsSridingwith = jsSESSION[12];
-		jsSincar = jsSESSION[13];
-		jsSavailablespots = jsSESSION[14];
-		jsSmpg = jsSESSION[15];
-		jsStripdistance = jsSESSION[16];
-		myPosition = new google.maps.LatLng(jsSlatitude, jsSlongitude);
-		if(jsSdlatitude != null) myDest = new google.maps.LatLng(jsSdlatitude, jsSdlongitude);
-		nearby(function(){
+		jsSmpg = jsSESSION[8];
+		myPosition = new google.maps.LatLng(jsSlat, jsSlng);
+		if(jsSlngd != null) myDest = new google.maps.LatLng(jsSlatd, jsSlngd);
+		nearby(0.05, function(nearMe){
+			jsSnearby = nearMe;
 			callback();
 			});
 		});
@@ -155,20 +150,86 @@ function readableDate(mysqltime){
 	}
 
 function getUserInfo(user, callback){
-	getFromTable("id, username, password, email, phone, latitude, longitude, type, dlongitude, dlatitude, latestleave, spots, ridingwith, incar, availablespots, mpg, tripdistance ", "username", user, 17, function(allUserInfo){
+	getFromTable("carpool_members", "username, password, email, latitude, longitude, dlatitude, dlongitude, type, mpg ", "username ='"+user+"'", function(allUserInfo){
 		callback(JSON.parse(allUserInfo));
 		});
 	}
 
-function getFromTable(stuff, something, isthis, howmany, callback){
+function getFromTable(table, stuff, conditions, callback){
+	console.log("Table : "+table);
+	console.log("Getting : "+stuff);
+	console.log("Conditions : "+conditions);
 	$.ajax({
 		type: "POST",
 		url: dir+"/jsupdate.php",
 		data: {
+			table: table,
 			get: stuff,
-			something: something,
-			isthis: isthis, 
-			howmany: howmany
+			conditions: conditions
+			},
+		success: function(data){
+			callback(data);
+			}
+		});
+	}
+
+function updateString(table, what, value, user, callback){
+	$.ajax({
+		type: "POST",
+		url: dir+"/jsupdate.php",
+		data: {
+			table: table,
+			what: what,
+			string: value,
+			user: user
+			},
+		success: function(data){
+			callback(data);
+			}
+		});
+	}
+
+function updateNum(table, what, value, user, callback){
+	$.ajax({
+		type: "POST",
+		url: dir+"/jsupdate.php",
+		data: {
+			table: table,
+			what: what,
+			num: value,
+			user: user
+			},
+		success: function(data){
+			callback(data);
+			}
+		});
+	}	
+
+function updateMultString(table, these, values, user, callback){
+	$.ajax({
+		type: "POST",
+		url: dir+"/jsupdate.php",
+		data: {
+			table: table,
+			theseString: these,
+			newvalues: values,
+			id: id
+			},
+		success: function(data){
+			callback(data);
+			}
+		});
+	}	
+
+function updateMultNum(table, these, values, user, callback){
+	$.ajax({
+		type: "POST",
+		url: dir+"/jsupdate.php",
+		data: {
+			table: table,
+			theseNum: these,
+			newvalues: values,
+			user: user
 			},
 		success: function(data){
 			callback(data);

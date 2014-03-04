@@ -7,11 +7,11 @@ var directionsService = new google.maps.DirectionsService();
 function route(user, show, displayInDiv) {
 	directionDisplay.setMap(null);
 	directionDisplay.setMap(map);
-	getFromTable("username, latitude, longitude, dlatitude, dlongitude, mpg ", "username", user, 6, function(driverData){
+	getFromTable("username, latitude, longitude, dlatitude, dlongitude, mpg ", "username = "+user, 6, function(driverData){
 		var driverInfo = JSON.parse(driverData);
 		var routeStart = new google.maps.LatLng(driverInfo[0][1],driverInfo[0][2]);
 		var routeEnd = new google.maps.LatLng(driverInfo[0][3],driverInfo[0][4]);
-		getFromTable("username, latitude, longitude", "incar", user, 3, function(riderWaypointsNoParse){
+		getFromTable("username, latitude, longitude", "incar = "+user, 3, function(riderWaypointsNoParse){
 			if(riderWaypointsNoParse != "none"){
 				var riderWaypoints = [];
 				riderWaypoints = JSON.parse(riderWaypointsNoParse);
@@ -117,7 +117,7 @@ function toDollars(miles, mpg){
 
 // Splits the cost based on how many users are in the car
 function splitCost(totalDollars, user, callback){
-	getFromTable("username", "incar", user, 1, function(jsondata){
+	getFromTable("username", "incar = "+user, 1, function(jsondata){
 		if(jsondata == "none"){
 			if(jsSusername === user) callback(round2(totalDollars));
 			else callback(totalDollars/2);

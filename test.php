@@ -121,6 +121,17 @@ if(isset($_SESSION['username'])){
 ?>
 		</div>
 		<div id="toggleCar" style="display:none;" class="sixteen columns remove-bottom">
+			<div id="theTrip" style="display: table; margin: 0 auto;"><center>
+			Select your trip 
+			<select id="tripSelect" >
+				<option value="carpool_trip1" >Trip 1</option>
+				<option value="carpool_trip2" >Trip 2</option>
+				<option value="carpool_trip3" >Trip 3</option>
+				<option value="carpool_trip4" >Trip 4</option>
+				<option value="carpool_trip5" >Trip 5</option>
+				</select></center>
+			</div>
+			<hr style="remove-bottom" />
 			<div class="five columns ">
 <?php
 	if(0==strcmp($_SESSION['type'],"offer")){
