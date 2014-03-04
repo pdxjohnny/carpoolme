@@ -16,8 +16,10 @@ session_start();
 	$whattype = $_POST['type'];
 	if((!$whatname)||(!$whatpass)) exit ("$whatname please fill in all fields. ");
 	else if((!$whatlat)||(!$whatlng)) exit ("$whatname please enable location. ");
-	$table="carpool_members"; // Table name
 
+	// Table name
+	$table="carpool_members"; 
+	$whatname = strtolower($whatname);
 	// Create connection
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
 

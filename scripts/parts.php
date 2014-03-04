@@ -28,10 +28,10 @@ $( document ).ready(function() {
 
 	window.setInterval(function(){
 		if(jsStype==="offer"){
-		//	getLeaveTime();
-		//	myCar("carpool_members");
+			getLeaveTime(table);
+			myCar();
 			}
-		//myRide("carpool_members");
+		myRide(table);
 	
 		}, 30000);
 
@@ -199,7 +199,7 @@ $( '#geocodeSpan' ).submit(function() {
 function setDestClick(){
 	var GPSlatdval = $('#GPSlatd').val();
 	var GPSlngdval = $('#GPSlngd').val();
-	/*$.ajax({
+	$.ajax({
 		type: "POST",
 		url: "<?php echo $postto; ?>",
 		data: {
@@ -214,7 +214,7 @@ function setDestClick(){
 			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
 			}
-		});*/
+		});
 	event.preventDefault();
 	}
 </script>
@@ -337,22 +337,13 @@ function updateMpg(){
 	// Update the Mpg
 	$('#returnSpan').show();
 	$('#returnSpan').html("Updating mpg...<br>");
-	$.ajax({
-		type: "POST",
-		url: dir+"/jsupdate.php",
-		data: {
-			what: "mpg",
-			num: $('#updateMpg').val(),  
-			user: "<?php echo $_SESSION['username']; ?>"
-			},
-		success: function(data){
-			$('#returnSpan').show();
-			$('#returnSpan').html(data+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();
-			jsSmpg = $('#updateMpg').val();
-			route(jsSusername, false, "myCarInfo");
-			$('#myMpg').html("Your current mpg is "+jsSmpg+".<br>");
-			}
+	updateNum("carpool_members", "mpg", $('#updateMpg').val(), jsSusername, function(data){
+		$('#returnSpan').show();
+		$('#returnSpan').html(data+" your mpg.<br>");
+		$('#returnSpan').delay(9000).fadeOut();
+		jsSmpg = $('#updateMpg').val();
+		route(jsSusername, false, "myCarInfo");
+		$('#myMpg').html("Your current mpg is "+jsSmpg+".<br>");
 		});
 	event.preventDefault();
 	}
@@ -717,7 +708,7 @@ $('#profilePictureUpload').submit(function(){
 			$('#returnSpan').show();
 			$('#returnSpan').html(data+"<br>");
 			$('#returnSpan').delay(9000).fadeOut();
-			profile(jsSusername);
+			profile(jsSusername.toLowerCase());
 			},
 		cache: false,
 		contentType: false,
@@ -726,11 +717,11 @@ $('#profilePictureUpload').submit(function(){
 	return false;
 	});
 
-profile($('#getProfile').val());
+profile($('#getProfile').val().toLowerCase());
 var availableUsers = readFile("profiles/users").split('\n');
 
 $("#getProfile").keyup(function( event ) {
-	profile($(this).val());
+	profile($(this).val().toLowerCase());
 	availableUsers = readFile("profiles/users").split('\n');
 	});
 

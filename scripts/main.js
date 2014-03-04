@@ -1,6 +1,7 @@
 // Globals
 var sitename = "carpool";
 var dir = "scripts";
+var table = "carpool_members"
 
 // jsS - the javascript session variables
 var jsSride = [];
@@ -31,14 +32,14 @@ function reload(myUsername){
 		if(jsSlngd != null) $('#clearDest').show();
 		else if(jsSlngd == null) $('#clearDest').hide();
 		if(jsStype==="offer"){
-			getLeaveTime("carpool_members");
+			getLeaveTime(table);
 			myCar();
 			}
-		myRide("carpool_members");
+		myRide(table);
 		if(jsSmpg != null) $('#myMpg').html("Your current mpg is "+jsSmpg+".<br>");
 		else $('#myMpg').html("The mpg of your car is not set.<br>");
 		createMap();
-/*		if(jsSdlatitude != null){
+		if(jsSlngd != null){
 			if(jsSincar != null){
 				route(jsSincar, true, "myRideCarInfo");
 				}
@@ -46,7 +47,6 @@ function reload(myUsername){
 				route(jsSusername, true, "myCarInfo");
 				}
 			}
-*/
 		});
 	}
 

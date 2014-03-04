@@ -25,6 +25,7 @@ if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ($_POST['userna
 	else exit ("$whatname you have an invalid email. ");
 
 	$table="carpool_members"; // Table name 
+	$whatname = strtolower($whatname);
 
 	// Create connection
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
@@ -48,7 +49,7 @@ if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ($_POST['userna
 		mysqli_query($con,"INSERT INTO $table (username,password,email,type,latitude,longitude) VALUES('$whatname','$whatpass','$whatemail','$whattype',$whatlat,$whatlng);");
 		$_SESSION['username'] = $whatname;
 		$_SESSION['type'] = $whattype;
-		file_put_contents("profiles/users", $_SESSION['username'], FILE_APPEND);
+		file_put_contents("profiles/users", $_SESSION['username'] . "\n", FILE_APPEND);
 		echo $_SESSION['username'] . " you are now logged in <meta http-equiv='refresh' content='0'>";
 		}
 

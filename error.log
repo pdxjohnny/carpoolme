@@ -91,3 +91,22 @@
 [Mon Mar 03 23:14:50 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: table in /var/www/carpool/scripts/jsupdate.php on line 16, referer: http://carpoolme.net/
 [Mon Mar 03 23:16:56 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: table in /var/www/carpool/scripts/jsupdate.php on line 16, referer: http://carpoolme.net/
 [Mon Mar 03 23:18:45 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: table in /var/www/carpool/scripts/jsupdate.php on line 16, referer: http://carpoolme.net/
+[Mon Mar 03 23:55:27 2014] [error] [client 24.20.209.246] File does not exist: /var/www/carpool/profiles/infos/Kp16, referer: http://carpoolme.net/
+[Mon Mar 03 23:59:56 2014] [error] [client 24.20.209.246] PHP Warning:  file_put_contents(profiles/users): failed to open stream: Permission denied in /var/www/carpool/scripts/register.php on line 51, referer: http://carpoolme.net/
+[Tue Mar 04 00:03:53 2014] [error] [client 24.20.209.246] PHP Warning:  file_put_contents(profiles/users): failed to open stream: Permission denied in /var/www/carpool/test4.php on line 3
+[Tue Mar 04 00:04:31 2014] [error] [client 74.63.199.120] File does not exist: /var/www/carpool/invoker
+[Tue Mar 04 00:06:18 2014] [error] [client 24.20.209.246] PHP Warning:  file_put_contents(profiles/users): failed to open stream: Permission denied in /var/www/carpool/test4.php on line 3
+[Tue Mar 04 00:15:40 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: table in /var/www/carpool/scripts/jsupdate.php on line 16, referer: http://carpoolme.net/
+[Tue Mar 04 00:17:55 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: table in /var/www/carpool/scripts/jsupdate.php on line 16, referer: http://carpoolme.net/
+[Tue Mar 04 00:19:18 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: table in /var/www/carpool/scripts/jsupdate.php on line 8, referer: http://carpoolme.net/
+[Tue Mar 04 00:19:19 2014] [error] [client 24.20.209.246] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /var/www/carpool/scripts/jsupdate.php on line 95, referer: http://carpoolme.net/
+[Tue Mar 04 00:19:19 2014] [error] [client 24.20.209.246] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /var/www/carpool/scripts/jsupdate.php on line 100, referer: http://carpoolme.net/
+[Tue Mar 04 00:19:19 2014] [error] [client 24.20.209.246] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /var/www/carpool/scripts/jsupdate.php on line 104, referer: http://carpoolme.net/
+[Tue Mar 04 00:23:07 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: table in /var/www/carpool/scripts/jsupdate.php on line 8, referer: http://carpoolme.net/
+[Tue Mar 04 00:23:07 2014] [error] [client 24.20.209.246] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /var/www/carpool/scripts/jsupdate.php on line 95, referer: http://carpoolme.net/
+[Tue Mar 04 00:23:07 2014] [error] [client 24.20.209.246] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /var/www/carpool/scripts/jsupdate.php on line 100, referer: http://carpoolme.net/
+[Tue Mar 04 00:23:07 2014] [error] [client 24.20.209.246] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /var/www/carpool/scripts/jsupdate.php on line 104, referer: http://carpoolme.net/
+[Tue Mar 04 00:23:20 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: table in /var/www/carpool/scripts/jsupdate.php on line 8, referer: http://carpoolme.net/
+[Tue Mar 04 00:23:20 2014] [error] [client 24.20.209.246] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /var/www/carpool/scripts/jsupdate.php on line 95, referer: http://carpoolme.net/
+[Tue Mar 04 00:23:20 2014] [error] [client 24.20.209.246] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /var/www/carpool/scripts/jsupdate.php on line 100, referer: http://carpoolme.net/
+[Tue Mar 04 00:23:20 2014] [error] [client 24.20.209.246] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /var/www/carpool/scripts/jsupdate.php on line 104, referer: http://carpoolme.net/

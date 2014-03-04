@@ -21,7 +21,7 @@ function nearby(range, callback){
 		var mylngsub = jsSlng - range;
 		var mylngadd = jsSlng + range;
 
-		var get = "username, latitude, longitude";
+		var get = "username, latitude, longitude, type";
 		var conditions = "latitude BETWEEN "+mylatsub+" AND "+mylatadd+" AND longitude BETWEEN "+mylngsub+" AND "+mylngadd+" AND NOT username = '"+jsSusername+"'";
 		}
 	if(jsSlatd){
@@ -110,7 +110,7 @@ function arrayMap(locations){
 			animation: google.maps.Animation.DROP
 			});
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
-					return function() {
+			return function() {
 				InfoWindow.setContent(locations[i][0]);
 				InfoWindow.open(map, marker);
 				}
@@ -177,7 +177,7 @@ function askForRide(){
 			}
 		});
 	event.preventDefault();
-	myRide();
+	myRide(table);
 	}
 	
 function addPointMap(pos,content,image,isuser){
