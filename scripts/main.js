@@ -14,8 +14,8 @@ var jsSphone;
 var jsSlatitude;
 var jsSlongitude;
 var jsStype;
-var jsSdlatitude;
-var jsSdlongitude;
+var jsSlatd
+var jsSlngd;
 var jsSlatestleave;
 var jsSspots;
 var jsSridingwith;
@@ -28,9 +28,11 @@ var jsStripdistance;
 function reload(myUsername){
 	getMyUserInfo(myUsername, function(){
 		console.log("reloaded");
-		if((jsSincar != null) || (jsSridingwith != null)) $('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSincar+"'s car</button>");
-		if(jsSlngd != null) $('#clearDest').show();
-		else if(jsSlngd == null) $('#clearDest').hide();
+		if(jsSincar != null) $('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSincar+"'s car</button>");
+		else if((jsSincar == null) && (jsSridingwith != null)) $('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSridingwith+"'s car</button>");
+		else $('#clearRideSpan').html("");
+		if(jsSlngd != 0) $('#clearDest').show();
+		else if(jsSlngd == 0) $('#clearDest').hide();
 		if(jsStype==="offer"){
 			getLeaveTime(table);
 			myCar();
@@ -39,15 +41,28 @@ function reload(myUsername){
 		if(jsSmpg != null) $('#myMpg').html("Your current mpg is "+jsSmpg+".<br>");
 		else $('#myMpg').html("The mpg of your car is not set.<br>");
 		createMap();
-		if(jsSlngd != null){
+		if(jsSlngd != 0){
+			directionDisplay.setMap(null);
 			if(jsSincar != null){
 				route(jsSincar, true, "myRideCarInfo");
+				if(jsStype==="offer"){
+					route(jsSusername, false, "myCarInfo");
+					}
 				}
 			else if(jsStype==="offer"){
 				route(jsSusername, true, "myCarInfo");
 				}
 			}
 		});
+	}
+
+// Call these every x seconds
+function callEvery(table){
+	if(jsStype==="offer"){
+		getLeaveTime(table);
+		myCar();
+		}
+	myRide(table);
 	}
 
 // Main
@@ -82,8 +97,10 @@ function getMyUserInfo(user, callback){
 		jsSlngd = jsSESSION[6]*1;
 		jsStype = jsSESSION[7];
 		jsSmpg = jsSESSION[8];
+		jsSincar = jsSESSION[9];
+		jsSridingwith = jsSESSION[10];
 		myPosition = new google.maps.LatLng(jsSlat, jsSlng);
-		if(jsSlngd != null) myDest = new google.maps.LatLng(jsSlatd, jsSlngd);
+		if(jsSlngd != 0) myDest = new google.maps.LatLng(jsSlatd, jsSlngd);
 		nearby(0.05, function(nearMe){
 			jsSnearby = nearMe;
 			callback();
@@ -150,15 +167,15 @@ function readableDate(mysqltime){
 	}
 
 function getUserInfo(user, callback){
-	getFromTable("carpool_members", "username, password, email, latitude, longitude, dlatitude, dlongitude, type, mpg ", "username ='"+user+"'", function(allUserInfo){
+	getFromTable("carpool_members", "username, password, email, latitude, longitude, dlatitude, dlongitude, type, mpg, incar, ridingwith ", "username ='"+user+"'", function(allUserInfo){
 		callback(JSON.parse(allUserInfo));
 		});
 	}
 
 function getFromTable(table, stuff, conditions, callback){
-	console.log("Table : "+table);
-	console.log("Getting : "+stuff);
-	console.log("Conditions : "+conditions);
+	//console.log("Table : "+table);
+	//console.log("Getting : "+stuff);
+	//console.log("Conditions : "+conditions);
 	$.ajax({
 		type: "POST",
 		url: dir+"/jsupdate.php",
@@ -168,7 +185,8 @@ function getFromTable(table, stuff, conditions, callback){
 			conditions: conditions
 			},
 		success: function(data){
-			callback(data);
+			if (typeof callback=="function") callback(data);
+			else console.log("The type of callback is not a function where data is : "+data);
 			}
 		});
 	}
@@ -184,7 +202,8 @@ function updateString(table, what, value, user, callback){
 			user: user
 			},
 		success: function(data){
-			callback(data);
+			if (typeof callback=="function") callback(data);
+			else console.log("The type of callback is not a function where data is : "+data);
 			}
 		});
 	}
@@ -200,7 +219,8 @@ function updateNum(table, what, value, user, callback){
 			user: user
 			},
 		success: function(data){
-			callback(data);
+			if (typeof callback=="function") callback(data);
+			else console.log("The type of callback is not a function where data is : "+data);
 			}
 		});
 	}	
@@ -216,7 +236,8 @@ function updateMultString(table, these, values, user, callback){
 			id: id
 			},
 		success: function(data){
-			callback(data);
+			if (typeof callback=="function") callback(data);
+			else console.log("The type of callback is not a function where data is : "+data);
 			}
 		});
 	}	
@@ -232,7 +253,8 @@ function updateMultNum(table, these, values, user, callback){
 			user: user
 			},
 		success: function(data){
-			callback(data);
+			if (typeof callback=="function") callback(data);
+			else console.log("The type of callback is not a function where data is : "+data);
 			}
 		});
 	}

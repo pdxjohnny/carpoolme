@@ -27,11 +27,7 @@ $( document ).ready(function() {
 	reload("<?php echo $_SESSION['username']; ?>");
 
 	window.setInterval(function(){
-		if(jsStype==="offer"){
-			getLeaveTime(table);
-			myCar();
-			}
-		myRide(table);
+		callEvery(table);
 	
 		}, 30000);
 
@@ -155,7 +151,7 @@ function setLatestLeave() {
 	// Change this table
 	updateString("carpool_members","latestleave",ymd,jsSusername,function(data){
 		$('#returnSpan').show();
-		$('#returnSpan').html("Your leave time for trip "+tableCheck($('#tripSelect').val())+" was "+data+"<br>");
+		$('#returnSpan').html("Your leave time was "+data+"<br>");
 		$('#returnSpan').delay(9000).fadeOut();
 		getLeaveTime("carpool_members");
 		});
@@ -468,7 +464,18 @@ function kickFromCar(tokickel){
 				tokick: tokickval
 				},
 			success: function(data){
-				route(jsSusername, true, "myCarInfo");
+				if(jsSlngd != 0){
+					directionDisplay.setMap(null);
+					if(jsSincar != null){
+						route(jsSincar, true, "myRideCarInfo");
+						if(jsStype==="offer"){
+							route(jsSusername, false, "myCarInfo");
+							}
+						}
+					else if(jsStype==="offer"){
+						route(jsSusername, true, "myCarInfo");
+						}
+					}
 				myCar();
 				$('#returnSpan').show();
 				$('#returnSpan').html(data+"<br>");
@@ -486,50 +493,52 @@ function myRide($postto){ ?>
 <span id="myRideSpan" ></span><br>
 <span id="myRideCarInfo" ></span><br>
 <script>
-var initail = [];
+var initail = 0;
+var othersInRide;
 
 function myRide(table){
-	var ridenum = tableCheck(table);
+	// Change this for multi tables
 	getFromTable(table, "ridingwith", "username = '"+jsSusername+"'", function(data){
-		if (data === "none"){
-			$('#myRideSpan').html("Couldn't find a trip number "+ridenum+" for you. ");
-			return 1;
-			}
 		data = JSON.parse(data);
-		if (data[0][0] == null){
+		jsSridingwith = data[0][0];
+		if (jsSridingwith == null){
 			getFromTable(table, "incar", "username = '"+jsSusername+"'", function(data){
 				data = JSON.parse(data);
-				if (data[0][0] == null){
-					jsSride[ridenum][0] = data[0][0];
-					jsSride[ridenum][1] = "none";
+				jsSincar = data[0][0];
+				if (jsSincar == null){
 					$('#myRideSpan').html("You haven't asked anyone for a ride yet.<br>");
 					$('#myRideCarInfo').html("");
-					directionDisplay.setMap(null);
-					initail[ridenum] = 0;
+					if(jsStype !== "offer") directionDisplay.setMap(null);
+					initail = 0;
 					}
 				else {
-					jsSride[ridenum][0] = data[0][0];
-					jsSride[ridenum][1] = "good";
-					getFromTable(table, "username", "incar = '"+jsSride[ridenum][0]+"'", function(data){
+					getFromTable(table, "username", "incar = '"+jsSincar+"'", function(data){
 						if (data !== "none"){
-							var othersInRide = JSON.parse(data);
-							inMyRide(othersInRide,jsSride[ridenum][0]);
-							route(jsSincar, true, "myRideCarInfo");
-							if(initail[ridenum] == 0){
-								initail[ridenum] = 1;
+							if(initail == 0){
+								initail = 1;
+								othersInRide = data;
+								inMyRide(JSON.parse(othersInRide),jsSincar);
+								route(jsSincar, true, "myRideCarInfo");
 								$('#returnSpan').show();
-								$('#returnSpan').html("You've been approved to ride in "+jsSride[ridenum][0]+"'s car. <br>");
+								$('#returnSpan').html("You've been approved to ride in "+jsSincar+"'s car. <br>");
 								$('#returnSpan').delay(9000).fadeOut();
 								}
+							else {
+								if(data !== othersInRide){
+									othersInRide = data;
+									inMyRide(JSON.parse(othersInRide),jsSincar);
+									route(jsSincar, true, "myRideCarInfo");
+									}
+								}
 							}
+						else initail = 0;
 						});
 					}
 				});
 			}
 		else {
-			jsSride[ridenum][0] = data[0][0];
-			jsSride[ridenum][1] = "wait";
-			$('#myRideSpan').html("You haven't been approved to ride in "+jsSride[ridenum][0]+"'s car yet.<br>");
+			initail = 0;
+			$('#myRideSpan').html("You haven't been approved to ride in "+jsSridingwith+"'s car yet.<br>");
 			}
 		});
 	}
@@ -673,6 +682,7 @@ function myProfile($postto){ ?>
 <img id="profilePicture" style="display: table; margin: 0 auto; max-width:128px; max-height:128px;" src='images/nopicture.png' align="left" >
 <span id="profileInfo" ></span>
 <span id="myProfile" ></span>
+<br>
 
 <span id="profileEditButtons" style="display:none;" >
 	<button id="profileInfoEditButton" onclick='showEditProfile();' >Edit Profile</button>
@@ -754,7 +764,7 @@ function profile(usernameval){
 			else $('#profilePicture').attr("src", 'images/nopicture.png');
 			
 			if(data[1]==="exists"){
-				$('#profileInfo').html(readFile("profiles/infos/"+usernameval).replace(/\n/g, "<br>")+"<br>");
+				$('#profileInfo').html(readFile("profiles/infos/"+usernameval).replace(/\n/g, "<br>"));
 				}
 			else{
 				if($('#getProfile').val()==="<?php echo $_SESSION['username']; ?>"){

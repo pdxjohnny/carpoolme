@@ -44,4 +44,16 @@ if(isset($_POST['userinfo'])){
 		}
 	}
 
+	echo "%";
+
+if(isset($_POST['message'])){
+	$file = 'messages/' . $_POST['username'];
+	if (file_put_contents($file, $_POST['userinfo'])) {
+		echo "Updated your info. ";
+		} 
+	else {
+   		echo "Couldn't update your info. ";
+		}
+	}
+
 ?>

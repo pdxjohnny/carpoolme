@@ -110,3 +110,40 @@
 [Tue Mar 04 00:23:20 2014] [error] [client 24.20.209.246] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /var/www/carpool/scripts/jsupdate.php on line 95, referer: http://carpoolme.net/
 [Tue Mar 04 00:23:20 2014] [error] [client 24.20.209.246] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /var/www/carpool/scripts/jsupdate.php on line 100, referer: http://carpoolme.net/
 [Tue Mar 04 00:23:20 2014] [error] [client 24.20.209.246] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /var/www/carpool/scripts/jsupdate.php on line 104, referer: http://carpoolme.net/
+[Tue Mar 04 04:20:08 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/w00tw00t.at.blackhats.romanian.anti-sec:)
+[Tue Mar 04 04:20:09 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/MyAdmin
+[Tue Mar 04 04:20:09 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/PHPMYADMIN
+[Tue Mar 04 04:20:09 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/PMA
+[Tue Mar 04 04:20:10 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/SQL
+[Tue Mar 04 04:20:10 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/db
+[Tue Mar 04 04:20:10 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/dbadmin
+[Tue Mar 04 04:20:11 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/myadmin
+[Tue Mar 04 04:20:11 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/mysqladmin
+[Tue Mar 04 04:20:11 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/pHpMyAdMiN
+[Tue Mar 04 04:20:12 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/pMA
+[Tue Mar 04 04:20:12 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/phpAdmin
+[Tue Mar 04 04:20:12 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/phpMyAdmin
+[Tue Mar 04 04:20:13 2014] [error] [client 80.82.78.38] client denied by server configuration: /usr/share/phpmyadmin/
+[Tue Mar 04 04:20:13 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/pma
+[Tue Mar 04 04:20:13 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/sql
+[Tue Mar 04 04:20:14 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/mysql
+[Tue Mar 04 04:20:14 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/mysqladmin
+[Tue Mar 04 04:20:14 2014] [error] [client 80.82.78.38] File does not exist: /var/www/carpool/MySQLAdmin
+[Tue Mar 04 06:28:38 2014] [error] [client 199.58.86.211] File does not exist: /var/www/carpool/robots.txt
+[Tue Mar 04 09:46:01 2014] [error] [client 159.191.186.254] File does not exist: /var/www/carpool/profiles/infospdxjohnny, referer: http://carpoolme.net/
+[Tue Mar 04 09:46:01 2014] [error] [client 50.57.64.198] File does not exist: /var/www/carpool/profiles/infospdxjohnny
+[Tue Mar 04 10:49:25 2014] [error] [client 66.249.75.166] File does not exist: /var/www/carpool/robots.txt
+[Tue Mar 04 10:49:25 2014] [error] [client 66.249.75.166] File does not exist: /var/www/carpool/carpool
+[Tue Mar 04 11:09:19 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/myCar.php on line 7, referer: http://carpoolme.net/
+[Tue Mar 04 11:09:21 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/phpfunctions.php on line 228, referer: http://carpoolme.net/
+[Tue Mar 04 11:09:50 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/myCar.php on line 7, referer: http://carpoolme.net/
+[Tue Mar 04 11:09:50 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/phpfunctions.php on line 228, referer: http://carpoolme.net/
+[Tue Mar 04 11:10:19 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/myCar.php on line 7, referer: http://carpoolme.net/
+[Tue Mar 04 11:10:21 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/phpfunctions.php on line 228, referer: http://carpoolme.net/
+[Tue Mar 04 11:54:24 2014] [error] [client 50.57.190.50] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/clearDest.php on line 9
+[Tue Mar 04 12:20:51 2014] [error] [client 24.39.230.142] File does not exist: /var/www/carpool/HNAP1, referer: http://24.20.209.246/
+[Tue Mar 04 12:23:03 2014] [error] [client 50.57.68.14] PHP Notice:  Undefined index: myride in /var/www/carpool/scripts/askForRide.php on line 8
+[Tue Mar 04 12:23:03 2014] [error] [client 50.57.68.14] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/askForRide.php on line 9
+[Tue Mar 04 12:46:53 2014] [error] [client 50.63.60.103] File does not exist: /var/www/carpool/manager
+[Tue Mar 04 14:39:38 2014] [error] [client 66.249.76.130] File does not exist: /var/www/carpool/robots.txt
+[Tue Mar 04 14:39:38 2014] [error] [client 66.249.76.130] script '/var/www/carpool/index.php' not found or unable to stat

@@ -15,7 +15,7 @@ var bounds = new google.maps.LatLngBounds();
 // Map functions
 function nearby(range, callback){
 
-	if(jsSlat){
+	if(jsSlat != 0){
 		var mylatsub = jsSlat - range;
 		var mylatadd = jsSlat + range;
 		var mylngsub = jsSlng - range;
@@ -24,7 +24,7 @@ function nearby(range, callback){
 		var get = "username, latitude, longitude, type";
 		var conditions = "latitude BETWEEN "+mylatsub+" AND "+mylatadd+" AND longitude BETWEEN "+mylngsub+" AND "+mylngadd+" AND NOT username = '"+jsSusername+"'";
 		}
-	if(jsSlatd){
+	if(jsSlngd != 0){
 		var mylatdsub = jsSlatd - range;
 		var mylatdadd = jsSlatd + range;
 		var mylngdsub = jsSlngd - range;
@@ -32,10 +32,9 @@ function nearby(range, callback){
 		var get = "username, latitude, longitude, type, dlatitude, dlongitude, spots, availablespots, latestleave";
 		var conditions = "latitude BETWEEN "+mylatsub+" AND "+mylatadd+" AND longitude BETWEEN "+mylngsub+" AND "+mylngadd+" AND dlatitude BETWEEN "+mylatdsub+" AND "+mylatdadd+" AND dlongitude BETWEEN "+mylngdsub+" AND "+mylngdadd+" AND NOT username = '"+jsSusername+"'";
 		}
-	else console.log("Error in nearby();");
+	if((jsSlat == 0)&&(jsSlngd == 0)) console.log("Error in nearby(); jsSlat"+jsSlat+" jsSlngd"+jsSlngd);
 
 	getFromTable("carpool_members", get, conditions, function(data){
-		console.log(data);
 		if(data === "none") nearby(range+0.05, callback);
 		else {		
 			 if (typeof callback=="function") callback(JSON.parse(data));
@@ -77,11 +76,11 @@ function initMap(centerOn,zoomval,divId, callback){
 	}
 
 function createMap(){
-	if (jsSdlatitude != null){
+	if (jsSlngd != 0){
 		myPosition = new google.maps.LatLng(jsSlat, jsSlng);
 		mydest = new google.maps.LatLng(jsSlatd, jsSlngd);
 		initMap(myPosition,12,"mapholder");
-		addPointMap(myPosition,"You","images/male.png",true);
+		addPointMap(myPosition,"You","images/male.png","user");
 		addPointMap(mydest,"Your destination","images/mydest.png",true);
 		arrayMap(jsSnearby);
 		}
@@ -89,7 +88,7 @@ function createMap(){
 		directionDisplay.setMap(null);
 		myPosition = new google.maps.LatLng(jsSlat, jsSlng);
 		initMap(myPosition,12,"mapholder");
-		addPointMap(myPosition,"You","images/male.png",true);
+		addPointMap(myPosition,"You","images/male.png","user");
 		arrayMap(jsSnearby);
 		}
 	}
@@ -174,10 +173,10 @@ function askForRide(){
 			$('#returnSpan').show();
 			$('#returnSpan').html(data);
 			$('#returnSpan').delay(9000).fadeOut();
+			myRide(table);
 			}
 		});
 	event.preventDefault();
-	myRide(table);
 	}
 	
 function addPointMap(pos,content,image,isuser){
@@ -190,8 +189,8 @@ function addPointMap(pos,content,image,isuser){
 		zIndex: ontop,
 		animation: google.maps.Animation.DROP
 		});
-	bounds.extend(pos);
-	map.fitBounds(bounds);
+	//bounds.extend(pos);
+	//map.fitBounds(bounds);
 	google.maps.event.addListener(marker, 'click', (function(marker, i) {
 		return function() {
 			InfoWindow.setContent(content);

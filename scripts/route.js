@@ -5,9 +5,9 @@ var directionsService = new google.maps.DirectionsService();
 
 // Plot the route
 function route(user, show, displayInDiv) {
-	directionDisplay.setMap(null);
-	directionDisplay.setMap(map);
+	if (show == true) directionDisplay.setMap(map);
 	getFromTable(table, "username, latitude, longitude, dlatitude, dlongitude, mpg ", "username = '"+user+"'", function(driverData){
+		if(driverData === "none") console.log("In route, the driver data returned none where user is "+user);
 		var driverInfo = JSON.parse(driverData);
 		var routeStart = new google.maps.LatLng(driverInfo[0][1],driverInfo[0][2]);
 		var routeEnd = new google.maps.LatLng(driverInfo[0][3],driverInfo[0][4]);
@@ -29,6 +29,7 @@ function route(user, show, displayInDiv) {
 				directionsService.route(request, function(response, status) {
 					if (status == google.maps.DirectionsStatus.OK) {
 						if(show == true){
+console.log("Showing the directions for "+user);
 							directionDisplay.setDirections(response);
 							}
 						if(displayInDiv){
