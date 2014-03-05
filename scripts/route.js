@@ -29,7 +29,6 @@ function route(user, show, displayInDiv) {
 				directionsService.route(request, function(response, status) {
 					if (status == google.maps.DirectionsStatus.OK) {
 						if(show == true){
-console.log("Showing the directions for "+user);
 							directionDisplay.setDirections(response);
 							}
 						if(displayInDiv){

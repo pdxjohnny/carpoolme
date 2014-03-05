@@ -4,7 +4,7 @@ var dir = "scripts";
 var table = "carpool_members"
 
 // jsS - the javascript session variables
-var jsSride = [];
+var jsSride = [ ["none", "none"], ["none", "none"], ["none", "none"], ["none", "none"], ["none", "none"] ];
 var jsSESSION = [];
 var jsSid;
 var jsSusername;
@@ -28,6 +28,7 @@ var jsStripdistance;
 function reload(myUsername){
 	getMyUserInfo(myUsername, function(){
 		console.log("reloaded");
+		$('#type').val(jsStype);
 		if(jsSincar != null) $('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSincar+"'s car</button>");
 		else if((jsSincar == null) && (jsSridingwith != null)) $('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSridingwith+"'s car</button>");
 		else $('#clearRideSpan').html("");
@@ -36,6 +37,12 @@ function reload(myUsername){
 		if(jsStype==="offer"){
 			getLeaveTime(table);
 			myCar();
+			$('#leaveSeatsMpg').show();
+			$('#myCar').show();
+			}
+		else if(jsStype==="need"){
+			$('#leaveSeatsMpg').hide();
+			$('#myCar').hide();
 			}
 		myRide(table);
 		if(jsSmpg != null) $('#myMpg').html("Your current mpg is "+jsSmpg+".<br>");

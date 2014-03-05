@@ -47,7 +47,7 @@ Author: John Andersen
 <script>
 function hideAll(){
 	$('#toggleMap').hide();
-	$('#toggleCar').hide();
+	$('#toggleMyTrips').hide();
 	$('#toggleProfile').hide();
 	$('#help').hide();
 	}
@@ -55,23 +55,16 @@ function toggleMap(){
 	hideAll();
 	$('#toggleMap').show();
 	}
-function toggleCar(){
+function toggleMyTrips(){
 	hideAll();
-	$('#toggleCar').show();
+	$('#toggleMyTrips').show();
 	}
 function toggleProfile(){
 	hideAll();
 	$('#toggleProfile').show();
 	}
 function toggleHelp(){
-	$.ajax({
-		type: "GET",
-		url: "help.php",
-		data: {},
-		success: function(data){
-			$('#help').html(data);
-			}
-		});
+	$('#help').html(readFile("help.php"));
 	event.preventDefault();
 	hideAll();
 	$('#help').show();
@@ -98,6 +91,12 @@ require $dir . '/phpfunctions.php';
 
 if(isset($_SESSION['username'])){
 	echo "User " . $_SESSION['username'] . " is logged in.";
+	echo '
+<select id="type" >
+  <option value="need">Need Ride</option>
+  <option value="offer">Offering Ride</option>
+</select>
+';
 	logout($dir . "/logout.php");
 	includes($dir);
 ?>
@@ -107,7 +106,7 @@ if(isset($_SESSION['username'])){
 		<div class="sixteen columns remove-bottom" style="margin-top: 10px; margin-bottom: 10px;">
 			<center>
 			<button class="remove-bottom" onclick="toggleMap();">Map</button>
-			<button class="remove-bottom" onclick="toggleCar();">Car</button>
+			<button class="remove-bottom" onclick="toggleMyTrips();">My Trips</button>
 			<button class="remove-bottom" onclick="toggleProfile();">Profiles</button>
 			<button class="remove-bottom" onclick="toggleHelp();">Help</button>
 			</center>
@@ -120,25 +119,21 @@ if(isset($_SESSION['username'])){
 	clearRide($dir . "/clearRide.php");
 ?>
 		</div>
-		<div id="toggleCar" style="display:none;" class="sixteen columns remove-bottom">
-			<div class="five columns ">
+		<div id="toggleMyTrips" style="display:none;" class="sixteen columns remove-bottom">
+			<div id="leaveSeatsMpg" class="five columns ">
 <?php
-	if(0==strcmp($_SESSION['type'],"offer")){
 		setLatestLeave($dir . "/setLatestLeave.php");
 		seats($dir . "/seats.php",$dir . "/seatsDisplay.php");
 		mpg($dir . "/seats.php",$dir . "/seatsDisplay.php");
-		}
 		
 ?>
 			</div>
-			<div class="five columns ">
+			<div id="myCar" class="five columns ">
 <?php
-	if(0==strcmp($_SESSION['type'],"offer")){
 		myCar($dir . "/myCar.php");
-		}
 ?>
 			</div>
-			<div class="five columns ">
+			<div id="myRide" class="five columns ">
 <?php
 	myRide($dir . "/myRide.php");
 ?>
@@ -153,21 +148,81 @@ if(isset($_SESSION['username'])){
 		</div>
 <?php
 	}
+
+/*------------------------------------ Not Logged In ----------------------------------------------------*/
+// Not Logged in
 else {?>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	<script src="scripts/demo.js"></script>
+	<a href="#" id="toggleLogin" >Login</a>
+	<a href="#" id="toggleRegister" >Register</a>
+	<a href="#" id="toggleDemo" >Back to Demo</a>
+<select id="type" >
+  <option value="need">Need Ride</option>
+  <option value="offer">Offering Ride</option>
+</select>
 	<center><span style="color: #4593C4; margin-top:10px;" id='returnSpan'></span></center>
-	<hr /><br>
-	<div id="logindiv" style="display: table; margin: 0 auto;">
+	<hr />
+	<div id="logindiv" style="display:none;" >
+		<div style="display: table; margin: 0 auto;">
 <?php
 	login($dir . "/login.php");
 ?>
-	<a href="#" id="toggleRegister" >Register</a>
+		</div>
 	</div>
 	<div id="registerdiv" style="display:none;" >
 		<div style="display: table; margin: 0 auto;">
 <?php
 	register($dir . "/register.php");
 ?>	
-		<a href="#" id="toggleLogin" >Login</a>
+		</div>
+	</div>
+	<div id="demodiv" class="sixteen columns remove-bottom" >
+		<div class="sixteen columns remove-bottom" style="margin-top: 10px; margin-bottom: 10px;">
+			<center>
+			<button class="remove-bottom" onclick="toggleMap();">Map</button>
+			<button class="remove-bottom" onclick="toggleMyTrips();">My Trips</button>
+			<button class="remove-bottom" onclick="toggleProfile();">Profiles</button>
+			<button class="remove-bottom" onclick="toggleHelp();">Help</button>
+			</center>
+			<hr style="margin-bottom: 10px;"/>
+		</div>
+		<div id="toggleMap" class="sixteen columns remove-bottom">
+<?php
+	setDest($dir . "/setDest.php");
+	clearDest($dir . "/clearDest.php");
+	clearRide($dir . "/clearRide.php");
+?>
+		</div>
+		<div id="toggleMyTrips" style="display:none;" class="sixteen columns remove-bottom">
+			<div id="leaveSeatsMpg" class="five columns ">
+<?php
+		setLatestLeave($dir . "/setLatestLeave.php");
+		seats($dir . "/seats.php",$dir . "/seatsDisplay.php");
+		mpg($dir . "/seats.php",$dir . "/seatsDisplay.php");
+		
+?>
+			</div>
+			<div id="myCar" class="five columns ">
+<?php
+		myCar($dir . "/myCar.php");
+?>
+			</div>
+			<div id="myRide" class="five columns ">
+<?php
+	myRide($dir . "/myRide.php");
+?>
+			</div>
+		</div>
+		<div id="toggleProfile" style="display:none;" class="sixteen columns remove-bottom">
+<?php
+	myProfile("profiles/profile.php");
+?>
+		</div>
+		<div id="help" style="display:none;" class="sixteen columns remove-bottom">
 		</div>
 	</div>
 <?php
@@ -191,11 +246,19 @@ $('a[data-mailto]').click(function(){
 $('#toggleRegister').click(function(){
 	$('#registerdiv').show();
 	$('#logindiv').hide();
+	$('#demodiv').hide();
 	});
 
 $('#toggleLogin').click(function(){
 	$('#registerdiv').hide();
+	$('#demodiv').hide();
 	$('#logindiv').show();
+	});
+
+$('#toggleDemo').click(function(){
+	$('#registerdiv').hide();
+	$('#logindiv').hide();
+	$('#demodiv').show();
 	});
 </script>
 </html>

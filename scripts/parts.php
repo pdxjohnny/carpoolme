@@ -21,10 +21,14 @@ function includes($dir){?>
 <script>
 $( document ).ready(function() {
 
-	for(var i = 0; i < 6; i++ ){
-		jsSride[i] = [];
-		}
 	reload("<?php echo $_SESSION['username']; ?>");
+
+	$('#type').change(function() {
+		updateString(table,"type",$(this).val(),jsSusername, function(data){
+			if(data === "Updated") reload(jsSusername);
+			else console.log(data);
+			});
+		});
 
 	window.setInterval(function(){
 		callEvery(table);

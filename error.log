@@ -147,3 +147,4 @@
 [Tue Mar 04 12:46:53 2014] [error] [client 50.63.60.103] File does not exist: /var/www/carpool/manager
 [Tue Mar 04 14:39:38 2014] [error] [client 66.249.76.130] File does not exist: /var/www/carpool/robots.txt
 [Tue Mar 04 14:39:38 2014] [error] [client 66.249.76.130] script '/var/www/carpool/index.php' not found or unable to stat
+[Tue Mar 04 18:32:53 2014] [error] [client 80.82.64.117] client sent HTTP/1.1 request without hostname (see RFC2616 section 14.23): /admin/
