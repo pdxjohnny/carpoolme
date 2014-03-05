@@ -113,6 +113,7 @@ $( document ).ready(function() {
 	$('#datesufix').html(sufix);
 	});
 
+
 	$("#hour").click(function() {
 		var val = $("#hour").val();
 		if(val < 12) {
