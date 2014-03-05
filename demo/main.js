@@ -108,7 +108,7 @@ function getMyUserInfo(user, callback){
 		jsSridingwith = jsSESSION[10];
 		myPosition = new google.maps.LatLng(jsSlat, jsSlng);
 		if(jsSlngd != 0) myDest = new google.maps.LatLng(jsSlatd, jsSlngd);
-		nearby(0.15, function(nearMe){
+		nearby(0.05, function(nearMe){
 			jsSnearby = nearMe;
 			callback();
 			});

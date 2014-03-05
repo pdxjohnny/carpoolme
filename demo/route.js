@@ -124,16 +124,6 @@ function splitCost(totalDollars, user, callback){
 			}
 		else if(jsSusername === user) callback(round2(totalDollars/(JSON.parse(jsondata).length+1)/*people + driver then you*/));
 		// Add an if you are in the array so you are already in their car
-		else {
-			var imInTheCar = false;
-			var splitOthersInCar = JSON.parse(jsondata);
-			console.log(splitOthersInCar);
-			for (var i = 0; i < splitOthersInCar.length ; i++){
-				if (splitOthersInCar[i][0] === jsSusername) var imInTheCar = true;
-				}
-console.log(imInTheCar);
-			if (imInTheCar) callback(round2(totalDollars/(JSON.parse(jsondata).length+1)/*people + driver you're already in the car*/));
-			else callback(round2(totalDollars/(JSON.parse(jsondata).length+2)/*people + driver then you*/));
-			}
+		else callback(round2(totalDollars/(JSON.parse(jsondata).length+2)/*people + driver then you*/));
 		});
 	}

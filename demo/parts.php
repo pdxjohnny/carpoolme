@@ -14,9 +14,8 @@ function includes($dir){?>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-<script src="<?php echo $dir; ?>/main.js"></script>
-<script src="<?php echo $dir; ?>/map.js"></script>
-<script src="<?php echo $dir; ?>/route.js"></script>
+
+<script src="demo/demo.js"></script>
 
 <script>
 $( document ).ready(function() {
@@ -25,10 +24,7 @@ $( document ).ready(function() {
 
 	$('#type').change(function() {
 		updateString(table,"type",$(this).val(),jsSusername, function(data){
-			if(data === "Updated"){
-				toggleMap();
-				reload(jsSusername);
-				}
+			if(data === "Updated") reload(jsSusername);
 			else console.log(data);
 			});
 		});
@@ -69,7 +65,7 @@ function logout(){
 	}
 
 function setLatestLeave($postto){ ?>
-<span id='leavetime'></span><br>
+<span id='leavetime'>Sign in to set your leave time</span><br>
 <select name="hour" id="hour">
 <script>
 for(var i = 0;i<24;i++){
@@ -141,40 +137,12 @@ $( document ).ready(function() {
 		else sufix = dateSufix(val[1]);
 		$('#datesufix').html(sufix);
 		});
+		
 
 function setLatestLeave() {
-	if((dateYMD.getMonth()+1)<10) var month = '0'+(dateYMD.getMonth()+1);
-	else var month = dateYMD.getMonth()+1;
-	var predate = $( "#date" ).val();
-	var prehour = $( "#hour" ).val();
-	var minute = $( "#minute" ).val();
-	if(predate<10) var date = '0'+predate;
-	else var date = predate;
-	if(prehour<10) var hour = '0'+prehour;
-	else var hour = prehour;
-	var ymd = dateYMD.getFullYear()+'-'+month+'-'+date+' '+hour+':'+minute+':00';
-	$('#datetime').val(ymd);
-	var datetimeval = $('#datetime').val();
-	$('#leavetime').html("You are currently set to leave at "+readableDate(datetimeval));
-	// Change this table
-	updateString("carpool_members","latestleave",ymd,jsSusername,function(data){
-		$('#returnSpan').show();
-		$('#returnSpan').html("Your leave time was "+data+"<br>");
-		$('#returnSpan').delay(9000).fadeOut();
-		getLeaveTime("carpool_members");
-		});
-	event.preventDefault();
-	}
-
-function getLeaveTime(table){
-	getFromTable(table,"latestleave","username = '"+jsSusername+"'",function(data){
-		data = JSON.parse(data);
-		if(data[0][0] != null){
-			$('#datetime').val(data[0][0]);
-			$('#leavetime').html("You are currently set to leave at "+readableDate(data[0][0]));
-			}
-		else $('#leavetime').html("You haven't set your leave time yet. ");
-		});
+	$('#returnSpan').show();
+	$('#returnSpan').html("Sign in to set your leave time<br>");
+	$('#returnSpan').delay(9000).fadeOut()
 	}
 </script>
 <?php
@@ -203,46 +171,10 @@ $( '#geocodeSpan' ).submit(function() {
 function setDestClick(){
 	var GPSlatdval = $('#GPSlatd').val();
 	var GPSlngdval = $('#GPSlngd').val();
-	$.ajax({
-		type: "POST",
-		url: "<?php echo $postto; ?>",
-		data: {
-			GPSlatd: GPSlatdval, 
-			GPSlngd: GPSlngdval, 
-			username: "<?php echo $_SESSION['username']; ?>"
-			},
-		success: function(data){
-			deleteMarkers();
-			reload(jsSusername);
-			$('#returnSpan').show();
-			$('#returnSpan').html(data+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();
-			}
-		});
-	event.preventDefault();
-	}
-</script>
-<?php
-	}
-
-function clearRide($postto){ ?>
-<span id="clearRideSpan" ></span>
-<script>
-function clearRide(){
-	$.ajax({
-		type: "POST",
-		url: "<?php echo $postto; ?>",
-		data: {
-			username: "<?php echo $_SESSION['username']; ?>"
-			},
-		success: function(data){
-			$('#returnSpan').show();
-			$('#returnSpan').html(data+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();
-			reload(jsSusername);
-			}
-		});
-	event.preventDefault();
+	//addPointMap();
+	$('#returnSpan').show();
+	$('#returnSpan').html(data+"<br>");
+	$('#returnSpan').delay(9000).fadeOut();
 	}
 </script>
 <?php
@@ -377,7 +309,7 @@ function help(){
 
 function myCar($postto){ ?>
 <span id="myCarInfo" ></span><br>
-<span id="inMyCarSpan" ></span><br>
+<span id="inMyCarSpan" ></span>
 <span id="wantMyCarSpan" ></span>
 <script>
 function myCar(){

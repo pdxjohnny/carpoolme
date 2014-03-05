@@ -1,5 +1,5 @@
 <?php
-	echo "Logging out..";
+	echo "Loging out..";
 	session_start();
 	session_destroy();
 	echo "<meta http-equiv='refresh' content='0'>";
