@@ -24,6 +24,10 @@ if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ($_POST['userna
 	if (filter_var($whatemail, FILTER_VALIDATE_EMAIL));
 	else exit ("$whatname you have an invalid email. ");
 
+	if (isset($_POST['cookie'])){
+		setcookie("username",$whatname,time()+3600);
+		}
+
 	$table="carpool_members"; // Table name 
 	$whatname = strtolower($whatname);
 

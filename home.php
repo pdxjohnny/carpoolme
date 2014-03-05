@@ -89,6 +89,10 @@ $dir = "scripts";
 require $dir . '/parts.php';
 require $dir . '/phpfunctions.php';
 
+if (isset($_COOKIE['username'])){
+	$_SESSION['username'] = $_COOKIE['username'];
+	}
+
 if(isset($_SESSION['username'])){
 	echo "User " . $_SESSION['username'] . " is logged in.";
 	echo '
@@ -152,8 +156,6 @@ if(isset($_SESSION['username'])){
 /*------------------------------------ Not Logged In ----------------------------------------------------*/
 // Not Logged in
 else {
-define('INCLUDE_CHECK',true);
-$dir = "scripts";
 ?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>

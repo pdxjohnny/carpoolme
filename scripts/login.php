@@ -17,6 +17,10 @@ session_start();
 	if((!$whatname)||(!$whatpass)) exit ("$whatname please fill in all fields. ");
 	else if((!$whatlat)||(!$whatlng)) exit ("$whatname please enable location. ");
 
+	if (isset($_POST['cookie'])){
+		setcookie("username",$whatname,time()+3600);
+		}
+
 	// Table name
 	$table="carpool_members"; 
 	$whatname = strtolower($whatname);

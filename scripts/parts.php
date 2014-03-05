@@ -595,6 +595,8 @@ Password<br>
   <option value="need">Need Ride</option>
   <option value="offer">Offering Ride</option>
 </select></center>
+Remember me 
+<input type ="checkbox" name="cookie" value="false">
 <input name="GPSlat" id="GPSlat" type="hidden" value="">
 <input name="GPSlng" id="GPSlng" type="hidden" value="">
 <center><input value="Login" id="login" name="login" type="submit"></center>
@@ -648,7 +650,9 @@ Email<br>
 <center><select id="typer" name="type">
   <option value="need">Need Ride</option>
   <option value="offer">Offering Ride</option>
-</select></center>
+</select></center><br>
+Remember me 
+<input type ="checkbox" name="cookie" value="false">
 <input name="GPSlat" id="GPSlat" type="hidden" value="">
 <input name="GPSlng" id="GPSlng" type="hidden" value="">
 <center><input value="Register" id="reg" name="reg" type="submit"></center>
