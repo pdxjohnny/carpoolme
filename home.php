@@ -80,18 +80,14 @@ function toggleHelp(){
 	<div class="container">
 		<div class="sixteen columns remove-bottom">
 			<h1 class="remove-bottom" style="margin-top: 40px">Carpoolme</h1>
-			<h5 class="remove-bottom" >Beta v1.1 <a href="#" data-mailto="johnandersenpdx@gmail.com">Report Bug</a></h5>
+			<h5 class="remove-bottom" >Beta v1.1 <a href="#" data-mailto="carpoolme.net@gmail.com">Report Bug</a></h5>
 <?php
 
 session_start();
 define('INCLUDE_CHECK',true);
 $dir = "scripts";
 require $dir . '/parts.php';
-require $dir . '/phpfunctions.php';
 
-if (isset($_COOKIE['username'])){
-	$_SESSION['username'] = $_COOKIE['username'];
-	}
 
 if(isset($_SESSION['username'])){
 	echo "User " . $_SESSION['username'] . " is logged in.";

@@ -9,16 +9,13 @@ Author: John Andersen
 
 session_start();
 
-	$whatlat = $_SESSION['lat'] = $_POST['GPSlat'];
-	$whatlng = $_SESSION['lng'] = $_POST['GPSlng'];
 	$whatname = $_POST['username'];
 	$whatpass = $_POST['password'];
 	$whattype = $_POST['type'];
 	if((!$whatname)||(!$whatpass)) exit ("$whatname please fill in all fields. ");
-	else if((!$whatlat)||(!$whatlng)) exit ("$whatname please enable location. ");
 
-	if (isset($_POST['cookie'])){
-		setcookie("username",$whatname,time()+3600);
+	if (0==strcmp($_POST['cookie'], "on")){
+		setcookie("username",$whatname,time()+3600, "carpool.sytes.net");
 		}
 
 	// Table name
@@ -40,7 +37,7 @@ session_start();
 	if(1 == mysqli_num_rows($result)){
 		$_SESSION['username'] = $whatname;
 		$_SESSION['type'] = $whattype;
-		mysqli_query($con,"UPDATE $table SET latitude = $whatlat, longitude = $whatlng, type = '$whattype' WHERE username='$whatname';");		
+		mysqli_query($con,"UPDATE $table SET type = '$whattype' WHERE username='$whatname';");		
 
 		if ($newresult = mysqli_query($con, "SELECT dlatitude, dlongitude, spots, ridingwith, incar, latestleave FROM $table WHERE username = '$whatname';")) {
 	    		$row = mysqli_fetch_row($newresult);

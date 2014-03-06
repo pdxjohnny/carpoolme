@@ -70,6 +70,7 @@ function route(user, show, displayInDiv) {
 function displayDistance(driverInfo, distance, displayInDiv){
 	// var for the display element
 	var displayIn = document.getElementById(displayInDiv);
+	displayIn.innerHTML = "";
 	// Driver is taveling toMiles(totalDistance) miles. 
 	var miles = toMiles(distance);
 	if(jsSusername === driverInfo[0][0]){
@@ -127,11 +128,9 @@ function splitCost(totalDollars, user, callback){
 		else {
 			var imInTheCar = false;
 			var splitOthersInCar = JSON.parse(jsondata);
-			console.log(splitOthersInCar);
 			for (var i = 0; i < splitOthersInCar.length ; i++){
 				if (splitOthersInCar[i][0] === jsSusername) var imInTheCar = true;
 				}
-console.log(imInTheCar);
 			if (imInTheCar) callback(round2(totalDollars/(JSON.parse(jsondata).length+1)/*people + driver you're already in the car*/));
 			else callback(round2(totalDollars/(JSON.parse(jsondata).length+2)/*people + driver then you*/));
 			}

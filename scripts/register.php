@@ -13,19 +13,17 @@ session_start();
 
 if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ($_POST['username'] . " your passwords do not match. ");
 
-	$whatlat = $_SESSION['lat'] = $_POST['GPSlat'];
-	$whatlng = $_SESSION['lng'] = $_POST['GPSlng'];
 	$whatname = $_POST['username'];
 	$whatpass = $_POST['password'];
 	$whatemail = $_POST['email'];
 	$whattype = $_POST['type'];
-	if((!$whatname)||(!$whatpass)||(!$whatemail)||(!$whatlat)||(!$whatlng)) exit ("$whatname please fill in all fields and enable location. ");
+	if((!$whatname)||(!$whatpass)||(!$whatemail)) exit ("$whatname please fill in all fields.");
 
 	if (filter_var($whatemail, FILTER_VALIDATE_EMAIL));
 	else exit ("$whatname you have an invalid email. ");
 
-	if (isset($_POST['cookie'])){
-		setcookie("username",$whatname,time()+3600);
+	if ($_POST['cookie'] == true){
+		setcookie("username",$whatname,time()+3600, "carpool.sytes.net");
 		}
 
 	$table="carpool_members"; // Table name 
@@ -50,7 +48,7 @@ if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ($_POST['userna
 		exit($whatname . " is already taken");
 		}
 	else{
-		mysqli_query($con,"INSERT INTO $table (username,password,email,type,latitude,longitude) VALUES('$whatname','$whatpass','$whatemail','$whattype',$whatlat,$whatlng);");
+		mysqli_query($con,"INSERT INTO $table (username,password,email,type) VALUES('$whatname','$whatpass','$whatemail','$whattype');");
 		$_SESSION['username'] = $whatname;
 		$_SESSION['type'] = $whattype;
 		file_put_contents("profiles/users", $_SESSION['username'] . "\n", FILE_APPEND);

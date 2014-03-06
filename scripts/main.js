@@ -1,7 +1,7 @@
 // Globals
 var sitename = "carpool";
 var dir = "scripts";
-var table = "carpool_members"
+var table = "carpool_members";
 
 // jsS - the javascript session variables
 var jsSride = [ ["none", "none"], ["none", "none"], ["none", "none"], ["none", "none"], ["none", "none"] ];
@@ -26,47 +26,58 @@ var jsStripdistance;
 
 // Reload jsS - the javascript session variables
 function reload(myUsername){
-	getMyUserInfo(myUsername, function(){
-		console.log("reloaded");
-		$('#type').val(jsStype);
-		if(jsSincar != null) $('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSincar+"'s car</button>");
-		else if((jsSincar == null) && (jsSridingwith != null)) $('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSridingwith+"'s car</button>");
-		else $('#clearRideSpan').html("");
-		if(jsSlngd != 0) $('#clearDest').show();
-		else if(jsSlngd == 0) $('#clearDest').hide();
-		if(jsStype==="offer"){
-			getLeaveTime(table);
-			myCar();
-			$('#leaveSeatsMpg').show();
-			$('#myCar').show();
-			}
-		else if(jsStype==="need"){
-			$('#leaveSeatsMpg').hide();
-			$('#myCar').hide();
-			}
-		myRide(table);
-		if(jsSmpg != null) $('#myMpg').html("Your current mpg is "+jsSmpg+".<br>");
-		else $('#myMpg').html("The mpg of your car is not set.<br>");
-		createMap();
-		if(jsSlngd != 0){
-			directionDisplay.setMap(null);
-			if(jsSincar != null){
-				route(jsSincar, true, "myRideCarInfo");
+	var updateTheseCords = ["latitude", "longitude"];
+	var updatedCords = [];
+	navigator.geolocation.getCurrentPosition(function(position){ 
+  	    	updatedCords = [position.coords.latitude, position.coords.longitude];
+		updateMultNum(table, updateTheseCords, updatedCords, myUsername, function(data){
+			if(data !== "Updated. ") {
+				$('#returnSpan').show();
+				$('#returnSpan').html("Couldn't update your location.<br>");
+				$('#returnSpan').delay(9000).fadeOut();
+				}
+			getMyUserInfo(myUsername, function(){
+				console.log("reloaded");
+				$('#type').val(jsStype);
+				if(jsSincar != null) $('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSincar+"'s car</button>");
+				else if((jsSincar == null) && (jsSridingwith != null)) $('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSridingwith+"'s car</button>");
+				else $('#clearRideSpan').html("");
+				if(jsSlngd != 0) $('#clearDest').show();
+				else if(jsSlngd == 0) $('#clearDest').hide();
 				if(jsStype==="offer"){
-					route(jsSusername, false, "myCarInfo");
+					getLeaveTime(table);
+					myCar();
+					$('#leaveSeatsMpg').show();
+					$('#myCar').show();
 					}
-				}
-			else if(jsStype==="offer"){
-				route(jsSusername, true, "myCarInfo");
-				}
-			}
+				else if(jsStype==="need"){
+					$('#leaveSeatsMpg').hide();
+					$('#myCar').hide();
+					}
+				if(jsSmpg != null) $('#myMpg').html("Your current mpg is "+jsSmpg+".<br>");
+				else $('#myMpg').html("The mpg of your car is not set.<br>");
+				createMap();
+				if(jsSlngd != 0){
+					directionDisplay.setMap(null);
+					if(jsSincar != null){
+						route(jsSincar, true, "myRideCarInfo");
+						if(jsStype==="offer"){
+							route(jsSusername, false, "myCarInfo");
+							}
+						}
+					else if(jsStype==="offer"){
+						route(jsSusername, true, "myCarInfo");
+						}
+					}
+				});
+			});
 		});
 	}
 
 // Call these every x seconds
 function callEvery(table){
 	if(jsStype==="offer"){
-		getLeaveTime(table);
+		// Why was I calling this?  getLeaveTime(table);
 		myCar();
 		}
 	myRide(table);
@@ -177,6 +188,33 @@ function getUserInfo(user, callback){
 	getFromTable("carpool_members", "username, password, email, latitude, longitude, dlatitude, dlongitude, type, mpg, incar, ridingwith ", "username ='"+user+"'", function(allUserInfo){
 		callback(JSON.parse(allUserInfo));
 		});
+	}
+
+function toDays(num){
+	var days = [];
+	if(num[0] == 1) days.push(" Sunday");
+	if(num[1] == 1) days.push(" Monday");
+	if(num[2] == 1) days.push(" Tuesday");
+	if(num[3] == 1) days.push(" Webnesday");
+	if(num[4] == 1) days.push(" Thursday");
+	if(num[5] == 1) days.push(" Friday");
+	if(num[6] == 1) days.push(" Saturday");
+	return days;
+	}
+
+function toNumDays(days){
+	var numDays = [ 0, 0, 0, 0, 0, 0, 0 ];
+	for( var i = 0; i < days.length ; i++ ){
+		if(days[i] === "0") numDays[0] = 1;
+		if(days[i] === '1') numDays[1] = 1;
+		if(days[i] === '2') numDays[2] = 1;
+		if(days[i] === '3') numDays[3] = 1;
+		if(days[i] === '4') numDays[4] = 1;
+		if(days[i] === '5') numDays[5] = 1;
+		if(days[i] === '6') numDays[6] = 1;
+		}
+	numDays = numDays.toString().replace(/,/g, '');
+	return numDays;
 	}
 
 function getFromTable(table, stuff, conditions, callback){

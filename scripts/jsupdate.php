@@ -136,6 +136,7 @@ function updateNull($table,$what,$user){
 
 function updateMultNum($table, $these, $newvalues, $user){
 	
+	//return json_encode($these) . ":" . json_encode($newvalues);
 	if(count($these) != count($newvalues)) return "Updates don't match. ";
 
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");

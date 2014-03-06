@@ -1,0 +1,45 @@
+[Wed Mar 05 15:39:45 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: cookie in /var/www/testcarpool/scripts/login.php on line 17, referer: http://carpool.sytes.net/
+[Wed Mar 05 15:43:15 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: cookie in /var/www/testcarpool/scripts/login.php on line 17, referer: http://carpool.sytes.net/
+[Wed Mar 05 15:43:15 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: cookie in /var/www/testcarpool/scripts/login.php on line 19, referer: http://carpool.sytes.net/
+[Wed Mar 05 15:44:55 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/testcarpool/scripts/phpfunctions.php on line 228, referer: http://carpool.sytes.net/
+[Wed Mar 05 16:05:38 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined variable: _SESSION in /var/www/testcarpool/test2.php on line 16
+[Wed Mar 05 16:06:49 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined variable: _SESSION in /var/www/testcarpool/test2.php on line 14
+[Wed Mar 05 16:06:58 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined variable: _SESSION in /var/www/testcarpool/test2.php on line 14, referer: http://carpool.sytes.net/test2.php
+[Wed Mar 05 16:07:08 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined variable: _SESSION in /var/www/testcarpool/test2.php on line 14, referer: http://carpool.sytes.net/test2.php
+[Wed Mar 05 16:08:55 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/testcarpool/test2.php on line 7
+[Wed Mar 05 16:09:00 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined variable: _SESSION in /var/www/testcarpool/test2.php on line 17, referer: http://carpool.sytes.net/test2.php
+[Wed Mar 05 16:09:05 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined variable: _SESSION in /var/www/testcarpool/test2.php on line 17, referer: http://carpool.sytes.net/test2.php
+[Wed Mar 05 16:09:13 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined variable: _SESSION in /var/www/testcarpool/test2.php on line 17, referer: http://carpool.sytes.net/test2.php
+[Wed Mar 05 16:09:16 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/testcarpool/test2.php on line 7
+[Wed Mar 05 16:09:24 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined variable: _SESSION in /var/www/testcarpool/test2.php on line 17, referer: http://carpool.sytes.net/test2.php
+[Wed Mar 05 16:09:28 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined variable: _SESSION in /var/www/testcarpool/test2.php on line 17
+[Wed Mar 05 16:09:56 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined variable: _SESSION in /var/www/testcarpool/test2.php on line 17, referer: http://carpool.sytes.net/test2.php
+[Wed Mar 05 16:10:02 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined variable: _SESSION in /var/www/testcarpool/test2.php on line 17, referer: http://carpool.sytes.net/test2.php
+[Wed Mar 05 16:10:04 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/testcarpool/test2.php on line 7
+[Wed Mar 05 16:10:29 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined variable: _SESSION in /var/www/testcarpool/test2.php on line 18
+[Wed Mar 05 16:11:07 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined variable: _SESSION in /var/www/testcarpool/test2.php on line 18
+[Wed Mar 05 16:11:19 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/testcarpool/test2.php on line 8
+[Wed Mar 05 16:11:31 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined variable: _SESSION in /var/www/testcarpool/test2.php on line 18
+[Wed Mar 05 16:11:39 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined variable: _SESSION in /var/www/testcarpool/test2.php on line 18
+[Wed Mar 05 16:12:06 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/testcarpool/test2.php on line 18, referer: http://carpool.sytes.net/test2.php
+[Wed Mar 05 16:12:09 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/testcarpool/test2.php on line 8
+[Wed Mar 05 16:25:44 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/testcarpool/test2.php on line 18
+[Wed Mar 05 16:33:19 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/testcarpool/home.php on line 84
+[Wed Mar 05 16:38:04 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/testcarpool/home.php on line 84, referer: http://carpool.sytes.net/
+[Wed Mar 05 16:38:19 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/testcarpool/home.php on line 84
+[Wed Mar 05 17:29:13 2014] [error] [client 50.186.44.26] File does not exist: /var/www/testcarpool/#
+[Wed Mar 05 17:29:13 2014] [error] [client 50.186.44.26] PHP Notice:  Undefined index: username in /var/www/testcarpool/home.php on line 84
+[Wed Mar 05 20:02:08 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/testcarpool/home.php on line 84
+[Wed Mar 05 20:02:28 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/testcarpool/home.php on line 84
+[Wed Mar 05 20:02:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/testcarpool/scripts/login.php on line 20, referer: http://carpool.sytes.net/
+[Wed Mar 05 20:02:36 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/testcarpool/home.php on line 84, referer: http://carpool.sytes.net/
+[Wed Mar 05 20:50:39 2014] [error] [client 66.249.75.89] File does not exist: /var/www/testcarpool/robots.txt
+[Wed Mar 05 21:21:17 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: postto in /var/www/testcarpool/test2.php on line 53
+[Wed Mar 05 21:21:43 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: postto in /var/www/testcarpool/test2.php on line 53
+[Wed Mar 05 21:37:15 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: postto in /var/www/testcarpool/test2.php on line 73
+[Wed Mar 05 21:37:40 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: postto in /var/www/testcarpool/test2.php on line 71
+[Wed Mar 05 21:38:11 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: postto in /var/www/testcarpool/test2.php on line 72
+[Wed Mar 05 21:38:18 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: postto in /var/www/testcarpool/test2.php on line 72, referer: http://carpool.sytes.net/test2.php
+[Wed Mar 05 21:38:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: postto in /var/www/testcarpool/test2.php on line 71
+[Wed Mar 05 21:38:39 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: postto in /var/www/testcarpool/test2.php on line 71, referer: http://carpool.sytes.net/test2.php
+[Thu Mar 06 00:46:47 2014] [error] [client 24.20.209.246] PHP Warning:  file_put_contents(infos/pdxjohnny): failed to open stream: Permission denied in /var/www/testcarpool/profiles/profile.php on line 39, referer: http://carpool.sytes.net/

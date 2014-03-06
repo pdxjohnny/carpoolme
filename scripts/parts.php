@@ -69,26 +69,14 @@ function logout(){
 	}
 
 function setLatestLeave($postto){ ?>
-<span id='leavetime'></span><br>
-<select name="hour" id="hour">
-<script>
-for(var i = 0;i<24;i++){
-	if(i==0) document.write("<option value='"+i+"'>"+12+"</option>");
-	else if(i<=12) document.write("<option value='"+i+"'>"+i+"</option>");
-	else document.write("<option value='"+i+"'>"+(i-12)+"</option>");
-	}
-</script>
+<select id="leaveKind" >
+  <option value="once">One Time</option>
+  <option value="repeat">Repeating</option>
 </select>
-:
-<select name="minute" id="minute">
-<script>
-for(var i = 0;i<=60;i++){
-	if(i<10) i = '0'+i;
-	document.write("<option value='"+i+"'>"+i+"</option>");
-	}
-</script>
-</select>
-<span id="amorpm"></span>
+
+<span id="leaveOnce" >
+<div id='leavetime'></div>
+<input id='time' type='time'>
 on the
 <select name="date" id="date">
 <script>
@@ -109,9 +97,38 @@ for(var i = 0;i<=14;i++){
 <span id="datesufix"></span>
 <input value="" id="datetime" name="datetime" type="hidden">
 <button onclick="setLatestLeave()" id="setLatestLeave">Update Leave Time</button>
+</span>
+
+<span id="leaveRepeat"  style="display:none;" >
+<div id='leavetime1'></div>
+<input id="time1" type="time" />
+<button onclick="setLeave1()" id="setLeave1">Update First Leave Time</button>
+
+<!-- Add Round Trip? toggle -->
+
+<div id='leavetime2'></div>
+<input id="time2" type="time" />
+<button onclick="setLeave2()" id="setLeave2">Update Second Leave Time</button>
+<br>
+<div id="yourDays" > </div>
+<a href="#" id="toggleDays" >Days</a>
+<span id="rDays" style="display:none;" ><br>
+<input type="checkbox" value="0">Sunday<br>
+<input type="checkbox" value="1">Monday<br>
+<input type="checkbox" value="2">Tuesday<br>
+<input type="checkbox" value="3">Wednesday<br>
+<input type="checkbox" value="4">Thursday<br>
+<input type="checkbox" value="5">Friday<br>
+<input type="checkbox" value="6">Saturday<br>
+<button onclick="setDays()" id="setDays">Update Days</button>
+</span>
+</span>
+
 <script>
 $( document ).ready(function() {
 	$('#amorpm').html(" am");
+	$('#amorpm1').html(" am");
+	$('#amorpm2').html(" am");
 
 	var val = $("#date").val();
 	if(val.length == 1) var sufix = dateSufix(val);
@@ -120,19 +137,6 @@ $( document ).ready(function() {
 	$('#datesufix').html(sufix);
 	});
 
-
-	$("#hour").click(function() {
-		var val = $("#hour").val();
-		if(val < 12) {
-			$('#amorpm').html(" am");
-			}
-		else if(val == 24) {
-			$('#amorpm').html(" am");
-			}
-		else {
-			$('#amorpm').html(" pm");
-			}
-		});
 	$("#date").click(function() {
 		var val = $(this).val();
 		var sufix;
@@ -142,39 +146,121 @@ $( document ).ready(function() {
 		$('#datesufix').html(sufix);
 		});
 
+	$('#leaveKind').change(function(){
+		getLeaveTime(table);
+		if ($(this).val() === "repeat"){
+			$('#leaveRepeat').show();
+			$('#leaveOnce').hide();
+			}
+		if ($(this).val() === "once"){
+			$('#leaveOnce').show();
+			$('#leaveRepeat').hide();
+			}
+		});
+
+	$("#toggleDays").click(function() {
+		$('#rDays').toggle();
+		});
+
 function setLatestLeave() {
 	if((dateYMD.getMonth()+1)<10) var month = '0'+(dateYMD.getMonth()+1);
 	else var month = dateYMD.getMonth()+1;
 	var predate = $( "#date" ).val();
-	var prehour = $( "#hour" ).val();
-	var minute = $( "#minute" ).val();
 	if(predate<10) var date = '0'+predate;
 	else var date = predate;
-	if(prehour<10) var hour = '0'+prehour;
-	else var hour = prehour;
-	var ymd = dateYMD.getFullYear()+'-'+month+'-'+date+' '+hour+':'+minute+':00';
-	$('#datetime').val(ymd);
-	var datetimeval = $('#datetime').val();
-	$('#leavetime').html("You are currently set to leave at "+readableDate(datetimeval));
+	var ymd = dateYMD.getFullYear()+'-'+month+'-'+date+' '+$('#time').val()+':00';
+	console.log(ymd);
 	// Change this table
-	updateString("carpool_members","latestleave",ymd,jsSusername,function(data){
+	updateString(table,"latestleave",ymd,jsSusername,function(data){
 		$('#returnSpan').show();
 		$('#returnSpan').html("Your leave time was "+data+"<br>");
 		$('#returnSpan').delay(9000).fadeOut();
-		getLeaveTime("carpool_members");
+		getLeaveTime(table);
 		});
 	event.preventDefault();
 	}
 
-function getLeaveTime(table){
-	getFromTable(table,"latestleave","username = '"+jsSusername+"'",function(data){
-		data = JSON.parse(data);
-		if(data[0][0] != null){
-			$('#datetime').val(data[0][0]);
-			$('#leavetime').html("You are currently set to leave at "+readableDate(data[0][0]));
-			}
-		else $('#leavetime').html("You haven't set your leave time yet. ");
+function setLeave1() {
+	// Change this table
+	updateString(table,"rleave1",$('#time1').val()+':00',jsSusername,function(data){
+		$('#returnSpan').show();
+		$('#returnSpan').html("Your first leave time was "+data+"<br>");
+		$('#returnSpan').delay(9000).fadeOut();
+		getLeaveTime(table);
 		});
+	event.preventDefault();
+	}
+
+function setLeave2() {
+	// Change this table
+	updateString(table,"rleave2",$('#time2').val()+':00',jsSusername,function(data){
+		$('#returnSpan').show();
+		$('#returnSpan').html("Your second leave time was "+data+"<br>");
+		$('#returnSpan').delay(9000).fadeOut();
+		getLeaveTime(table);
+		});
+	event.preventDefault();
+	}
+
+function setDays() {
+	// Change this table
+	updateString(table,"days",getDays(),jsSusername,function(data){
+		$('#returnSpan').show();
+		$('#returnSpan').html("The days you drive on were "+data+"<br>");
+		$('#returnSpan').delay(9000).fadeOut();
+		getLeaveTime(table);
+		});
+	event.preventDefault();
+	}
+
+function getDays(){
+	var days = [];
+	$('#rDays :checkbox:checked').each(function(i){
+		days[i] = $(this).val();
+		});
+	return toNumDays(days);
+	}
+
+function getLeaveTime(table){
+	if($('#leaveKind').val() === "once"){
+		getFromTable(table,"latestleave","username = '"+jsSusername+"'",function(data){
+			data = JSON.parse(data);
+			if(data[0][0] != null){
+				var leave = timeArray(data[0][0]);
+				$('#datetime').val(data[0][0]);
+				$('#leavetime').html("You are currently set to leave at ");
+				$('#time').val(leave[3] +":"+ leave[4] + ":" + leave[5]);
+				$('#data').val(leave[2]);
+				}
+			else {
+				$('#leavetime').html("You haven't set your leave time yet. ");
+				$('#time').val("");
+				}
+			});
+		}
+	else if($('#leaveKind').val() === "repeat"){
+		getFromTable(table,"rleave1, rleave2, days","username = '"+jsSusername+"'",function(data){
+			data = JSON.parse(data);
+			data = data[0];
+			if(data[0] != null){
+				$('#time1').val(data[0]);
+				$('#leavetime1').html("Your first leave time is ");
+				$('#time').val(data[0]);
+				}
+			else $('#leavetime1').html("You haven't set your first leave time yet. ");
+			if(data[1] != null){
+				$('#time2').val(data[1]);
+				$('#leavetime2').html("Your second leave time is ");
+				$('#time').val(data[1]);
+				}
+			else $('#leavetime2').html("You haven't set your second leave time yet. ");
+			if(data[2] != null){
+				$('#yourDaysCurrent').html(data[2]);
+				$('#yourDays').html("You are driving on"+toDays(data[2]));
+				}
+			else $('#yourDays').html("You haven't set the days you're driving on yet. ");
+			});
+		}
 	}
 </script>
 <?php
@@ -436,7 +522,7 @@ function inMyCar(incar){
 
 function approve(){
 	var acceptval = [];
-	$(':checkbox:checked').each(function(i){
+	$('#wantMyCarSpan :checkbox:checked').each(function(i){
 		acceptval[i] = $(this).val();
 		});
 	$.ajax({
@@ -578,12 +664,6 @@ function inMyRide(incar,ridename){
 
 function login($postto){?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script>
-navigator.geolocation.getCurrentPosition(function(position){ 
-      	$('#GPSlat').val(position.coords.latitude);
-  	$('#GPSlng').val(position.coords.longitude);
-	});
-</script>
 
 <form id="loginfrom">
 <center><h4>Login</h4></center>
@@ -596,9 +676,7 @@ Password<br>
   <option value="offer">Offering Ride</option>
 </select></center>
 Remember me 
-<input type ="checkbox" name="cookie" value="false">
-<input name="GPSlat" id="GPSlat" type="hidden" value="">
-<input name="GPSlng" id="GPSlng" type="hidden" value="">
+<input type ="checkbox" id="cookiel" >
 <center><input value="Login" id="login" name="login" type="submit"></center>
 </form>
 <script>
@@ -613,8 +691,7 @@ $('#loginfrom').submit(function(){
 			username: $('#usernamel').val(), 
 			password: $('#passwordl').val(),
 			type: $('#typel').val(),
-			GPSlat: $('#GPSlat').val(),
-			GPSlng: $('#GPSlng').val()
+			cookie: $('#cookiel').val()
 			},
 		success: function(data){
 			$('#returnSpan').show();
@@ -630,12 +707,6 @@ $('#loginfrom').submit(function(){
 
 function register($postto){?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script>
-navigator.geolocation.getCurrentPosition(function(position){ 
-      	$('#GPSlat').val(position.coords.latitude);
-  	$('#GPSlng').val(position.coords.longitude);
-	});
-</script>
 
 <form id="registerfrom">
 <center><h4>Register</h4></center>
@@ -652,9 +723,7 @@ Email<br>
   <option value="offer">Offering Ride</option>
 </select></center><br>
 Remember me 
-<input type ="checkbox" name="cookie" value="false">
-<input name="GPSlat" id="GPSlat" type="hidden" value="">
-<input name="GPSlng" id="GPSlng" type="hidden" value="">
+<input type ="checkbox" id="cookier" >
 <center><input value="Register" id="reg" name="reg" type="submit"></center>
 </form>
 <script>
@@ -671,8 +740,7 @@ $('#registerfrom').submit(function(){
 			confirmpassword: $('#confirmpassword').val(), 
 			email: $('#email').val(),
 			type: $('#typer').val(),
-			GPSlat: $('#GPSlat').val(),
-			GPSlng: $('#GPSlng').val()
+			cookie: $('#cookier').val()
 			},
 		success: function(data){
 			$('#returnSpan').show();
@@ -809,7 +877,7 @@ function updateProfile(){
 	}
 
 function showEditProfile(){
-	$('#profileInfoEditText').val($('#profileInfo').html().replace(/<br>/g, '\n')+" ");
+	$('#profileInfoEditText').val($('#profileInfo').html().replace(/<br>/g, '\n'));
 	$('#profileInfoEdit').show();
 	$('#profileInfo').hide();
 	$('#profileEditButtons').hide();

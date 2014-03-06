@@ -1,23 +1,66 @@
-<?php
-#checking if form has been submitted
-if (isset($_POST['cookie'])){
-	setcookie("username",$_POST['username'],time()+3600);
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="scripts/main.js"></script>
+
+<div id="returnSpan" ></div>
+<br>
+<div id="rDays" >
+Sunday<input type="checkbox" value="0"><br>
+Monday<input type="checkbox" value="1"><br>
+Tuesday<input type="checkbox" value="2"><br>
+Wednesday<input type="checkbox" value="3"><br>
+Thursday<input type="checkbox" value="4"><br>
+Friday<input type="checkbox" value="5"><br>
+Saturday<input type="checkbox" value="6"><br>
+</div>
+<button onclick="getDays()" >Days</button></form><br>
+<br>
+<div id="thedays" ></div>
+<div id="thenumber" ></div>
+
+
+<script>
+
+$('#time').change(function(){
+	console.log($(this).val());
+	});
+
+function getDays(){
+	var days = [];
+	$('#rDays :checkbox:checked').each(function(i){
+		days[i] = $(this).val();
+		});
+	console.log(days);
+	$('#thenumber').html(toNumDays(days));
+	$('#thedays').html(toDays(toNumDays(days)));
 	}
 
-if (isset($_COOKIE['username'])){
-	$_SESSION['username'] = $_COOKIE['username'];
+function toDays(num){
+	var days = [];
+	if(num[0] == 1) days.push(" Sunday");
+	if(num[1] == 1) days.push(" Monday");
+	if(num[2] == 1) days.push(" Tuesday");
+	if(num[3] == 1) days.push(" Webnesday");
+	if(num[4] == 1) days.push(" Thursday");
+	if(num[5] == 1) days.push(" Friday");
+	if(num[6] == 1) days.push(" Saturday");
+	return days;
 	}
-?>
-<!-- HTML Page-->
-<html>
-<body> 
-<form action= "<?php echo $_SERVER['PHP_SELF']; ?>" method ="POST">
-Username : <br>
-<input name="username" value="<?php echo $_SESSION['username']; ?>" />
-<br>
-Remember me 
-<input type ="checkbox" name="cookie" value="false"></br>
-<input type="submit" value="Login">
-</form>
-</body>
-</html>
+
+function toNumDays(days){
+	var numDays = [ 0, 0, 0, 0, 0, 0, 0 ];
+	for( var i = 0; i < days.length ; i++ ){
+		if(days[i] === "0") numDays[0] = 1;
+		if(days[i] === '1') numDays[1] = 1;
+		if(days[i] === '2') numDays[2] = 1;
+		if(days[i] === '3') numDays[3] = 1;
+		if(days[i] === '4') numDays[4] = 1;
+		if(days[i] === '5') numDays[5] = 1;
+		if(days[i] === '6') numDays[6] = 1;
+		}
+	numDays = numDays.toString().replace(/,/g, '');
+	console.log(numDays);
+	return numDays;
+	}
+
+
+</script>
