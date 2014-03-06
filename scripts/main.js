@@ -57,6 +57,7 @@ function reload(myUsername){
 				if(jsSmpg != null) $('#myMpg').html("Your current mpg is "+jsSmpg+".<br>");
 				else $('#myMpg').html("The mpg of your car is not set.<br>");
 				createMap();
+				myRide(table);
 				if(jsSlngd != 0){
 					directionDisplay.setMap(null);
 					if(jsSincar != null){

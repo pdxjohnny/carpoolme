@@ -88,7 +88,6 @@ define('INCLUDE_CHECK',true);
 $dir = "scripts";
 require $dir . '/parts.php';
 
-
 if(isset($_SESSION['username'])){
 	echo "User " . $_SESSION['username'] . " is logged in.";
 	echo '
@@ -99,6 +98,7 @@ if(isset($_SESSION['username'])){
 ';
 	logout($dir . "/logout.php");
 	includes($dir);
+
 ?>
 			<br><center><span style="color: #4593C4; margin-top:10px;" id='returnSpan'></span></center>
 			<hr style="remove-bottom" />
@@ -168,6 +168,7 @@ else {
 <?php
 	login($dir . "/login.php");
 ?>
+		<a href="#" id="toggleRegister1" >Register</a>
 		</div>
 	</div>
 	<div id="registerdiv" style="display:none;" >
@@ -175,6 +176,7 @@ else {
 <?php
 	register($dir . "/register.php");
 ?>	
+		<a href="#" id="toggleLogin1" >Login</a>
 		</div>
 	</div>
 	<div id="demodiv" style="display:none;" class="sixteen columns remove-bottom" >
@@ -220,6 +222,18 @@ $('#toggleRegister').click(function(){
 	});
 
 $('#toggleLogin').click(function(){
+	$('#registerdiv').hide();
+	$('#demodiv').hide();
+	$('#logindiv').show();
+	});
+
+$('#toggleRegister1').click(function(){
+	$('#registerdiv').show();
+	$('#logindiv').hide();
+	$('#demodiv').hide();
+	});
+
+$('#toggleLogin1').click(function(){
 	$('#registerdiv').hide();
 	$('#demodiv').hide();
 	$('#logindiv').show();

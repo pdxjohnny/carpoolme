@@ -43,3 +43,7 @@
 [Wed Mar 05 21:38:34 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: postto in /var/www/testcarpool/test2.php on line 71
 [Wed Mar 05 21:38:39 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined variable: postto in /var/www/testcarpool/test2.php on line 71, referer: http://carpool.sytes.net/test2.php
 [Thu Mar 06 00:46:47 2014] [error] [client 24.20.209.246] PHP Warning:  file_put_contents(infos/pdxjohnny): failed to open stream: Permission denied in /var/www/testcarpool/profiles/profile.php on line 39, referer: http://carpool.sytes.net/
+[Thu Mar 06 01:17:51 2014] [error] [client 24.20.209.246] File does not exist: /var/www/testcarpool/scripts/demo.js, referer: http://carpool.sytes.net/
+[Thu Mar 06 01:18:56 2014] [error] [client 24.20.209.246] PHP Notice:  Undefined index: username in /var/www/testcarpool/scripts/parts.php on line 24
+[Thu Mar 06 01:18:56 2014] [error] [client 24.20.209.246] File does not exist: /var/www/testcarpool/scripts/demo.js, referer: http://carpool.sytes.net/
+[Thu Mar 06 01:19:16 2014] [error] [client 24.20.209.246] File does not exist: /var/www/testcarpool/scripts/demo.js, referer: http://carpool.sytes.net/
