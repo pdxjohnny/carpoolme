@@ -10,4 +10,6 @@ else if($_SESSION['numberavailableSeats']==1) echo "There is currently " . $_SES
 
 else if($_SESSION['numberavailableSeats']==0) echo "There are currently no seats avalable in your car.";
 
+echo "%" . $_SESSION['numberavailableSeats'];
+
 ?>

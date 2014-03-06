@@ -363,8 +363,8 @@ function clearDest(){
 
 function seats($update,$display){?>
 <br><br>
-<span id="availableSeats"></span>
-Update Seats Available: 
+<div id="availableSeats"></div>
+Update the number of seats in your car: 
 <select name="seats" id="seats">
 <script>
 for(var i = 1;i<=10;i++){
@@ -405,7 +405,9 @@ function displaySeats(){
 			username: "<?php echo $_SESSION['username']; ?>"
 			},
 		success: function(data){
-			$('#availableSeats').html(data);
+			data = data.split('%');
+			$('#availableSeats').html(data[0]);
+			$('#seats').val(data[1]);
 			}
 		});
 	event.preventDefault();
@@ -422,6 +424,7 @@ Update Your Mpg:
 <button onclick="updateMpg();">Update</button>
 <br>
 <br>
+<hr />
 <script>
 function updateMpg(){
 	// Update the Mpg
@@ -444,6 +447,7 @@ function updateMpg(){
 function help($postto){ ?>
 <button id="help" name="help" onclick="help()">Help</button>
 <span id="helpSpan" style="display:none;"></span>
+<hr />
 <script>
 function help(){
 	$('#helpSpan').toggle();
@@ -464,7 +468,8 @@ function help(){
 function myCar($postto){ ?>
 <span id="myCarInfo" ></span><br>
 <span id="inMyCarSpan" ></span><br>
-<span id="wantMyCarSpan" ></span>
+<span id="wantMyCarSpan" ></span><br>
+<hr />
 <script>
 function myCar(){
 	$.ajax({
@@ -586,6 +591,7 @@ function kickFromCar(tokickel){
 function myRide($postto){ ?>
 <span id="myRideCarInfo" ></span><br>
 <span id="myRideSpan" ></span><br>
+<hr />
 <script>
 var initail = 0;
 var othersInRide;
