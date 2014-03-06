@@ -29,7 +29,7 @@ function nearby(range, callback){
 		var mylatdadd = jsSlatd + range;
 		var mylngdsub = jsSlngd - range;
 		var mylngdadd = jsSlngd + range;
-		var get = "username, latitude, longitude, type, dlatitude, dlongitude, spots, availablespots, latestleave";
+		var get = "username, latitude, longitude, type, dlatitude, dlongitude, spots, availablespots, latestleave, rleave1, rleave2, days";
 		var conditions = "latitude BETWEEN "+mylatsub+" AND "+mylatadd+" AND longitude BETWEEN "+mylngsub+" AND "+mylngadd+" AND dlatitude BETWEEN "+mylatdsub+" AND "+mylatdadd+" AND dlongitude BETWEEN "+mylngdsub+" AND "+mylngdadd+" AND NOT username = '"+jsSusername+"'";
 		}
 	if((jsSlat == 0)&&(jsSlngd == 0)) console.log("Error in nearby(); jsSlat"+jsSlat+" jsSlngd"+jsSlngd);
@@ -127,9 +127,15 @@ function arrayMap(locations){
 			google.maps.event.addListener(marker, 'click', (function(marker, i) {
 				return function() {
 					$('#driverMapInfo').show();
-					var pretime = readableDate(locations[i][8]);
-					if(pretime!==false) var time = " Leaving at " + readableDate(locations[i][8]);
-					else var time = " They haven't set their leave time yet. ";
+					if((locations[i][9] != null) && (locations[i][11] != null)){
+						var time = " They are leaving at " + userTime(locations[i][9]) + " on " + toDays(locations[i][11]);
+						if(locations[i][10] != null) var time = " They are leaving at " + userTime(locations[i][9]) + " and returning at " + userTime(locations[i][10]) + " on " + toDays(locations[i][11]);
+						}
+					else {
+						var pretime = readableDate(locations[i][8]);
+						if(pretime!==false) var time = " Leaving at " + readableDate(locations[i][8]);
+						else var time = " They haven't set their leave time yet. ";
+						}
 					if(locations[i][3]==="offer"){
 						InfoWindow.setContent(locations[i][0]);
 						route(locations[i][0], false, "distanceDiv");

@@ -36,13 +36,16 @@ function getDays(){
 
 function toDays(num){
 	var days = [];
-	if(num[0] == 1) days.push(" Sunday");
-	if(num[1] == 1) days.push(" Monday");
-	if(num[2] == 1) days.push(" Tuesday");
-	if(num[3] == 1) days.push(" Webnesday");
-	if(num[4] == 1) days.push(" Thursday");
-	if(num[5] == 1) days.push(" Friday");
-	if(num[6] == 1) days.push(" Saturday");
+	if(num[0] == 1) days.push(" Sundays");
+	if(num[1] == 1) days.push(" Mondays");
+	if(num[2] == 1) days.push(" Tuesdays");
+	if(num[3] == 1) days.push(" Wednesdays");
+	if(num[4] == 1) days.push(" Thursdays");
+	if(num[5] == 1) days.push(" Fridays");
+	if(num[6] == 1) days.push(" Saturdays");
+	if (days.length > 1){
+		days[days.length-1] = " and" + days[days.length-1] + ". ";
+		}
 	return days;
 	}
 

@@ -584,8 +584,8 @@ function kickFromCar(tokickel){
 	}
 
 function myRide($postto){ ?>
-<span id="myRideSpan" ></span><br>
 <span id="myRideCarInfo" ></span><br>
+<span id="myRideSpan" ></span><br>
 <script>
 var initail = 0;
 var othersInRide;

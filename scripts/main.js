@@ -28,6 +28,7 @@ var jsStripdistance;
 function reload(myUsername){
 	var updateTheseCords = ["latitude", "longitude"];
 	var updatedCords = [];
+	$('#driverMapInfo').hide();
 	navigator.geolocation.getCurrentPosition(function(position){ 
   	    	updatedCords = [position.coords.latitude, position.coords.longitude];
 		updateMultNum(table, updateTheseCords, updatedCords, myUsername, function(data){
@@ -142,9 +143,9 @@ function dateSufix(date){
 		}
 	}
 
-function timeArray(time){
-	if(time!=null){
-		var temp1 = time.split('-');
+function timeArray(datetime){
+	if(datetime!=null){
+		var temp1 = datetime.split('-');
 		var temp2 = temp1[2].split(' ');
 		var temp3 = temp2[1].split(':');
 		var out = [temp1[0], temp1[1], temp2[0], temp3[0], temp3[1], temp3[2]];
@@ -193,13 +194,16 @@ function getUserInfo(user, callback){
 
 function toDays(num){
 	var days = [];
-	if(num[0] == 1) days.push(" Sunday");
-	if(num[1] == 1) days.push(" Monday");
-	if(num[2] == 1) days.push(" Tuesday");
-	if(num[3] == 1) days.push(" Webnesday");
-	if(num[4] == 1) days.push(" Thursday");
-	if(num[5] == 1) days.push(" Friday");
-	if(num[6] == 1) days.push(" Saturday");
+	if(num[0] == 1) days.push(" Sundays");
+	if(num[1] == 1) days.push(" Mondays");
+	if(num[2] == 1) days.push(" Tuesdays");
+	if(num[3] == 1) days.push(" Wednesdays");
+	if(num[4] == 1) days.push(" Thursdays");
+	if(num[5] == 1) days.push(" Fridays");
+	if(num[6] == 1) days.push(" Saturdays");
+	if (days.length > 1){
+		days[days.length-1] = " and" + days[days.length-1] + ". ";
+		}
 	return days;
 	}
 
@@ -216,6 +220,23 @@ function toNumDays(days){
 		}
 	numDays = numDays.toString().replace(/,/g, '');
 	return numDays;
+	}
+
+function userTime(time){
+	time = time.split(':');
+	if(time[0] == 0){
+		time[0] = 12;
+		time[2] = " am";
+		}
+	else if(time[0] <= 12) {
+		time[2] = " am";
+		}
+	else {
+		time[0] = time[0] - 12;
+		time[2] = " pm";
+		}
+	time = [ time[0], ':', time[1], time[2] ];
+	return time.toString().replace(/,/g, '');
 	}
 
 function getFromTable(table, stuff, conditions, callback){
