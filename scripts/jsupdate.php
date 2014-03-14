@@ -1,15 +1,15 @@
 <?php
 
 if(isset($_POST['string'])){
-	echo updateString($_POST['table'],$_POST['what'],$_POST['string'],$_POST['user']);
+	echo updateString($_POST['table'],$_POST['what'],$_POST['string'],$_POST['conditions']);
 	}
 
 else if(isset($_POST['num'])){
-	echo updateNum($_POST['table'],$_POST['what'],$_POST['num'],$_POST['user']);
+	echo updateNum($_POST['table'],$_POST['what'],$_POST['num'],$_POST['conditions']);
 	}
 
-else if(isset($_POST['null'])){
-	echo updateNull($_POST['table'],$_POST['what'],$_POST['user']);
+else if(isset($_POST['nullthis'])){
+	echo updateNull($_POST['table'],$_POST['nullthis'],$_POST['conditions']);
 	}
 
 else if(isset($_POST['get'])){
@@ -17,11 +17,11 @@ else if(isset($_POST['get'])){
 	}
 
 else if(isset($_POST['theseNum'])){
-	echo updateMultNum($_POST['table'], $_POST['theseNum'], $_POST['newvalues'], $_POST['user']);
+	echo updateMultNum($_POST['table'], $_POST['theseNum'], $_POST['newvalues'], $_POST['conditions']);
 	}
 
 else if(isset($_POST['theseString'])){
-	echo updateMultString($_POST['table'], $_POST['theseString'], $_POST['newvalues'], $_POST['user']);
+	echo updateMultString($_POST['table'], $_POST['theseString'], $_POST['newvalues'], $_POST['conditions']);
 	}
 
 else echo "Not sure what to update. ";
@@ -51,7 +51,7 @@ function get($table,$stuff,$conditions,$howmany){
 		}	
 	}
 
-function updateString($table,$what,$with,$user){
+function updateString($table,$what,$with,$conditions){
 
 	// Create connection
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
@@ -61,10 +61,10 @@ function updateString($table,$what,$with,$user){
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$user'");
+	$result = mysqli_query($con,"SELECT * FROM $table WHERE $conditions;");
 	
 	if(1 == mysqli_num_rows($result)){
-		mysqli_query($con,"UPDATE $table SET $what = '$with' WHERE username='$user';");
+		mysqli_query($con,"UPDATE $table SET $what = '$with' WHERE $conditions;");
 		mysqli_close($con);
 		return "Updated";
 		}
@@ -78,7 +78,7 @@ function updateString($table,$what,$with,$user){
 		}
 	}
 
-function updateNum($table,$what,$with,$user){
+function updateNum($table,$what,$with,$conditions){
 
 	if (!is_numeric($with)) return "Not a number";
 
@@ -90,10 +90,10 @@ function updateNum($table,$what,$with,$user){
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$user'");
+	$result = mysqli_query($con,"SELECT * FROM $table WHERE $conditions");
 	
 	if(1 == mysqli_num_rows($result)){
-		mysqli_query($con,"UPDATE $table SET $what = $with WHERE username='$user';");
+		mysqli_query($con,"UPDATE $table SET $what = $with WHERE $conditions;");
 		mysqli_close($con);
 		return "Updated";
 		}
@@ -107,7 +107,7 @@ function updateNum($table,$what,$with,$user){
 		}
 	}
 
-function updateNull($table,$what,$user){
+function updateNull($table,$what,$conditions){
 
 	// Create connection
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
@@ -117,10 +117,10 @@ function updateNull($table,$what,$user){
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$user'");
+	$result = mysqli_query($con,"SELECT * FROM $table WHERE $conditions");
 	
 	if(1 == mysqli_num_rows($result)){
-		mysqli_query($con,"UPDATE $table SET $what = NULL WHERE username='$user';");
+		mysqli_query($con,"UPDATE $table SET $what = NULL WHERE $conditions;");
 		mysqli_close($con);
 		return "Updated";
 		}
@@ -134,7 +134,7 @@ function updateNull($table,$what,$user){
 		}
 	}
 
-function updateMultNum($table, $these, $newvalues, $user){
+function updateMultNum($table, $these, $newvalues, $conditions){
 	
 	//return json_encode($these) . ":" . json_encode($newvalues);
 	if(count($these) != count($newvalues)) return "Updates don't match. ";
@@ -146,11 +146,11 @@ function updateMultNum($table, $these, $newvalues, $user){
 		return "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-	$result = mysqli_query($con,"SELECT id FROM $table WHERE username='$user';");
+	$result = mysqli_query($con,"SELECT id FROM $table WHERE $conditions;");
 
 	if(1 == mysqli_num_rows($result)){
 		for($i = 0; $i < count($these); $i++ ){
-			mysqli_query($con,"UPDATE $table SET $these[$i] = $newvalues[$i] WHERE username='$user';");
+			mysqli_query($con,"UPDATE $table SET $these[$i] = $newvalues[$i] WHERE $conditions;");
 			}
 		mysqli_close($con);
 		return "Updated. ";

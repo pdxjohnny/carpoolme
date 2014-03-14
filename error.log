@@ -48,3 +48,57 @@
 [Thu Mar 06 01:18:56 2014] [error] [client 24.20.209.246] File does not exist: /var/www/testcarpool/scripts/demo.js, referer: http://carpool.sytes.net/
 [Thu Mar 06 01:19:16 2014] [error] [client 24.20.209.246] File does not exist: /var/www/testcarpool/scripts/demo.js, referer: http://carpool.sytes.net/
 [Thu Mar 06 02:25:27 2014] [error] [client 24.20.209.246] File does not exist: /var/www/testcarpool/#
+[Thu Mar 06 06:35:51 2014] [error] [client 24.20.209.246] File does not exist: /var/www/testcarpool/#
+[Thu Mar 06 13:07:28 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/car1, referer: http://carpool.sytes.net/
+[Thu Mar 06 13:07:28 2014] [error] [client 50.56.58.47] File does not exist: /var/www/testcarpool/images/car1
+[Thu Mar 06 13:07:57 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/car1, referer: http://carpool.sytes.net/
+[Thu Mar 06 13:07:57 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/car1, referer: http://carpool.sytes.net/
+[Thu Mar 06 13:09:49 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/carundefined.png, referer: http://carpool.sytes.net/
+[Thu Mar 06 13:10:05 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/carundefined.png, referer: http://carpool.sytes.net/
+[Thu Mar 06 13:10:32 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/carundefined.png, referer: http://carpool.sytes.net/
+[Thu Mar 06 13:11:04 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/carundefined.png, referer: http://carpool.sytes.net/
+[Thu Mar 06 13:11:32 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/carundefined.png, referer: http://carpool.sytes.net/
+[Thu Mar 06 13:11:43 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/carundefined.png, referer: http://carpool.sytes.net/
+[Thu Mar 06 13:12:12 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/carundefined.png, referer: http://carpool.sytes.net/
+[Thu Mar 06 13:12:41 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/carundefined.png, referer: http://carpool.sytes.net/
+[Thu Mar 06 13:12:57 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/carundefined.png, referer: http://carpool.sytes.net/
+[Thu Mar 06 14:23:07 2014] [error] [client 24.20.209.246] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING in /var/www/testcarpool/test2.php on line 14
+[Thu Mar 06 14:23:21 2014] [error] [client 24.20.209.246] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING in /var/www/testcarpool/test2.php on line 12
+[Thu Mar 06 14:23:46 2014] [error] [client 24.20.209.246] PHP Warning:  file_put_contents(profiles/users): failed to open stream: Permission denied in /var/www/testcarpool/test2.php on line 11
+[Thu Mar 06 14:24:10 2014] [error] [client 24.20.209.246] PHP Warning:  file_put_contents(profiles/users): failed to open stream: Permission denied in /var/www/testcarpool/test2.php on line 11
+[Thu Mar 06 14:24:10 2014] [error] [client 24.20.209.246] PHP Warning:  file_put_contents(profiles/users): failed to open stream: Permission denied in /var/www/testcarpool/test2.php on line 12
+[Thu Mar 06 18:17:32 2014] [error] [client 66.249.79.76] File does not exist: /var/www/testcarpool/robots.txt
+[Mon Mar 10 08:48:34 2014] [error] [client 159.191.186.254] PHP Warning:  file_put_contents(profiles/users): failed to open stream: Permission denied in /var/www/carpool/scripts/register.php on line 54, referer: http://carpoolme.net/
+[Mon Mar 10 08:51:02 2014] [error] [client 50.57.190.50] PHP Notice:  Undefined index: GPSlatd in /var/www/carpool/scripts/setDest.php on line 8
+[Mon Mar 10 08:51:02 2014] [error] [client 50.57.190.50] PHP Notice:  Undefined index: GPSlngd in /var/www/carpool/scripts/setDest.php on line 9
+[Mon Mar 10 08:51:02 2014] [error] [client 50.57.190.50] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/setDest.php on line 10
+[Mon Mar 10 10:10:33 2014] [error] [client 159.191.186.254] PHP Warning:  file_put_contents(infos/deadnought): failed to open stream: Permission denied in /var/www/carpool/profiles/profile.php on line 39, referer: http://carpoolme.net/
+[Mon Mar 10 11:43:20 2014] [error] [client 66.249.84.202] File does not exist: /var/www/carpool/images/largeicon
+[Mon Mar 10 11:53:26 2014] [error] [client 159.191.186.254] PHP Warning:  mysqli_connect(): (42000/1044): Access denied for user '***REMOVED***'@'%' to database '***REMOVED***' in /var/www/carpool/scripts/jsupdate.php on line 32, referer: http://carpoolme.net/
+[Mon Mar 10 11:53:26 2014] [error] [client 159.191.186.254] PHP Warning:  mysqli_connect(): (42000/1044): Access denied for user '***REMOVED***'@'%' to database '***REMOVED***' in /var/www/carpool/scripts/jsupdate.php on line 32, referer: http://carpoolme.net/
+[Mon Mar 10 11:53:56 2014] [error] [client 159.191.186.254] PHP Warning:  mysqli_connect(): (42000/1044): Access denied for user '***REMOVED***'@'%' to database '***REMOVED***' in /var/www/carpool/scripts/jsupdate.php on line 32, referer: http://carpoolme.net/
+[Mon Mar 10 11:53:56 2014] [error] [client 159.191.186.254] PHP Warning:  mysqli_connect(): (42000/1044): Access denied for user '***REMOVED***'@'%' to database '***REMOVED***' in /var/www/carpool/scripts/jsupdate.php on line 32, referer: http://carpoolme.net/
+[Mon Mar 10 12:03:04 2014] [error] [client 159.191.186.254] PHP Warning:  file_put_contents(profiles/users): failed to open stream: Permission denied in /var/www/carpool/scripts/register.php on line 54, referer: http://carpoolme.net/
+[Mon Mar 10 12:18:13 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/register.php on line 22, referer: http://carpoolme.net/
+[Mon Mar 10 12:18:13 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/register.php on line 23, referer: http://carpoolme.net/
+[Mon Mar 10 12:18:19 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lat in /var/www/carpool/scripts/register.php on line 22, referer: http://carpoolme.net/
+[Mon Mar 10 12:18:19 2014] [error] [client 159.191.186.254] PHP Notice:  Undefined index: lng in /var/www/carpool/scripts/register.php on line 23, referer: http://carpoolme.net/
+[Mon Mar 10 12:20:42 2014] [error] [client 159.191.186.254] PHP Warning:  file_put_contents(profiles/users): failed to open stream: Permission denied in /var/www/carpool/scripts/register.php on line 58, referer: http://carpoolme.net/?type=need&reg=Register
+[Mon Mar 10 12:22:07 2014] [error] [client 159.191.186.254] PHP Warning:  file_put_contents(profiles/users): failed to open stream: Permission denied in /var/www/carpool/scripts/register.php on line 58, referer: http://carpoolme.net/?type=need&reg=Register
+[Mon Mar 10 12:32:23 2014] [error] [client 50.57.190.113] PHP Notice:  Undefined index: username in /var/www/carpool/scripts/myCar.php on line 7
+[Thu Mar 13 06:30:02 2014] [error] [client 66.249.68.44] File does not exist: /var/www/testcarpool/robots.txt
+[Thu Mar 13 12:36:07 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/stylesheets/images, referer: http://carpool.sytes.net/
+[Thu Mar 13 12:45:34 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/stylesheets/images, referer: http://carpool.sytes.net/
+[Thu Mar 13 12:46:01 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/backgroundMap.png, referer: http://carpool.sytes.net/
+[Thu Mar 13 12:47:38 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/backgroundMap.png
+[Thu Mar 13 12:47:46 2014] [error] [client 159.191.186.254] Directory index forbidden by Options directive: /var/www/testcarpool/images/
+[Thu Mar 13 12:47:46 2014] [error] [client 50.57.190.97] Directory index forbidden by Options directive: /var/www/testcarpool/images/
+[Thu Mar 13 12:48:30 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/backgroundMap.png
+[Thu Mar 13 12:48:32 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/backgroundMap.png
+[Thu Mar 13 12:48:33 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/backgroundMap.png
+[Thu Mar 13 12:51:14 2014] [error] [client 159.191.186.254] File does not exist: /var/www/testcarpool/images/backgroundMap.png
+[Thu Mar 13 13:12:41 2014] [error] [client 159.191.186.254] PHP Warning:  require(scripts/parts.php): failed to open stream: No such file or directory in /var/www/testcarpool/home.php on line 90
+[Thu Mar 13 13:12:41 2014] [error] [client 159.191.186.254] PHP Fatal error:  require(): Failed opening required 'scripts/parts.php' (include_path='.:/usr/share/php:/usr/share/pear') in /var/www/testcarpool/home.php on line 90
+[Thu Mar 13 13:13:20 2014] [error] [client 159.191.186.254] PHP Fatal error:  Call to undefined function logout() in /var/www/testcarpool/home.php on line 99
+[Thu Mar 13 13:14:03 2014] [error] [client 159.191.186.254] PHP Warning:  require(scripts/parts.php): failed to open stream: No such file or directory in /var/www/testcarpool/home.php on line 90
+[Thu Mar 13 13:14:03 2014] [error] [client 159.191.186.254] PHP Fatal error:  require(): Failed opening required 'scripts/parts.php' (include_path='.:/usr/share/php:/usr/share/pear') in /var/www/testcarpool/home.php on line 90

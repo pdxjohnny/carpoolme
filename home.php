@@ -43,6 +43,8 @@ Author: John Andersen
 
 </head>
 <body>
+
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
 function hideAll(){
@@ -76,8 +78,7 @@ function toggleHelp(){
 	================================================== -->
 
 	<!-- Delete everything in this .container and get started on your own site! -->
-
-	<div class="container">
+	<div class="container" style="z-index:990;">
 		<div class="sixteen columns remove-bottom">
 			<h1 class="remove-bottom" style="margin-top: 40px">Carpoolme</h1>
 			<h5 class="remove-bottom" >Beta v1.1 <a href="#" data-mailto="carpoolme.net@gmail.com">Report Bug</a></h5>
@@ -92,8 +93,8 @@ if(isset($_SESSION['username'])){
 	echo "User " . $_SESSION['username'] . " is logged in.";
 	echo '
 <select id="type" >
-  <option value="need">Need Ride</option>
   <option value="offer">Offering Ride</option>
+  <option value="need">Need Ride</option>
 </select>
 ';
 	logout($dir . "/logout.php");
@@ -209,8 +210,9 @@ else {
 ================================================== -->
 </body>
 <script>
+
 $('a[data-mailto]').click(function(){
-	var link = 'scripts/mailto.html#mailto:johnandersenpdx@gmail.com?subject=Carpoolme.net Bug&body=There was a bug in the Carpoolme.net site.';
+	var link = 'scripts/mailto.html#mailto:carpoolme.net@gmail.com?subject=Carpoolme.net Bug&body=There was a bug in the Carpoolme.net site.';
 	window.open(link, 'Mailer');
 	return false;
 	});

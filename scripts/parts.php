@@ -7,7 +7,7 @@ Author: John Andersen
 -->
 <?php
 
-//if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
+if(!defined('INCLUDE_CHECK')) die("<script type='text/javascript'>history.go(-1);</script>");
 
 function includes($dir){?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -21,13 +21,13 @@ function includes($dir){?>
 <script>
 $( document ).ready(function() {
 
-	reload("<?php echo $_SESSION['username']; ?>");
+	reload("<?php echo $_SESSION['id']; ?>");
 
 	$('#type').change(function() {
-		updateString(table,"type",$(this).val(),jsSusername, function(data){
+		updateString(table,"type",$(this).val(),"id = "+jsSid, function(data){
 			if(data === "Updated"){
 				toggleMap();
-				reload(jsSusername);
+				reload(jsSid);
 				}
 			else console.log(data);
 			});
@@ -56,9 +56,7 @@ function logout(){
 			logout: logoutval
 			},
 		success: function(data){
-			$('#returnSpan').show();
-			$('#returnSpan').html(data+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();
+			returnSpan(data+"<br>");
 			}
 		});
 	event.preventDefault();
@@ -169,12 +167,9 @@ function setLatestLeave() {
 	if(predate<10) var date = '0'+predate;
 	else var date = predate;
 	var ymd = dateYMD.getFullYear()+'-'+month+'-'+date+' '+$('#time').val()+':00';
-	console.log(ymd);
 	// Change this table
-	updateString(table,"latestleave",ymd,jsSusername,function(data){
-		$('#returnSpan').show();
-		$('#returnSpan').html("Your leave time was "+data+"<br>");
-		$('#returnSpan').delay(9000).fadeOut();
+	updateString(table,"latestleave",ymd,"id = "+jsSid,function(data){
+		returnSpan("Your leave time was "+data+"<br>");
 		getLeaveTime(table);
 		});
 	event.preventDefault();
@@ -182,10 +177,8 @@ function setLatestLeave() {
 
 function setLeave1() {
 	// Change this table
-	updateString(table,"rleave1",$('#time1').val()+':00',jsSusername,function(data){
-		$('#returnSpan').show();
-		$('#returnSpan').html("Your first leave time was "+data+"<br>");
-		$('#returnSpan').delay(9000).fadeOut();
+	updateString(table,"rleave1",$('#time1').val()+':00',"id = "+jsSid,function(data){
+		returnSpan("Your first leave time was "+data+"<br>");
 		getLeaveTime(table);
 		});
 	event.preventDefault();
@@ -193,10 +186,8 @@ function setLeave1() {
 
 function setLeave2() {
 	// Change this table
-	updateString(table,"rleave2",$('#time2').val()+':00',jsSusername,function(data){
-		$('#returnSpan').show();
-		$('#returnSpan').html("Your second leave time was "+data+"<br>");
-		$('#returnSpan').delay(9000).fadeOut();
+	updateString(table,"rleave2",$('#time2').val()+':00',"id = "+jsSid,function(data){
+		returnSpan("Your second leave time was "+data+"<br>");
 		getLeaveTime(table);
 		});
 	event.preventDefault();
@@ -204,10 +195,8 @@ function setLeave2() {
 
 function setDays() {
 	// Change this table
-	updateString(table,"days",getDays(),jsSusername,function(data){
-		$('#returnSpan').show();
-		$('#returnSpan').html("The days you drive on were "+data+"<br>");
-		$('#returnSpan').delay(9000).fadeOut();
+	updateString(table,"days",getDays(),"id = "+jsSid,function(data){
+		returnSpan("The days you drive on were "+data+"<br>");
 		getLeaveTime(table);
 		});
 	event.preventDefault();
@@ -223,7 +212,7 @@ function getDays(){
 
 function getLeaveTime(table){
 	if($('#leaveKind').val() === "once"){
-		getFromTable(table,"latestleave","username = '"+jsSusername+"'",function(data){
+		getFromTable(table,"latestleave","id = "+jsSid,function(data){
 			data = JSON.parse(data);
 			if(data[0][0] != null){
 				var leave = timeArray(data[0][0]);
@@ -239,7 +228,7 @@ function getLeaveTime(table){
 			});
 		}
 	else if($('#leaveKind').val() === "repeat"){
-		getFromTable(table,"rleave1, rleave2, days","username = '"+jsSusername+"'",function(data){
+		getFromTable(table,"rleave1, rleave2, days","id = "+jsSid,function(data){
 			data = JSON.parse(data);
 			data = data[0];
 			if(data[0] != null){
@@ -268,41 +257,86 @@ function getLeaveTime(table){
 
 // Map
 function setDest($postto){ ?>
-<div id="driverMapInfo" style="display:none;" ></div>
+<div id="driverMap" class="sixteen columns remove-bottom" >
+<span id="driverMapPicCar" ></span>
+<span id="driverMapInfo" ></span>
+</div>
 
 <input name="GPSlatd" id="GPSlatd" type="hidden" value="">
 <input name="GPSlngd" id="GPSlngd" type="hidden" value="">
 
+<input name="GPSlats" id="GPSlats" type="hidden" value="">
+<input name="GPSlngs" id="GPSlngs" type="hidden" value="">
 
-<form id="geocodeSpan"  style="display: table; margin: 0 auto;">
-<input id="togeocode" type="textbox" placeholder="Destination">
+<div style="display: table; margin: 0 auto;">
+<form id="startGeocodeSpan" style="display: inline;" >
+<input id="startToGeocode" type="textbox" placeholder="Starting Location">
 <input type="submit" value="Find">
 </form>
+<a id="useMyLocation" href="#" >Use Current Location</a> 
+<form id="destGeocodeSpan" style="display: inline;" >
+<input id="destToGeocode" type="textbox" placeholder="Destination">
+<input type="submit" value="Find">
+</form>
+</div>
 <div id="mapholder" style="height:340px; width:100%;" ></div>
 
 <script>
-$( '#geocodeSpan' ).submit(function() {
-	codeAddress('images/mydest.png');
+$( '#destGeocodeSpan' ).submit(function() {
+	codeAddress($('#destToGeocode').val(), 'images/mydest.png', "dest");
 	return false;
 	});
 
-function setDestClick(){
-	var GPSlatdval = $('#GPSlatd').val();
-	var GPSlngdval = $('#GPSlngd').val();
-	$.ajax({
-		type: "POST",
-		url: "<?php echo $postto; ?>",
-		data: {
-			GPSlatd: GPSlatdval, 
-			GPSlngd: GPSlngdval, 
-			username: "<?php echo $_SESSION['username']; ?>"
-			},
-		success: function(data){
+$( '#startGeocodeSpan' ).submit(function() {
+	codeAddress($('#startToGeocode').val(), 'images/male.png', "start");
+	return false;
+	});
+
+$( '#useMyLocation' ).click(function() {
+	var updateTheseCords = ["latitude", "longitude"];
+	var updatedCords = [];
+	navigator.geolocation.getCurrentPosition(function(position){ 
+  	    	updatedCords = [position.coords.latitude, position.coords.longitude];
+		updateMultNum(table, updateTheseCords, updatedCords, "id = "+jsSid, function(data){
+			if(data !== "Updated. ") {
+				returnSpan("Couldn't update your location.<br>");
+				}
+			else {
+				reload(jsSid);
+				returnSpan("Updated your location.<br>");
+				}
+			});
+		});
+	return false;
+	});
+
+function setLocationClick(){
+	var myLocation = [$('#GPSlats').val(), $('#GPSlngs').val()];
+	var updateThese = ["latitude", "longitude"];
+	updateMultNum(table, updateThese, myLocation, "id = "+jsSid, function(data){
+		if(data !== "Updated. ") {
+			returnSpan("Couldn't update your location.<br>");
+			}
+		else {
 			deleteMarkers();
-			reload(jsSusername);
-			$('#returnSpan').show();
-			$('#returnSpan').html(data+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();
+			reload(jsSid);
+			returnSpan("Updated your location.<br>");
+			}
+		});
+	event.preventDefault();
+	}
+
+function setDestClick(){
+	var myDest = [$('#GPSlatd').val(), $('#GPSlngd').val()];
+	var updateThese = ["dlatitude", "dlongitude"];
+	updateMultNum(table, updateThese, myDest, "id = "+jsSid, function(data){
+		if(data !== "Updated. ") {
+			returnSpan("Couldn't update your destination.<br>");
+			}
+		else {
+			deleteMarkers();
+			reload(jsSid);
+			returnSpan("Updated your destination.<br>");
 			}
 		});
 	event.preventDefault();
@@ -315,18 +349,10 @@ function clearRide($postto){ ?>
 <span id="clearRideSpan" ></span>
 <script>
 function clearRide(){
-	$.ajax({
-		type: "POST",
-		url: "<?php echo $postto; ?>",
-		data: {
-			username: "<?php echo $_SESSION['username']; ?>"
-			},
-		success: function(data){
-			$('#returnSpan').show();
-			$('#returnSpan').html(data+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();
-			reload(jsSusername);
-			}
+	updateNull(table, "ridingwith", "id = "+jsSid, function(data){
+		updateNull(table, "incar", "id = "+jsSid, function(data){
+			reload(jsSid);
+			});
 		});
 	event.preventDefault();
 	}
@@ -338,22 +364,17 @@ function clearDest($postto){ ?>
 <button id="clearDest" style="display: none;" onclick="clearDest()">Clear Destination</button>
 <script>
 function clearDest(){
-	$('#returnSpan').show();
-	$('#returnSpan').html("Clearing your destination. <br>");
-	$.ajax({
-		type: "POST",
-		url: "<?php echo $postto; ?>",
-		data: {
-			username: "<?php echo $_SESSION['username']; ?>"
-			},
-		success: function(data){
-			$('#returnSpan').show();
-			$('#returnSpan').html(data+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();
+	returnSpan("Clearing your destination. <br>");
+	var values = ["NULL", "NULL"];
+	var these = ["dlatitude", "dlongitude"];
+	updateMultNum(table, these, values, " id = "+jsSid, function(data){
+		if(data === "Updated. "){
+			returnSpan("Cleared your destination.<br>");
 			deleteMarkers();
-			reload(jsSusername);
-			$('#driverMapInfo').hide();
+			reload(jsSid);
+			$('#driverMap').hide();
 			}
+		else returnSpan("Couldn't clear your destination.<br>");
 		});
 	event.preventDefault();
 	}
@@ -363,8 +384,9 @@ function clearDest(){
 
 function seats($update,$display){?>
 <br><br>
+<div id="totalSeats"></div>
 <div id="availableSeats"></div>
-Update the number of seats in your car: 
+Total seats in your car: 
 <select name="seats" id="seats">
 <script>
 for(var i = 1;i<=10;i++){
@@ -374,41 +396,31 @@ for(var i = 1;i<=10;i++){
 </select>
 <button onclick="updateSeats();">Update</button><br><script>
 function updateSeats(){
-	// Update the Seats Available
-	$('#returnSpan').show();
-	$('#returnSpan').html("Updating seats...<br>");
+	// Update the Total Seats In users car
+	returnSpan("Updating seats...<br>");
 	var seatsval = $('#seats').val();
-	$.ajax({
-		type: "POST",
-		url: "<?php echo $update; ?>",
-		data: {
-			seats: seatsval,  
-			username: "<?php echo $_SESSION['username']; ?>"
-			},
-		success: function(data){
-			$('#returnSpan').show();
-			$('#returnSpan').html(data+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();
+	updateNum(table, "spots", $('#seats').val(), "id = "+jsSid, function(data){
+		if(data === "Updated"){
+			returnSpan("Updated your total seats to "+$('#seats').val()+".<br>");
+			//displaySeats();
 			myCar();
 			}
+		else returnSpan("Couldn't update the total seats in your car.<br>");
 		});
 	event.preventDefault();
-	displaySeats();
 	}
 
 function displaySeats(){
-// Display Updated Seats Available
-	$.ajax({
-		type: "POST",
-		url: "<?php echo $display; ?>",
-		data: { 
-			username: "<?php echo $_SESSION['username']; ?>"
-			},
-		success: function(data){
-			data = data.split('%');
-			$('#availableSeats').html(data[0]);
-			$('#seats').val(data[1]);
-			}
+	// Display Seats Available
+	getFromTable("carpool_members", "spots", " id = "+jsSid, function(data){
+		data = JSON.parse(data)[0];
+		$('#seats').val(data[0]);
+		jsSspots = data[0];
+		var tablenum = tableCheck(table);
+		jsSavailablespots = jsSspots - jsSinmycar[tablenum].length;
+		updateNum(table, "availablespots", jsSavailablespots, "id = "+jsSid, function(data){
+			$('#availableSeats').html("There are "+jsSavailablespots+" available seats in your car.<br>");
+			});
 		});
 	event.preventDefault();
 	}
@@ -423,20 +435,22 @@ Update Your Mpg:
 <input id="updateMpg" type="number" style="width:30px"></input>
 <button onclick="updateMpg();">Update</button>
 <br>
-<br>
-<hr />
+<br><hr /><br>
 <script>
 function updateMpg(){
 	// Update the Mpg
-	$('#returnSpan').show();
-	$('#returnSpan').html("Updating mpg...<br>");
-	updateNum("carpool_members", "mpg", $('#updateMpg').val(), jsSusername, function(data){
-		$('#returnSpan').show();
-		$('#returnSpan').html(data+" your mpg.<br>");
-		$('#returnSpan').delay(9000).fadeOut();
-		jsSmpg = $('#updateMpg').val();
-		route(jsSusername, false, "myCarInfo");
-		$('#myMpg').html("Your current mpg is "+jsSmpg+".<br>");
+	
+	returnSpan("Updating mpg...<br>");
+	updateNum("carpool_members", "mpg", $('#updateMpg').val(), "id = "+jsSid, function(data){
+console.log(data);
+		if(data === "Updated"){
+			returnSpan(data+" your mpg.<br>");
+			jsSmpg = $('#updateMpg').val();
+			route(jsSusername, false, "myCarInfo");
+			$('#myMpg').html("Your current mpg is "+jsSmpg+".<br>");
+			$('#updateMpg').val(jsSmpg);
+			}
+		else returnSpan("Couldn't update your mpg.<br>");
 		});
 	event.preventDefault();
 	}
@@ -446,20 +460,11 @@ function updateMpg(){
 
 function help($postto){ ?>
 <button id="help" name="help" onclick="help()">Help</button>
-<span id="helpSpan" style="display:none;"></span>
-<hr />
+<span id="helpSpan" style="display:none;"></span><hr /><br>
 <script>
 function help(){
 	$('#helpSpan').toggle();
-	$.ajax({
-		type: "GET",
-		url: "<?php echo $postto; ?>",
-		data: {},
-		success: function(data){
-			$('#helpSpan').html(data);
-			}
-		});
-	event.preventDefault();
+	$('#helpSpan').html(readFile("help.php"));
 	}
 </script>
 <?php
@@ -467,27 +472,56 @@ function help(){
 
 function myCar($postto){ ?>
 <span id="myCarInfo" ></span><br>
+<span id="myCarPic" ></span>
 <span id="inMyCarSpan" ></span><br>
-<span id="wantMyCarSpan" ></span><br>
-<hr />
+<span id="wantMyCarSpan" ></span><br><hr /><br>
 <script>
 function myCar(){
-	$.ajax({
-		type: "GET",
-		url: "<?php echo $postto; ?>",
-		data: {},
-		success: function(data){
-			data = data.split('%');
-
-			if(data[0]!=="none") inMyCar(JSON.parse(data[0]));
-			else inMyCar(null);
-
-			if(data[1]!=="none") wantMyCar(JSON.parse(data[1]));
-			else wantMyCar(null);
-
-			displaySeats();
+	var tablenum = tableCheck(table);
+	getFromTable(table, "username, id", " incar ='"+jsSusername+"'", function(data){
+		if(data !== "none") {
+			data = JSON.parse(data);
+				jsSinmycar[tablenum] = [];
+				for(var i = 0; i < data.length ; i++ ){ 
+					jsSinmycar[tablenum].push( [] );
+					jsSinmycar[tablenum][i].push(data[i][0]);
+					jsSinmycar[tablenum][i].push(data[i][1]);
+					}
+				inMyCar(jsSinmycar[tablenum]);
 			}
+		else inMyCar(null);
+		displaySeats();
 		});
+		getFromTable(table, "username, id", " ridingwith ='"+jsSusername+"'", function(data){
+			if(data !== "none") {
+				data = JSON.parse(data);
+					jsSwantmycar[tablenum] = [];
+					for(var i = 0; i < data.length ; i++ ){ 
+						jsSwantmycar[tablenum].push( [] );
+						jsSwantmycar[tablenum][i].push(data[i][0]);
+						jsSwantmycar[tablenum][i].push(data[i][1]);
+						}
+					wantMyCar(jsSwantmycar[tablenum]);
+				}
+			else wantMyCar(null);
+			displaySeats();
+			});
+	}
+
+function inMyCar(incar){
+	if(incar == null) {
+		$('#inMyCarSpan').html("There is no one in your car.<br>");
+		$('#myCarPic').html("");
+		}
+	else {
+		if(incar.length == 1) $('#inMyCarSpan').html("There is one person in your car.<br>");
+		else $('#inMyCarSpan').html("There are " + incar.length + " people in your car.<br>");
+		for(var i = 0; i < incar.length; i++){
+			$('#inMyCarSpan').append(incar[i][0]+'<button onclick="kickFromCar(this);" name="'+incar[i][0]+'" value="'+incar[i][1]+'" >kick</button><br>');
+			}
+		var carPic = "<img src='images/cars/car"+(incar.length+1)+".png' style='width:100%;' >";
+		if($('#myCarPic').html() !== carPic) $('#myCarPic').html(carPic);
+		}
 	}
 
 function wantMyCar(wantcar){
@@ -496,92 +530,48 @@ function wantMyCar(wantcar){
 		$('#wantMyCarSpan').html("<form id='approvalForm' >");
 		if(wantcar.length == 1){
 			$('#wantMyCarSpan').append("There is one person waiting to be approved for your car.<br>");
-			$('#returnSpan').show();
-			$('#returnSpan').html("There is one person waiting to be approved for your car.<br>");
-			$('#returnSpan').delay(3000).fadeOut();
+			
+			returnSpan("There is one person waiting to be approved for your car.<br>");
+			
 			}
 		else {
 			$('#wantMyCarSpan').append("There are " + wantcar.length + " people waiting to be approved for your car.<br>");
-			$('#returnSpan').show();
-			$('#returnSpan').html("There are " + wantcar.length + " people waiting to be approved for your car.<br>");
-			$('#returnSpan').delay(3000).fadeOut();
+			
+			returnSpan("There are " + wantcar.length + " people waiting to be approved for your car.<br>");
+			
 			}
 		for(var i = 0; i < wantcar.length; i++){
-			$('#wantMyCarSpan').append('Person number ' + (i+1) + ' is ' + wantcar[i]+'<input type="checkbox" id="accept" name="accept[]" value="' + wantcar[i] + '"><br>');
+			$('#wantMyCarSpan').append('Person number ' + (i+1) + ' is ' + wantcar[i][0]+'<input type="checkbox" id="accept" name="accept[]" value="' + wantcar[i][1] + '"><br>');
 			}
 		$('#wantMyCarSpan').append('<button id="acceptgo" onclick="approve()" >Accept</button></form><br>');
 		}
 	}
 
-function inMyCar(incar){
-	if(incar == null) $('#inMyCarSpan').html("There is no one in your car.<br>");
-	else {
-		if(incar.length == 1) $('#inMyCarSpan').html("There is one person in your car.<br>");
-		else $('#inMyCarSpan').html("There are " + incar.length + " people in your car.<br>");
-		for(var i = 0; i < incar.length; i++){
-			var tokick = '"'+incar[i]+'"';
-			$('#inMyCarSpan').append(incar[i]+'<button onclick="kickFromCar(this);" value="'+incar[i]+'" >kick</button><br>');
-			}
-		}
-	}
-
 function approve(){
-	var acceptval = [];
+	var done = 0;
+	var allDone = 0;
 	$('#wantMyCarSpan :checkbox:checked').each(function(i){
-		acceptval[i] = $(this).val();
+		allDone = allDone + 2;
+		updateNull(table, "ridingwith", "id = "+$(this).val(), function(){
+			done++;
+			if(allDone == done) shouldRoute();
+			});
+		updateString(table, "incar", jsSusername, "id = "+$(this).val(), function(){
+			done++;
+			if(allDone == done) shouldRoute();
+			});
 		});
-	$.ajax({
-		type: "POST",
-		url: "<?php echo $postto; ?>",		
-		data: {
-			accept: acceptval
-			},
-		success: function(data){
-			data = data.split('%');
-
-			var returnval = data[2];
-			$('#returnSpan').show();
-			$('#returnSpan').html(returnval+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();
-
-			route(jsSusername, true, "myCarInfo");
-			myCar();
-			}
-		});
-	event.preventDefault();
 	}
 
 function kickFromCar(tokickel){
 	$(tokickel).attr('value', function() {
-		var tokickval = this.value;
-		$('#returnSpan').show();
-		$('#returnSpan').html("Kicking "+tokickval+"... <br>");
-		$.ajax({
-			type: "POST",
-			url: "scripts/kick.php",		
-			data: {
-				tokick: tokickval
-				},
-			success: function(data){
-				if(jsSlngd != 0){
-					directionDisplay.setMap(null);
-					if(jsSincar != null){
-						route(jsSincar, true, "myRideCarInfo");
-						if(jsStype==="offer"){
-							route(jsSusername, false, "myCarInfo");
-							}
-						}
-					else if(jsStype==="offer"){
-						route(jsSusername, true, "myCarInfo");
-						}
-					}
-				myCar();
-				$('#returnSpan').show();
-				$('#returnSpan').html(data+"<br>");
-				$('#returnSpan').delay(9000).fadeOut();
-				}
+		var id = $(this).val();
+		var uname = $(this).attr("name");
+		returnSpan("Kicking "+uname+"... <br>");
+		updateNull(table, "incar", "id = "+id, function(){
+			returnSpan("Kicked "+uname+".<br>");
+			shouldRoute();
 			});
-		event.preventDefault();
 		});
 	}
 </script>
@@ -589,29 +579,37 @@ function kickFromCar(tokickel){
 	}
 
 function myRide($postto){ ?>
+<span id="myRideCar" >
 <span id="myRideCarInfo" ></span><br>
-<span id="myRideSpan" ></span><br>
-<hr />
+<span id="myRideCarPic" ></span><br>
+</span>
+<span id="myRideSpan" ></span><br><hr /><br>
 <script>
 var initail = 0;
 var othersInRide;
 
 function myRide(table){
 	// Change this for multi tables
-	getFromTable(table, "ridingwith", "username = '"+jsSusername+"'", function(data){
+	getFromTable(table, "ridingwith", "id = "+jsSid, function(data){
 		data = JSON.parse(data);
 		jsSridingwith = data[0][0];
+		jsSride[tablenum].push(data[0][0]);
+		//jsSride[tablenum].push(data[0][0]);
 		if (jsSridingwith == null){
-			getFromTable(table, "incar", "username = '"+jsSusername+"'", function(data){
+			getFromTable(table, "incar", "id = "+jsSid, function(data){
 				data = JSON.parse(data);
 				jsSincar = data[0][0];
+				jsSride[tablenum].push(data[0][0]);
 				if (jsSincar == null){
 					$('#myRideSpan').html("You haven't asked anyone for a ride yet.<br>");
-					$('#myRideCarInfo').html("");
+					$('#myRideCar').hide();
 					if(jsStype !== "offer") directionDisplay.setMap(null);
 					initail = 0;
 					}
 				else {
+					$('#clearRideSpan').show();
+					$('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+ jsSincar +"'s car</button>");
+					$('#myRideCar').show();
 					getFromTable(table, "username", "incar = '"+jsSincar+"'", function(data){
 						if (data !== "none"){
 							if(initail == 0){
@@ -619,9 +617,9 @@ function myRide(table){
 								othersInRide = data;
 								inMyRide(JSON.parse(othersInRide),jsSincar);
 								route(jsSincar, true, "myRideCarInfo");
-								$('#returnSpan').show();
-								$('#returnSpan').html("You've been approved to ride in "+jsSincar+"'s car. <br>");
-								$('#returnSpan').delay(9000).fadeOut();
+								
+								returnSpan("You've been approved to ride in "+jsSincar+"'s car. <br>");
+								
 								}
 							else {
 								if(data !== othersInRide){
@@ -630,6 +628,7 @@ function myRide(table){
 									route(jsSincar, true, "myRideCarInfo");
 									}
 								}
+							$('#myRideCarPic').html("<img src='images/cars/car"+(JSON.parse(othersInRide).length+1)+".png' style='width:100%;' >");
 							}
 						else initail = 0;
 						});
@@ -639,6 +638,7 @@ function myRide(table){
 		else {
 			initail = 0;
 			$('#myRideSpan').html("You haven't been approved to ride in "+jsSridingwith+"'s car yet.<br>");
+			$('#myRideCar').hide();
 			}
 		});
 	}
@@ -688,8 +688,8 @@ Remember me
 <script>
 
 $('#loginfrom').submit(function(){
-	$('#returnSpan').show();
-	$('#returnSpan').html("Logging in...<br>");
+	
+	returnSpan("Logging in...<br>");
 	$.ajax({
 		type: "POST",
 		url: "<?php echo $postto; ?>",
@@ -700,9 +700,9 @@ $('#loginfrom').submit(function(){
 			cookie: $('#cookiel').val()
 			},
 		success: function(data){
-			$('#returnSpan').show();
-			$('#returnSpan').html(data+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();
+			
+			returnSpan(data+"<br>");
+			
 			}
 		});
 	event.preventDefault();
@@ -713,6 +713,7 @@ $('#loginfrom').submit(function(){
 
 function register($postto){?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="scripts/main.js"></script>
 
 <form id="registerfrom">
 <center><h4>Register</h4></center>
@@ -735,26 +736,28 @@ Remember me
 <script>
 
 $('#registerfrom').submit(function(){
-	$('#returnSpan').show();
-	$('#returnSpan').html("Registering...<br>");
-	$.ajax({
-		type: "POST",
-		url: "<?php echo $postto; ?>",
-		data: {
-			username: $('#usernamer').val(), 
-			password: $('#passwordr').val(), 
-			confirmpassword: $('#confirmpassword').val(), 
-			email: $('#email').val(),
-			type: $('#typer').val(),
-			cookie: $('#cookier').val()
-			},
-		success: function(data){
-			$('#returnSpan').show();
-			$('#returnSpan').html(data+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();
-			}
+	navigator.geolocation.getCurrentPosition(function(position){
+		returnSpan("Registering...<br>");
+		$.ajax({
+			type: "POST",
+			url: "<?php echo $postto; ?>",
+			data: {
+				username: $('#usernamer').val(), 
+				password: $('#passwordr').val(), 
+				confirmpassword: $('#confirmpassword').val(), 
+				email: $('#email').val(),
+				type: $('#typer').val(),
+				mylat: position.coords.latitude,
+				mylng: position.coords.longitude,
+				cookie: $('#cookier').val()
+				},
+			success: function(data){
+				
+				returnSpan(data+"<br>");
+				
+				}
+			});
 		});
-	event.preventDefault();
 	});
 </script>
 <?php
@@ -787,9 +790,7 @@ function myProfile($postto){ ?>
 $('#profilePictureUpload').submit(function(){
 	var formData = new FormData($('#profilePictureUpload')[0]);
 	if(formData == null) {
-		$('#returnSpan').show();
-		$('#returnSpan').html("Please select a file. <br>");
-		$('#returnSpan').delay(9000).fadeOut();	
+		returnSpan("Please select a file. <br>");	
 		return false;	
 		}
 	$.ajax({
@@ -801,9 +802,9 @@ $('#profilePictureUpload').submit(function(){
 			},
 		data: formData,
 		success: function(data){
-			$('#returnSpan').show();
-			$('#returnSpan').html(data+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();
+			
+			returnSpan(data+"<br>");
+			
 			profile(jsSusername.toLowerCase());
 			},
 		cache: false,
@@ -874,9 +875,9 @@ function updateProfile(){
 		success: function(data){
 			data = data.split('%');
 
-			$('#returnSpan').show();
-			$('#returnSpan').html(data[2]+"<br>");
-			$('#returnSpan').delay(9000).fadeOut();
+			
+			returnSpan(data[2]+"<br>");
+			
 			profile("<?php echo $_SESSION['username']; ?>");
 			}
 		});

@@ -19,6 +19,10 @@ if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ($_POST['userna
 	$whattype = $_POST['type'];
 	if((!$whatname)||(!$whatpass)||(!$whatemail)) exit ("$whatname please fill in all fields.");
 
+	$lat = $_POST['mylat'];
+	$lng = $_POST['mylng'];
+	if((!$lng)||(!$lat)) exit ("$whatname please enable location.");
+
 	if (filter_var($whatemail, FILTER_VALIDATE_EMAIL));
 	else exit ("$whatname you have an invalid email. ");
 
@@ -45,13 +49,15 @@ if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ($_POST['userna
 	
 	if(1 == mysqli_num_rows($result)){
 		mysqli_close($con);
-		exit($whatname . " is already taken");
+		exit($whatname . " is already taken or email has already been used");
 		}
 	else{
-		mysqli_query($con,"INSERT INTO $table (username,password,email,type) VALUES('$whatname','$whatpass','$whatemail','$whattype');");
+		mysqli_query($con,"INSERT INTO $table (username,password,email,type,latitude,longitude) VALUES('$whatname','$whatpass','$whatemail','$whattype',$lat,$lng);");
+		$row = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM $table WHERE username='$whatname' OR email='$whatemail';"));
+		$_SESSION['id'] = $row[0];
 		$_SESSION['username'] = $whatname;
 		$_SESSION['type'] = $whattype;
-		file_put_contents("profiles/users", $_SESSION['username'] . "\n", FILE_APPEND);
+		file_put_contents("profiles/users", $whatname . "\n", FILE_APPEND);
 		echo $_SESSION['username'] . " you are now logged in <meta http-equiv='refresh' content='0'>";
 		}
 

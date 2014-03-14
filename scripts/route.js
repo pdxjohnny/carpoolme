@@ -136,3 +136,22 @@ function splitCost(totalDollars, user, callback){
 			}
 		});
 	}
+
+// Should we display the route?
+function shouldRoute(){
+	if(jsSlngd != 0){
+		directionDisplay.setMap(null);
+		if(jsSincar != null){
+			route(jsSincar, true, "myRideCarInfo");
+			if(jsStype==="offer"){
+				route(jsSusername, false, "myCarInfo");
+				}
+			else if(jsStype==="offer"){
+				route(jsSusername, true, "myCarInfo");
+				}
+			}
+		if(jsStype==="offer"){
+			myCar();
+			}
+		}
+	}

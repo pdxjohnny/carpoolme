@@ -36,17 +36,11 @@ session_start();
 	
 	if(1 == mysqli_num_rows($result)){
 		$_SESSION['username'] = $whatname;
-		$_SESSION['type'] = $whattype;
 		mysqli_query($con,"UPDATE $table SET type = '$whattype' WHERE username='$whatname';");		
 
-		if ($newresult = mysqli_query($con, "SELECT dlatitude, dlongitude, spots, ridingwith, incar, latestleave FROM $table WHERE username = '$whatname';")) {
+		if ($newresult = mysqli_query($con, "SELECT id FROM $table WHERE username = '$whatname';")) {
 	    		$row = mysqli_fetch_row($newresult);
-			$_SESSION['latd'] = $row[0];
-			$_SESSION['lngd'] = $row[1];
-			$_SESSION['seats'] = $row[2];
-			$_SESSION['myride'] = $row[3];
-			$_SESSION['latestleave'] = $row[5];
-			if($row[4]!=NULL) $_SESSION['myride'] = $row[4];
+			$_SESSION['id'] = $row[0];
     			mysqli_free_result($newresult);
 			echo $_SESSION['username'] . " is now logged in. <meta http-equiv='refresh' content='1'>";
    			}

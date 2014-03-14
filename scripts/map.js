@@ -80,8 +80,8 @@ function createMap(){
 		myPosition = new google.maps.LatLng(jsSlat, jsSlng);
 		mydest = new google.maps.LatLng(jsSlatd, jsSlngd);
 		initMap(myPosition,12,"mapholder");
-		addPointMap(myPosition,"You","images/male.png","user");
-		addPointMap(mydest,"Your destination","images/mydest.png",true);
+		addPointMap(myPosition,"You","images/male.png","start");
+		addPointMap(mydest,"Your destination","images/mydest.png","dest");
 		arrayMap(jsSnearby);
 		}
 	else {
@@ -118,6 +118,8 @@ function arrayMap(locations){
 		}
 
 	// Destination locations
+// <img id="driverMapPicCar" style="max-width:64px; max-height:64px;" src="images/nopicture.png" align="left">
+// '<img src="images/car/'+ +'.png" >'
 	for (i = 0; i < locations.length; i++) {	
 		if(locations[i][3]==="offer"){
 			marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][4], locations[i][5]), map: map, icon: "images/dest.png", zIndex: 10000, animation: google.maps.Animation.DROP });
@@ -126,7 +128,7 @@ function arrayMap(locations){
 
 			google.maps.event.addListener(marker, 'click', (function(marker, i) {
 				return function() {
-					$('#driverMapInfo').show();
+					$('#driverMap').show();
 					if((locations[i][9] != null) && (locations[i][11] != null)){
 						var time = " They are leaving at " + userTime(locations[i][9]) + " on " + toDays(locations[i][11]);
 						if(locations[i][10] != null) var time = " They are leaving at " + userTime(locations[i][9]) + " and returning at " + userTime(locations[i][10]) + " on " + toDays(locations[i][11]);
@@ -141,16 +143,25 @@ function arrayMap(locations){
 						route(locations[i][0], false, "distanceDiv");
 						if(locations[i][6]!==null){
 							if(locations[i][7]<=0){
+								// Image
+								//$('#driverMapPicCar').html('<img style="max-width:64px; max-height:64px;" align="left" src="images/cars/car'+ locations[i][6] +'.png" >');
+								// Text
 								$('#driverMapInfo').html(locations[i][0]+' has a full car.');
 								}
 							else {
 								if(locations[i][7]==1) var spots = locations[i][7] + " seat avalable.";
 								else var spots = locations[i][7] + " seats avalable.";
+								// Image
+								//$('#driverMapPicCar').html('<img style="max-width:64px; max-height:64px;" align="left" src="images/cars/car'+ locations[i][6] +'.png" >');
+								// Text
 								$('#driverMapInfo').html(locations[i][0]+' has '+spots+time+' <span id="distanceDiv" value="" ></span> <button id="askride" value="'+locations[i][0]+'" onclick="askForRide();" >Ask for ride</button>');
 								}
 							}
 						else {
 							var spots = "not set avalable seats yet.";
+							// Image
+							$('#driverMapPicCar').html('');
+							// Text
 							$('#driverMapInfo').html(locations[i][0]+' has '+spots+time+' <span id="distanceDiv" value="" ></span> <button id="askride" value="'+locations[i][0]+'" onclick="askForRide();" >Ask for ride</button>');
 							}
 						}
@@ -176,23 +187,22 @@ function askForRide(){
 			username: "<?php echo $_SESSION['username']; ?>"
 			},
 		success: function(data){
-			$('#returnSpan').show();
-			$('#returnSpan').html(data);
-			$('#returnSpan').delay(9000).fadeOut();
+			returnSpan(data);
 			myRide(table);
 			}
 		});
 	event.preventDefault();
 	}
 	
-function addPointMap(pos,content,image,isuser){
-	if(isuser) var ontop = 9999999999;
+function addPointMap(pos,content,image,type){
+	if(type) var ontop = 9999999999;
 	else var ontop = 0;
 	var marker = new google.maps.Marker({
 		position: pos,
 		map: map,
 		icon: image,
 		zIndex: ontop,
+		draggable: true,
 		animation: google.maps.Animation.DROP
 		});
 	//bounds.extend(pos);
@@ -203,17 +213,27 @@ function addPointMap(pos,content,image,isuser){
 			InfoWindow.open(map, marker);
 			}
 		})(marker));
+	google.maps.event.addListener(marker, 'dragend', function(evt) {
+		if(type === "dest"){
+			$('#GPSlatd').val(evt.latLng.lat().toFixed(8));
+			$('#GPSlngd').val(evt.latLng.lng().toFixed(8));
+			setDestClick();
+			}
+		else if(type === "start"){
+			$('#GPSlats').val(evt.latLng.lat().toFixed(8));
+			$('#GPSlngs').val(evt.latLng.lng().toFixed(8));
+			setLocationClick();
+			}
+		});
 	markers.push(marker);
 	}
 
-function codeAddress(image) {
+function codeAddress(address, image, type) {
 	var geocoder = new google.maps.Geocoder();
-	if(document.getElementById('togeocode').value === null){
-		$('#returnSpan').show();
-		$('#returnSpan').html("Enter a destination to search. ");
-		$('#returnSpan').delay(9000).fadeOut();
+	if(address === ""){
+		returnSpan("Enter a location to search. ");
+		return 1;
 		}
-	else var address = document.getElementById('togeocode').value;
 	geocoder.geocode( { 'address': address}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			map.setCenter(results[0].geometry.location);
@@ -225,18 +245,40 @@ function codeAddress(image) {
 				zIndex: 999999999
 				});
 			google.maps.event.addListener(dest, 'click', (function(dest, i) { return function() {
-				InfoWindow.setContent('<button id="setDestB" name="setDestB" onclick="setDestClick();" >Set as destination</button>');
+				if(type === "dest"){
+					InfoWindow.setContent('<button onclick="setDestClick();" >Set as destination</button>');
+					}
+				if(type === "start"){
+					InfoWindow.setContent('<button onclick="setLocationClick();" >Set as starting location</button>');
+					}
 				InfoWindow.open(map, dest);
 				}
 			})(dest));
 			google.maps.event.addListener(dest, 'click', function(evt){
-				$('#GPSlatd').val(evt.latLng.lat().toFixed(8));
-				$('#GPSlngd').val(evt.latLng.lng().toFixed(8));
+				if(type === "dest"){
+					$('#GPSlatd').val(evt.latLng.lat().toFixed(8));
+					$('#GPSlngd').val(evt.latLng.lng().toFixed(8));
+					}
+				else if(type === "start"){
+					$('#GPSlats').val(evt.latLng.lat().toFixed(8));
+					$('#GPSlngs').val(evt.latLng.lng().toFixed(8));
+					}
+				});
+			google.maps.event.addListener(dest, 'dragend', function(evt){
+				if(type === "dest"){
+					$('#GPSlatd').val(evt.latLng.lat().toFixed(8));
+					$('#GPSlngd').val(evt.latLng.lng().toFixed(8));
+					}
+				else if(type === "start"){
+					$('#GPSlats').val(evt.latLng.lat().toFixed(8));
+					$('#GPSlngs').val(evt.latLng.lng().toFixed(8));
+					}
 				});
 			markers.push(dest);
 			}
 		else {
 			console.log('There was a gecode error : ' + status);
+			return 1;
 	 		}
 		});
 	}
