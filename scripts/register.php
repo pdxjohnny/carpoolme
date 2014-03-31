@@ -11,13 +11,21 @@ session_start();
 
 //if(!defined('INCLUDE_CHECK')) die("INCLUDE_CHECK not defined<!--<script type='text/javascript'>history.go(-1);</script>-->");
 
-if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ($_POST['username'] . " your passwords do not match. ");
+if ( (!isset($_POST['password'])) || 
+(!isset($_POST['confirmpassword'])) || 
+(!isset($_POST['username'])) || 
+(!isset($_POST['email'])) || 
+(!isset($_POST['type'])) ||
+(!isset($_POST['mylat'])) ||
+(!isset($_POST['mylng'])) ) 
+	exit ("$whatname please fill in all fields.");
 
 	$whatname = $_POST['username'];
 	$whatpass = $_POST['password'];
 	$whatemail = $_POST['email'];
 	$whattype = $_POST['type'];
-	if((!$whatname)||(!$whatpass)||(!$whatemail)) exit ("$whatname please fill in all fields.");
+
+	if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ($_POST['username'] . " your passwords do not match. ");
 
 	$lat = $_POST['mylat'];
 	$lng = $_POST['mylng'];
@@ -45,7 +53,7 @@ if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ($_POST['userna
 	$whatpass = mysqli_real_escape_string($con,$whatpass);
 	$whatemail = mysqli_real_escape_string($con,$whatemail);
 	
-	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$whatname' OR email='$whatemail';");
+	$result = mysqli_query($con,"SELECT id FROM $table WHERE username='$whatname' OR email='$whatemail';");
 	
 	if(1 == mysqli_num_rows($result)){
 		mysqli_close($con);
@@ -53,12 +61,12 @@ if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ($_POST['userna
 		}
 	else{
 		mysqli_query($con,"INSERT INTO $table (username,password,email,type,latitude,longitude) VALUES('$whatname','$whatpass','$whatemail','$whattype',$lat,$lng);");
-		$row = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM $table WHERE username='$whatname' OR email='$whatemail';"));
+		$row = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM $table WHERE username='$whatname';"));
 		$_SESSION['id'] = $row[0];
 		$_SESSION['username'] = $whatname;
 		$_SESSION['type'] = $whattype;
 		file_put_contents("profiles/users", $whatname . "\n", FILE_APPEND);
-		echo $_SESSION['username'] . " you are now logged in <meta http-equiv='refresh' content='0'>";
+		echo $_SESSION['username'] . " you are now logged in <meta http-equiv='refresh' content='1'>";
 		}
 
 	mysqli_close($con);

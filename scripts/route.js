@@ -143,15 +143,11 @@ function shouldRoute(){
 		directionDisplay.setMap(null);
 		if(jsSincar != null){
 			route(jsSincar, true, "myRideCarInfo");
-			if(jsStype==="offer"){
-				route(jsSusername, false, "myCarInfo");
-				}
-			else if(jsStype==="offer"){
-				route(jsSusername, true, "myCarInfo");
-				}
 			}
-		if(jsStype==="offer"){
-			myCar();
+		else if(jsStype==="offer"){
+			route(jsSusername, true, "myCarInfo");
 			}
+		myRide();
+		myCar();
 		}
 	}

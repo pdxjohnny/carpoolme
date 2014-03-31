@@ -61,7 +61,7 @@ function updateString($table,$what,$with,$conditions){
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-	$result = mysqli_query($con,"SELECT * FROM $table WHERE $conditions;");
+	$result = mysqli_query($con,"SELECT username FROM $table WHERE $conditions;");
 	
 	if(1 == mysqli_num_rows($result)){
 		mysqli_query($con,"UPDATE $table SET $what = '$with' WHERE $conditions;");
@@ -74,7 +74,7 @@ function updateString($table,$what,$with,$conditions){
 		}
 	else if(0 == mysqli_num_rows($result)){
 		mysqli_close($con);
-		return "$user was not found. ";
+		return $row[0] . " was not found. ";
 		}
 	}
 
@@ -90,7 +90,7 @@ function updateNum($table,$what,$with,$conditions){
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-	$result = mysqli_query($con,"SELECT * FROM $table WHERE $conditions");
+	$result = mysqli_query($con,"SELECT username FROM $table WHERE $conditions");
 	
 	if(1 == mysqli_num_rows($result)){
 		mysqli_query($con,"UPDATE $table SET $what = $with WHERE $conditions;");
@@ -103,7 +103,7 @@ function updateNum($table,$what,$with,$conditions){
 		}
 	else if(0 == mysqli_num_rows($result)){
 		mysqli_close($con);
-		return "$user was not found. ";
+		return $row[0] . " was not found. ";
 		}
 	}
 
@@ -117,7 +117,7 @@ function updateNull($table,$what,$conditions){
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 
-	$result = mysqli_query($con,"SELECT * FROM $table WHERE $conditions");
+	$result = mysqli_query($con,"SELECT username FROM $table WHERE $conditions");
 	
 	if(1 == mysqli_num_rows($result)){
 		mysqli_query($con,"UPDATE $table SET $what = NULL WHERE $conditions;");
@@ -130,7 +130,7 @@ function updateNull($table,$what,$conditions){
 		}
 	else if(0 == mysqli_num_rows($result)){
 		mysqli_close($con);
-		return "$user was not found. ";
+		return $row[0] . " was not found. ";
 		}
 	}
 
@@ -147,21 +147,22 @@ function updateMultNum($table, $these, $newvalues, $conditions){
 		}
 
 	$result = mysqli_query($con,"SELECT id FROM $table WHERE $conditions;");
+	$row_cnt = mysqli_num_rows($result);
 
-	if(1 == mysqli_num_rows($result)){
+	if(1 == $row_cnt){
 		for($i = 0; $i < count($these); $i++ ){
 			mysqli_query($con,"UPDATE $table SET $these[$i] = $newvalues[$i] WHERE $conditions;");
 			}
 		mysqli_close($con);
 		return "Updated. ";
 		}
-	else if(1 < mysqli_num_rows($result)){
+	else if(1 < $row_cnt){
 		mysqli_close($con);
 		return "More than one user was found. ";
 		}
-	else if(0 == mysqli_num_rows($result)){
+	else if(0 == $row_cnt){
 		mysqli_close($con);
-		return "$user was not found. ";
+		return $row[0] . " was not found. ";
 		}
 	}
 
@@ -177,8 +178,9 @@ function updateMultString($table, $these, $newvalues, $user){
 		}
 
 	$result = mysqli_query($con,"SELECT id FROM $table WHERE username='$user';");
+	$row_cnt = mysqli_num_rows($result);
 
-	if(1 == mysqli_num_rows($result)){
+	if(1 == $row_cnt){
 		for($i = 0; $i < count($these); $i++ ){
 			mysqli_query($con,"UPDATE $table SET $these[$i] = '$newvalues[$i]' WHERE username='$user';");
 			}
@@ -191,7 +193,7 @@ function updateMultString($table, $these, $newvalues, $user){
 		}
 	else if(0 == mysqli_num_rows($result)){
 		mysqli_close($con);
-		return "$user was not found. ";
+		return $row[0] . " was not found. ";
 		}
 	}
 ?>

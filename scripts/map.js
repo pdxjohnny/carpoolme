@@ -179,17 +179,11 @@ function arrayMap(locations){
 function askForRide(){
 	var myrideval = $('#askride').val();
 	$('#returnSpan').html("Asking "+myrideval+" for ride.<br>").fadeIn();
-	$.ajax({
-		type: "POST",
-		url: dir+"/askForRide.php",
-		data: {
-			myride: myrideval,
-			username: "<?php echo $_SESSION['username']; ?>"
-			},
-		success: function(data){
+	updateNull(table, "incar", " id = "+jsSid, function(){
+		updateString(table, "ridingwith", myrideval, " id = "+jsSid, function(data){
 			returnSpan(data);
 			myRide(table);
-			}
+			});
 		});
 	event.preventDefault();
 	}

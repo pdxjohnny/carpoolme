@@ -32,7 +32,7 @@ session_start();
 	$whatname = mysqli_real_escape_string($con,$whatname);
 	$whatpass = mysqli_real_escape_string($con,$whatpass);
 
-	$result = mysqli_query($con,"SELECT * FROM $table WHERE username='$whatname' AND password='$whatpass';");
+	$result = mysqli_query($con,"SELECT id FROM $table WHERE username='$whatname' AND password='$whatpass';");
 	
 	if(1 == mysqli_num_rows($result)){
 		$_SESSION['username'] = $whatname;

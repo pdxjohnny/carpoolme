@@ -124,10 +124,6 @@ for(var i = 0;i<=14;i++){
 
 <script>
 $( document ).ready(function() {
-	$('#amorpm').html(" am");
-	$('#amorpm1').html(" am");
-	$('#amorpm2').html(" am");
-
 	var val = $("#date").val();
 	if(val.length == 1) var sufix = dateSufix(val);
 	else if (val[0] == 1) var sufix = dateSufix(val);
@@ -135,30 +131,30 @@ $( document ).ready(function() {
 	$('#datesufix').html(sufix);
 	});
 
-	$("#date").click(function() {
-		var val = $(this).val();
-		var sufix;
-		if(val.length == 1) sufix = dateSufix(val);
-		else if (val[0] == 1) sufix = dateSufix(val);
-		else sufix = dateSufix(val[1]);
-		$('#datesufix').html(sufix);
-		});
+$("#date").click(function() {
+	var val = $(this).val();
+	var sufix;
+	if(val.length == 1) sufix = dateSufix(val);
+	else if (val[0] == 1) sufix = dateSufix(val);
+	else sufix = dateSufix(val[1]);
+	$('#datesufix').html(sufix);
+	});
 
-	$('#leaveKind').change(function(){
-		getLeaveTime(table);
-		if ($(this).val() === "repeat"){
-			$('#leaveRepeat').show();
-			$('#leaveOnce').hide();
-			}
-		if ($(this).val() === "once"){
-			$('#leaveOnce').show();
-			$('#leaveRepeat').hide();
-			}
-		});
+$('#leaveKind').change(function(){
+	getLeaveTime(table);
+	if ($(this).val() === "repeat"){
+		$('#leaveRepeat').show();
+		$('#leaveOnce').hide();
+		}
+	if ($(this).val() === "once"){
+		$('#leaveOnce').show();
+		$('#leaveRepeat').hide();
+		}
+	});
 
-	$("#toggleDays").click(function() {
-		$('#rDays').toggle();
-		});
+$("#toggleDays").click(function() {
+	$('#rDays').toggle();
+	});
 
 function setLatestLeave() {
 	if((dateYMD.getMonth()+1)<10) var month = '0'+(dateYMD.getMonth()+1);
@@ -169,8 +165,17 @@ function setLatestLeave() {
 	var ymd = dateYMD.getFullYear()+'-'+month+'-'+date+' '+$('#time').val()+':00';
 	// Change this table
 	updateString(table,"latestleave",ymd,"id = "+jsSid,function(data){
-		returnSpan("Your leave time was "+data+"<br>");
-		getLeaveTime(table);
+		updateNull(table,"rleave1","id = "+jsSid,function(data){
+			updateNull(table,"rleave2","id = "+jsSid,function(data){
+				updateNull(table,"days","id = "+jsSid,function(data){
+					returnSpan("Your leave time was updated.<br>");
+					getLeaveTime(table);
+					});
+				event.preventDefault();
+				});
+			event.preventDefault();
+			});
+		event.preventDefault();
 		});
 	event.preventDefault();
 	}
@@ -178,8 +183,10 @@ function setLatestLeave() {
 function setLeave1() {
 	// Change this table
 	updateString(table,"rleave1",$('#time1').val()+':00',"id = "+jsSid,function(data){
-		returnSpan("Your first leave time was "+data+"<br>");
-		getLeaveTime(table);
+		updateNull(table,"latestleave","id = "+jsSid,function(data){
+			returnSpan("Your first leave time was updated.<br>");
+			getLeaveTime(table);
+			});
 		});
 	event.preventDefault();
 	}
@@ -187,19 +194,23 @@ function setLeave1() {
 function setLeave2() {
 	// Change this table
 	updateString(table,"rleave2",$('#time2').val()+':00',"id = "+jsSid,function(data){
-		returnSpan("Your second leave time was "+data+"<br>");
-		getLeaveTime(table);
+		updateNull(table,"latestleave","id = "+jsSid,function(data){
+			returnSpan("Your second leave time was updated.<br>");
+			getLeaveTime(table);
+			});
+		event.preventDefault();
 		});
-	event.preventDefault();
 	}
 
 function setDays() {
 	// Change this table
 	updateString(table,"days",getDays(),"id = "+jsSid,function(data){
-		returnSpan("The days you drive on were "+data+"<br>");
-		getLeaveTime(table);
+		updateNull(table,"latestleave","id = "+jsSid,function(data){
+			returnSpan("The days you drive on were updated.<br>");
+			getLeaveTime(table);
+			});
+		event.preventDefault();
 		});
-	event.preventDefault();
 	}
 
 function getDays(){
@@ -219,7 +230,7 @@ function getLeaveTime(table){
 				$('#datetime').val(data[0][0]);
 				$('#leavetime').html("You are currently set to leave at ");
 				$('#time').val(leave[3] +":"+ leave[4] + ":" + leave[5]);
-				$('#data').val(leave[2]);
+				$('#date').val(leave[2]);
 				}
 			else {
 				$('#leavetime').html("You haven't set your leave time yet. ");
@@ -234,20 +245,26 @@ function getLeaveTime(table){
 			if(data[0] != null){
 				$('#time1').val(data[0]);
 				$('#leavetime1').html("Your first leave time is ");
-				$('#time').val(data[0]);
+				$('#time').val("");
 				}
-			else $('#leavetime1').html("You haven't set your first leave time yet. ");
+			else {
+				$('#leavetime1').html("You haven't set your first leave time yet. ");
+				}
 			if(data[1] != null){
 				$('#time2').val(data[1]);
 				$('#leavetime2').html("Your second leave time is ");
-				$('#time').val(data[1]);
+				$('#time').val("");
 				}
-			else $('#leavetime2').html("You haven't set your second leave time yet. ");
+			else {
+				$('#leavetime2').html("You haven't set your second leave time yet. ");
+				}
 			if(data[2] != null){
 				$('#yourDaysCurrent').html(data[2]);
 				$('#yourDays').html("You are driving on"+toDays(data[2]));
 				}
-			else $('#yourDays').html("You haven't set the days you're driving on yet. ");
+			else {
+				$('#yourDays').html("You haven't set the days you're driving on yet. ");
+				}
 			});
 		}
 	}
@@ -481,6 +498,7 @@ function myCar(){
 	getFromTable(table, "username, id", " incar ='"+jsSusername+"'", function(data){
 		if(data !== "none") {
 			data = JSON.parse(data);
+			if( data.length !== jsSinmycar[tablenum].length ){
 				jsSinmycar[tablenum] = [];
 				for(var i = 0; i < data.length ; i++ ){ 
 					jsSinmycar[tablenum].push( [] );
@@ -488,6 +506,8 @@ function myCar(){
 					jsSinmycar[tablenum][i].push(data[i][1]);
 					}
 				inMyCar(jsSinmycar[tablenum]);
+				route(jsSusername, true, "myCarInfo");
+				}
 			}
 		else inMyCar(null);
 		displaySeats();
@@ -737,27 +757,31 @@ Remember me
 
 $('#registerfrom').submit(function(){
 	navigator.geolocation.getCurrentPosition(function(position){
+		var lat = position.coords.latitude;
+		var lng = position.coords.longitude;
 		returnSpan("Registering...<br>");
-		$.ajax({
-			type: "POST",
-			url: "<?php echo $postto; ?>",
-			data: {
-				username: $('#usernamer').val(), 
-				password: $('#passwordr').val(), 
-				confirmpassword: $('#confirmpassword').val(), 
-				email: $('#email').val(),
-				type: $('#typer').val(),
-				mylat: position.coords.latitude,
-				mylng: position.coords.longitude,
-				cookie: $('#cookier').val()
-				},
-			success: function(data){
-				
-				returnSpan(data+"<br>");
-				
-				}
-			});
+		if ( (typeof lat !== "undefined") && (typeof lng !== "undefined") ){
+			$.ajax({
+				type: "POST",
+				url: "<?php echo $postto; ?>",
+				data: {
+					username: $('#usernamer').val(), 
+					password: $('#passwordr').val(), 
+					confirmpassword: $('#confirmpassword').val(), 
+					email: $('#email').val(),
+					type: $('#typer').val(),
+					mylat: lat,
+					mylng: lng,
+					cookie: $('#cookier').val()
+					},
+				success: function(data){
+					returnSpan(data+"<br>");
+					}
+				});
+			}
+		else returnSpan("You need to enable location to register.<br>");
 		});
+	return false;
 	});
 </script>
 <?php
