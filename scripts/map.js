@@ -13,9 +13,9 @@ var dest;
 var bounds = new google.maps.LatLngBounds();
 
 // Map functions
-function nearby(range, callback){
+function getNearby(range, callback){
 
-	if(jsSlat != 0){
+	if( s.lat != null ){
 		var mylatsub = jsSlat - range;
 		var mylatadd = jsSlat + range;
 		var mylngsub = jsSlng - range;
@@ -32,14 +32,40 @@ function nearby(range, callback){
 		var get = "username, latitude, longitude, type, dlatitude, dlongitude, spots, availablespots, latestleave, rleave1, rleave2, days";
 		var conditions = "latitude BETWEEN "+mylatsub+" AND "+mylatadd+" AND longitude BETWEEN "+mylngsub+" AND "+mylngadd+" AND dlatitude BETWEEN "+mylatdsub+" AND "+mylatdadd+" AND dlongitude BETWEEN "+mylngdsub+" AND "+mylngdadd+" AND NOT username = '"+jsSusername+"'";
 		}
-	if((jsSlat == 0)&&(jsSlngd == 0)) console.log("Error in nearby(); jsSlat"+jsSlat+" jsSlngd"+jsSlngd);
-
-	getFromTable("carpool_members", get, conditions, function(data){
-		if(data === "none") nearby(range+0.05, callback);
-		else {		
-			 if (typeof callback=="function") callback(JSON.parse(data));
-			}
-		});
+	if((jsSlat == 0)&&(jsSlngd == 0)) {
+		console.log("Error in nearby(); jsSlat "+jsSlat+" jsSlngd "+jsSlngd);
+		callback();
+		}
+	else {
+		getFromTable("carpool_members", get, conditions, function(data){
+			if(data === "none") nearby(range+0.05, callback);
+			else {		
+				 if (typeof callback=="function"){
+					var temp = JSON.parse(data);
+					var near = [];
+					window.nearby = [];
+					for ( var i = 0 ; i < temp.length ; i++ ) {
+						near.push({
+							user: temp[i][0].charAt(0).toUpperCase() + temp[i][0].slice(1),	
+							lat: temp[i][1],
+							lng: temp[i][2],
+							type: temp[i][3],
+							latd: temp[i][4],
+							lngd: temp[i][5],
+							total: temp[i][6],
+							available: temp[i][7],
+							leave: temp[i][8],
+							leave1: temp[i][9],
+							leave2: temp[i][10],
+							days: temp[i][11]
+							});
+						}
+					window.nearby = near;
+					callback(near);
+					}
+				}
+			});
+		}
 	}
 
 function setAllMap(map) {
@@ -73,6 +99,15 @@ function initMap(centerOn,zoomval,divId, callback){
 		};
 	map = new google.maps.Map(document.getElementById(divId), mapOptions);
 	google.maps.event.trigger(map, 'resize');
+
+	window.SpiderMaps = new OverlappingMarkerSpiderfier(map,{markersWontMove: true, markersWontHide: true});
+
+	SpiderMaps.addListener('click', function(marker) {
+		InfoWindow.setContent(marker.user);
+		InfoWindow.open(map, marker);
+		$('#driverMap').hide();
+		if ( typeof marker.userInfo !== "undefined" ) markerClick(marker.userInfo);
+		});
 	}
 
 function createMap(){
@@ -84,94 +119,92 @@ function createMap(){
 		addPointMap(mydest,"Your destination","images/mydest.png","dest");
 		arrayMap(jsSnearby);
 		}
-	else {
+	else if (jsSlng != 0){
 		directionDisplay.setMap(null);
 		myPosition = new google.maps.LatLng(jsSlat, jsSlng);
 		initMap(myPosition,12,"mapholder");
 		addPointMap(myPosition,"You","images/male.png","user");
 		arrayMap(jsSnearby);
 		}
+	else {
+		directionDisplay.setMap(null);
+		initMap(new google.maps.LatLng(45.50, -123.00),8,"mapholder");
+		}
 	}
 
-function arrayMap(locations){
+function arrayMap(nearbyUsers){
 
 	var marker, i;
-	if(locations == null) return 1;
+	if(nearbyUsers == null) return 1;
 
 	// Current locations
-	for (i = 0; i < locations.length; i++) { 
-		if(locations[i][3]==="need") image1 ="images/walking.png";
- 		else if(locations[i][3]==="offer") image1 ="images/car.png";
+	for (i = 0; i < nearbyUsers.length; i++) { 
+		if( nearbyUsers[i].type === "need" ) image1 = "images/walking.png";
+ 		else if( nearbyUsers[i].type === "offer" ) image1 = "images/car.png";
 		marker = new google.maps.Marker({
-			position: new google.maps.LatLng(locations[i][1], locations[i][2]), 
+			position: new google.maps.LatLng(nearbyUsers[i].lat, nearbyUsers[i].lng), 
 			map: map, 
 			icon: image1, 
 			animation: google.maps.Animation.DROP
 			});
-		google.maps.event.addListener(marker, 'click', (function(marker, i) {
-			return function() {
-				InfoWindow.setContent(locations[i][0]);
-				InfoWindow.open(map, marker);
-				}
-			})(marker, i));
+		marker.userInfo = nearbyUsers[i];
+		marker.user = nearbyUsers[i].user;
+		SpiderMaps.addMarker(marker);
 		markers.push(marker);
 		}
 
 	// Destination locations
-// <img id="driverMapPicCar" style="max-width:64px; max-height:64px;" src="images/nopicture.png" align="left">
-// '<img src="images/car/'+ +'.png" >'
-	for (i = 0; i < locations.length; i++) {	
-		if(locations[i][3]==="offer"){
-			marker = new google.maps.Marker({position: new google.maps.LatLng(locations[i][4], locations[i][5]), map: map, icon: "images/dest.png", zIndex: 10000, animation: google.maps.Animation.DROP });
-			var start;
-			var end;
-
-			google.maps.event.addListener(marker, 'click', (function(marker, i) {
-				return function() {
-					$('#driverMap').show();
-					if((locations[i][9] != null) && (locations[i][11] != null)){
-						var time = " They are leaving at " + userTime(locations[i][9]) + " on " + toDays(locations[i][11]);
-						if(locations[i][10] != null) var time = " They are leaving at " + userTime(locations[i][9]) + " and returning at " + userTime(locations[i][10]) + " on " + toDays(locations[i][11]);
-						}
-					else {
-						var pretime = readableDate(locations[i][8]);
-						if(pretime!==false) var time = " Leaving at " + readableDate(locations[i][8]);
-						else var time = " They haven't set their leave time yet. ";
-						}
-					if(locations[i][3]==="offer"){
-						InfoWindow.setContent(locations[i][0]);
-						route(locations[i][0], false, "distanceDiv");
-						if(locations[i][6]!==null){
-							if(locations[i][7]<=0){
-								// Image
-								//$('#driverMapPicCar').html('<img style="max-width:64px; max-height:64px;" align="left" src="images/cars/car'+ locations[i][6] +'.png" >');
-								// Text
-								$('#driverMapInfo').html(locations[i][0]+' has a full car.');
-								}
-							else {
-								if(locations[i][7]==1) var spots = locations[i][7] + " seat avalable.";
-								else var spots = locations[i][7] + " seats avalable.";
-								// Image
-								//$('#driverMapPicCar').html('<img style="max-width:64px; max-height:64px;" align="left" src="images/cars/car'+ locations[i][6] +'.png" >');
-								// Text
-								$('#driverMapInfo').html(locations[i][0]+' has '+spots+time+' <span id="distanceDiv" value="" ></span> <button id="askride" value="'+locations[i][0]+'" onclick="askForRide();" >Ask for ride</button>');
-								}
-							}
-						else {
-							var spots = "not set avalable seats yet.";
-							// Image
-							$('#driverMapPicCar').html('');
-							// Text
-							$('#driverMapInfo').html(locations[i][0]+' has '+spots+time+' <span id="distanceDiv" value="" ></span> <button id="askride" value="'+locations[i][0]+'" onclick="askForRide();" >Ask for ride</button>');
-							}
-						}
-					else {
-						InfoWindow.setContent(locations[i][0]);
-						}
-					InfoWindow.open(map, marker);
-					}
-				})(marker, i));
+	for (i = 0; i < nearbyUsers.length; i++) {	
+		if(nearbyUsers[i].type==="offer"){
+			marker = new google.maps.Marker({
+				position: new google.maps.LatLng(nearbyUsers[i].latd, nearbyUsers[i].lngd), 
+				map: map, 
+				icon: "images/dest.png", 
+				animation: google.maps.Animation.DROP 
+				});
+			marker.userInfo = nearbyUsers[i];
+			marker.user = nearbyUsers[i].user;
+			SpiderMaps.addMarker(marker);
 			markers.push(marker);
+			}
+		}
+	}
+
+function markerClick(info){
+	if(info.type === "offer"){
+		$('#driverMap').show();
+		if((info.leave1 != null) && (info.days != null)){
+			var time = " " + info.user + " is leaving at " + userTime(info.leave1) + " on " + toDays(info.days);
+			if(info.leave2 != null) var time = " " + info.user + " is leaving at " + userTime(info.leave1) + " and returning at " + userTime(info.leave2) + " on " + toDays(info.days);
+			}
+		else {
+			var pretime = readableDate(info.leave);
+			if(pretime !== false) var time = " Leaving at " + readableDate(info.leave);
+			else var time = " " + info.user + " hasn't set their leave time yet. ";
+			}
+		route(info.user, false, "distanceDiv");
+		if(info.total !== null){
+			if(info.available <= 0){
+				// Image
+				//$('#driverMapPicCar').html('<img style="max-width:64px; max-height:64px;" align="left" src="images/cars/car'+ info[6] +'.png" >');
+				// Text
+				$('#driverMapInfo').html(info.user+' has a full car.');
+				}
+			else {
+				if(info.available == 1) var spots = " 1 seat avalable.";
+				else var spots = info.available + " seats avalable.";
+				// Image
+				//$('#driverMapPicCar').html('<img style="max-width:64px; max-height:64px;" align="left" src="images/cars/car'+ info[6] +'.png" >');
+				// Text
+				$('#driverMapInfo').html(info.user+' has '+spots+time+' <span id="distanceDiv" value="" ></span> <button id="askride" value="'+info.user+'" onclick="askForRide();" >Ask for ride</button>');
+				}
+			}
+		else {
+			var spots = "not set avalable seats yet.";
+			// Image
+			$('#driverMapPicCar').html('');
+			// Text
+			$('#driverMapInfo').html(info.user+' has '+spots+time+' <span id="distanceDiv" value="" ></span> <button id="askride" value="'+info.user+'" onclick="askForRide();" >Ask for ride</button>');
 			}
 		}
 	}
@@ -199,21 +232,17 @@ function addPointMap(pos,content,image,type){
 		draggable: true,
 		animation: google.maps.Animation.DROP
 		});
+	marker.user = content;
+	SpiderMaps.addMarker(marker);
 	//bounds.extend(pos);
 	//map.fitBounds(bounds);
-	google.maps.event.addListener(marker, 'click', (function(marker, i) {
-		return function() {
-			InfoWindow.setContent(content);
-			InfoWindow.open(map, marker);
-			}
-		})(marker));
 	google.maps.event.addListener(marker, 'dragend', function(evt) {
 		if(type === "dest"){
 			$('#GPSlatd').val(evt.latLng.lat().toFixed(8));
 			$('#GPSlngd').val(evt.latLng.lng().toFixed(8));
 			setDestClick();
 			}
-		else if(type === "start"){
+		else if(type === "user" || type === "start"){
 			$('#GPSlats').val(evt.latLng.lat().toFixed(8));
 			$('#GPSlngs').val(evt.latLng.lng().toFixed(8));
 			setLocationClick();
@@ -230,6 +259,7 @@ function codeAddress(address, image, type) {
 		}
 	geocoder.geocode( { 'address': address}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
+			clearMarkers();
 			map.setCenter(results[0].geometry.location);
 			var dest = new google.maps.Marker({			 
 				position: results[0].geometry.location,
@@ -238,12 +268,13 @@ function codeAddress(address, image, type) {
 				animation: google.maps.Animation.DROP,
 				zIndex: 999999999
 				});
+			SpiderMaps.addMarker(dest);
 			google.maps.event.addListener(dest, 'click', (function(dest, i) { return function() {
 				if(type === "dest"){
-					InfoWindow.setContent('<button onclick="setDestClick();" >Set as destination</button>');
+					dest.user = '<button onclick="setDestClick();" >Set as destination</button>';
 					}
 				if(type === "start"){
-					InfoWindow.setContent('<button onclick="setLocationClick();" >Set as starting location</button>');
+					dest.user = '<button onclick="setLocationClick();" >Set as starting location</button>';
 					}
 				InfoWindow.open(map, dest);
 				}
@@ -262,10 +293,12 @@ function codeAddress(address, image, type) {
 				if(type === "dest"){
 					$('#GPSlatd').val(evt.latLng.lat().toFixed(8));
 					$('#GPSlngd').val(evt.latLng.lng().toFixed(8));
+					setDestClick();
 					}
 				else if(type === "start"){
 					$('#GPSlats').val(evt.latLng.lat().toFixed(8));
 					$('#GPSlngs').val(evt.latLng.lng().toFixed(8));
+					setLocationClick();
 					}
 				});
 			markers.push(dest);

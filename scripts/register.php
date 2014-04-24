@@ -16,9 +16,23 @@ if ( (!isset($_POST['password'])) ||
 (!isset($_POST['username'])) || 
 (!isset($_POST['email'])) || 
 (!isset($_POST['type'])) ||
-(!isset($_POST['mylat'])) ||
-(!isset($_POST['mylng'])) ) 
+(!isset($_POST["recaptcha_response_field"])) ||
+(!isset($_POST["recaptcha_challenge_field"])) ) 
 	exit ("$whatname please fill in all fields.");
+
+require_once('recaptchalib.php');
+	$publickey = "6LcPK_ISAAAAAEYXUJAsrhUNTXMfmPpnzc2AOA3i";
+	$privatekey = "6LcPK_ISAAAAACglo1Id8fveDf45HHyHCj0Rp269";
+        $resp = recaptcha_check_answer ($privatekey,
+                                        $_SERVER["REMOTE_ADDR"],
+                                        $_POST["recaptcha_challenge_field"],
+                                        $_POST["recaptcha_response_field"]);
+
+        if (!($resp->is_valid)) {
+		$error = $resp->error;
+		exit("You entered the captcha wrong");
+        	}
+
 
 	$whatname = $_POST['username'];
 	$whatpass = $_POST['password'];
@@ -27,19 +41,16 @@ if ( (!isset($_POST['password'])) ||
 
 	if(0!=strcmp($_POST['password'],$_POST['confirmpassword'])) exit ($_POST['username'] . " your passwords do not match. ");
 
-	$lat = $_POST['mylat'];
-	$lng = $_POST['mylng'];
-	if((!$lng)||(!$lat)) exit ("$whatname please enable location.");
-
 	if (filter_var($whatemail, FILTER_VALIDATE_EMAIL));
 	else exit ("$whatname you have an invalid email. ");
 
-	if ($_POST['cookie'] == true){
-		setcookie("username",$whatname,time()+3600, "carpool.sytes.net");
-		}
-
 	$table="carpool_members"; // Table name 
 	$whatname = strtolower($whatname);
+
+	if ($_POST['cookie'] == true){
+		setcookie("username",$whatname,time()+3600, "carpool.sytes.net");
+		$_COOKIE['username'] = $whatname;
+		}
 
 	// Create connection
 	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
@@ -60,7 +71,7 @@ if ( (!isset($_POST['password'])) ||
 		exit($whatname . " is already taken or email has already been used");
 		}
 	else{
-		mysqli_query($con,"INSERT INTO $table (username,password,email,type,latitude,longitude) VALUES('$whatname','$whatpass','$whatemail','$whattype',$lat,$lng);");
+		mysqli_query($con,"INSERT INTO $table (username,password,email,type) VALUES('$whatname','$whatpass','$whatemail','$whattype');");
 		$row = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM $table WHERE username='$whatname';"));
 		$_SESSION['id'] = $row[0];
 		$_SESSION['username'] = $whatname;

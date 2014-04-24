@@ -1,23 +1,37 @@
-<!--
-Application: Carpoolme.net
-File: Register
-Date: 2/6/14
-Author: John Andersen
-(c) Copyright 2014 All rights reserved
--->
+<html>
+  <body>
+    <form action="" method="post">
 <?php
-echo "starting<br>";
 
-$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+require_once('scripts/recaptchalib.php');
 
-	// Check connection
-	if (mysqli_connect_errno()){
-		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-		}
-	
-	$result = mysqli_query($con,"SELECT id FROM carpool_members WHERE username='rysmith';");
+// Get a key from https://www.google.com/recaptcha/admin/create
+$publickey = "6LcPK_ISAAAAAEYXUJAsrhUNTXMfmPpnzc2AOA3i";
+$privatekey = "6LcPK_ISAAAAACglo1Id8fveDf45HHyHCj0Rp269";
 
-	echo mysqli_num_rows($result);
+# the response from reCAPTCHA
+$resp = null;
+# the error code from reCAPTCHA, if any
+$error = null;
 
-	mysqli_close($con);
+# was there a reCAPTCHA response?
+if ($_POST["recaptcha_response_field"]) {
+        $resp = recaptcha_check_answer ($privatekey,
+                                        $_SERVER["REMOTE_ADDR"],
+                                        $_POST["recaptcha_challenge_field"],
+                                        $_POST["recaptcha_response_field"]);
+
+        if ($resp->is_valid) {
+                echo "You got it!";
+        } else {
+                # set the error code so that we can display it
+                $error = $resp->error;
+        }
+}
+echo recaptcha_get_html($publickey, $error);
 ?>
+    <br/>
+    <input type="submit" value="submit" />
+    </form>
+  </body>
+</html>

@@ -32,6 +32,10 @@ function reload(myId){
 	$('#driverMap').hide();
 	getMyUserInfo(myId, function(){
 		console.log("reloaded");
+		if ( s.lat == null ){
+			createMap();
+			return 1;
+			}
 		$('#type').val(jsStype);
 		if(jsSincar != null) 
 			$('#clearRideSpan').html("<button id='clearRide' name='clearRide' onclick='clearRide()'>Remove me from "+jsSincar+"'s car</button>");
@@ -43,11 +47,14 @@ function reload(myId){
 		else if(jsSlngd == 0) $('#clearDest').hide();
 		if(jsStype==="offer"){
 			getLeaveTime(table);
-			myCar();
 			$('#leaveSeatsMpg').show();
-			$('#myCar').show();
+			if ( jsSlngd != 0 ){
+				myCar();
+				$('#myCar').show();
+				}
+			else $('#myCar').hide();
 			}
-		else if(jsStype==="need"){
+		else if(jsStype === "need"){
 			$('#leaveSeatsMpg').hide();
 			$('#myCar').hide();
 			}
@@ -124,9 +131,27 @@ function getMyUserInfo(myId, callback){
 		jsSincar = jsSESSION[9];
 		jsSridingwith = jsSESSION[10];
 		jsSid = jsSESSION[11];
+		window.s = {
+			user: jsSESSION[0],
+			pass: jsSESSION[1],
+			email: jsSESSION[2],
+			lat: jsSESSION[3]*1,
+			lng: jsSESSION[4]*1,
+			latd: jsSESSION[5]*1,
+			lngd: jsSESSION[6]*1,
+			type: jsSESSION[7],
+			mpg: jsSESSION[8],
+			incar: jsSESSION[9],
+			ask: jsSESSION[10],
+			id: jsSESSION[11]
+			};
+		if( jsSESSION[3] == null ) s.lat = null;
+		if( jsSESSION[4] == null ) s.lng = null;
+		if( jsSESSION[5] == null ) s.latd = null;
+		if( jsSESSION[6] == null ) s.lngd = null;
 		myPosition = new google.maps.LatLng(jsSlat, jsSlng);
 		if(jsSlngd != 0) myDest = new google.maps.LatLng(jsSlatd, jsSlngd);
-		nearby(0.15, function(nearMe){
+		getNearby(0.15, function(nearMe){
 			jsSnearby = nearMe;
 			callback();
 			});
@@ -377,27 +402,13 @@ function updateMultNum(table, these, values, conditions, callback){
 		});
 	}
 
-// attach the .compare method to Array's prototype to call it on any array
-Array.prototype.compare = function (array) {
-    // if the other array is a falsy value, return
-    if (!array)
-        return false;
-
-    // compare lengths - can save a lot of time
-    if (this.length != array.length)
-        return false;
-
-    for (var i = 0, l=this.length; i < l; i++) {
-        // Check if we have nested arrays
-        if (this[i] instanceof Array && array[i] instanceof Array) {
-            // recurse into the nested arrays
-            if (!this[i].compare(array[i]))
-                return false;
-        }
-        else if (this[i] != array[i]) {
-            // Warning - two different object instances will never be equal: {x:20} != {x:20}
-            return false;
-        }
-    }
-    return true;
-}
+function getAllUsers(callback){
+	getFromTable("carpool_members", "username", "username is not NULL", function(names){
+		names = JSON.parse(names);
+		var allUsers = [];
+		for ( var i = 0 ; i < names.length ; i++ ){
+			allUsers.push(names[i][0]);
+			}
+		callback(allUsers);
+		});
+	}

@@ -17,6 +17,7 @@ function includes($dir){?>
 <script src="<?php echo $dir; ?>/main.js"></script>
 <script src="<?php echo $dir; ?>/map.js"></script>
 <script src="<?php echo $dir; ?>/route.js"></script>
+<script src="scripts/oms.min.js"></script>
 
 <script>
 $( document ).ready(function() {
@@ -134,10 +135,12 @@ $( document ).ready(function() {
 $("#date").click(function() {
 	var val = $(this).val();
 	var sufix;
-	if(val.length == 1) sufix = dateSufix(val);
-	else if (val[0] == 1) sufix = dateSufix(val);
-	else sufix = dateSufix(val[1]);
-	$('#datesufix').html(sufix);
+	if (val !== null){
+		if(val.length == 1) sufix = dateSufix(val);
+		else if (val[0] == 1) sufix = dateSufix(val);
+		else sufix = dateSufix(val[1]);
+		$('#datesufix').html(sufix);
+		}
 	});
 
 $('#leaveKind').change(function(){
@@ -235,6 +238,7 @@ function getLeaveTime(table){
 			else {
 				$('#leavetime').html("You haven't set your leave time yet. ");
 				$('#time').val("");
+				$('#date').val("");
 				}
 			});
 		}
@@ -246,6 +250,7 @@ function getLeaveTime(table){
 				$('#time1').val(data[0]);
 				$('#leavetime1').html("Your first leave time is ");
 				$('#time').val("");
+				$('#date').val("");
 				}
 			else {
 				$('#leavetime1').html("You haven't set your first leave time yet. ");
@@ -254,6 +259,7 @@ function getLeaveTime(table){
 				$('#time2').val(data[1]);
 				$('#leavetime2').html("Your second leave time is ");
 				$('#time').val("");
+				$('#date').val("");
 				}
 			else {
 				$('#leavetime2').html("You haven't set your second leave time yet. ");
@@ -261,6 +267,8 @@ function getLeaveTime(table){
 			if(data[2] != null){
 				$('#yourDaysCurrent').html(data[2]);
 				$('#yourDays').html("You are driving on"+toDays(data[2]));
+				$('#time').val("");
+				$('#date').val("");
 				}
 			else {
 				$('#yourDays').html("You haven't set the days you're driving on yet. ");
@@ -494,6 +502,7 @@ function myCar($postto){ ?>
 <span id="wantMyCarSpan" ></span><br><hr /><br>
 <script>
 function myCar(){
+	if (jsSlngd != 0 ){
 	var tablenum = tableCheck(table);
 	getFromTable(table, "username, id", " incar ='"+jsSusername+"'", function(data){
 		if(data !== "none") {
@@ -512,20 +521,21 @@ function myCar(){
 		else inMyCar(null);
 		displaySeats();
 		});
-		getFromTable(table, "username, id", " ridingwith ='"+jsSusername+"'", function(data){
-			if(data !== "none") {
-				data = JSON.parse(data);
-					jsSwantmycar[tablenum] = [];
-					for(var i = 0; i < data.length ; i++ ){ 
-						jsSwantmycar[tablenum].push( [] );
-						jsSwantmycar[tablenum][i].push(data[i][0]);
-						jsSwantmycar[tablenum][i].push(data[i][1]);
-						}
-					wantMyCar(jsSwantmycar[tablenum]);
-				}
-			else wantMyCar(null);
-			displaySeats();
-			});
+	getFromTable(table, "username, id", " ridingwith ='"+jsSusername+"'", function(data){
+		if(data !== "none") {
+			data = JSON.parse(data);
+				jsSwantmycar[tablenum] = [];
+				for(var i = 0; i < data.length ; i++ ){ 
+					jsSwantmycar[tablenum].push( [] );
+					jsSwantmycar[tablenum][i].push(data[i][0]);
+					jsSwantmycar[tablenum][i].push(data[i][1]);
+					}
+				wantMyCar(jsSwantmycar[tablenum]);
+			}
+		else wantMyCar(null);
+		displaySeats();
+		});
+	}
 	}
 
 function inMyCar(incar){
@@ -737,6 +747,7 @@ function register($postto){?>
 
 <form id="registerfrom">
 <center><h4>Register</h4></center>
+<center>
 Username<br>
 <input id='usernamer' type="text"><br>
 Password<br>
@@ -751,35 +762,42 @@ Email<br>
 </select></center><br>
 Remember me 
 <input type ="checkbox" id="cookier" >
+</center>
+<?php
+require_once('scripts/recaptchalib.php');
+$publickey = "6LcPK_ISAAAAAEYXUJAsrhUNTXMfmPpnzc2AOA3i";
+echo recaptcha_get_html($publickey);
+
+# the response from reCAPTCHA
+$resp = null;
+# the error code from reCAPTCHA, if any
+$error = null;
+
+# was there a reCAPTCHA response?
+
+?>
 <center><input value="Register" id="reg" name="reg" type="submit"></center>
 </form>
 <script>
 
 $('#registerfrom').submit(function(){
-	navigator.geolocation.getCurrentPosition(function(position){
-		var lat = position.coords.latitude;
-		var lng = position.coords.longitude;
-		returnSpan("Registering...<br>");
-		if ( (typeof lat !== "undefined") && (typeof lng !== "undefined") ){
-			$.ajax({
-				type: "POST",
-				url: "<?php echo $postto; ?>",
-				data: {
-					username: $('#usernamer').val(), 
-					password: $('#passwordr').val(), 
-					confirmpassword: $('#confirmpassword').val(), 
-					email: $('#email').val(),
-					type: $('#typer').val(),
-					mylat: lat,
-					mylng: lng,
-					cookie: $('#cookier').val()
-					},
-				success: function(data){
-					returnSpan(data+"<br>");
-					}
-				});
+	returnSpan("Registering...<br>");
+	$.ajax({
+		type: "POST",
+		url: "<?php echo $postto; ?>",
+		data: {
+			username: $('#usernamer').val(), 
+			password: $('#passwordr').val(), 
+			confirmpassword: $('#confirmpassword').val(), 
+			email: $('#email').val(),
+			type: $('#typer').val(),
+			cookie: $('#cookier').val(),
+			recaptcha_response_field: $('#recaptcha_response_field').val(),
+			recaptcha_challenge_field: $('#recaptcha_challenge_field').val()
+			},
+		success: function(data){
+			returnSpan(data+"<br>");
 			}
-		else returnSpan("You need to enable location to register.<br>");
 		});
 	return false;
 	});
@@ -839,11 +857,11 @@ $('#profilePictureUpload').submit(function(){
 	});
 
 profile($('#getProfile').val().toLowerCase());
-var availableUsers = readFile("profiles/users").split('\n');
+var availableUsers = [];
+getAllUsers(function(info){ availableUsers = info; });
 
 $("#getProfile").keyup(function( event ) {
 	profile($(this).val().toLowerCase());
-	availableUsers = readFile("profiles/users").split('\n');
 	});
 
 function profile(usernameval){

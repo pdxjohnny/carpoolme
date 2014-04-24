@@ -32,19 +32,16 @@ session_start();
 	$whatname = mysqli_real_escape_string($con,$whatname);
 	$whatpass = mysqli_real_escape_string($con,$whatpass);
 
-	$result = mysqli_query($con,"SELECT id FROM $table WHERE username='$whatname' AND password='$whatpass';");
+	$result = mysqli_query($con,"SELECT id, username FROM $table WHERE username='$whatname' OR email='$whatname' AND password='$whatpass';");
 	
 	if(1 == mysqli_num_rows($result)){
-		$_SESSION['username'] = $whatname;
-		mysqli_query($con,"UPDATE $table SET type = '$whattype' WHERE username='$whatname';");		
-
-		if ($newresult = mysqli_query($con, "SELECT id FROM $table WHERE username = '$whatname';")) {
-	    		$row = mysqli_fetch_row($newresult);
-			$_SESSION['id'] = $row[0];
-    			mysqli_free_result($newresult);
-			echo $_SESSION['username'] . " is now logged in. <meta http-equiv='refresh' content='1'>";
-   			}
+		$row = mysqli_fetch_row($result);
+		$_SESSION['id'] = $row[0];
+		$_SESSION['username'] = $row[1];
+		$_COOKIE['username'] = $_SESSION['username'];
+		mysqli_query($con,"UPDATE $table SET type = '$whattype' WHERE id=" . $_SESSION['id'] . ";");
     		mysqli_free_result($result);
+		echo $_SESSION['username'] . " is now logged in. <meta http-equiv='refresh' content='1'>";
 		}
 	else{
 		echo "Wrong username or password. ";
