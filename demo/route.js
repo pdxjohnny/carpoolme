@@ -6,11 +6,22 @@ var directionsService = new google.maps.DirectionsService();
 // Plot the route
 function route(user, show, displayInDiv) {
 	if (show == true) directionDisplay.setMap(map);
-	getFromTable(table, "username, latitude, longitude, dlatitude, dlongitude, mpg ", "username = '"+user+"'", function(driverData){
+	getFromTable(table, "username, latitude, longitude, dlatitude, dlongitude, mpg, days", "username = '"+user+"'", function(driverData){
 		if(driverData === "none") console.log("In route, the driver data returned none where user is "+user);
-		var driverInfo = JSON.parse(driverData);
-		var routeStart = new google.maps.LatLng(driverInfo[0][1],driverInfo[0][2]);
-		var routeEnd = new google.maps.LatLng(driverInfo[0][3],driverInfo[0][4]);
+		var driverData = JSON.parse(driverData)[0];
+		var driverInfo = {
+			user: driverData[0],
+			lat: driverData[1],
+			lng: driverData[2],
+			latd: driverData[3],
+			lngd: driverData[4],
+			mpg: driverData[5],
+			roundTrip: driverData[6]
+			};
+		if (driverInfo.roundTrip !== null) driverInfo.roundTrip = true;
+		else driverInfo.roundTrip = false; 
+		var routeStart = new google.maps.LatLng(driverInfo.lat,driverInfo.lng);
+		var routeEnd = new google.maps.LatLng(driverInfo.latd,driverInfo.lngd);
 		getFromTable(table, "username, latitude, longitude", "incar = '"+user+"'", function(riderWaypointsNoParse){
 			if(riderWaypointsNoParse != "none"){
 				var riderWaypoints = [];
@@ -70,14 +81,16 @@ function route(user, show, displayInDiv) {
 function displayDistance(driverInfo, distance, displayInDiv){
 	// var for the display element
 	var displayIn = document.getElementById(displayInDiv);
+	displayIn.innerHTML = "";
 	// Driver is taveling toMiles(totalDistance) miles. 
 	var miles = toMiles(distance);
-	if(jsSusername === driverInfo[0][0]){
+	if (driverInfo.roundTrip == true) miles = miles * 2;
+	if(jsSusername === driverInfo.user){
 		displayIn.innerHTML = "You are traveling " + miles + " miles. ";
 		}
-	else displayIn.innerHTML = driverInfo[0][0]+ " is traveling " + miles + " miles. ";
+	else displayIn.innerHTML = driverInfo.user+ " is traveling " + miles + " miles. ";
 	// Get drivers mpg
-	var mpg = driverInfo[0][5];
+	var mpg = driverInfo.mpg;
 	// Handel no mpg set
 	if (mpg == null) {
 		displayIn.innerHTML += "Mpg has not been set to calculate the cost per person. ";
@@ -86,8 +99,8 @@ function displayDistance(driverInfo, distance, displayInDiv){
 	else {
 		// Get totalRideCost, this is unsplit
 		var totalRideCost = toDollars(miles,mpg);
-		if(jsSusername === driverInfo[0][0]) displayIn.innerHTML += "Total cost of this trip is $"+ round2(totalRideCost) +". ";
-		splitCost(totalRideCost,driverInfo[0][0], function(price){
+		if(jsSusername === driverInfo.user) displayIn.innerHTML += "Total cost of this trip is $"+ round2(totalRideCost) +". ";
+		splitCost(totalRideCost,driverInfo.user, function(price){
 			displayIn.innerHTML += "This will take $"+ round2(price) +" per person. <br>";
 			});
 		}
@@ -111,7 +124,7 @@ function round2(num){
 // Finds the cost of a drivers distance
 function toDollars(miles, mpg){
 	// Need to add way to update gas price locally, possibly add localprice coloumn and average the values withing a range
-	var priceofgas = 3.49;
+	var priceofgas = 3.69;
 	return (miles/mpg)*priceofgas;
 	}
 
@@ -124,6 +137,29 @@ function splitCost(totalDollars, user, callback){
 			}
 		else if(jsSusername === user) callback(round2(totalDollars/(JSON.parse(jsondata).length+1)/*people + driver then you*/));
 		// Add an if you are in the array so you are already in their car
-		else callback(round2(totalDollars/(JSON.parse(jsondata).length+2)/*people + driver then you*/));
+		else {
+			var imInTheCar = false;
+			var splitOthersInCar = JSON.parse(jsondata);
+			for (var i = 0; i < splitOthersInCar.length ; i++){
+				if (splitOthersInCar[i][0] === jsSusername) var imInTheCar = true;
+				}
+			if (imInTheCar) callback(round2(totalDollars/(JSON.parse(jsondata).length+1)/*people + driver you're already in the car*/));
+			else callback(round2(totalDollars/(JSON.parse(jsondata).length+2)/*people + driver then you*/));
+			}
 		});
+	}
+
+// Should we display the route?
+function shouldRoute(){
+	if(jsSlngd != 0){
+		directionDisplay.setMap(null);
+		if(jsSincar != null){
+			route(jsSincar, true, "myRideCarInfo");
+			}
+		else if(jsStype==="offer"){
+			route(jsSusername, true, "myCarInfo");
+			}
+		myRide();
+		myCar();
+		}
 	}

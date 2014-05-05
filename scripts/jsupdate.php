@@ -1,27 +1,29 @@
 <?php
 
+$table = "carpool_members";
+
 if(isset($_POST['string'])){
-	echo updateString($_POST['table'],$_POST['what'],$_POST['string'],$_POST['conditions']);
+	echo updateString($table,$_POST['what'],$_POST['string'],$_POST['conditions']);
 	}
 
 else if(isset($_POST['num'])){
-	echo updateNum($_POST['table'],$_POST['what'],$_POST['num'],$_POST['conditions']);
+	echo updateNum($table,$_POST['what'],$_POST['num'],$_POST['conditions']);
 	}
 
 else if(isset($_POST['nullthis'])){
-	echo updateNull($_POST['table'],$_POST['nullthis'],$_POST['conditions']);
+	echo updateNull($table,$_POST['nullthis'],$_POST['conditions']);
 	}
 
 else if(isset($_POST['get'])){
-	echo get($_POST['table'], $_POST['get'], $_POST['conditions'], (substr_count($_POST['get'], ',') +1) );
+	echo get($table, $_POST['get'], $_POST['conditions'], (substr_count($_POST['get'], ',') +1) );
 	}
 
 else if(isset($_POST['theseNum'])){
-	echo updateMultNum($_POST['table'], $_POST['theseNum'], $_POST['newvalues'], $_POST['conditions']);
+	echo updateMultNum($table, $_POST['theseNum'], $_POST['newvalues'], $_POST['conditions']);
 	}
 
 else if(isset($_POST['theseString'])){
-	echo updateMultString($_POST['table'], $_POST['theseString'], $_POST['newvalues'], $_POST['conditions']);
+	echo updateMultString($table, $_POST['theseString'], $_POST['newvalues'], $_POST['conditions']);
 	}
 
 else echo "Not sure what to update. ";
