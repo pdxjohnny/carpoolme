@@ -53,7 +53,7 @@ require_once('recaptchalib.php');
 		}
 
 	// Create connection
-	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+	$con=mysqli_connect("localhost","***REMOVED***","***REMOVED***","***REMOVED***");
 
 	// Check connection
 	if (mysqli_connect_errno()){

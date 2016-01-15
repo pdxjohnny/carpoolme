@@ -17,7 +17,8 @@ Author: John Andersen
   ================================================== -->
 	<meta charset="utf-8">
 	<title>Carpoolme</title>
-	<meta name="description" content="Carpoolme">
+	<meta name="title" content="Carpoolme">
+	<meta name="description" content="Web application which provides free easy facilitation of carpooling">
 	<meta name="author" content="John Andersen">
 
 	<!-- Mobile Specific Metas

@@ -23,7 +23,6 @@ function includes($dir){?>
 $( document ).ready(function() {
 
 	createMap();
-	//reload("<?php echo $_SESSION['id']; ?>");
 
 	$('#type').change(function() {
 		updateString(table,"type",$(this).val(),"id = "+s.id, function(data){

@@ -1,2 +1,0 @@
-ls /var/www/carpool/Uploads > /var/www/carpool/readfiles/Uploads.txt
-ls /var/www/carpool/ | egrep '\.html$|\.php$' > /var/www/carpool/readfiles/pages.txt

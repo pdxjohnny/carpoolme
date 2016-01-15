@@ -31,7 +31,7 @@ else echo "Not sure what to update. ";
 function get($table,$stuff,$conditions,$howmany){
 
 	// Create connection
-	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+	$con=mysqli_connect("localhost","***REMOVED***","***REMOVED***","***REMOVED***");
 
 	// Check connection
 	if (mysqli_connect_errno()){
@@ -56,7 +56,7 @@ function get($table,$stuff,$conditions,$howmany){
 function updateString($table,$what,$with,$conditions){
 
 	// Create connection
-	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+	$con=mysqli_connect("localhost","***REMOVED***","***REMOVED***","***REMOVED***");
 
 	// Check connection
 	if (mysqli_connect_errno()){
@@ -85,7 +85,7 @@ function updateNum($table,$what,$with,$conditions){
 	if (!is_numeric($with)) return "Not a number";
 
 	// Create connection
-	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+	$con=mysqli_connect("localhost","***REMOVED***","***REMOVED***","***REMOVED***");
 
 	// Check connection
 	if (mysqli_connect_errno()){
@@ -112,7 +112,7 @@ function updateNum($table,$what,$with,$conditions){
 function updateNull($table,$what,$conditions){
 
 	// Create connection
-	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+	$con=mysqli_connect("localhost","***REMOVED***","***REMOVED***","***REMOVED***");
 
 	// Check connection
 	if (mysqli_connect_errno()){
@@ -141,7 +141,7 @@ function updateMultNum($table, $these, $newvalues, $conditions){
 	//return json_encode($these) . ":" . json_encode($newvalues);
 	if(count($these) != count($newvalues)) return "Updates don't match. ";
 
-	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+	$con=mysqli_connect("localhost","***REMOVED***","***REMOVED***","***REMOVED***");
 
 	// Check connection
 	if (mysqli_connect_errno()){
@@ -172,7 +172,7 @@ function updateMultString($table, $these, $newvalues, $user){
 	
 	if(count($these) != count($newvalues)) return "Updates don't match. ";
 
-	$con=mysqli_connect("***REMOVED***","***REMOVED***","***REMOVED***","***REMOVED***");
+	$con=mysqli_connect("localhost","***REMOVED***","***REMOVED***","***REMOVED***");
 
 	// Check connection
 	if (mysqli_connect_errno()){

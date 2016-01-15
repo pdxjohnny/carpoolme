@@ -26,6 +26,22 @@ var jsSincar;
 var jsSavailablespots;
 var jsSmpg;
 var jsStripdistance;
+function userInfo() {
+	this.user;
+	this.pass;
+	this.email;
+	this.lat;
+	this.lng;
+	this.latd;
+	this.lngd;
+	this.type;
+	this.mpg;
+	this.incar;
+	this.ask;
+	this.id;
+	this.available;
+	this.total;
+	}
 
 // Reload jsS - the javascript session variables
 function reload(myId){
