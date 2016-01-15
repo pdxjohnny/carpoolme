@@ -26,7 +26,7 @@ if(!session_is_registered(myusername)){
 echo "<a href='scripts/login.html'>Login</a>";
 }
 else{
-echo '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script><script>function logout() {    $.get("scripts/logout.php");    return false;}</script><a href="#" onclick="logout();">Logout</a>';
+echo '<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script><script>function logout() {    $.get("scripts/logout.php");    return false;}</script><a href="#" onclick="logout();">Logout</a>';
 }
 ?>
 	</div>
